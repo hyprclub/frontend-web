@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>hypr club</p>
+        <p>hypr club1</p>
       </header>
     </div>
   );
