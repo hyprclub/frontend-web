@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import ButtonItself from '../../components/button/ButtonItself.js';
-import InputField from '../../components/inputField/Input.js';
+import ButtonItself from '../../components/button/ButtonItself';
+import InputField from '../../components/inputField/Input';
 import Logo from '../../components/logo/Logo';
-import SocialLogins from '../../components/socialLogins/SocialLogins.js';
+import SocialLogins from '../../components/socialLogins/SocialLogins';
 import './login.css';
 
 const Login = () => {
