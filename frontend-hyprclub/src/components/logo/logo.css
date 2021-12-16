@@ -1,0 +1,11 @@
+.logoImg{
+    width: 181.55px;
+    height: 84px;
+}
+
+@media only screen and (max-width: 600px) {
+    .logoImg{
+        width: 141px;
+height: 65px;
+    }
+  }

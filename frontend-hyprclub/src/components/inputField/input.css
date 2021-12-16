@@ -1,0 +1,24 @@
+.fullWidth{
+    width: 100%;
+}
+
+.halfWidth{
+    width: 48%;
+    margin: 1%;
+}
+
+.form-label{
+    margin-bottom: 4px !important;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+}
+
+.inputItself{
+    border-radius: 6px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .halfWidth{
+        width: 100%;
+    }
+  }

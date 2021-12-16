@@ -1,0 +1,73 @@
+.registerPage{
+    height: 100vh;
+}
+
+.registerForm{
+    border: 1px solid black;
+    padding: 10px 50px;
+    border-radius: 25px;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+.link{
+    color: black;
+    cursor: pointer;
+
+}
+
+.registerHeaderText{
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+    padding: 0 20px;
+}
+
+.subtitleText{
+    font-weight: 500;
+    font-size: 16px;
+
+}
+
+.subtitleText .createAccount{
+   text-decoration: underline;
+
+}
+
+.registerHeaderText, .subtitleText{
+    text-align: center;
+}
+
+.inputs{
+    width: 100%;
+}
+
+.termsLink{
+    color: #7E7E7E;
+}
+
+.forgotPassword{
+    font-size: 12px;
+    line-height: 20px;
+    text-decoration: underline;
+    text-align: end;
+    color: #7E7E7E;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .registerForm{
+        width: 100% !important;
+        margin-top: 2.5vh;
+    padding: 10px 20px;
+
+    }
+
+    .registerHeaderText{
+        font-size: 32px;
+        letter-spacing: -0.01em;
+    }
+    .registeInputs{
+        flex-direction: column;
+    }
+  }
