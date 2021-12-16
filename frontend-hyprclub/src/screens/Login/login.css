@@ -1,0 +1,66 @@
+.loginPage{
+    height: 100vh;
+}
+
+.loginForm{
+    border: 1px solid black;
+    padding: 10px 50px;
+    border-radius: 25px;
+    width: 45%;
+    margin-bottom: 40px;
+}
+
+.link{
+    color: black;
+    cursor: pointer;
+
+}
+
+.loginHeaderText{
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.subtitleText{
+    font-weight: 500;
+    font-size: 16px;
+
+}
+
+.subtitleText .createAccount{
+   text-decoration: underline;
+
+}
+
+.loginHeaderText, .subtitleText{
+    text-align: center;
+}
+
+.inputs{
+    width: 100%;
+}
+
+
+.forgotPassword{
+    font-size: 12px;
+    line-height: 20px;
+    text-decoration: underline;
+    text-align: end;
+    color: #7E7E7E;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .loginForm{
+        width: 100% !important;
+        margin-top: 2.5vh;
+    padding: 10px 20px;
+
+    }
+
+    .loginHeaderText{
+        font-size: 32px;
+        letter-spacing: -0.01em;
+    }
+  }
