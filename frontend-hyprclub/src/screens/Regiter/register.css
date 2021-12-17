@@ -10,11 +10,11 @@
     margin-bottom: 40px;
 }
 
-.link{
-    color: black;
-    cursor: pointer;
-
+.checkBoxTexts{
+    font-size:12;
+    color:"#7e7e7e"
 }
+
 
 .registerHeaderText{
     font-weight: bold;

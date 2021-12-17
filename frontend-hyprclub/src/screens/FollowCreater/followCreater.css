@@ -1,0 +1,63 @@
+.followHeader{
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+    padding: 0 20px;
+}
+
+.followSubtitle{
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0 16vw 20px 16vw;
+    
+}
+
+.followCreatersCard{
+    border: 1px solid black;
+    padding: 10px 50px;
+    border-radius: 25px;
+    width: 90%;
+    margin-bottom: 40px;
+}
+
+.followCreatersCard .arrowLeft{
+    font-size: 30px;
+    color: black;
+}
+
+.followHeader, .followSubtitle{
+    text-align: center;
+}
+
+
+.followCreater .skip{
+    text-align: center;
+    text-decoration: underline;
+    color: #8C8C8C;
+    margin-top: 10px;
+    font-size: 14px;
+
+}
+@media only screen and (max-width: 600px) {
+
+    .followCreatersCard .arrowLeft{
+        font-size: 24px;
+    }
+    .followSubtitle{
+        padding: 10px;
+    }
+    .partOfHeader::before{
+        content: "\a";
+        white-space: pre;
+    }
+    .followHeader{
+        font-size: 32px;
+        letter-spacing: -0.01em;
+    }
+    .followCreatersCard{
+        width: 100% !important;
+        margin-top: 2.5vh;
+        padding: 10px 20px;
+
+    }
+  }

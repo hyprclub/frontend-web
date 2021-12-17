@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControl } from 'react-bootstrap'
+import { FormControl } from 'react-bootstrap';
 import './input.css';
 
 interface Input{
@@ -15,7 +15,7 @@ const InputField = ({half, lableText, typeOfInput}: Input) => {
             <FormControl
             required
             type={typeOfInput}
-            className='p-2 mb-2'
+            className='p-2 mb-2 inputItself'
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
             />

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import ButtonItself from '../../components/button/ButtonItself';
+import ButtonItself from '../../components/loginSignUpBtn/ButtonItself';
 import InputField from '../../components/inputField/Input';
 import Logo from '../../components/logo/Logo';
 import SocialLogins from '../../components/socialLogins/SocialLogins';
@@ -31,10 +31,10 @@ const Register = () => {
                                         <InputField typeOfInput='text' half={true} lableText={"Password"}/>
                                         <InputField typeOfInput='text' half={true} lableText={"Confirm Password"}/>
                                     </div>
-                                    <div style={{fontSize:12, color:"#7e7e7e"}} className='d-flex align-items-center'>
+                                    <div className='d-flex checkBoxTexts align-items-center'>
                                         <input type="checkbox" /><label className='ms-2' htmlFor="">Yes, I agree to all the <a className='termsLink' href="#">Terms and Conditions</a></label>
                                     </div>
-                                    <div style={{fontSize:12, color:"#7e7e7e"}} className='d-flex align-items-center'>
+                                    <div className='d-flex checkBoxTexts align-items-center'>
                                         <input type="checkbox" /><label className='ms-2' htmlFor="">I would like to recieve promotional emails from HyprClub</label>
                                 </div>
                             <ButtonItself btnPurpose={"Register"}/>

@@ -1,0 +1,55 @@
+.creater{
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.name, .bio, .username, .bio{
+    margin-bottom: 0 !important;
+}
+
+.name{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.username{
+    font-size: 14px;
+    line-height: 20px;
+    color: #7A7A7A;
+}
+
+.bio{
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 10px;
+}
+
+.followbtnPlacement{
+    right: 10px;
+}
+
+.followBottom{
+    display: none;
+}
+
+.createrImg{
+    width: 88px;
+    height: 88px;
+    margin-right: 10px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .createrImg{
+        width: 58px;
+        height: 58px;
+    }
+    .followbtnPlacement{
+        display: none !important;
+    }
+
+.followBottom{
+    display: block;
+}
+  }
