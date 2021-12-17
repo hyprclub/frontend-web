@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+
+
+    padding: 0;
+}
+
+*>li {
+    list-style-type: none;
+    width: 109px;
+    height: 24px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    flex-wrap: nowrap;
+}
+
+
+
+.footer {
+    padding: 50px;
+    width: 100%;
+    height: 371px;
+    display: flex;
+    background: #000000;
+    color: white;
+    
+}
+
+.ft {
+    
+   
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+.footer_left {
+    margin-right:10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+
+    height: 100%;
+}
+
+.footer__phrase {
+
+    
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+    color: #FFFFFF;
+}
+
+.footer_2 {
+    margin-top: 1vh;
+   
+    left: 50px;
+    top: 130px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+
+
+    color: #FFFFFF;
+}
+
+.footer_logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#fb, #insta, #link, #twit {
+    width: 30px;
+    height: 30px;
+    filter: invert(100%);
+
+}
+
+.footer_bottom {
+    width: 204px;
+    height: 12px;
+    left: 50px;
+    top: 311px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+
+.footer_middle, .footer_right, .footer_other {
+    margin-right:10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+    height: 100%;
+    gap: 2vh;
+
+    flex-wrap: nowrap;
+
+}
+
+.title1, .title2, .title3 {
+
+    width: 98px;
+    height: 24px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+
+}
+.footer_logo{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.footer_logo>img {
+
+
+    width: 193px;
+    height: 90px;
+    
+    
+
+}
