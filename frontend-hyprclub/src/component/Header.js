@@ -1,37 +1,40 @@
 import React,  { useState } from 'react'
-import "./Header_prelogin.scss"
+ import "./Header.css"
 function Header() {
     const [view,SetView] = useState(true)
     return (
-        <div className="header">
-            <div className="header__logo">
-                <div className="logo">
+        <div className="header1">
+            <div className="header1__logo">
+                <div className="logo1">
 
-                    <img src="./images/logo.png" alt="" />
+                    <img src="./images/logohypr.png" alt="" />
                 </div>
-            </div>
             <hr />
-            <div className="header__info"  >
+            <div className="header1__info"  >
            
                 <h3>Discover</h3>
                 <h3>Creators</h3>
 
+            </div>
 
             </div>
-            <div className="header__search">
-                <div className="search-bar">
+            <div className="header_group">
 
-                    <input type="text" className="search-bar__input" placeholder="Search creator, posts, NFTs and more.." aria-label="search" />
+            <div className="header1__search">
+                <div className="search-bar1">
 
-                    <button className="search-bar__submit" aria-label=" submitsearch" onClick={()=>SetView(false)}>                     <img src="./images/search.svg" alt="" />
+                    <input type="text" className="search-bar1__input" placeholder="Search creator, posts, NFTs and more.." aria-label="search" />
+
+                    <button className="search-bar1__submit" aria-label=" submitsearch" onClick={()=>SetView(false)}>                     <img src="./images/search.svg" alt="" />
                     </button>
 
                 </div>
             </div>
-            <div className="header__right">
+            <div className="header1__right">
                 <h3>Get Started</h3>
             </div>
            
+            </div>
         </div>
     )
 }

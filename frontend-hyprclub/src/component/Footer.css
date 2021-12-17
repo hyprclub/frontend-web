@@ -109,7 +109,7 @@
 }
 
 
-.footer_middle, .footer_right, .footer_other {
+.footer_middle, .footer_right,.footer_other {
     margin-right:10vw;
     display: flex;
     flex-direction: column;
@@ -122,6 +122,7 @@
     flex-wrap: nowrap;
 
 }
+
 
 .title1, .title2, .title3 {
 

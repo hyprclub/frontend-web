@@ -1,15 +1,15 @@
 import React,  { useState } from 'react'
-
+import "./Header_login.scss"
 
 
 function Header_login() {
-    const [view,SetView] = useState(true)
+    // const [view,SetView] = useState(true)
     return (
         <div className="header">
             <div className="header__logo">
                 <div className="logo">
 
-                    <img src="./images/logo.png" alt="" />
+                    <img src="./images/logohypr.png" alt="" />
                 </div>
             </div>
             <hr />
@@ -17,7 +17,7 @@ function Header_login() {
            
                 <h3>Discover</h3>
                 <h3>Creators</h3>
-
+           
 
             </div>
             <div className="header__search">
@@ -25,7 +25,7 @@ function Header_login() {
 
                     <input type="text" className="search-bar__input" placeholder="Search creator, posts, NFTs and more.." aria-label="search" />
 
-                    <button className="search-bar__submit" aria-label=" submitsearch" onClick={()=>SetView(false)}>                     <img src="./images/search.svg" alt="" />
+                    <button className="search-bar__submit" aria-label=" submitsearch" >                     <img src="./images/search.svg" alt="" />
                     </button>
 
                 </div>

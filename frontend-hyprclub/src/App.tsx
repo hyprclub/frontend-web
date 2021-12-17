@@ -1,4 +1,5 @@
 import React from 'react';
+import Card_interest from './component/Card_interest';
 import Footer from './component/Footer';
 import Header from './component/Header';
 import Header_login from './component/Header_login';
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="App">
         <p>hyprClub</p>
-    </div>
+         </div>
   );
 }
 
