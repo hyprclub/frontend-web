@@ -3,7 +3,6 @@
     font-size: 14px;
     margin-bottom: 0;
 }
-
 .Login{
     display: flex;
     justify-content: center;
@@ -12,8 +11,29 @@
     border-radius: 35.5px;
     padding: 8px 0;
     margin-bottom: 13px;
+    width: 60% !important ;
+    cursor: pointer;
+}
+.register{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000000;
+    border-radius: 35.5px;
+    padding: 8px 0;
+    margin-bottom: 13px;
+    width: 80% !important;
 }
 
 .googleImg{
     width: 27.34px;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    .Login{
+        width: 80% !important;
+    }
+  }

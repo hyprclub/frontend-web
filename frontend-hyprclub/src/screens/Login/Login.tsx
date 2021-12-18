@@ -22,7 +22,7 @@ const Login = () => {
                                     <p className="forgotPassword"><a href="#" className='link'>Forgot Password?</a></p>
                                 <ButtonItself btnPurpose={"Login"}/>
                             </Form>
-                                    <SocialLogins purpose={"Login"}/>
+                                <SocialLogins login={true} purpose={"Login"}/>
                     </div>
                 </div>
             </div>
