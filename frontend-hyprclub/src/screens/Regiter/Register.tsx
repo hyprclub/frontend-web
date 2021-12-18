@@ -15,7 +15,7 @@ const Register = () => {
                 <div className='d-flex justify-content-center'>
                     <div className="registerForm">
                         <h1 className="registerHeaderText">Join the Next Big Social Revolution</h1>
-                        <p className='subtitleText'>Already have an account? <span className="createAccount"> <a href="#" className='link'>Log in here</a> </span></p>
+                        <p className='subtitleText'>Already have an account? <span className="createAccount"> <a href="/login" className='link'>Log in here</a> </span></p>
                             <div className='mb-3'>
                                 <Form action='#'>
                                     <div className='d-flex registeInputs'>

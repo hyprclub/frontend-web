@@ -15,7 +15,7 @@ const Login = () => {
                 <div className='d-flex justify-content-center'>
                     <div className="loginForm">
                         <h1 className="loginHeaderText">Join the Next Big Social Revolution</h1>
-                        <p className='subtitleText'>New to HyprClub? <span className="createAccount"> <a href="#" className='link'>Create Account</a> </span></p>
+                        <p className='subtitleText'>New to HyprClub? <span className="createAccount"> <a href="/register" className='link'>Create Account</a> </span></p>
                             <Form action='#'>
                                     <InputField typeOfInput='text' half={false} lableText={"Email/ Username"}/>
                                     <InputField typeOfInput='text' half={false} lableText={"Password"}/>
