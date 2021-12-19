@@ -1,0 +1,54 @@
+.tgl{
+    border:none !important;
+    display: block;
+}
+
+
+.dropbtn{
+    background:transparent !important;
+    object-fit: contain!important;
+    border-radius: 50% !important;
+    border:none!important;
+    transition: all 0.5s ease-in-out!important;
+
+    
+
+}
+.link{
+    text-decoration: none;
+    color:inherit !important;
+}
+.link:hover, .link:focus{
+    cursor:pointer !important;
+    text-decoration: none!important;
+    color:inherit !important;
+}
+
+#menu{
+    width: 35px!important;
+    height: auto !important;
+}
+
+.item{
+    color:black !important;
+    font-size:18px !important;
+    font-weight:normal!important;
+    border:none !important;
+    background-color:transparent !important;
+    text-align: left !important;
+    padding:5px !important;
+    margin:3px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items: flex-start!important;
+    justify-content: center !important;
+    width: 150px!important;
+    border-bottom: 1px solid rgb(78, 76, 76,.2) !important;
+
+}
+
+
+.item:hover, .item:focus{
+    box-shadow:1px 1px .5px rgb(78, 76, 76,.2);
+
+}
