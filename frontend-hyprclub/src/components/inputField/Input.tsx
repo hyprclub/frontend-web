@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl } from 'react-bootstrap';
 import './input.css';
-
+import clsx from 'clsx';
 interface Input{
     half: boolean,
     lableText: string,
@@ -15,7 +15,7 @@ const InputField = ({half, lableText, typeOfInput}: Input) => {
             <FormControl
             required
             type={typeOfInput}
-            className='p-2 mb-2 inputItself'
+            className={clsx('mb-1 inputItself')}
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
             />

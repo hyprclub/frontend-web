@@ -1,18 +1,20 @@
+import clsx from 'clsx';
 import React from 'react';
 import './socials.css';
 
 interface Purpose {
-    purpose: string
+    purpose: string,
+    login: boolean
 }
 
-const SocialLogins = ({purpose}: Purpose) => {
+const SocialLogins = ({login,purpose}: Purpose) => {
     return (
-        <div className='text-center mt-4'>
-            <div className="Login">
+        <div className={clsx(' mt-4 justify-content-center mb-3', !login ? 'row' : "d-flex flex-column align-items-center")}>
+            <div className={clsx(" m-1 ", !login ? 'col-md-5 register' : "Login")}>
                 <img className='me-3 googleImg' src="images/Google.png" alt="google" />
                 <p className='socialLoginText'>{purpose} with Google</p>
             </div>
-            <div className="Login">
+            <div className={clsx(" m-1 ", !login ? 'col-md-5 register' : " Login")}>
                 <img className='me-3 googleImg' src="images/Facebook.png" alt="google" />
                 <p className='socialLoginText'>{purpose} with Fcacebook</p>
             </div>

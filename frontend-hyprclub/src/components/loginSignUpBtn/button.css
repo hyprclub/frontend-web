@@ -7,3 +7,14 @@
     line-height: 20px !important;
     padding: 5px 15px !important;
 }
+
+.buttonItself:hover{
+    color: #ED0090 !important;
+    border: 3px solid #ED0090 !important;
+    border-radius: 90px !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    padding: 5px 15px !important;
+    background: white !important;
+}

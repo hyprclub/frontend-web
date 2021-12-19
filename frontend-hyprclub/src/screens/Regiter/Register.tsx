@@ -10,12 +10,12 @@ import './register.css';
 const Register = () => {
     return (
         <div>
-            <div className="container registerPage">
+            <div className="container-sm registerPage">
                 <Logo/>
                 <div className='d-flex justify-content-center'>
                     <div className="registerForm">
                         <h1 className="registerHeaderText">Join the Next Big Social Revolution</h1>
-                        <p className='subtitleText'>Already have an account? <span className="createAccount"> <a href="#" className='link'>Log in here</a> </span></p>
+                        <p className='subtitleText'>Already have an account? <span className="createAccount"> <a href="/login" className='link'>Log in here</a> </span></p>
                             <div className='mb-3'>
                                 <Form action='#'>
                                     <div className='d-flex registeInputs'>
@@ -32,16 +32,18 @@ const Register = () => {
                                         <InputField typeOfInput='text' half={true} lableText={"Confirm Password"}/>
                                     </div>
                                     <div className='d-flex checkBoxTexts align-items-center'>
-                                        <input type="checkbox" /><label className='ms-2' htmlFor="">Yes, I agree to all the <a className='termsLink' href="#">Terms and Conditions</a></label>
+                                        <input id='terms' name='terms' type="checkbox" /><label className='ms-2' htmlFor="terms">Yes, I agree to all the <a className='termsLink' href="#">Terms and Conditions</a></label>
                                     </div>
                                     <div className='d-flex checkBoxTexts align-items-center'>
-                                        <input type="checkbox" /><label className='ms-2' htmlFor="">I would like to recieve promotional emails from HyprClub</label>
+                                        <input name='newsletter' id='newsletter' type="checkbox" /><label className='ms-2' htmlFor="newsletter">I would like to recieve promotional emails from HyprClub</label>
                                 </div>
-                            <ButtonItself btnPurpose={"Register"}/>
+                                    <div className='mt-3'>
+                                        <ButtonItself btnPurpose={"Sign Up"}/>
+                                    </div>
 
                                 </Form>
                             </div>
-                            <SocialLogins purpose={"Sign Up"}/>
+                                    <SocialLogins login={false} purpose={"Sign Up"}/>
                     </div>
                 </div>
             </div>
