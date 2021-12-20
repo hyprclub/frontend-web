@@ -13,12 +13,12 @@ interface creater{
 const Creater = ({imageUrl, name, username, bio}: creater) => {
     return (
         <div>
-            <div className="creater d-flex   pb-4 mb-5">
+            <div className="creater d-flex mb-5">
                 <div className="createrImgDiv">
                     <img className='createrImg' src={imageUrl} alt={name} />
                 </div>
-                <div className="nameUserNameBioAndFollowBtn d-flex flex-column">
-                    <div className="nameUserNameFollow position-relative d-flex align-items-center">
+                <div className="nameUserNameBioAndFollowBtn  position-relative d-flex flex-column">
+                    <div className="nameUserNameFollow d-flex align-items-center">
                         <div className='me-3'>
                             <h3 className="name">{name}</h3>
                             <p className='username'>@{username}</p>

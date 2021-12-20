@@ -1,5 +1,7 @@
 .creater{
     border-bottom: 1px solid #DFDFDF;
+    padding-bottom: 24px;
+
 }
 
 .name, .bio, .username, .bio{
@@ -40,16 +42,45 @@
 
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+
+    .creater{
+        border-bottom: 1px solid #DFDFDF;
+        padding-bottom: 40px !important;
+    }
     .createrImg{
         width: 58px;
         height: 58px;
     }
     .followbtnPlacement{
-        display: none !important;
+        /* display: none !important; */
+        bottom: -26px;
+        left: 0;
     }
 
 .followBottom{
-    display: block;
+    /* display: block; */
 }
   }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1200px) {
+    .followbtnPlacement{
+        /* display: none !important; */
+        bottom: -26px;
+        left: 0;
+    }
+
+    .creater{
+        border-bottom: 1px solid #DFDFDF;
+        padding-bottom: 40px !important;
+    }
+
+  }
+/* 
+
+  @media only screen and (min-device-width: 992px) and (max-device-width: 1200px) {
+    .followSubtitle{
+        padding: 10px !important;
+    }
+
+  } */
