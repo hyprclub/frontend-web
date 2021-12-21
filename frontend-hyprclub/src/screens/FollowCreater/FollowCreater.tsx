@@ -9,9 +9,8 @@ import './followCreater.css'
 const FollowCreater = () => {
     return (
         <div>
+          <Logo/>
             <div className="container followCreater">
-                <Logo/>
-
                 <div className='d-flex justify-content-center'>
                     <div className="followCreatersCard">
                             <Link to="#">

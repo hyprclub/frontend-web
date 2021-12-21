@@ -10,8 +10,8 @@ import './login.css';
 const Login = () => {
     return (
         <div>
+          <Logo/>
             <div className="container loginPage">
-                <Logo/>
                 <div className='d-flex justify-content-center'>
                     <div className="loginForm">
                         <h1 className="loginHeaderText">Join the Next Big Social Revolution</h1>

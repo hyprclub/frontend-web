@@ -10,8 +10,8 @@ import './register.css';
 const Register = () => {
     return (
         <div>
+          <Logo/>
             <div className="container-sm registerPage">
-                <Logo/>
                 <div className='d-flex justify-content-center'>
                     <div className="registerForm">
                         <h1 className="registerHeaderText">Join the Next Big Social Revolution</h1>
