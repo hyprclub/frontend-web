@@ -6,6 +6,7 @@ import InputField from '../../components/inputField/Input';
 import Logo from '../../components/logo/Logo';
 import SocialLogins from '../../components/socialLogins/SocialLogins';
 import './register.css';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     return (
@@ -15,7 +16,7 @@ const Register = () => {
                 <div className='d-flex justify-content-center'>
                     <div className="registerForm">
                         <h1 className="registerHeaderText">Join the Next Big Social Revolution</h1>
-                        <p className='subtitleText'>Already have an account? <span className="createAccount"> <a href="/login" className='link'>Log in here</a> </span></p>
+                        <p className='subtitleText'>Already have an account? <span className="createAccount"> <Link to="/login" className='link'>Log in here</Link> </span></p>
                             <div className='mb-3'>
                                 <Form action='#'>
                                     <div className='d-flex registeInputs'>

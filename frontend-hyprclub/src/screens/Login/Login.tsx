@@ -6,6 +6,7 @@ import InputField from '../../components/inputField/Input';
 import Logo from '../../components/logo/Logo';
 import SocialLogins from '../../components/socialLogins/SocialLogins';
 import './login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -15,7 +16,7 @@ const Login = () => {
                 <div className='d-flex justify-content-center'>
                     <div className="loginForm">
                         <h1 className="loginHeaderText">Join the Next Big Social Revolution</h1>
-                        <p className='subtitleText'>New to HyprClub? <span className="createAccount"> <a href="/register" className='link'>Create Account</a> </span></p>
+                        <p className='subtitleText'>New to HyprClub? <span className="createAccount"> <Link to="/register" className='link'>Create Account</Link> </span></p>
                             <Form action='#'>
                                     <InputField typeOfInput='text' half={false} lableText={"Email/ Username"}/>
                                     <InputField typeOfInput='text' half={false} lableText={"Password"}/>
