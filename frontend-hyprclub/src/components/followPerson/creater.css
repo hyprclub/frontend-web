@@ -4,37 +4,37 @@
 
 }
 
-.name, .bio, .username, .bio{
+.creater .name, .creater .bio, .creater .username, .creater .bio{
     margin-bottom: 0 !important;
 }
 
-.name{
+.creater .name{
     font-weight: bold;
     font-size: 18px;
     line-height: 24px;
 }
 
-.username{
+.creater .username{
     font-size: 14px;
     line-height: 20px;
     color: #7A7A7A;
 }
 
-.bio{
+.creater .bio{
     font-size: 14px;
     line-height: 20px;
     margin-top: 10px;
 }
 
-.followbtnPlacement{
+.creater .followbtnPlacement{
     right: 10px;
 }
 
-.followBottom{
+.creater .followBottom{
     display: none;
 }
 
-.createrImg{
+.creater .createrImg{
     width: 88px;
     height: 88px;
     margin-right: 10px;
@@ -48,11 +48,11 @@
         border-bottom: 1px solid #DFDFDF;
         padding-bottom: 40px !important;
     }
-    .createrImg{
+    .creater .createrImg{
         width: 58px;
         height: 58px;
     }
-    .followbtnPlacement{
+    .creater .followbtnPlacement{
         /* display: none !important; */
         bottom: -26px;
         left: 0;
@@ -64,7 +64,7 @@
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1200px) {
-    .followbtnPlacement{
+    .creater .followbtnPlacement{
         /* display: none !important; */
         bottom: -26px;
         left: 0;

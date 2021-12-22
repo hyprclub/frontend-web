@@ -43,11 +43,3 @@
     outline: none !important;
     box-shadow: none !important;
   }
-
-
-
-@media only screen and (max-width: 600px) {
-    .follow{
-        
-    }
-  }

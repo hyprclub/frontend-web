@@ -1,0 +1,52 @@
+.feedLeft {
+    background: #FFFFFF;
+    border-radius: 30px;
+    padding-top: 30px;
+}
+.feedLeft .profilePic{
+    width: 149px;
+    height: 149px;
+}
+
+.feedLeft .pencilIcon{
+    /* width: 21px;
+    height: 21px; */
+    cursor: pointer;
+    padding: 6px 10px;
+    bottom: 5px;
+    right: 5px;
+    background: white;
+    border: 1px solid white;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.feedLeft .nameAndUserName{
+    margin-top: 12px;
+    text-align: center;
+}
+
+.feedLeft .nameAndUserName h1{
+    margin: 0;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+}
+
+.feedLeft .nameAndUserName p{
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 9px;
+    text-align: center;
+    color: #6A6A6A;
+}
+
+.feedLeft .justButton{
+    margin-top: 20px;
+}
+
+.feedLeft .pageLinks{
+    margin: 20px 35px;
+}
