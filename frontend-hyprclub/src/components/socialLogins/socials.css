@@ -46,3 +46,18 @@
         width: 80% !important;
     }
   }
+
+  
+@media only screen and (max-width: 368px) {
+    .socialLoginText{
+        font-weight: 600;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+    .gl{
+        margin-left: 18px;
+    }
+  }
+
+
