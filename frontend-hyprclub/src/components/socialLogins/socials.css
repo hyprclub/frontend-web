@@ -29,7 +29,6 @@
     border-radius: 35.5px;
     padding: 8px 0;
     margin-bottom: 13px;
-    width: 80% !important;
 }
 
 .googleImg{
@@ -38,8 +37,12 @@
 
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .Login{
+        width: 80% !important;
+    }
+
+    .register{
         width: 80% !important;
     }
   }
