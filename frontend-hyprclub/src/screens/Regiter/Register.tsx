@@ -39,7 +39,7 @@ const Register = () => {
                                         <input name='newsletter' id='newsletter' type="checkbox" /><label className='ms-2' htmlFor="newsletter">I would like to recieve promotional emails from HyprClub</label>
                                 </div>
                                     <div className='mt-3'>
-                                        <ButtonItself btnPurpose={"Sign Up"}/>
+                                        <Link to="/follow"><ButtonItself btnPurpose={"Sign Up"}/></Link>
                                     </div>
 
                                 </Form>

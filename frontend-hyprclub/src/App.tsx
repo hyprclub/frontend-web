@@ -14,7 +14,6 @@ import Interests from './screens/yourInterest/Interests';
 
 function App() {
   return (
-
     <Router>
       <div className="App">
         
@@ -28,6 +27,8 @@ function App() {
             <Route path='/feed' element={<Feed/>}/>
 
           </Routes>
+          {/* <Header></Header>
+          <Footer></Footer> */}
         </header>
       </div>
     </Router>
