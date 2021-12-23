@@ -3,6 +3,12 @@
     font-size: 14px;
     margin-bottom: 0;
 }
+
+.fb{
+    margin-left: 18px;
+    
+}
+
 .Login{
     display: flex;
     justify-content: center;

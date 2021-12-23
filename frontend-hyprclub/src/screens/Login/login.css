@@ -1,79 +1,96 @@
-.loginPage{
-    height: 100vh;
+.loginPage {
+  height: 100vh;
 }
 
-.loginForm{
-    padding: 10px 50px;
-    border-radius: 25px;
-    width: 50%;
-    margin-bottom: 40px;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
-
+.loginForm {
+  padding: 10px 70px 20px;
+  border-radius: 25px;
+  width: 46%;
+  margin-bottom: 40px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-
-.loginHeaderText{
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 48px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 30px;
-
+.loginHeaderText {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 48px;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
-.subtitleText{
-    font-weight: 500;
-    font-size: 16px;
-
+.subtitleText {
+  font-weight: 500;
+  font-size: 16px;
+  padding-bottom: 10px;
 }
 
-.subtitleText .createAccount{
-   text-decoration: underline;
-
+.subtitleText .createAccount {
+  text-decoration: underline;
 }
 
-.loginHeaderText, .subtitleText{
-    text-align: center;
+.loginHeaderText,
+.subtitleText {
+  text-align: center;
 }
 
-.inputs{
-    width: 100%;
+.inputs {
+  width: 100%;
 }
 
-
-.forgotPassword{
-    font-size: 12px;
-    line-height: 20px;
-    text-decoration: underline;
-    text-align: end;
-    color: #7E7E7E;
+.forgotPassword {
+  font-size: 12px;
+  line-height: 20px;
+  text-decoration: underline;
+  text-align: end;
+  color: #7e7e7e;
+  margin-right: 8px;
+  margin-top: 1.5vh;
 }
-
 
 @media only screen and (max-width: 768px) {
-    .loginForm{
-        width: 95% !important;
-        margin-top: 2.5vh;
-        padding: 10px 20px;
-
-    }
-
-    .loginHeaderText{
-        font-size: 32px;
-        letter-spacing: -0.01em;
-    }
+  .loginForm {
+    width: 95% !important;
+    margin-top: 7.8vh;
+    padding: 10px 20px;
   }
 
-  @media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
-    .loginForm{
-        width: 80% !important;
-        margin-top: 2.5vh;
-        padding: 10px 20px;
-
-    }
-
-    .loginHeaderText{
-        font-size: 32px;
-        letter-spacing: -0.01em;
-    }
+  .loginHeaderText {
+    font-size: 35px;
+    letter-spacing: -0.01em;
   }
+}
+
+
+@media only screen and (max-width: 397px){
+    .loginForm{
+        width: 90% !important;
+    }
+    
+    .loginHeaderText{
+        font-size: 30px;
+        margin-left: 7.5px !important;
+        margin-right:7.5px !important;
+        line-height: 43px;
+
+    }
+
+    .subtitleText{
+        font-size: 13px !important;
+    }
+    
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
+  .loginForm {
+    width: 80% !important;
+    margin-top: 8.5vh;
+    padding: 10px 60px 20px;
+  }
+
+  .loginHeaderText {
+    font-size: 37px;
+    letter-spacing: -0.01em;
+  }
+}
+

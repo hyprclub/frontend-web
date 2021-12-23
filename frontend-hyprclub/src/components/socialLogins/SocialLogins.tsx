@@ -15,8 +15,8 @@ const SocialLogins = ({login,purpose}: Purpose) => {
                 <p className='socialLoginText'>{purpose} with Google</p>
             </div>
             <div className={clsx(" m-1 ", !login ? 'col-md-5 register' : " Login")}>
-                <img className='me-3 googleImg' src="images/Facebook.png" alt="google" />
-                <p className='socialLoginText'>{purpose} with Fcacebook</p>
+                <img className='me-3 googleImg fb' src="images/Facebook.png" alt="google" />
+                <p className='socialLoginText'>{purpose} with Facebook</p>
             </div>
         </div>
     )

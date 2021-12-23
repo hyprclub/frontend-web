@@ -18,7 +18,7 @@ const Login = () => {
                         <h1 className="loginHeaderText">Join the Next Big Social Revolution</h1>
                         <p className='subtitleText'>New to HyprClub? <span className="createAccount"> <Link to="/register" className='link'>Create Account</Link> </span></p>
                             <Form action='#'>
-                                    <InputField typeOfInput='text' half={false} lableText={"Email/ Username"}/>
+                                    <InputField typeOfInput='text' half={false} lableText={"Email Address/ Username"}/>
                                     <InputField typeOfInput='text' half={false} lableText={"Password"}/>
                                     <p className="forgotPassword"><a href="#" className='link'>Forgot Password?</a></p>
                                 <ButtonItself btnPurpose={"Login"}/>
