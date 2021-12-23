@@ -4,13 +4,13 @@
     justify-content:center;
     align-items:center;
     flex-direction: column;
-    width:100vw;
-    height:100vh;
+    width:auto;
+    height:auto;
     overflow-x:hidden;
 }
 .logo{
     align-self: flex-start;
-    width:181px;
+    max-width:175px;
     height:auto;
 }
 .contain{

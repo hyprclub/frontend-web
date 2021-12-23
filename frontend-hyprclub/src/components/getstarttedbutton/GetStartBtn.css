@@ -12,12 +12,9 @@
     border-radius: 24.5px !important;
     box-sizing: border-box !important;
     background:transparent !important;
-    
     border: 3px solid black !important;
     width:  150px !important;
-    
     height: 49px !important;
-
     font-size: 16px !important;
     font-style: normal !important;
     font-weight: 600 !important;
@@ -34,7 +31,22 @@
 
 @media screen and (max-width: 1100px) {
     .gtstarted{
-        width:108px !important;
+        width:130px !important;
+        height:40px !important;
+        font-size:15px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .gtstarted{
+        width:135px !important;
+        height:37px !important;
+    }
+}
+@media screen and (max-width: 645px) {
+    .gtstarted{
+        width:110px !important;
+        height:36px !important;
+        font-size:13px !important;
     }
     
 }

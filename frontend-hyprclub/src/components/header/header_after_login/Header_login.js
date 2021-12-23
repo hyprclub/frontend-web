@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import ExpSearchBar from '../../expandablesearch/ExpSearchBar'
 import "./Header_login.scss"
 import Upload_Button from '../../uploadButton/Upload_Button'
-import DropDownMenu from '../../dropdownMenubutton/DropDownMenu'
+import MobileNavigation from '../../MobileNav/MobileNavigation'
+
 
 function Header_login() {
-    // const [view,SetView] = useState(true)
+
+   
     return (
         <div className="header">
             <div className="header__logo">
@@ -27,6 +29,7 @@ function Header_login() {
            
 
             </div>
+            
             <div className="header__search">
               
                 <ExpSearchBar/>
@@ -41,7 +44,7 @@ function Header_login() {
 
             </div>
             <div className="header_menu">
-            <DropDownMenu/>
+            <MobileNavigation/>
 
             </div>
             

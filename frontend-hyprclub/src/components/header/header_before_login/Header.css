@@ -3,23 +3,21 @@
 * {
 
     box-sizing: border-box;
-
     margin: 0;
     font-family: 'Poppins', sans-serif;
-   
-
     padding: 0;
 }
+
 .link{
     text-decoration: none;
     color:inherit;
 }
 
-    .link:hover,.link:focus{
+ .link:hover,.link:focus{
         text-decoration: none;
         cursor: pointer;
         color:inherit;
-    }
+}
 
 
 
@@ -31,14 +29,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    
-
 }
 
 .header1__logo{
-    
     margin-left:25px;
-    
 }
   
 
@@ -50,17 +44,14 @@
 }
 
    
-    .logo>img:hover{
+.logo>img:hover{
         cursor: pointer;
-        
-
-    }
+}
 
 
 .header1>hr{
     width: 58px;
-    height: 0px;
-   
+    height: 0px;   
     border: 1.5px solid #D6D6D6;
     transform: rotate(90deg);
 
@@ -68,14 +59,8 @@
 .header1__info {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    
+    justify-content: space-evenly;    
     width:250px;
-    
-    
-
-
-   
 }
 
 .header1__info>.link>h3  {
@@ -90,16 +75,11 @@
     letter-spacing: 0em;
     text-align: center;
     border-radius:28px;
-    
-
 }
 .header1__info>.link>h3:hover{
     cursor: pointer;
-    text-shadow: 1.5px 1.5px rgb(78, 76, 76,.2);
-   
+    text-shadow: 1.5px 1.5px rgb(78, 76, 76,.2);   
     border:none;
-    
-    
 }
 
 
@@ -107,9 +87,6 @@
     display: flex;
     width: 45vw;
     flex:1;
-    
-    
-    
 }
 
 .header1__right {
@@ -117,16 +94,13 @@
     width:175px;
     justify-content: center;
     align-items: center;
-    display: flex;
-    
+    display: flex;    
     align-items: center;
-    
-    
     height: 49px;
 }
-
-
-
+.header1_menu{
+    display:none;
+}
 
 
     @media(max-width:1100px){
@@ -150,17 +124,40 @@
     }
     }
     
-    @media screen and (max-width: 928px){
+    @media screen and (max-width: 950px){
         .header1__info{
             display:none;
         }
-        .header1__right{
-            
+        .header1__right{            
             width:120px;
-            margin-right: 10px;
-            margin-left:10px;
+           margin-left:10px;
+        }
+        .header1_menu{
+            display: block;
         }
 
       
+    }
+    @media screen and (max-width: 975px){
+        .header1_account{
+            margin-right: 10px;
+        }
+    }
+
+    @media screen and (max-width:700px){
+        .header1__search{
+            display:none;
+        }
+        .header1{
+            justify-content: space-between;
+        }
+        .header1__right{
+            margin-left:auto;
+        }
+        .logo1>.link>img{
+            object-fit: contain;  
+            width: 90px;
+            height: auto;
+        }
     }
     

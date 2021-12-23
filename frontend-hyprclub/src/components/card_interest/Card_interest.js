@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import Continue from '../continueBtn/Continue';
 import "./Card_interest.css"
-
+import Interest_button from './interest_button/Interest_button';
 import SkipButton from '../skipbutton/SkipButton';
 import BackButton from  '../backButton/BackButton'
 
@@ -91,7 +91,7 @@ function Card_interest() {
        
 
     ];
-    const [view, setView]=useState(false)
+   
     return (
         <div className="card_body">
             <div id="back1">
@@ -104,23 +104,17 @@ function Card_interest() {
                 <p>Let's get to know you a little more so we can tune your feed just right. <b>Choose any 5 interests:</b></p>
                 </div>
             <div className="card_content">
-                {card___content.map((data, index)=>(
-
-                    <button  key={index} className={data.id} type="button" onClick={()=>(setView(!view))} >
-                        {view && <img src={data.srcclose}/>}
-
-                        <img  src={data.src} alt=""/ >
-                            <span>{data.name}</span>
-                            </button>
-                      
+               
+                {card___content.map((data,index)=>(
+                    <Interest_button key ={index} id={data.id} name={data.name} src={data.src} srcClose={data.srcclose}/>
 
                 ))}
             </div>
-            <div className="continuebutton">
+            <div className="Card_continuebutton">
 
             <Continue />
             </div>
-            <div className="skipbutton">
+            <div className="Card_skipbutton">
 
             <SkipButton />
             </div>

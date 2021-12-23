@@ -2,13 +2,13 @@ import React from 'react'
 import FeedLeft from '../../components/feedComponents/feedLeft/FeedLeft'
 import FeedMiddle from '../../components/feedComponents/feedMiddle/FeedMiddle'
 import FeedRight from '../../components/feedComponents/feedRight/FeedRight'
-import Headerlogin from '../../components/header/header_after_login/HeaderLogin'
+import Header_login from '../../components/header/header_after_login/Header_login'
 import './feed.css'
 
 const Feed = () => {
     return (
         <div>
-            <Headerlogin/>
+            <Header_login/>
             <div className='feed'>
                 {/* <div className=" "> */}
                     <div className="row">

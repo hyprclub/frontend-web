@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Footer from './components/footer/Footer';
+import Header from './components/header/header_before_login/Header';
 import Feed from './screens/Feed/Feed';
 
 import FollowCreater from './screens/FollowCreater/FollowCreater';
@@ -15,6 +17,7 @@ function App() {
 
     <Router>
       <div className="App">
+        
         
         <header className="App-header">
         <Routes>
