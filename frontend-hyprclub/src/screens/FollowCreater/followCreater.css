@@ -8,8 +8,12 @@
 .followSubtitle{
     font-weight: 500;
     font-size: 16px;
-    padding: 0 16vw 20px 16vw;
+    padding: 0 23vw 6vh 23vw;
     
+}
+
+.followCreater{
+    margin-top: 5vh  !important;
 }
 
 .followCreatersCard{
@@ -20,6 +24,7 @@
     border-radius: 25px;
     width: 90%;
     margin-bottom: 40px;
+    padding-bottom: 30px;
 }
 
 .followCreatersCard .arrowLeft{
@@ -46,19 +51,23 @@
         font-size: 24px;
     }
     .followSubtitle{
-        padding: 10px;
+        padding-top: 1px;
+        padding-left: 3.5vw !important;
+        padding-right:3.5vw !important;
+        padding-bottom: 25px;
     }
     .partOfHeader::before{
         content: "\a";
         white-space: pre;
     }
+    
     .followHeader{
         font-size: 32px;
         letter-spacing: -0.01em;
     }
     .followCreatersCard{
         width: 95% !important;
-        margin-top: 2.5vh;
+        margin-top: 1vh;
         padding: 10px 20px;
 
     }
