@@ -1,5 +1,5 @@
 import React from 'react'
-import Card_interest from '../../components/card_interest/Card_interest'
+import CardInterest from '../../components/card_interest/CardInterest'
 import Logo from '../../components/logo/Logo'
 import "./Interests.css"
 
@@ -13,7 +13,7 @@ function Interests() {
             </div>
             <div className="contain">
 
-            <Card_interest/>
+            <CardInterest/>
             </div>
             
         </div>

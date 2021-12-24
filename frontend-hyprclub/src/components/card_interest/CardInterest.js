@@ -1,23 +1,23 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import Continue from '../continueBtn/Continue';
-import "./Card_interest.css"
-import Interest_button from './interest_button/Interest_button';
+import "./CardInterest.css"
 import SkipButton from '../skipbutton/SkipButton';
 import BackButton from  '../backButton/BackButton'
+import { Button } from 'react-bootstrap';
 
 
 function Card_interest() {
     const  card___content=[
         {
-            id:"one",
+            id:1,
             name:"Comedy",
             src:"./images/laughteremoji.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"two",
+            id:2,
             name:"Graphic Design",
             
             src:"./images/graphic_design.png",
@@ -25,56 +25,56 @@ function Card_interest() {
 
         },
         {
-            id:"three",
+            id:3,
             name:"Music",
             src:"./images/music.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"four",
+            id:4,
             name:"Photography",
             src:"./images/photography.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"five",
+            id:5,
             name:"YouTube",
             src:"./images/youtube.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"six",
+            id:6,
             name:"Beauty",
             src:"./images/beauty.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"seven",
+            id:7,
             name:"Gaming",
             src:"./images/gaming.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"eight",
+            id:8,
             name:"Cryptocurrency",
             src:"./images/cryptocurrency.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"nine",
+            id:9,
             name:"Technology",
             src:"./images/technology.png",
             srcclose:"./images/close.png"
 
         },
         {
-            id:"ten",
+            id:10,
             name:"Art",
             src:"./images/art.png",
             srcclose:"./images/close.png"
@@ -82,7 +82,7 @@ function Card_interest() {
 
         },
         {
-            id:"eleven",
+            id:11,
             name:"Sports",
             src:"./images/sport.png",
             srcclose:"./images/close.png"
@@ -91,6 +91,22 @@ function Card_interest() {
        
 
     ];
+
+    let [selected, setSelected] = useState([])
+
+
+    const click = (id) => {
+
+        if (!selected.includes(id)) {
+            if(selected.length < 5)
+                setSelected([...selected, id])
+          } else {
+             setSelected(selected.filter((index) => index !== id))
+          }
+    }
+
+    console.log(selected);
+
    
     return (
         <div className="card_body">
@@ -105,10 +121,20 @@ function Card_interest() {
                 </div>
             <div className="card_content">
                
-                {card___content.map((data,index)=>(
-                    <Interest_button key ={index} id={data.id} name={data.name} src={data.src} srcClose={data.srcclose}/>
+                {card___content.map(data=>{
+                    let sel = ''
+                    if(selected.includes(data.id)){
+                        sel = "borderBlack"
+                    }
 
-                ))}
+                    
+                    return <Button onClick={() => click(data.id)} key={data.id} id="btn" type="button"  className={sel === "borderBlack" ? "borderBlack" : "buttonWhole"}>
+                                { (sel === 'borderBlack') && <img src={data.srcclose} alt=""/>}
+                                <img src={data.src} alt=""/>
+                                <span>{data.name}</span>
+                            </Button>
+
+                })}
             </div>
             <div className="Card_continuebutton">
 
