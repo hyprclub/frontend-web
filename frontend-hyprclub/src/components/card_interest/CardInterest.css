@@ -10,6 +10,14 @@
 
     padding: 0;
 }
+
+
+.arrowLeft{
+    font-size: 30px;
+    color: black;
+}
+
+
 .link{
     
     text-decoration:none;
@@ -47,6 +55,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom:15px;
+    margin-top: -5px;
     width: 349px;
     height: 96px;
 

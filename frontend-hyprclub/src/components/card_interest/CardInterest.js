@@ -111,7 +111,9 @@ function Card_interest() {
     return (
         <div className="card_body">
             <div id="back1">
-            <BackButton />
+            <Link to="#">
+                <i className="bi arrowLeft bi-arrow-left"></i>
+            </Link>
             </div>
             <div className="card_title">
              <h2>Tell Us About Your Interests</h2>
