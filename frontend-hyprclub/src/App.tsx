@@ -16,9 +16,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Interests/>
-        
-        
         <header className="App-header">
         <Routes>
             <Route path='/login' element={<Login/>}/>

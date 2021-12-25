@@ -109,11 +109,12 @@ a:link{
     
 }
 
-@media only screen and (max-width: 365px){
-    .loginForm{
-        width: 90% !important;
+@media only screen and (max-width: 366px){
+
+    .registerPage{
+        width: 90%;
     }
-    
+
     .registerHeaderText{
         font-size: 30px;
         padding-left:0.5vw !important;
@@ -129,6 +130,13 @@ a:link{
     
 }
 
+@media only screen and (min-device-width: 1024px) and (max-device-width:1024px){
+    .registerForm{
+        width: 85%;
+        margin-top: 7vh;
+        padding-bottom: 5vh;
+    }
+}
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
     .registerForm{

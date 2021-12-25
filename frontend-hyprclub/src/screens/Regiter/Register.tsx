@@ -44,9 +44,7 @@ const Register = () => {
 
                                 </Form>
                             </div>
-                            <div className='social'>
                                <SocialLogins login={false} purpose={"Sign Up"}/>
-                            </div>
                                     
                     </div>
                 </div>

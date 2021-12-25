@@ -65,12 +65,14 @@
 @media only screen and (max-width: 397px){
     .loginForm{
         width: 90% !important;
+        padding-left: 10px;
+        padding-right: 10px;
     }
     
     .loginHeaderText{
         font-size: 30px;
-        margin-left: 7.5px !important;
-        margin-right:7.5px !important;
+        margin-left: 0vw !important;
+        margin-right:0vw !important;
         line-height: 43px;
 
     }
@@ -82,6 +84,10 @@
 }
 
 @media screen and (max-width:368px){
+  .loginForm{
+    width: 90% !important;
+}
+  
 
   .loginHeaderText{
     font-size: 30px;
@@ -94,6 +100,29 @@
     padding-right: 7vw;
   }
   
+}
+
+@media only screen and (min-device-width:1024px) and (max-device-width:1024px){
+  .loginForm{
+    width: 75%;
+    margin-top: 7vh;
+    padding-bottom: 5vh;
+
+  }
+
+  .loginHeaderText{
+    font-size: 47px;
+    padding-top: 1.5vh;
+    padding-bottom: 0.5vh;
+  }
+
+  .subtitleText{
+    font-size: 20px !important;
+    padding-bottom: 2.5vh;
+  }
+  .social{
+    margin-top: 3vh;
+  }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
