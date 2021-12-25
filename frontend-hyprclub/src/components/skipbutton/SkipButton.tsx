@@ -1,7 +1,7 @@
 import React from 'react'
 import "./SkipButton.css"
 
-function SkipButton({name, type, onClick}) {
+function SkipButton() {
     const ButtonHandler=()=>{
         console.log("you clicked this button to skip")
     }

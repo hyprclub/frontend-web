@@ -5,21 +5,32 @@ import "./CardInterest.css"
 import SkipButton from '../skipbutton/SkipButton';
 import BackButton from  '../backButton/BackButton'
 import { Button } from 'react-bootstrap';
+import clsx from 'clsx';
+
+interface Content{
+     
+    id:any,
+    name:string,
+    classname:string,
+    src:any,
+    srcclose:any
+}
 
 
 function Card_interest() {
-    const  card___content=[
+    const  card___content:Content[]=[
         {
             id:1,
             name:"Comedy",
+            classname:"Comedy",
             src:"./images/laughteremoji.png",
             srcclose:"./images/close.png"
 
         },
         {
             id:2,
-            name:"Graphic Design",
-            
+            name:"Graphic Design",            
+            classname:"Graphic_Design",            
             src:"./images/graphic_design.png",
             srcclose:"./images/close.png"
 
@@ -27,6 +38,7 @@ function Card_interest() {
         {
             id:3,
             name:"Music",
+            classname:"Music",
             src:"./images/music.png",
             srcclose:"./images/close.png"
 
@@ -34,6 +46,7 @@ function Card_interest() {
         {
             id:4,
             name:"Photography",
+            classname:"Photography",
             src:"./images/photography.png",
             srcclose:"./images/close.png"
 
@@ -41,6 +54,7 @@ function Card_interest() {
         {
             id:5,
             name:"YouTube",
+            classname:"Youtube",
             src:"./images/youtube.png",
             srcclose:"./images/close.png"
 
@@ -48,6 +62,7 @@ function Card_interest() {
         {
             id:6,
             name:"Beauty",
+            classname:"Beauty",
             src:"./images/beauty.png",
             srcclose:"./images/close.png"
 
@@ -55,6 +70,7 @@ function Card_interest() {
         {
             id:7,
             name:"Gaming",
+            classname:"Gaming",
             src:"./images/gaming.png",
             srcclose:"./images/close.png"
 
@@ -62,6 +78,7 @@ function Card_interest() {
         {
             id:8,
             name:"Cryptocurrency",
+            classname:"Cryptocurrency",
             src:"./images/cryptocurrency.png",
             srcclose:"./images/close.png"
 
@@ -69,6 +86,7 @@ function Card_interest() {
         {
             id:9,
             name:"Technology",
+            classname:"Technology",
             src:"./images/technology.png",
             srcclose:"./images/close.png"
 
@@ -76,6 +94,7 @@ function Card_interest() {
         {
             id:10,
             name:"Art",
+            classname:"Art",
             src:"./images/art.png",
             srcclose:"./images/close.png"
 
@@ -84,6 +103,7 @@ function Card_interest() {
         {
             id:11,
             name:"Sports",
+            classname:"Sports",
             src:"./images/sport.png",
             srcclose:"./images/close.png"
 
@@ -92,10 +112,10 @@ function Card_interest() {
 
     ];
 
-    let [selected, setSelected] = useState([])
+    let [selected, setSelected] = useState<any[]>([])
 
 
-    const click = (id) => {
+    const click = (id:any) => {
 
         if (!selected.includes(id)) {
             if(selected.length < 5)
@@ -130,20 +150,19 @@ function Card_interest() {
                     }
 
                     
-                    return <Button onClick={() => click(data.id)} key={data.id} id="btn" type="button"  className={sel === "borderBlack" ? "borderBlack" : "buttonWhole"}>
+                    return <Button onClick={() => click(data.id)} key={data.id} id="btn" type="button" className={clsx(sel === "borderBlack" ? " borderBlack" : "buttonWhole", data.classname)}>
                                 { (sel === 'borderBlack') && <img src={data.srcclose} alt=""/>}
                                 <img src={data.src} alt=""/>
-                                <span>{data.name}</span>
+                                <span className={sel === "borderBlack" ? " textBold" : "textNormal"}>{data.name}</span>
                             </Button>
 
                 })}
             </div>
             <div className="Card_continuebutton">
-
             <Continue />
             </div>
-            <div className="Card_skipbutton">
 
+            <div className="Card_skipbutton">
             <SkipButton />
             </div>
             
