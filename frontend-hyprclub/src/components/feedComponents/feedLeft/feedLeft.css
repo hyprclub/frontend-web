@@ -1,7 +1,9 @@
 .feedLeft {
     background: #FFFFFF;
-    border-radius: 30px;
-    padding-top: 30px;
+    border-radius: 20px;
+    /* margin: 0 30px; */
+    margin-bottom: 20px;
+
 }
 .feedLeft .profilePic{
     width: 149px;
@@ -35,7 +37,7 @@
 
 .feedLeft .nameAndUserName p{
     margin: 0;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 16px;
     line-height: 20px;
     margin-top: 9px;
@@ -48,5 +50,27 @@
 }
 
 .feedLeft .pageLinks{
-    margin: 20px 35px;
+    margin: 20px 0;
+}
+
+.feedLeft .singlePageLink{
+    margin-left: 25px;
+
+}
+
+.feedLeft .borderRight{
+    border-right: 3px solid black;
+}
+
+
+.feedLeft .singlePageLinkDiv{
+    padding: 10px 0; 
+    /* border-bottom: 0.5px solid #E6E6E6; */
+    /* margin-right: 10px; */
+}
+
+.pageLinks hr{
+    /* width: 95%; */
+    margin: 0 10px;
+    
 }

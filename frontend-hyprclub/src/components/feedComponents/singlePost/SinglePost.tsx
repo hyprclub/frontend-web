@@ -25,19 +25,12 @@ const SinglePost = () => {
             </div>
 
             <div className="reactions d-flex align-items-center justify-content-between">
-                <div className="icons d-flex ">
                     <img src="images/Fire.png" className='fireIcon' alt="" />
-                    <i className="bi bi-bookmark"></i>
-                </div>
-
-                <div className="comments d-flex align-items-center">
-                    <p className='noOfComments'>3093 comments</p>
-                    <div className='commentImages position-relative'>
-                        <img className='commentImage position-absolute' src="images/koreanImg.png" alt="" />
-                        <img className='commentImage  position-absolute' src="images/photo_hero_2.png" alt="" />
-                        <img className='commentImage' src="images/photo_hero_1.png" alt="" />
+                    <div className='d-flex align-items-center'>
+                        <i className="bi bi-chat-fill"></i><span className='nums'>10,385</span>
                     </div>
-                </div>
+                    <i className="bi bi-bookmark-fill"></i>
+                    <i className="bi bi-flag-fill"></i>
             </div>
 
 
