@@ -8,9 +8,8 @@ interface Link {
 
 const PageLink = ({ text, icon}: Link) => {
     return (
-        <div className='d-flex pageLink align-items-center'>
-            <i className={icon}></i>
-            <p>{text}</p>
+        <div className='pageLink align-items-center'>
+            <p><i className={icon}></i>{text}</p>
         </div>
     )
 }

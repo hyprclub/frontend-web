@@ -2,8 +2,9 @@ import React,  { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExpSearchBar from '../../expandablesearch/ExpSearchBar'
 import "./Header_login.scss"
-import Upload_Button from '../../uploadButton/Upload_Button'
+import Upload_Button from '../../uploadButton/UploadButton'
 import MobileNavigation from '../../MobileNav/MobileNavigation'
+import UploadButton from '../../uploadButton/UploadButton'
 
 
 function Header_login() {
@@ -35,7 +36,7 @@ function Header_login() {
                 <ExpSearchBar/>
             </div>
             <div className="header__right">
-               <Upload_Button/>
+               <UploadButton/>
             </div>
             <div className="header_account">
                 <img id="msg" src="./images/message.png" alt="" />

@@ -36,3 +36,14 @@
     box-shadow: none !important;
 
 }
+
+
+.selectPost .switchComp{
+    color: #ABABAB;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.selectPost .switchComp .membersonly{
+    margin-right: 5px;
+}

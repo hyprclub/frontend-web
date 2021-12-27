@@ -1,38 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
-import MessagePreview from '../messagePreview/MessagePreview'
-import './feedRight.css'
+import Notifications from '../notification/Notifications';
+import SideProfile from '../sideProfile/SideProfile';
+import Suggested from '../suggestedCreater/Suggested';
+import feedRight from './feedRight.module.css';
 
 const FeedRight = () => {
-    const [read, setRead] = useState(false)
-    const [unread, setUnread] = useState(true)
-
-    const unreadClicked = () => {
-        setRead(false)
-        setUnread(true)
-    }
-
-    const readClicked = () => {
-        setRead(true)
-        setUnread(false)
-    }
     return (
-        <div className='feedRight'>
-            <div className="d-flex align-items-center justify-content-between">
-                <p className="title">Messages</p>
-                <p className="viewMore">View More <i className="bi bi-arrow-right"></i></p>
-            </div>
-
-            <div className="readAndUnread">
-                <p><span onClick={unreadClicked} className={unread ? 'underline':''}>Unread</span><span onClick={readClicked} className={read ? 'underline':''}>Read</span></p>
-            </div>
-
-            <div className="messages">
-                <MessagePreview read={false}/>
-                <MessagePreview read/>
-                <MessagePreview read/>
-                <MessagePreview read= {false}/>
-            </div>
+        <div className={feedRight.feedRight}>
+            <Notifications/>
+            <Suggested/>
         </div>
     )
 }

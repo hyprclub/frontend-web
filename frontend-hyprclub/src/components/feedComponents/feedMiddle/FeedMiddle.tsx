@@ -8,9 +8,9 @@ import './feedMiddle.css'
 const FeedMiddle = () => {
     return (
         <div className='feedMiddle'>
-            <div className="topButtons">
+            {/* <div className="topButtons">
                 <MembershipAndFeed/>
-            </div>
+            </div> */}
             <div className="whatsTheHype">
                 <SelectPost/>
             </div>

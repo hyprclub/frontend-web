@@ -2,3 +2,7 @@
     padding: 30px 40px;
     background: #F7F9F9 ;
 }
+
+.hide{
+    display: none;
+}
