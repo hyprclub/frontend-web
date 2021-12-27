@@ -9,6 +9,8 @@ import FollowCreater from './screens/FollowCreater/FollowCreater';
 import Login from './screens/Login/Login';
 import Register from './screens/Regiter/Register';
 import Interests from './screens/yourInterest/Interests';
+import Selection from './components/Selection';
+import Popular from './components/Popular/Popular';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -17,7 +19,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Chatbox/>
+        <Popular></Popular>
+        {/* <Chatbox/> */}
         <header className="App-header">
         <Routes>
             <Route path='/login' element={<Login/>}/>
