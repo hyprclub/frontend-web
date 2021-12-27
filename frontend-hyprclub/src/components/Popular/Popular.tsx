@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import cn from "classnames";
-// import Slider from "react-slick";
 import styles from './popular.module.css'
 import { Link } from "react-router-dom";
-// import styles from "./Popular.module.sass";
-// import Add from "./Add";
+import Slider from "react-slick";
 
 const items = [
   {
@@ -96,105 +94,113 @@ const items = [
 const dateOptions = ["Today", "Morning", "Dinner", "Evening"];
 const directionOptions = ["Sellers", "Buyers"];
 
-const Popular = () => {
-  const settings = {
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    responsive: [
-      {
-        breakpoint: 1340,
-        settings: {
-          slidesToShow: 4,
+  const Popular = () => {
+    const settings = {
+      infinite: false,
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      adaptiveHeight: true,
+      // nextArrow: (
+      //   <SlickArrow>
+      //     <div> h </div>
+      //   </SlickArrow>
+      // ),
+      // prevArrow: (
+      //   <SlickArrow>
+      //     <div> s </div>
+      //   </SlickArrow>
+      // ),
+      responsive: [
+        {
+          breakpoint: 1340,
+          settings: {
+            slidesToShow: 4,
+          },
         },
-      },
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 3,
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 3,
+          },
         },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-          infinite: true,
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            infinite: true,
+          },
         },
-      },
-    ],
-  };
-
-  const [date, setDate] = useState(dateOptions[0]);
-  const [direction, setDirection] = useState(directionOptions[0]);
-
-  return (
-    <div className={cn("section-bg", styles.section)}>
-      <div className={cn("container", styles.container)}>
-        <div className={styles.top}>
-          <div className={styles.box}>
-            <div className={styles.stage}>Popular</div>
-            {/* <DropdownEmpty
+      ],
+    };
+    const [date, setDate] = useState(dateOptions[0]);
+    const [direction, setDirection] = useState(directionOptions[0]);
+    return (
+      <div className={cn("section-bg", styles.section)}>
+        <div className={cn("container", styles.container)}>
+          <div className={styles.top}>
+            <div className={styles.box}>
+              <div className={styles.stage}>Popular</div>
+              {/* <DropdownEmpty
               className={styles.dropdown}
               value={direction}
               setValue={setDirection}
               options={directionOptions}
             /> */}
-          </div>
-          <div className={styles.field}>
-            <div className={styles.label}>timeframe</div>
-            {/* <Dropdown
+            </div>
+            <div className={styles.field}>
+              <div className={styles.label}>timeframe</div>
+              {/* <Dropdown
               className={styles.dropdown}
               value={date}
               setValue={setDate}
               options={dateOptions}
             /> */}
+            </div>
           </div>
-        </div>
-        <div className={styles.wrapper}>
-          <div className="">
-            {items.map((x, index) => (
-              <div className={styles.slide} key={index}>
-                <div className={styles.item}>
-                  <div className={styles.head}>
-                    <div
-                      className={styles.rating}
-                      style={{ backgroundColor: x.color }}
-                    >
-                      <div className={styles.icon}>
-                        <img src={x.sign} alt="Rating" />
+          <div className={styles.wrapper}>
+            <Slider {...settings}>
+              {items.map((x, index) => (
+                <div className={styles.slide} key={index}>
+                  <div className={styles.item}>
+                    <div className={styles.head}>
+                      <div
+                        className={styles.rating}
+                        style={{ backgroundColor: x.color }}
+                      >
+                        <div className={styles.icon}>
+                          <img src={x.sign} alt="Rating" />
+                        </div>
+                        <div className={styles.number}>#{x.number}</div>
                       </div>
-                      <div className={styles.number}>#{x.number}</div>
-                    </div>
-                    <div className={styles.control}>
-                      {/* <Add className={styles.button} /> */}
+                      <div className={styles.control}>
+                        {/* <Add className={styles.button} />
                       <Link className={styles.button} to={x.url}>
-                        {/* <Icon name="arrow-expand" size="24" /> */}
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={styles.body}>
-                    <div className={styles.avatar}>
-                      <img src={x.avatar} alt="Avatar" />
-                      <div className={styles.reward}>
-                        <img src={x.reward} alt="Reward" />
+                        <Icon name="arrow-expand" size="24" />
+                      </Link> */}
                       </div>
                     </div>
-                    <div className={styles.name}>{x.name}</div>
-                    <div
-                      className={styles.price}
-                      dangerouslySetInnerHTML={{ __html: x.price }}
-                    />
+                    <div className={styles.body}>
+                      <div className={styles.avatar}>
+                        <img src={x.avatar} alt="Avatar" />
+                        <div className={styles.reward}>
+                          <img src={x.reward} alt="Reward" />
+                        </div>
+                      </div>
+                      <div className={styles.name}>{x.name}</div>
+                      <div
+                        className={styles.price}
+                        dangerouslySetInnerHTML={{ __html: x.price }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </Slider>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default Popular;
+  export default Popular;

@@ -19,8 +19,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Popular></Popular>
-        {/* <Chatbox/> */}
+        <Selection></Selection>
         <header className="App-header">
         <Routes>
             <Route path='/login' element={<Login/>}/>
