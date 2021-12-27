@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Chatbox from './components/ChatBox/Chatbox';
 import Footer from './components/footer/Footer';
 import Header from './components/header/header_before_login/Header';
 import Feed from './screens/Feed/Feed';
@@ -16,6 +17,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Chatbox/>
         <header className="App-header">
         <Routes>
             <Route path='/login' element={<Login/>}/>

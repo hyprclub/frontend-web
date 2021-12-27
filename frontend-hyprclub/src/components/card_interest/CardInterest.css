@@ -240,13 +240,13 @@
     margin-left: 5px;
 }
 
-#btn>img {
+#interestbtn>img {
     width: 17px !important;
     height: auto !important;
 
 }
 
-#btn:focus, #btn:active {
+#interestbtn:focus, #interestbtn:active {
     outline: none;
 }
 
@@ -268,7 +268,7 @@
     cursor: pointer !important;
 }
 
-#btn>.textBold {
+#interestbtn>.textBold {
     font-style: normal !important;
     font-weight: 900000 !important;
     font-size: 14px !important;
@@ -280,7 +280,7 @@
 
 
 
-#btn:hover {
+#interestbtn:hover {
     box-shadow: 1px 1px 1.5px rgb(0, 0, 0, .25) !important;
     cursor: pointer !important;
 }
@@ -292,7 +292,7 @@
 @media(max-width:1020px) {
     
 
-    #btn>span {
+    #interestbtn>span {
         font-style: normal !important;
         font-weight: normal !important;
         font-size: 11.5px !important;
@@ -302,7 +302,7 @@
         color: #000000 !important;
     }
 
-    #btn>img {
+    #interestbtn>img {
         width: 10px !important;
         height: 25px !important;
     }
@@ -349,13 +349,13 @@
     .buttonWhole.Gaming {
         gap: 5px !important;
         width: 115px !important;
-        margin-left:0;
+        margin-left:0!important;
     }
 
     .buttonWhole.Cryptocurrency {
         gap: 5px !important;
         width: 150px !important;
-        margin-right: 0;
+        margin-right: 0 !important;
 
     }
 
@@ -368,6 +368,7 @@
     .buttonWhole.Art {
         gap: 5px !important;
         width: 80px !important;
+        
     }
 
     .buttonWhole.Sports {

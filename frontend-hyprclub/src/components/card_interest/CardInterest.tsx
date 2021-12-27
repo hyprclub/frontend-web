@@ -150,7 +150,7 @@ function Card_interest() {
                     }
 
                     
-                    return <Button onClick={() => click(data.id)} key={data.id} id="btn" type="button" className={clsx(sel === "borderBlack" ? " borderBlack" : "buttonWhole", data.classname)}>
+                    return <Button onClick={() => click(data.id)} key={data.id} id="Interestbtn" type="button" className={clsx(sel === "borderBlack" ? " borderBlack" : "buttonWhole", data.classname)}>
                                 { (sel === 'borderBlack') && <img src={data.srcclose} alt=""/>}
                                 <img src={data.src} alt=""/>
                                 <span className={sel === "borderBlack" ? " textBold" : "textNormal"}>{data.name}</span>
