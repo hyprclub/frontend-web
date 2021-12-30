@@ -15,9 +15,7 @@ const  UploadButton = () => {
         
     }
     return (
-        <div className="upButton">
             <Button type="submit" onClick={ButtonHandler} className="upldbtn">Upload</Button>
-        </div>
     )
 }
 
