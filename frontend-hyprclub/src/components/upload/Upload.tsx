@@ -66,7 +66,7 @@ const Upload = () => {
                                 <i className={clsx("bi bi-calendar-check", uploadPostCss.inputicon)}></i>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <PostButton/>
+                                <PostButton btnText='Post' small={false}/>
                             </div>
                         </div>
                 </div>
