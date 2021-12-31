@@ -10,7 +10,7 @@ import Login from './screens/Login/Login';
 import Register from './screens/Regiter/Register';
 import Interests from './screens/yourInterest/Interests';
 import Selection from './components/Selection';
-import Popular from './components/Popular/Popular';
+import Marketplace from './screens/Marketplace/Marketplace';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -19,7 +19,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Selection></Selection>
+       {/* <Marketplace/> */}
+        <Interests/>
+
         <header className="App-header">
         <Routes>
             <Route path='/login' element={<Login/>}/>

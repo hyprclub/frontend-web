@@ -6,7 +6,9 @@
     font-family: 'Poppins', sans-serif;
     padding: 0;
 }
-
+span{
+    color:black;
+}
 
 .arrowLeft {
     font-size: 30px;
@@ -107,7 +109,7 @@
     height: 37px !important;
     text-align: center !important;
     flex-wrap: nowrap !important;
-    transition: width 300ms ease-in-out !important;
+    transition: width 30ms ease-in-out !important;
 }
 
 .buttonWhole.Comedy {
@@ -117,7 +119,7 @@
 
 .buttonWhole.Graphic_Design {
     gap: 5px !important;
-    width: 175px !important;
+    width: 195px !important;
 }
 
 .buttonWhole.Music {
@@ -172,12 +174,12 @@
 
 .borderBlack.Comedy {
     gap: 5px !important;
-    width: 125px !important;
+    width: 145px !important;
 }
 
 .borderBlack.Graphic_Design {
     gap: 3px !important;
-    width: 192px !important;
+    width: 225px !important;
 }
 
 .borderBlack.Music {
@@ -237,7 +239,7 @@
     line-height: 24px !important;
     letter-spacing: 0.01em !important;
     color: #000000 !important;
-    margin-left: 5px;
+    margin-left: 5px!important;
 }
 
 #interestbtn>img {
@@ -264,18 +266,18 @@
     flex-wrap: nowrap !important;
     border: 2px solid hsl(0, 0%, 0%) !important;
     font-weight: bold !important;
-    transition: width 300ms ease-in-out !important;
+    transition: width 30ms ease-in-out !important;
     cursor: pointer !important;
 }
 
 #interestbtn>.textBold {
     font-style: normal !important;
-    font-weight: 900000 !important;
+    font-weight: bold !important;
     font-size: 14px !important;
     line-height: 24px !important;
     letter-spacing: 0.01em !important;
     color: #000000 !important;
-    margin-left: 5px;
+    margin-left: 5px!important;
 }
 
 
@@ -292,26 +294,14 @@
 @media(max-width:1020px) {
     
 
-    #interestbtn>span {
-        font-style: normal !important;
-        font-weight: normal !important;
-        font-size: 11.5px !important;
-        line-height: 20px !important;
-        text-align: center !important;
-        letter-spacing: -0.01em !important;
-        color: #000000 !important;
-    }
-
-    #interestbtn>img {
-        width: 10px !important;
-        height: 25px !important;
-    }
+    
+  
     .buttonWhole {
       
         margin: 1px 3px  !important;
        
         flex-wrap: nowrap !important;
-        transition: width 300ms ease-in-out !important;
+        
     }
 
 
@@ -323,7 +313,7 @@
 
     .buttonWhole.Graphic_Design {
         gap: 5px !important;
-        width: 170px !important;
+        width: 185px !important;
     }
 
     .buttonWhole.Music {
@@ -383,17 +373,34 @@
         margin: 1px 3px  !important;
        
         flex-wrap: nowrap !important;
-        transition: width 300ms ease-in-out !important;
+       
     }
 
     .borderBlack.Comedy {
         gap: 5px !important;
         width: 115px !important;
     }
+    .borderBlack.Comedy>img{
+        height:15px !important;
+        width:15px;
+    }
+    .buttonWhole.Comedy>img{
+        height:15px !important;
+        width:15px;
+    }
 
     .borderBlack.Graphic_Design {
-        gap: 3px !important;
-        width: 175px !important;
+        gap: none !important;
+        width: 200px !important;
+        
+    }
+    .borderBlack.Graphic_Design>img{
+        height:15px !important;
+        width:15px;
+    }
+    .buttonWhole.Graphic_Design>img{
+        height:15px !important;
+        width:15px;
     }
 
     .borderBlack.Music {
@@ -446,6 +453,14 @@
         width: 112px !important;
     }
 
+    #interestbtn>.textNormal {
+        font-size:9px;
+    }
+    #interestbtn>.textBold {
+        font-size: 9px !important;
+       
+    }
+    
 }
 
 
@@ -496,7 +511,7 @@
     .card_content {
         display: flex;
         flex-basis: 50%;
-        padding: 0 7px;
+        padding: 0 3px;
         margin-top:0;
     }
 
