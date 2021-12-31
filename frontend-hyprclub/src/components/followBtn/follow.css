@@ -8,7 +8,8 @@
 }
 
 .follow{
-    background: linear-gradient(27deg, rgba(158,1,235,1) 0%, rgba(211,24,126,1) 49%, rgba(243,189,56,1) 100%) !important;
+    background: linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
+    rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%) !important;
     padding: 7px 20px !important;
     
 }
@@ -38,7 +39,8 @@
     position: absolute;
     top: -4px; bottom: -4px;
     left: -4px; right: -4px;
-    background: linear-gradient(27deg, rgba(158,1,235,1) 0%, rgba(211,24,126,1) 49%, rgba(243,189,56,1) 100%) !important;
+    background: linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
+    rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%) !important;
     content: '';
     z-index: -1;
     border-radius: 30px; 
