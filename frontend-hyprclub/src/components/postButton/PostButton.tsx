@@ -10,7 +10,7 @@ interface Btn{
 const PostButton = ({btnText, small}:Btn) => {
     return (
         <div>
-            <Button className='postBtn'> <span className={clsx('btnName', small && "smallText")}>{btnText}</span></Button>
+            <Button className='postBtn'> <span className='PostbtnText'>{btnText}</span></Button>
         </div>
     )
 }
