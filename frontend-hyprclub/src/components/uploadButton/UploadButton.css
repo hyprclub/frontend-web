@@ -54,6 +54,11 @@
 
 }
 
+.upldbtn:active, .upldbtn:focus {
+    color: white !important;
+
+}
+
 
 
 @media screen and (max-width: 1100px) {
