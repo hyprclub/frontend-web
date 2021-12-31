@@ -8,7 +8,7 @@ const Follow = () => {
 
     return (
         // <div>
-            <Button onClick={()=> setFollowing(!following)} className={following? "following" : "follow"}> <span className='btnName'> {following ? "Following" : "Follow"}</span></Button>
+            <Button onClick={()=> setFollowing(!following)} className={following? "following" : "follow"}> <span className='followbtnName'> {following ? "Following" : "Follow"}</span></Button>
         // </div>
     )
 }

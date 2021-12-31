@@ -13,11 +13,16 @@
     
 }
 
-.following .btnName{
+.following .followbtnName{
     background-image: url('/public/images/gradient.png') !important;
     -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.followbtnName{
+    color: white;
+}
+
 
 .following{
     position: relative;
