@@ -6,9 +6,7 @@
     font-family: 'Poppins', sans-serif;
     padding: 0;
 }
-span{
-    color:black;
-}
+
 
 .arrowLeft {
     font-size: 30px;
@@ -230,7 +228,9 @@ span{
     width: 112px !important;
 }
 
-
+#btn{
+    color: black !important;
+}
 
 #btn>.textNormal {
     font-style: normal !important;
