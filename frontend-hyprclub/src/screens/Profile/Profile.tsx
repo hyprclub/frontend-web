@@ -203,7 +203,7 @@ const Profile = () => {
               className={clsx("button-stroke button-small", styles.button)}
               onClick={() => setVisible(true)}
             >
-              <span className="me-2">Edit cover photo</span>
+              <span className="me-2 editCover">Edit cover photo</span>
               <Icon name="edit" size="16" />
             </button>
 

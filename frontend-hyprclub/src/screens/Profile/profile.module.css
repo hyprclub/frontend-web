@@ -151,7 +151,7 @@
 
 .user {
   flex-shrink: 0;
-  width: 256px;
+  width: 25%;
   margin-top: -52px; }
   @media only screen and (max-width: 1023px) {
     .user {
