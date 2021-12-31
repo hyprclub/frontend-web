@@ -10,7 +10,9 @@ import Login from './screens/Login/Login';
 import Register from './screens/Regiter/Register';
 import Interests from './screens/yourInterest/Interests';
 import Selection from './components/Selection';
-import Marketplace from './screens/Marketplace/Marketplace';
+
+import Profile from './screens/Profile/Profile';
+
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -19,9 +21,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-       {/* <Marketplace/> */}
-        <Interests/>
-
         <header className="App-header">
         <Routes>
             <Route path='/login' element={<Login/>}/>
@@ -29,6 +28,7 @@ function App() {
             <Route path='/follow' element={<FollowCreater/>}/>
             <Route path='/interest' element={<Interests/>}/>
             <Route path='/feed' element={<Feed/>}/>
+            <Route path='/profile' element={<Profile/>}/>
 
           </Routes>
           {/* <Header></Header>

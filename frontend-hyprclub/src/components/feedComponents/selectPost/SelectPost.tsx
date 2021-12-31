@@ -21,7 +21,7 @@ const SelectPost = () => {
                                 <div className="switchComp d-flex align-items-center">
                                    <span className='membersonly'>Member Only </span><Switch/>
                                 </div>
-                                <PostButton/>
+                                <PostButton btnText='Post' small={false}/>
                             </div>
                         </div>
                     </div>
