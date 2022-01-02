@@ -12,6 +12,7 @@ import Interests from './screens/yourInterest/Interests';
 import Selection from './components/Selection';
 
 import Profile from './screens/Profile/Profile';
+import Marketplace from './screens/Marketplace/Marketplace';
 
 // import logo from './logo.svg';
 // import './App.css';
@@ -29,6 +30,7 @@ function App() {
             <Route path='/interest' element={<Interests/>}/>
             <Route path='/feed' element={<Feed/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/market' element={<Marketplace/>}/>
 
           </Routes>
           {/* <Header></Header>

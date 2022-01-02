@@ -127,9 +127,12 @@ const Selection = () => {
                                                         <img src={x.avatar} alt="Avatar" />
                                                     </div>
                                                     <div className={styles.price}>{x.price}</div>
-                                                    <div className={styles.content}>{x.content}</div>
+                                                    
                                                 </div>
-                                                <ButtonItself btnPurpose={"Place a Bid"} />
+                                                <div className={styles.bidbtn}>
+                                                 <ButtonItself btnPurpose={"Place a Bid"} /> 
+                                                </div>
+                                               
 
                                             </div>
                                         </Link>
@@ -156,9 +159,12 @@ const Selection = () => {
                                                         <img src={x.avatar} alt="Avatar" />
                                                     </div>
                                                     <div className={styles.price}>{x.price}</div>
-                                                    <div className={styles.content}>{x.content}</div>
+                                            
                                                 </div>
-                                                <ButtonItself btnPurpose={"Place a Bid"} />
+                                                <div className={styles.bidbtn}>
+                                                  <ButtonItself btnPurpose={"Place a Bid"} />  
+                                                </div>
+                                                
                                             </div>
                                         </Link>
                                     )

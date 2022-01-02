@@ -328,3 +328,8 @@
 :global(.dark-mode) .money span {
     color: #e6e8ec;
 }
+
+.bidbtn{
+    margin-top: 3vh;
+    margin-left: -7.8vw;
+}
