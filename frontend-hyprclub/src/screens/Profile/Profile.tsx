@@ -19,7 +19,6 @@ import Store from "../../components/store/Store";
 const navLinks = [
   "Posts",
   "NFT",
-  "Store",
 ];
 
 const socials = [
@@ -264,9 +263,6 @@ const Profile = () => {
                 )}
                 {activeIndex === 1 && (
                   <Nft/>
-                )}
-                {activeIndex === 2 && (
-                  <Store/>
                 )}
               </div>
             </div>

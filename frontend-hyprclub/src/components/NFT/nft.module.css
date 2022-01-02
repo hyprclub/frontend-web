@@ -5,14 +5,32 @@
 .created, .owned{
     margin-right: 20px;
     color: #8E8E8E;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 18px;
     cursor: pointer;
 }
 
-.active{
+/* .active{
     
     padding-bottom: 5px;
     border-bottom: 4.6px solid #000000;
     color: black;
-}
+} */
+
+.active {
+    position: relative;
+    margin: 0px 10px 0px 0px;
+    text-decoration: none;
+    color: #212121;
+  }
+  
+  .active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -7px; /* Negative height */
+    width: 100%;
+    height: 4px; /* Height of border */
+    background-color: #212121;
+    border-radius: 5rem; 
+  }
