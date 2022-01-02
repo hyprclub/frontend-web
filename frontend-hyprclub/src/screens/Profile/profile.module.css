@@ -233,7 +233,9 @@
     position: relative; /* This is the reference for the after psuedo-element*/
     margin: 0px 10px 0px 0px;
     text-decoration: none;
-    color: #212121;
+    background-image: url('/public/images/gradient.png') !important;
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   }
   
   .link.active::after {
@@ -243,7 +245,8 @@
     bottom: -3px; /* Negative height */
     width: 100%;
     height: 4px; /* Height of border */
-    background-color: #212121;
+    background: linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
+    rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%);
     border-radius: 10rem; 
   }
   
