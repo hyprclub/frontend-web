@@ -18,9 +18,9 @@ const SelectPost = () => {
                                 <i className="bi bi-link-45deg"></i>
                             </div>
                             <div className='d-flex align-items-center'>
-                                <div className="switchComp d-flex align-items-center">
+                                {/* <div className="switchComp d-flex align-items-center">
                                    <span className='membersonly'>Member Only </span><Switch/>
-                                </div>
+                                </div> */}
                                 <PostButton btnText='Post' small={false}/>
                             </div>
                         </div>
