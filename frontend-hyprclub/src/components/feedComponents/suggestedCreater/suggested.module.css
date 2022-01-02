@@ -3,6 +3,7 @@
     background: #fff;
     border-radius: 20px;
     margin-bottom: 20px;
+    z-index: -2;
 }
 
 .title{
