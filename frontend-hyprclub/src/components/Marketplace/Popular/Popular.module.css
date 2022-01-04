@@ -1,6 +1,14 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+
 .section {
   overflow: hidden;
-  padding-bottom: 48px;
+  width: 90%;
+  justify-self: center;
+  align-self: center;
+  padding-bottom:50px;
+  /* margin:50px 0; */
 }
 
 @media only screen and (max-width: 1339px) {
@@ -20,9 +28,10 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-bottom: 54px;
+  padding:0 20px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -34,11 +43,11 @@
 
 .stage {
   font-style: normal;
-font-weight: bold;
-margin-left: -1vw;
-font-size: 32px;
-line-height: 40px;
-color: #292929;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 3%;
+  color: #292929;
 }
 
 .label {
@@ -82,22 +91,69 @@ color: #292929;
 }
 
 .wrapper {
-  margin: 0 -16px;
+  margin: 0 16px;
+  height: auto;
+  padding: 0;
 }
 
 @media only screen and (max-width: 767px) {
   .wrapper {
-    margin: 0 -4px;
+    margin: 0 4px;
   }
 }
 
+
+.nextArrow {
+  right: -3%;
+  top: 40%;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border:none;
+  border-radius: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.prevArrow {
+  left: -3%;
+  top: 40%;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border:none;
+  border-radius: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.prevArrow:hover, .nextArrow:hover{
+  border: 2px solid #E6E8EC;
+  background-color: #ffffff ;
+}
+
+.slide {
+  height: 270px !important;
+  /* border: 1px solid black !important; */
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+}
+
+
 .item {
   padding: 24px;
-  margin:0;
+  margin: 0;
   border-radius: 16px;
   background: #FCFCFD;
   width: 198.4px;
-  height: 247px;
   -webkit-transition: -webkit-box-shadow .2s;
   transition: -webkit-box-shadow .2s;
   transition: box-shadow .2s;
@@ -109,8 +165,8 @@ color: #292929;
 }
 
 .item:hover {
-  -webkit-box-shadow: 0px 64px 64px -48px rgba(31, 47, 70, 0.12);
-          box-shadow: 0px 64px 64px -48px rgba(31, 47, 70, 0.12);
+  -webkit-box-shadow: 0px 64px 64px 8px rgba(93, 159, 252, 0.12);
+  box-shadow: 0px 64px 64px 8px rgba(93, 159, 252, 0.12);
 }
 
 .item:hover .avatar {
@@ -128,8 +184,8 @@ color: #292929;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-bottom: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #E6E8EC;
@@ -144,8 +200,8 @@ color: #292929;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 24px;
   margin-right: auto;
   padding: 0 8px;
@@ -158,7 +214,7 @@ color: #292929;
 
 .icon {
   margin-right: 4px;
-  
+
 }
 
 .icon img {
@@ -176,10 +232,17 @@ color: #292929;
   -webkit-transition: fill .2s;
   transition: fill .2s;
 }
-
-.button:hover svg {
+.button:hover svg{
   fill: #3772FF;
 }
+
+#arrowUpRight{
+  color:#B1B5C3;
+}
+#arrowUpRight:hover {
+  color:#3772FF;
+}
+
 
 .button:not(:last-child) {
   margin-right: 8px;
@@ -197,14 +260,14 @@ color: #292929;
   transition: width .2s;
 }
 
-.avatar > img {
+.avatar>img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -239,5 +302,4 @@ color: #292929;
 :global(.dark-mode) .price span {
   color: #E6E8EC;
 }
-/*# sourceMappingURL=Popular.module.css.map */
 

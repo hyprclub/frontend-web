@@ -87,13 +87,51 @@
     padding: 0 25px;
 }
 
-
+/* Continue Button */
 .Card_continuebutton {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
-/* Button styling */
+/* Button */
+#Interestbtn{
+    color: black !important;
+}
 
+#Interestbtn>img {
+    width: 17px !important;
+    height: auto !important;    
+}
+
+#Interestbtn:hover {
+    box-shadow: 1px 1px 1.5px rgb(0, 0, 0, .25) !important;
+    cursor: pointer !important;
+}
+
+#Interestbtn:focus, #Interestbtn:active {
+    outline: none!important;
+}
+
+#Interestbtn>.textNormal {
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 24px !important;
+    letter-spacing: 0.01em !important;
+    color: black !important;
+    margin-left: 5px!important;
+}
+
+#Interestbtn>.textBold {
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    line-height: 24px !important;
+    letter-spacing: 0.01em !important;
+    color: black !important;
+    margin-left: 5px!important;
+}
+
+/*Individual Button styling */
 .buttonWhole {
     display: flex !important;
     align-items: center !important;
@@ -108,6 +146,7 @@
     text-align: center !important;
     flex-wrap: nowrap !important;
     transition: width 30ms ease-in-out !important;
+    color:black !important;
 }
 
 .buttonWhole.Comedy {
@@ -169,6 +208,24 @@
 }
 
 /* Selected Button  styling*/
+.borderBlack {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    border-radius: 45px !important;
+    padding: 0 8px !important;
+    margin: 5px !important;
+    height: 37px !important;
+    text-align: center !important;
+    flex-wrap: nowrap !important;
+    border: 2px solid hsl(0, 0%, 0%) !important;
+    font-weight: bold !important;
+    transition: width 30ms ease-in-out !important;
+    cursor: pointer !important;
+    color:black !important;
+}
 
 .borderBlack.Comedy {
     gap: 5px !important;
@@ -229,80 +286,66 @@
 }
 
 
-.textNormal {
-    font-style: normal !important;
-    font-weight: normal !important;
-    font-size: 14px !important;
-    line-height: 24px !important;
-    letter-spacing: 0.01em !important;
-    color: #000000 !important;
-    margin-left: 5px!important;
-}
-
-#interestbtn>img {
-    width: 17px !important;
-    height: auto !important;
-
-}
-
-#interestbtn:focus, #interestbtn:active {
-    outline: none;
-}
-
-.borderBlack {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: transparent !important;
-    box-sizing: border-box !important;
-    border-radius: 45px !important;
-    padding: 0 8px !important;
-    margin: 5px !important;
-    height: 37px !important;
-    text-align: center !important;
-    flex-wrap: nowrap !important;
-    border: 2px solid hsl(0, 0%, 0%) !important;
-    font-weight: bold !important;
-    transition: width 30ms ease-in-out !important;
-    cursor: pointer !important;
-}
-
-.textBold {
-    font-style: normal !important;
-    font-weight: bold !important;
-    font-size: 14px !important;
-    line-height: 24px !important;
-    letter-spacing: 0.01em !important;
-    color: #000000 !important;
-    margin-left: 5px!important;
-}
-
-
-
-#interestbtn:hover {
-    box-shadow: 1px 1px 1.5px rgb(0, 0, 0, .25) !important;
-    cursor: pointer !important;
-}
-
-
-
-
-
 @media(max-width:1020px) {
-    
-
-    
-  
-    .buttonWhole {
-      
-        margin: 1px 3px  !important;
-       
-        flex-wrap: nowrap !important;
-        
+    /* Responsive card */
+    #back1 {
+        display: none;
     }
-
-
-
+    
+    .card_body {
+        width: 360px;
+        height: 584px;
+        padding: 10px;
+    }
+    
+    .card_title {
+        width: 285.31px;
+        height: 80px;
+        margin-top: 20px;
+        text-align: center;
+        color: #000000;
+    }
+    
+    .card_title>h2 {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.01em;
+    }
+    
+    .card_subtitle {
+        width: 285px;
+        height: 72px;
+        text-align: center;
+        color: #23262F;
+    }
+    
+    .card_subtitle>p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    
+    .card_content {
+        display: flex;
+        flex-basis: 50%;
+        padding: 0 3px;
+        margin-top:0;
+    }
+    /* Continue button */
+    .Card_continuebutton {
+        margin-top: 12px;
+    }
+     
+    /* Button Styling */
+    .buttonWhole {      
+        margin: 1px 3px  !important;       
+        flex-wrap: nowrap !important;        
+    }
+    
     .buttonWhole.Comedy {
         gap: 5px !important;
         width: 110px !important;
@@ -354,8 +397,7 @@
 
     .buttonWhole.Art {
         gap: 5px !important;
-        width: 80px !important;
-        
+        width: 80px !important;        
     }
 
     .buttonWhole.Sports {
@@ -366,11 +408,8 @@
     /* Selected Button  styling*/
 
     .borderBlack {
-      
         margin: 1px 3px  !important;
-       
-        flex-wrap: nowrap !important;
-       
+        flex-wrap: nowrap !important;       
     }
 
     .borderBlack.Comedy {
@@ -379,25 +418,25 @@
     }
     .borderBlack.Comedy>img{
         height:15px !important;
-        width:15px;
+        width:15px !important;
     }
     .buttonWhole.Comedy>img{
         height:15px !important;
-        width:15px;
+        width:15px !important;
     }
 
     .borderBlack.Graphic_Design {
         gap: none !important;
-        width: 200px !important;
-        
+        width: 200px !important;        
     }
+
     .borderBlack.Graphic_Design>img{
         height:15px !important;
-        width:15px;
+        width:15px !important;
     }
     .buttonWhole.Graphic_Design>img{
         height:15px !important;
-        width:15px;
+        width:15px !important;
     }
 
     .borderBlack.Music {
@@ -424,14 +463,12 @@
         gap: 5px !important;
         width: 121px !important;
         margin-left: 0 !important;
-
     }
 
     .borderBlack.Cryptocurrency {
         gap: 5px !important;
         width: 162px !important;
         margin-right:0px!important;
-
     }
 
     .borderBlack.Technology {
@@ -451,11 +488,10 @@
     }
 
     .textNormal {
-        font-size:9px;
+        font-size:9px !important;;
     }
     .textBold {
-        font-size: 9px !important;
-       
+        font-size: 9px !important;       
     }
     
 }
@@ -463,59 +499,3 @@
 
 
 
-@media(max-width:1020px) {
-    #back1 {
-        display: none;
-    }
-
-    .card_body {
-        width: 360px;
-        height: 584px;
-        padding: 10px;
-    }
-
-    .card_title {
-        width: 285.31px;
-        height: 80px;
-        margin-top: 20px;
-        text-align: center;
-        color: #000000;
-    }
-
-    .card_title>h2 {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 40px;
-        letter-spacing: -0.01em;
-    }
-
-    .card_subtitle {
-        width: 285px;
-        height: 72px;
-        text-align: center;
-        color: #23262F;
-    }
-
-    .card_subtitle>p {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-    }
-
-    .card_content {
-        display: flex;
-        flex-basis: 50%;
-        padding: 0 3px;
-        margin-top:0;
-    }
-
-    .Card_continuebutton {
-        margin-top: 10px;
-    }
-
-
-
-}

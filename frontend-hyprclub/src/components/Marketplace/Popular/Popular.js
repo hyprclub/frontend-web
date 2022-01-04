@@ -7,6 +7,7 @@ import Add from "./Add/Add";
 import Icon from "../../Icon";
 import Dropdown from "../Dropdown/Dropdown"
 import DropdownEmpty from "../DropdownEmpty/DropdownEmpty"
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "phosphor-react";
 
 const items = [
   {
@@ -91,30 +92,36 @@ const items = [
   },
 ];
 
-const SlickArrow = ({ currentSlide, slideCount, children, ...props }) => (
-  <button {...props}>{children}</button>
-);
 
 const dateOptions = ["Today", "Morning", "Dinner", "Evening"];
 const directionOptions = ["Sellers", "Buyers"];
 
 const Popular = () => {
+  
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className={styles.nextArrow} onClick={onClick}>
+        <ArrowRight size={20} id={styles.arrowRight} />
+      </div>
+    );
+  };
+  
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className={styles.prevArrow} onClick={onClick}>
+         <ArrowLeft size={20} id={styles.arrowLeft} />
+      </div>
+    );
+  };
   const settings = {
     infinite: false,
     speed: 500,
+    dots:true,
     slidesToShow: 5,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    nextArrow: (
-      <SlickArrow>
-        <Icon name="arrow-next" size="14" />
-      </SlickArrow>
-    ),
-    prevArrow: (
-      <SlickArrow>
-        <Icon name="arrow-prev" size="14" />
-      </SlickArrow>
-    ),
+    nextArrow: <NextArrow/>,
+    prevArrow: <PrevArrow/>,
     responsive: [
       {
         breakpoint: 1340,
@@ -144,10 +151,10 @@ const Popular = () => {
   return (
     <div className={cn("section-bg", styles.section)}>
       <div className={cn("container", styles.container)}>
+        <div className={styles.stage}> Check Out Our NFT Creators</div>
         <div className={styles.top}>
-          <div className={styles.box}>
-            <div className={styles.stage}> Check Out Our NFT Creators</div>
             
+          <div className={styles.box}>
             <DropdownEmpty
               className={styles.dropdown}
               value={direction}
@@ -183,7 +190,7 @@ const Popular = () => {
                     <div className={styles.control}>
                       <Add className={styles.button} />
                       <Link className={styles.button} to={x.url}>
-                        <Icon name="arrow-expand" size="24" />
+                      <ArrowUpRight size={24} id={styles.arrowUpRight} />
                       </Link>
                     </div>
                   </div>
