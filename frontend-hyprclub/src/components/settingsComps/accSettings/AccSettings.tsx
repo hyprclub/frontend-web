@@ -8,7 +8,7 @@ const AccSettings = () => {
     return (
         <>
             <div className={styles.mainDiv}>
-                <h2 className={styles.title}>Edit Profile</h2>
+                <h2 className={styles.title}>Account Settings</h2>
            
                 <div className={styles.content}>
                     <div className={styles.switchAccType}>
