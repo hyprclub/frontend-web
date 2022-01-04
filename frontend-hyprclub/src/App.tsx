@@ -13,6 +13,7 @@ import Selection from './components/Selection';
 
 import Profile from './screens/Profile/Profile';
 import Marketplace from './screens/Marketplace/Marketplace';
+import Settings from './screens/Settings/Settings';
 
 // import logo from './logo.svg';
 // import './App.css';
@@ -31,6 +32,8 @@ function App() {
             <Route path='/feed' element={<Feed/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/market' element={<Marketplace/>}/>
+            <Route path='/settings' element={<Settings/>}/>
+            <Route path='/settings/:test' element={<Settings/>}/>
 
           </Routes>
           {/* <Header></Header>
