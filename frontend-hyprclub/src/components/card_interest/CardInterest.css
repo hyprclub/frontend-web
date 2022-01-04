@@ -228,11 +228,8 @@
     width: 112px !important;
 }
 
-#btn{
-    color: black !important;
-}
 
-#btn>.textNormal {
+.textNormal {
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;
@@ -270,7 +267,7 @@
     cursor: pointer !important;
 }
 
-#interestbtn>.textBold {
+.textBold {
     font-style: normal !important;
     font-weight: bold !important;
     font-size: 14px !important;
@@ -453,10 +450,10 @@
         width: 112px !important;
     }
 
-    #interestbtn>.textNormal {
+    .textNormal {
         font-size:9px;
     }
-    #interestbtn>.textBold {
+    .textBold {
         font-size: 9px !important;
        
     }

@@ -8,8 +8,11 @@ function Marketplace() {
     return (
         <div className={styles.home}>
             <Selection/>
+            <hr className={styles.divider} />
             <Popular />
+            <hr className={styles.divider} />
             <Collections/>
+            <hr className={styles.divider} />
             <Discover/>
             
         </div>

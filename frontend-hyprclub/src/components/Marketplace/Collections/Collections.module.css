@@ -1,14 +1,16 @@
 .section {
   overflow: hidden;
+  padding-top: -50px;
+  padding-bottom: 2px;
 }
 
 .wrapper {
   position: relative;
-  /* border: 1px solid #000 */
 }
 
 h3.title{
   margin-bottom: 80px;
+  margin-left: -1vw;
   font-style: normal;
   font-weight: bold;
   font-size: 32px;

@@ -80,6 +80,7 @@
 .selection {
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: -1vw;
   white-space: nowrap;
 }
 
