@@ -6,7 +6,7 @@ import Creater from '../../components/followPerson/Creater'
 import Logo from '../../components/logo/Logo'
 import './followCreater.css'
 
-const FollowCreater = () => {
+const FollowCreator = () => {
     return (
         <div>
           <Logo/>
@@ -51,4 +51,4 @@ const FollowCreater = () => {
     )
 }
 
-export default FollowCreater
+export default FollowCreator

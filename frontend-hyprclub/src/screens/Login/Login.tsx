@@ -19,7 +19,7 @@ const Login = () => {
                         <p className='subtitleText'>New to HyprClub? <span className="createAccount"> <Link to="/register" className='link'>Create Account</Link> </span></p>
                             <Form action='#'>
                                     <InputField typeOfInput='text' half={false} lableText={"Email Address/ Username"}/>
-                                    <InputField typeOfInput='text' half={false} lableText={"Password"}/>
+                                    <InputField typeOfInput='password' half={false} lableText={"Password"}/>
                                     <p className="forgotPassword"><a href="#" className='link'>Forgot Password?</a></p>
                                 <ButtonItself btnPurpose={"Login"}/>
                             </Form>
