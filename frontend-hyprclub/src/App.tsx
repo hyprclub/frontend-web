@@ -14,7 +14,7 @@ import Selection from './components/Selection';
 import Profile from './screens/Profile/Profile';
 import Marketplace from './screens/Marketplace/Marketplace';
 import Settings from './screens/Settings/Settings';
-
+import Landing from './screens/Landing/Landng';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -34,7 +34,7 @@ function App() {
             <Route path='/market' element={<Marketplace/>}/>
             <Route path='/settings' element={<Settings/>}/>
             <Route path='/settings/:test' element={<Settings/>}/>
-
+            <Route path='/' element={<Landing/>}></Route>
           </Routes>
           {/* <Header></Header>
           <Footer></Footer> */}
