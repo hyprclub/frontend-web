@@ -20,8 +20,8 @@ const Register = () => {
                             <div className='mb-3'>
                                 <Form action='#'>
                                     <div className='d-flex registeInputs'>
-                                        <InputField  typeOfInput='text' half={true} lableText={"First Name"}/>
-                                        <InputField  half={true} typeOfInput='text' lableText={"Last Name"}/>
+                                        <InputField  typeOfInput='text' half={false} lableText={"Name"}/>
+                                        {/* <InputField  half={true} typeOfInput='text' lableText={"Last Name"}/> */}
                                     </div>
                                         <InputField typeOfInput='email' half={false} lableText={"Email Address:"}/>
                                     <div className='d-flex registeInputs'>
