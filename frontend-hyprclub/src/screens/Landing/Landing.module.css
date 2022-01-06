@@ -153,3 +153,110 @@
         height:54px;
     }
 }
+
+
+
+/* title */
+
+@media (max-width: 768px){
+  .creativity{
+    width: 100% !important;
+  }
+}
+
+
+.creativity .title{
+  font-weight: bold;
+  font-size: 64px;
+  letter-spacing: -0.02em;
+  line-height: 64px;
+
+}
+
+.creativity{
+  background: #d36d6d;
+  width: 75%;
+  height: 600px;
+  padding: 70px 30px 250px;
+  margin: 20px 0;
+  margin-bottom: 10px;
+  border-top-right-radius: 35px;
+  border-bottom-right-radius: 35px;
+  position: relative;
+}
+
+.creativity .desc{
+  padding-right: 15vw;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  margin-top: 20px;
+
+}
+
+.card{
+  position: absolute;
+  width: 37%;
+  text-align: center;
+  background: #FEFEFE;
+  padding: 30px 20px 50px;
+  border-radius: 20px;
+  z-index: 2;
+  filter: drop-shadow(7px 7px 15px rgba(0, 0, 0, 0.25));
+  height: 226px;
+
+}
+.thanks{
+  bottom: -140px;
+}
+.CreatorStore{
+  bottom: -140px;
+  left: 45%;
+}
+
+.nftWithPerks{
+  right: -270px;
+  top: 5%;
+}
+
+.membership {
+  right: -270px;
+  top: 60%;
+}
+
+
+.card h3{
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.card p{
+  color: #23262F;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.cardImg{
+  width: 76px;
+  height: 76px;
+}
+
+
+.cardInside{
+  position: relative;
+
+}
+
+.imgDiv{
+  background: #FEFEFE;
+  position: absolute;
+  top: -130px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: -1;
+  padding: 20px;
+  border-radius: 50%;
+
+}
