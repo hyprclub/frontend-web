@@ -161,55 +161,9 @@
 
 /* title */
 
-<<<<<<< HEAD
 @media (max-width: 768px) {
   .creativity {
     width: 100% !important;
-=======
-@media (max-width: 768px){
-  .creativity{
-    width: auto !important;
-    text-align: center;
-    margin: 20px !important;
-    border-radius: 35px !important;
-    height: 440px !important;
-  }
-
-  .card{
-    position: unset !important;
-    width: auto !important;
-  }
-
-  .creativity .desc{
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 36px;
-    margin-top: 20px;
-    padding: 10px !important;
-  
-  }
-
-  .desc{
-  font-size: 14px !important;
-  line-height: 21px !important;
-  }
-
-  .creativity .title{
-    letter-spacing: -0.02em;
-
-      font-weight: bold;
-    font-size: 32px !important;
-    line-height: 30px !important;
-  /* or 95% */
-  
-  }
-  
-  .thanks, .CreatorStore, .nftWithPerks, .membership{
-    bottom: -140px;
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
->>>>>>> aaa3603 (Buy nft with upi)
   }
   
 
@@ -309,8 +263,6 @@
   z-index: -1;
   padding: 20px;
   border-radius: 50%;
-<<<<<<< HEAD
-=======
 
 }
 
@@ -319,7 +271,9 @@
 /* nft */
 
 .buyNFT{
-  background: chocolate;
+  /* background: chocolate; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   padding: 20px 40px;
   text-align: right;
   width: 75%;
@@ -438,5 +392,4 @@ line-height: 21px;
       margin-right: 10px;
     }
     
->>>>>>> aaa3603 (Buy nft with upi)
 }
