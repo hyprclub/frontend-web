@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900");
+* {
+  font-family: "Poppins", sans-serif;
+}
+.part1{
+    text-align: center;
+    background-image: url('./BG_STARS.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* background-size: cover; */
+    /* background-size: 1300px 500px; */
+}
+.hypr {
+  margin-top: 70px !important;
+  height: 36px !important;
+  line-height: 36px;
+  /* font-weight: 700; */
+  font-size: 24px;
+}
+.hypr span {
+  background: linear-gradient(90deg, #8d00fd, #e70d8c, #ed4d6b, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.hypr a {
+  /* color: #D82D84; */
+  font-weight: 700 !important;
+}
+.Revolution {
+  margin-bottom: 18px;
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 96px;
+  letter-spacing: -4px;
+}
+.SocialNetwork {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  margin-bottom: 35px;
+}
+.Revolution span {
+  background: linear-gradient(90deg, #8d00fd, #e70d8c, #ed4d6b, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  /* animation: example 5s ease infinite; */
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes example {
+  0% {
+    background: linear-gradient(90deg, #e70d8c, #8d00fd, #ed4d6b, #f6a44c);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  15% {
+    background: linear-gradient(
+      90deg,
+      #e70d8c,
+      #8d00fd,
+      #e70d8c,
+      #8d00fd,
+      #e70d8c
+    );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  25% {
+    background: linear-gradient(90deg, #8d00fd, #e70d8c, #8d00fd, #e70d8c);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  50% {
+    background: linear-gradient(90deg, #ed4d6b, #8d00fd, #e70d8c, #f6a44c);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  100% {
+    background: linear-gradient(90deg, #f6a44c, #8d00fd, #e70d8c, #ed4d6b);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+}
+/* @keyframes mymove {
+  from {
+    background: linear-gradient(90deg, #8d00fd, #e70d8c, #ed4d6b, #f6a44c);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  to {
+    background: linear-gradient(90deg, #ed4d6b, #f6a44c, #8d00fd, #e70d8c);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+} */
+/* button {
+  width: 200px;
+  height: 58px;
+} */
+.postBtna {
+    width: 281px;
+    height:61px;
+  font-weight: 700 !important;
+  font-size: 30px;
+  border: none !important;
+  border-radius: 30px !important;
+  background: linear-gradient(
+    60deg,
+    rgba(141, 0, 253, 1) 4%,
+    rgba(231, 13, 140, 1) 49%,
+    rgba(237, 77, 107, 1),
+    rgba(246, 164, 76, 1) 85%,
+    rgba(252, 199, 55, 1) 92%
+  ) !important;
+  padding: 0px 20px !important;
+}
+
+.PostbtnTexta {
+  font-size: 18px !important;
+  color: white !important;
+}
+@media (max-width: 768px){
+    .hypr {
+        font-size: 24px;
+    }
+    .Revolution{
+        margin-top: 18px;
+        font-size: 56px;
+        line-height: 56px;
+        letter-spacing: -2px;
+    }
+    .SocialNetwork {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 30px;
+      }
+      .postBtna {
+        width: 204px;
+        height:54px;
+    }
+}

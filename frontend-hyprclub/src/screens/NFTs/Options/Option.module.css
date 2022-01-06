@@ -1,0 +1,23 @@
+.options {
+    display: flex;
+    padding: 8px;
+    border-radius: 32px;
+    background: #FCFCFD;
+    border:none;
+    outline: none;
+}
+
+:global(.dark-mode) .options {
+    background: #23262F;
+}
+
+
+#star {
+    color: #EF466F;
+    fill:#EF466F;
+}
+
+#star:hover  {
+    fill: #EF466F;
+    color:#ff0040;
+}
