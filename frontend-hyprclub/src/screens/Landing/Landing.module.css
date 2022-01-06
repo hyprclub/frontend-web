@@ -2,13 +2,13 @@
 * {
   font-family: "Poppins", sans-serif;
 }
-.part1{
-    text-align: center;
-    background-image: url('./BG_STARS.svg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    /* background-size: cover; */
-    /* background-size: 1300px 500px; */
+.part1 {
+  text-align: center;
+  background-image: url("./BG_STARS.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* background-size: cover; */
+  /* background-size: 1300px 500px; */
 }
 .hypr {
   margin-top: 70px !important;
@@ -16,6 +16,11 @@
   line-height: 36px;
   /* font-weight: 700; */
   font-size: 24px;
+}
+.gradient {
+  background: linear-gradient(90deg, #8d00fd, #e70d8c, #ed4d6b, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 .hypr span {
   background: linear-gradient(90deg, #8d00fd, #e70d8c, #ed4d6b, #f6a44c);
@@ -110,8 +115,8 @@
   height: 58px;
 } */
 .postBtna {
-    width: 281px;
-    height:61px;
+  width: 281px;
+  height: 61px;
   font-weight: 700 !important;
   font-size: 30px;
   border: none !important;
@@ -132,49 +137,52 @@
   font-size: 18px !important;
   color: white !important;
 }
-@media (max-width: 768px){
-    .hypr {
-        font-size: 24px;
-    }
-    .Revolution{
-        margin-top: 18px;
-        font-size: 56px;
-        line-height: 56px;
-        letter-spacing: -2px;
-    }
-    .SocialNetwork {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        margin-bottom: 30px;
-      }
-      .postBtna {
-        width: 204px;
-        height:54px;
-    }
+@media (max-width: 768px) {
+  .hypr {
+    font-size: 24px;
+  }
+  .Revolution {
+    margin-top: 18px;
+    font-size: 56px;
+    line-height: 56px;
+    letter-spacing: -2px;
+  }
+  .SocialNetwork {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+  .postBtna {
+    width: 204px;
+    height: 54px;
+  }
 }
-
-
 
 /* title */
 
-@media (max-width: 768px){
-  .creativity{
+@media (max-width: 768px) {
+  .creativity {
     width: 100% !important;
   }
 }
 
-
-.creativity .title{
+.creativity .title {
   font-weight: bold;
   font-size: 64px;
   letter-spacing: -0.02em;
   line-height: 64px;
-
 }
 
-.creativity{
-  background: #d36d6d;
+.creativity {
+  /* background: #d36d6d; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background: var(--bg-2);
+  border-radius: 25px;
+  transition: all 0.2s linear;
+  border-radius: 22px;
+  transition: all 0.2s linear 0s;
   width: 75%;
   height: 600px;
   padding: 70px 30px 250px;
@@ -185,36 +193,34 @@
   position: relative;
 }
 
-.creativity .desc{
+.creativity .desc {
   padding-right: 15vw;
   font-weight: 500;
   font-size: 24px;
   line-height: 36px;
-  margin-top: 20px;
-
+  margin-top: 30px;
 }
 
-.card{
+.card {
   position: absolute;
   width: 37%;
   text-align: center;
-  background: #FEFEFE;
+  background: #fefefe;
   padding: 30px 20px 50px;
   border-radius: 20px;
   z-index: 2;
   filter: drop-shadow(7px 7px 15px rgba(0, 0, 0, 0.25));
   height: 226px;
-
 }
-.thanks{
+.thanks {
   bottom: -140px;
 }
-.CreatorStore{
+.CreatorStore {
   bottom: -140px;
   left: 45%;
 }
 
-.nftWithPerks{
+.nftWithPerks {
   right: -270px;
   top: 5%;
 }
@@ -224,33 +230,30 @@
   top: 60%;
 }
 
-
-.card h3{
+.card h3 {
   margin-top: 50px;
   font-weight: bold;
   font-size: 32px;
 }
 
-.card p{
-  color: #23262F;
+.card p {
+  color: #23262f;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
 }
 
-.cardImg{
+.cardImg {
   width: 76px;
   height: 76px;
 }
 
-
-.cardInside{
+.cardInside {
   position: relative;
-
 }
 
-.imgDiv{
-  background: #FEFEFE;
+.imgDiv {
+  background: #fefefe;
   position: absolute;
   top: -130px;
   left: 50%;
@@ -258,5 +261,4 @@
   z-index: -1;
   padding: 20px;
   border-radius: 50%;
-
 }
