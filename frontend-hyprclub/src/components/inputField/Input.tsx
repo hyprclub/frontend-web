@@ -6,18 +6,23 @@ interface Input{
     half: boolean,
     lableText: string,
     typeOfInput: string,
+    garyBold?:boolean
+    value?:any
+    placeholder?:string
 }
 
-const InputField = ({half, lableText, typeOfInput}: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder }: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
-            <label>{lableText}</label>
+            <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
             <FormControl
+            defaultValue={value ? value :''}
             required
             type={typeOfInput}
             className={clsx('mb-1 inputItself')}
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
+            placeholder={placeholder}
             />
         </div>
     )

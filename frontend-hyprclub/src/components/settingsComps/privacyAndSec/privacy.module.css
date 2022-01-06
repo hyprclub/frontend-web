@@ -1,0 +1,46 @@
+.title{
+    font-weight: bold;
+    font-size: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E3E3E3;
+    padding: 25px 10px 17px 20px;
+}
+
+.mainDiv{
+    background: #fff;
+    border-radius: 20px;
+    z-index: -2;
+
+}
+
+.private{
+    padding: 25px 10px 17px 20px;
+    border-bottom: 1px solid #E3E3E3;
+    margin-bottom: 10px;
+}
+
+.changePs{
+    padding: 25px 10px 17px 20px;
+    margin-bottom: 10px;
+}
+
+.heading{
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.desc{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.enableprivate{
+    margin-bottom: 0;
+    margin-right: 40px;
+
+}
+
+.enablepvtdiv{
+    margin-bottom: 20px;
+}
