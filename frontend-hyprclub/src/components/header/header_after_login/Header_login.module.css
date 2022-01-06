@@ -1,6 +1,6 @@
 
 .headDiv{
-  background-color: #F7F9F9 !important;
+  background-color: white;
   display: flex;
   justify-content: center;
   flex-grow: 1;
@@ -8,15 +8,14 @@
 
 
 .header {
+    width: 93%;
     position: relative;
     z-index: 20;
-    margin-top: 2%;
+    margin-top: 1%;
     background-color: white;
-    padding: 18px;
-    padding-left: 4vw;
-    padding-right: 4vw;
-    border-radius: 27px;
-    border: 2px solid #E3E3E3 !important; }
+    padding: 5px;
+    border-radius: 15px;
+    border: 2px solid #e3e3e3b6 !important; }
     @media only screen and (max-width: 767px) {
       .header {
         padding: 48px 0 24px;
@@ -38,8 +37,9 @@
     z-index: 12;
     display: inline-block;
     flex-shrink: 0;
-    width: 128px;
-    margin-right: 32px; }
+    width: 80px;
+    margin-left: -2vw;
+    margin-right: 9vw; }
     @media only screen and (max-width: 1179px) {
       .logo {
         margin-right: auto; } }
@@ -97,7 +97,7 @@
     :global(.dark-mode) .nav {
       border-color: #353945; }
   
-  .link {
+.link {
     text-decoration: none;
     margin-left: 32px;
     font-family: 'Poppins', sans-serif;
@@ -135,20 +135,21 @@
   
   .input {
     width: 100%;
-    height: 40px;
+    height: 32px;
     padding: 0 42px 0 16px;
-    background: none;
-    border: 2px solid #E6E8EC;
-    border-radius: 8px;
+    background-color: #F5F5F5;
+    border: none !important;
+    border-radius: 20px;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
+    font-style: black;
     line-height: 1.66667;
     transition: border-color .2s; }
     .input::placeholder {
       color: #777E90; }
     :global(.dark-mode) .input {
       border-color: #353945;
-      color: #FCFCFD; }
+      color: black; }
     .input:focus {
       border-color: #777E90; }
   
@@ -157,12 +158,15 @@
     top: 0;
     right: 0;
     bottom: 0;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    border: none !important;
     width: 42px; }
     .result svg {
       fill: #777E90;
       transition: fill .2s; }
     .result:hover svg {
-      fill: #3772FF; }
+      fill: #9C9C9C; }
   
   .notification {
     margin-right: 24px; }
@@ -171,7 +175,8 @@
         margin-right: 20px; } }
   
   .burger {
-    display: none; }
+    display: none;
+     }
     @media only screen and (max-width: 767px) {
       .burger {
         display: block;
@@ -199,4 +204,7 @@
           transform: translateY(-4px); }
         .burger:after {
           transform: translateY(3px); } }
-  
+
+.user{
+  margin-right: -2vw;
+}

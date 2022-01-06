@@ -73,7 +73,7 @@ const nav = [
               className={cn("button-small", styles.button)}
               to="/upload-variants"
             >
-              Upload
+
             </Link>
           </div>
         <Upload_Button/>
