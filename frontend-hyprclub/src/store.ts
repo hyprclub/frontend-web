@@ -7,10 +7,12 @@ import {configureStore} from '@reduxjs/toolkit' ;
 import userData from './redux/slices/userData';
 
 const reducers = combineReducers({
-    uploadBtn: uploadBtnReducer
+    uploadBtn: uploadBtnReducer,
+     userData
 })
 
 const middleware = [thunk];
+
 
 export const store = createStore(reducers, composeWithDevTools(applyMiddleware(...middleware)))
 

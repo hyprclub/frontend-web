@@ -2,6 +2,7 @@ import React from 'react'
 import { FormControl } from 'react-bootstrap';
 import './input.css';
 import clsx from 'clsx';
+
 interface Input{
     half: boolean,
     lableText: string,
@@ -9,9 +10,11 @@ interface Input{
     garyBold?:boolean
     value?:any
     placeholder?:string
+    name?:string
+    
 }
 
-const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder }: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, name }: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
             <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
@@ -22,6 +25,7 @@ const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder }
             className={clsx('mb-1 inputItself')}
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
+            name = {name} 
             placeholder={placeholder}
             />
         </div>
