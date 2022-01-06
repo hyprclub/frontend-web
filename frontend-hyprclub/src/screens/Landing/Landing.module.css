@@ -161,10 +161,58 @@
 
 /* title */
 
+<<<<<<< HEAD
 @media (max-width: 768px) {
   .creativity {
     width: 100% !important;
+=======
+@media (max-width: 768px){
+  .creativity{
+    width: auto !important;
+    text-align: center;
+    margin: 20px !important;
+    border-radius: 35px !important;
+    height: 440px !important;
   }
+
+  .card{
+    position: unset !important;
+    width: auto !important;
+  }
+
+  .creativity .desc{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    margin-top: 20px;
+    padding: 10px !important;
+  
+  }
+
+  .desc{
+  font-size: 14px !important;
+  line-height: 21px !important;
+  }
+
+  .creativity .title{
+    letter-spacing: -0.02em;
+
+      font-weight: bold;
+    font-size: 32px !important;
+    line-height: 30px !important;
+  /* or 95% */
+  
+  }
+  
+  .thanks, .CreatorStore, .nftWithPerks, .membership{
+    bottom: -140px;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+>>>>>>> aaa3603 (Buy nft with upi)
+  }
+  
+
 }
 
 .creativity .title {
@@ -261,4 +309,134 @@
   z-index: -1;
   padding: 20px;
   border-radius: 50%;
+<<<<<<< HEAD
+=======
+
+}
+
+
+
+/* nft */
+
+.buyNFT{
+  background: chocolate;
+  padding: 20px 40px;
+  text-align: right;
+  width: 75%;
+  margin-left: auto;
+  margin-right: 0;
+  border-top-left-radius: 35px;
+  border-bottom-left-radius: 35px;
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.forthefirsttime{
+  font-weight: 500;
+font-size: 24px;
+}
+
+.buyNFTwithUPI{
+  font-size: 64px;
+  line-height: 96px;
+  letter-spacing: -0.02em;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.buyNFTdesc{
+  padding-left: 27vw;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.paymentSec{
+  font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+margin-bottom: 0;
+margin-top: 50px;
+}
+
+
+.visaImg{
+  width: 87px;
+}
+.mastercardImg{
+  width: 68px;
+}
+.upiImg{
+  width: 91px;
+}
+
+.visaImg, .mastercardImg, .upiImg{
+  margin-right: 30px;
+}
+
+.nftcards{
+  position: absolute;
+  bottom: -87px;
+  left: -252px;
+  width: 626px;
+}
+
+
+
+@media (max-width: 768px){
+    .buyNFT{
+      margin: 20px;
+      width: auto !important;
+      border-radius: 35px;
+      text-align: center;
+      padding-bottom: 150px;
+      margin-bottom: 300px;
+    }
+
+    .forthefirsttime{
+      margin-bottom: 0;
+      font-size: 32px;
+      line-height: 46px;
+    }
+
+    .buyNFTwithUPI{
+      font-size: 32px !important;
+      margin-bottom: 0;
+      line-height: 46px;
+    }
+    .buyNFTdesc{
+      padding-left: 0;
+      font-weight: 500;
+font-size: 14px;
+line-height: 21px;
+    }
+
+    .nftcards{
+      width: 100%;
+      bottom: -33%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    .visaImg{
+      width: 45px;
+    }
+
+    .mastercardImg{
+      width: 35px;
+    }
+
+    .upiImg{
+      width: 47px;
+    }
+
+    .rupayImg{
+      width: 80px;
+    }
+
+    .visaImg, .mastercardImg, .upiImg{
+      margin-right: 10px;
+    }
+    
+>>>>>>> aaa3603 (Buy nft with upi)
 }
