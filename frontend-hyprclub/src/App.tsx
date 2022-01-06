@@ -10,7 +10,7 @@ import Login from './screens/Login/Login';
 import Register from './screens/Regiter/Register';
 import Interests from './screens/yourInterest/Interests';
 import Selection from './components/Selection';
-
+import Header_login from './components/header/header_after_login/Header_login';
 import Profile from './screens/Profile/Profile';
 import Marketplace from './screens/Marketplace/Marketplace';
 import Settings from './screens/Settings/Settings';

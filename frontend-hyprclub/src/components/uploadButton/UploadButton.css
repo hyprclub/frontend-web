@@ -28,9 +28,10 @@
 .upldbtn {
     border-radius: 100rem;
     justify-content: center !important;
+    margin-right: 20px;
     align-items: center !important;
-    width:  118px !important;
-    height: 46px !important;
+    width:  90px !important;
+    height: 43px !important;
     font-size: 16px !important;
     font-style: normal !important;
     font-weight: 800 !important;
