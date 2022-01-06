@@ -4,13 +4,11 @@ import Chatbox from './components/ChatBox/Chatbox';
 import Footer from './components/footer/Footer';
 import Header from './components/header/header_before_login/Header';
 import Feed from './screens/Feed/Feed';
-
 import FollowCreater from './screens/FollowCreater/FollowCreater';
 import Login from './screens/Login/Login';
 import Register from './screens/Regiter/Register';
 import Interests from './screens/yourInterest/Interests';
-import Selection from './components/Selection';
-
+import Header_login from './components/header/header_after_login/Header_login';
 import Profile from './screens/Profile/Profile';
 import Marketplace from './screens/Marketplace/Marketplace';
 import Settings from './screens/Settings/Settings';
@@ -24,7 +22,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-        <Routes>
+          <Routes>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/follow' element={<FollowCreater/>}/>

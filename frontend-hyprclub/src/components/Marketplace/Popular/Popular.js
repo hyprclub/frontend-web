@@ -4,7 +4,6 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import styles from "./Popular.module.css";
 import Add from "./Add/Add";
-import Icon from "../../Icon";
 import Dropdown from "../Dropdown/Dropdown"
 import DropdownEmpty from "../DropdownEmpty/DropdownEmpty"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "phosphor-react";

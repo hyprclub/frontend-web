@@ -12,7 +12,7 @@
   background-size: cover;
   overflow: hidden; 
   border-radius: 20px;
-  margin: 10px 25px 0 25px;
+  margin: 20px 2.9vw 0 2.9vw;
 }
   @media only screen and (max-width: 1023px) {
     .head {
@@ -234,8 +234,8 @@
     margin: 0px 10px 0px 0px;
     text-decoration: none;
     background-image: url('/public/images/gradient.png') !important;
-    -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   }
   
   .link.active::after {
