@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { InputHTMLAttributes } from 'react'
 import { FormControl } from 'react-bootstrap';
 import './input.css';
 import clsx from 'clsx';
-interface Input{
+interface Input extends InputHTMLAttributes<HTMLInputElement>{
     half: boolean,
     lableText: string,
     typeOfInput: string,
@@ -11,7 +11,7 @@ interface Input{
     placeholder?:string
 }
 
-const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder }: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder}: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
             <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
