@@ -9,7 +9,7 @@ interface BtnText {
 const GradientBorder = ({text}:BtnText) => {
     return (
         <div>
-            <Button className={styles.gradientBorder}><span className={styles.btnName}>{text}</span></Button>
+            <button className={styles.gradientBorder}><span className={styles.btnName}>{text}</span></button>
         </div>
     )
 }
