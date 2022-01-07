@@ -42,7 +42,7 @@ const nav = [
     return (
       <div className={styles.headDiv}>
       <header className={styles.header}>
-        <div className={cn("container", styles.container)}>
+        <div className={styles.container}>
           <Link className={styles.logo} to="/">
             <Image
               className={styles.pic}
