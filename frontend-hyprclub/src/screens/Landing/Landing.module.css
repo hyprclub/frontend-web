@@ -345,6 +345,9 @@
 }
 
 @media (max-width: 768px) {
+  /* .forthefirsttime{
+    font-size: 20px;
+  } */
   .buyNFT {
     margin: 20px;
     width: auto !important;
@@ -356,7 +359,7 @@
 
   .forthefirsttime {
     margin-bottom: 0;
-    font-size: 32px;
+    font-size: 22px;
     line-height: 46px;
   }
 
