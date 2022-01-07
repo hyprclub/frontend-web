@@ -2,7 +2,7 @@ import React from 'react'
 import {Button} from 'react-bootstrap'
 import "./GetStartBtn.css"
 
-function GetStartBtn() {
+const  GetStartBtn = () => {
     const ButtonHandler=()=>{
         console.log("lets get started");
     }

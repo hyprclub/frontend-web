@@ -88,7 +88,7 @@ const Register = () => {
                 </div>
               </Form>
             </div>
-            <SocialLogins login={false} purpose={"Sign Up"} />
+            <SocialLogins registerGoogle={() => console.log('register with google')} registerFacebook={()=> console.log('register with facebook')} login={false} purpose={"Sign Up"} />
           </div>
         </div>
       </div>

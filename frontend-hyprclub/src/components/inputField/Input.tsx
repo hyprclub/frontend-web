@@ -9,9 +9,10 @@ interface Input extends InputHTMLAttributes<HTMLInputElement>{
     garyBold?:boolean
     value?:any
     placeholder?:string
+    onChange?: any
 }
 
-const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder}: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange}: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
             <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
@@ -23,6 +24,7 @@ const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder}:
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
             placeholder={placeholder}
+            onChange={onChange}
             />
         </div>
     )

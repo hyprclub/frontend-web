@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import { Button } from 'react-bootstrap'
 import './postButton.css';
 
-interface Btn{
+interface Btn extends ButtonHTMLAttributes<HTMLButtonElement>{
     btnText: string
     small: boolean
 }
