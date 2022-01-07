@@ -270,3 +270,60 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+@media only screen and (min-device-width:1023px) and (max-device-width:1099px){
+    .search{
+        margin-left: -25vw;
+    }
+
+    .signbtn{
+        margin-right: 0vw;
+    }
+
+    .logo{
+        margin-left: 0vw;
+    }
+}
+
+@media only screen and (min-device-width:1100px) and (max-device-width:1145px){
+    .search{
+        margin-left: 34vw;
+    }
+
+    .signbtn{
+        margin-right: -3vw;
+    }
+
+    .logo{
+        margin-left: -3vw;
+    } 
+}
+
+@media only screen and (min-device-width:1146px) and (max-device-width:1169px){
+    .search{
+        margin-left: 34vw;
+    }
+
+    .signbtn{
+        margin-right: -3.5vw;
+    }
+
+    .logo{
+        margin-left: -3.5vw;
+    }
+}
+
+@media only screen and (min-device-width:1170px) and (max-device-width:1199px){
+    .search{
+        margin-left: 34vw;
+    }
+
+    .signbtn{
+        margin-right: -5vw;
+    }
+
+    .logo{
+        margin-left: -5vw;
+    }
+}
