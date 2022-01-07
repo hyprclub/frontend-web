@@ -98,6 +98,8 @@
     -webkit-background-clip: text;
   }
 }
+
+
 /* @keyframes mymove {
   from {
     background: linear-gradient(90deg, #8d00fd, #e70d8c, #ed4d6b, #f6a44c);
@@ -165,8 +167,6 @@
   .creativity {
     width: 100% !important;
   }
-  
-
 }
 
 .creativity .title {
@@ -194,7 +194,9 @@
   border-bottom-right-radius: 35px;
   position: relative;
 }
-
+.margin{
+  margin-top: 100px;
+}
 .creativity .desc {
   padding-right: 15vw;
   font-weight: 500;
@@ -263,14 +265,13 @@
   z-index: -1;
   padding: 20px;
   border-radius: 50%;
-
 }
-
-
 
 /* nft */
 
-.buyNFT{
+.buyNFT {
+  margin-top: 20vh;
+  /* margin-bottom: 20vh; */
   /* background: chocolate; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -285,12 +286,16 @@
   margin-bottom: 150px;
 }
 
-.forthefirsttime{
+.forthefirsttime {
+  margin-top: 40px;
+  background: linear-gradient(90deg, #ed4d6b,#8d00fd, #e70d8c, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
   font-weight: 500;
-font-size: 24px;
+  font-size: 24px;
 }
 
-.buyNFTwithUPI{
+.buyNFTwithUPI {
   font-size: 64px;
   line-height: 96px;
   letter-spacing: -0.02em;
@@ -298,108 +303,113 @@ font-size: 24px;
   margin-bottom: 30px;
 }
 
-.buyNFTdesc{
+.buyNFTdesc {
   padding-left: 27vw;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
 }
 
-.paymentSec{
+.paymentSec {
   font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-margin-bottom: 0;
-margin-top: 50px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 0;
+  margin-top: 50px;
 }
 
-
-.visaImg{
+.visaImg {
+  /* margin-left: 40px; */
   width: 87px;
 }
-.mastercardImg{
+.mastercardImg {
+  /* margin-left: 40px; */
   width: 68px;
 }
-.upiImg{
+.upiImg {
+  /* margin-left: 40px; */
   width: 91px;
 }
 
-.visaImg, .mastercardImg, .upiImg{
+.visaImg,
+.mastercardImg,
+.upiImg {
   margin-right: 30px;
 }
 
-.nftcards{
+.nftcards {
   position: absolute;
   bottom: -87px;
   left: -252px;
   width: 626px;
 }
 
+@media (max-width: 768px) {
+  .buyNFT {
+    margin: 20px;
+    width: auto !important;
+    border-radius: 35px;
+    text-align: center;
+    padding-bottom: 150px;
+    margin-bottom: 300px;
+  }
 
+  .forthefirsttime {
+    margin-bottom: 0;
+    font-size: 32px;
+    line-height: 46px;
+  }
 
-@media (max-width: 768px){
-    .buyNFT{
-      margin: 20px;
-      width: auto !important;
-      border-radius: 35px;
-      text-align: center;
-      padding-bottom: 150px;
-      margin-bottom: 300px;
-    }
+  .buyNFTwithUPI {
+    font-size: 32px !important;
+    margin-bottom: 0;
+    line-height: 46px;
+  }
+  .buyNFTdesc {
+    padding-left: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+  }
 
-    .forthefirsttime{
-      margin-bottom: 0;
-      font-size: 32px;
-      line-height: 46px;
-    }
+  .nftcards {
+    width: 100%;
+    bottom: -33%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 
-    .buyNFTwithUPI{
-      font-size: 32px !important;
-      margin-bottom: 0;
-      line-height: 46px;
-    }
-    .buyNFTdesc{
-      padding-left: 0;
-      font-weight: 500;
-font-size: 14px;
-line-height: 21px;
-    }
+  .visaImg {
+    width: 45px;
+  }
 
-    .nftcards{
-      width: 100%;
-      bottom: -33%;
-      left: 50%;
-      transform: translate(-50%, 0);
-    }
+  .mastercardImg {
+    width: 35px;
+  }
 
-    .visaImg{
-      width: 45px;
-    }
+  .upiImg {
+    width: 47px;
+  }
 
-    .mastercardImg{
-      width: 35px;
-    }
+  .rupayImg {
+    /* margin-left: 40px; */
+    width: 80px;
+  }
 
-    .upiImg{
-      width: 47px;
-    }
-
-    .rupayImg{
-      width: 80px;
-    }
-
-    .visaImg, .mastercardImg, .upiImg{
-      margin-right: 10px;
-    }
-    
+  .visaImg,
+  .mastercardImg,
+  .upiImg {
+    margin-right: 10px;
+  }
 }
 
-
-
-
 /* Get your social game */
-
-.getYourSocialGame{
+.game{
+  background: linear-gradient(90deg, #ed4d6b,#8d00fd, #e70d8c, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.getYourSocialGame {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   padding: 20px 40px 0 0;
@@ -413,104 +423,110 @@ line-height: 21px;
   margin-bottom: 150px;
   margin-top: 40vh;
 
-  display: flex;  
-
+  display: flex;
 }
 
-.getSocialHeader{
+.getSocialHeader {
+  margin-top: 46px;
   font-weight: bold;
   font-size: 64px;
   line-height: 64px;
   /* padding-left: 20vw; */
 }
 
-.getSocialHeader .game{
-  /* Gradienet Text here */
 
-}
 
-.getSocialDesc{
+.getSocialDesc {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
   /* padding-left: 30vw; */
-  margin-top: 40px;
+  margin-top: 45px;
 }
 
-.button{
-  margin-top: 35px;
+.button {
+  margin-top: 52px;
+  /* width: 280.77px;
+  height: 52px; */
 }
 
-.getSocialGameImgDiv{
+/* .getSocialGameImgDiv {
+} */
 
-}
-
-.getSocialGameImg{
+.getSocialGameImg {
   border-radius: 35px;
   width: 70vh;
 }
 
-.getSocialGameImgPhone{
+.getSocialGameImgPhone {
   display: none;
 }
 
-
 /* Gradient Buttons */
-.postBtn{
+.postBtn {
+  width: 280px;
+  height: 52px;
   font-weight: 600 !important;
   border: none !important;
   border-radius: 30px !important;
-  background:  linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
-  rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%) !important;
+  background: linear-gradient(
+    60deg,
+    rgba(141, 0, 253, 1) 4%,
+    rgba(231, 13, 140, 1) 49%,
+    rgba(237, 77, 107, 1),
+    rgba(246, 164, 76, 1) 85%,
+    rgba(252, 199, 55, 1) 92%
+  ) !important;
   padding: 5px 25px !important;
 }
 
-.PostbtnText{
+.PostbtnText {
   font-size: 24px !important;
   color: white !important;
   font-weight: bold !important;
 }
 
+@media (max-width: 768px) {
+  .getYourSocialGame {
+    width: auto;
+    flex-direction: column;
+    padding: 0;
+    padding-top: 10px;
+    margin: 20px;
+    margin-top: 40vh;
+  }
+  .getSocialGameImg {
+    width: 100%;
+    display: none;
+  }
 
-@media (max-width: 768px){
-    .getYourSocialGame{
-      width: auto;
-      flex-direction: column;
-      padding: 0;
-      padding-top: 10px;
-      margin: 20px;
-  margin-top: 40vh;
+  .getSocialGameImgDiv {
+    order: 2;
+  }
 
-    }
-    .getSocialGameImg{
-      width: 100%;
-      display: none;
-    }
+  .getSocialGameImgPhone {
+    display: block;
+  }
+  .getSocialGameContent {
+    text-align: center;
+    padding: 0 10px;
+  }
 
-    .getSocialGameImgDiv{
-      order: 2;
-    }
+  .getSocialGameContent .forthefirsttime {
+    padding: 0 10px;
+  }
 
-    .getSocialGameImgPhone{
-      display: block;
-    }
-    .getSocialGameContent{
-      text-align: center;
-      padding: 0 10px;
-    }
+  .getSocialHeader {
+    font-size: 44px;
+    line-height: 56px;
+  }
 
-    .getSocialGameContent .forthefirsttime{
-      padding: 0 10px;
-    }
+  .getSocialGameImgPhone {
+    margin-top: 30px;
+    width: 100%;
+  }
 
-    .getSocialHeader{
-      font-size: 44px;
-      line-height: 56px;
-    }
-
-    .getSocialGameImgPhone{
-      margin-top: 30px;
-      width: 100%;
-    }
-
-    .PostbtnText{
-      font-size: 16px !important;
-    }
+  .PostbtnText {
+    font-size: 16px !important;
+  }
 }
