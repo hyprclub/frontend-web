@@ -76,7 +76,7 @@ const nav = [
             >
             </Link>
             <Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button>
-            <Button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></Button>
+            <button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button>
           </div>
           <button
           className={cn(styles.burger, { [styles.active]: visibleNav })}
