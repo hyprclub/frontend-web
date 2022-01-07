@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Landing.module.css";
 import PostButton from "../../components/postButton/PostButton";
-import Header_login from "../../components/header/header_after_login/Header_login";
+import Header from "../../components/header/header_before_login/Header";
 import { height, style } from "@mui/system";
 import { Button} from "react-bootstrap";
 import BG_STARS from "./BG_STARS.svg";
@@ -12,7 +12,7 @@ import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
 const Landing = () => {
   return (
     <>
-    <Header_login/>
+    <Header/>
     {/* style={{ backgroundImage: `url(${BG_STARS})` }} */}
       <div className={styles.part1}  >
         <div className={styles.hypr}><span><a>HYPRCLUB</a>&nbsp;PRESENTS</span></div>
