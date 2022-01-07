@@ -10,6 +10,7 @@ import GradientBorder from "../../components/gradientBorderBtn/GradientBorder";
 import Slider from "react-slick";
 const Landing = () => {
   var settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     slidesToShow: 1,
