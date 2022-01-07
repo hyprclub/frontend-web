@@ -12,7 +12,7 @@ const Landing = () => {
   var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -79,61 +79,14 @@ const Landing = () => {
           Items via Shop, Support your favourite creator through easy One-Time
           Payments.{" "}
         </p>
-         <Slider {...settings}>
-         <div>
-          <div className={styles.cardInside}>
-            <div className={styles.imgDiv}>
-              <img
-                className={styles.cardImg}
-                src="images/Present-1.png"
-                alt=""
-              />
-            </div>
-            <h3 className={styles.cardTitle}>Say Thanks</h3>
-            <p>
-              Encourage your favorite creator to continue their work by
-              contributing with ‘Say Thanks’!
-            </p>
-          </div>
-        </div>
-        <div >
-          <div className={styles.cardInside}>
-            <div className={styles.imgDiv}>
-              <img className={styles.cardImg} src="images/Trolly2.png" alt="" />
-            </div>
-            <h3 className={styles.cardTitle}>Creator Store</h3>
-            <p>
-              Buy NFTs from your favorite creators and unlock special perks
-              curated exclusively!
-            </p>
-          </div>
-        </div>
-        <div>
-          <div className={styles.cardInside}>
-            <div className={styles.imgDiv}>
-              <img className={styles.cardImg} src="images/Diamond.png" alt="" />
-            </div>
-            <h3 className={styles.cardTitle}>NFTs With Perks</h3>
-            <p>
-              Buy NFTs from your favorite creators and unlock special perks
-              curated exclusively!
-            </p>
-          </div>
-        </div>
-        <div>
-          <div className={styles.cardInside}>
-            <div className={styles.imgDiv}>
-              <img className={styles.cardImg} src="images/shoping.png" alt="" />
-            </div>
-            <h3 className={styles.cardTitle}>Memberships</h3>
-            <p>
-              Buy NFTs from your favorite creators and unlock special perks
-              curated exclusively!
-            </p>
-          </div>
-        </div>
-      </Slider>
-        {/* <div className={clsx(styles.card, styles.thanks)}>
+
+
+
+        
+        <div className={styles.desktopcards}>
+
+
+        <div className={clsx(styles.card, styles.thanks)}>
           <div className={styles.cardInside}>
             <div className={styles.imgDiv}>
               <img
@@ -184,75 +137,84 @@ const Landing = () => {
               curated exclusively!
             </p>
           </div>
-        </div> */}
-        {/* <CarouselProvider
-            naturalSlideWidth={100}
-            naturalSlideHeight={125}
-            totalSlides={4}
-            >
-            <Slider>
-
-              <Slide index={0}>
-                  <div className={clsx(styles.card, styles.thanks)}>
-                    <div className={styles.cardInside}>
-                      <div className={styles.imgDiv}>
-                        <img className={styles.cardImg} src="images/Present-1.png" alt="" />
-                      </div>
-                        <h3 className={styles.cardTitle}>Say Thanks</h3>
-                        <p>Encourage your favorite creator to continue their work by contributing with ‘Say Thanks’!</p>
-                      </div>
-                  </div>
-                </Slide>
-
-
-              
-
-              <Slide index={1}>
-              
-                <div className={clsx(styles.card, styles.CreatorStore)}>
-                  <div className={styles.cardInside}>
-                    <div className={styles.imgDiv}>
-                      <img className={styles.cardImg} src="images/Trolly2.png" alt="" />
-                    </div>
-                      <h3 className={styles.cardTitle}>Creator Store</h3>
-                      <p>Buy NFTs from your favorite creators and unlock special perks curated exclusively!</p>
-                    </div>
-                </div>
-              </Slide>
-
-             <Slide index={2}>
-
-              <div className={clsx(styles.card, styles.nftWithPerks)}>
-                <div className={styles.cardInside}>
-                  <div className={styles.imgDiv}>
-                    <img className={styles.cardImg} src="images/Diamond.png" alt="" />
-                  </div>
-                    <h3 className={styles.cardTitle}>NFTs With Perks</h3>
-                    <p>Buy NFTs from your favorite creators and unlock special perks curated exclusively!</p>
-                  </div>
-              </div>
-              </Slide>
-            
-
-
-
-          <Slide index={3}>
-          
-              <div className={clsx(styles.card, styles.membership)}>
-                <div className={styles.cardInside}>
-                  <div className={styles.imgDiv}>
-                    <img className={styles.cardImg} src="images/shoping.png" alt="" />
-                  </div>
-                    <h3 className={styles.cardTitle}>Memberships</h3>
-                    <p>Buy NFTs from your favorite creators and unlock special perks curated exclusively!</p>
-                  </div>
-              </div>
-              </Slide>
-
-              </Slider>
-            </CarouselProvider>
-            */}
+        </div>
+        </div>
+                 
       </div>
+
+    <div className={styles.mobileonly}>
+
+
+      <Slider {...settings}>
+         
+         <div>
+           <div className={styles.cardmob}>
+            <div className={styles.cardInsidemob}>
+              <div className={styles.imgDivmob}>
+                <img
+                  className={styles.cardImgmob}
+                  src="images/Present-1.png"
+                  alt=""
+                />
+              </div>
+              <h3 className={styles.cardTitle}>Say Thanks</h3>
+              <p>
+                Encourage your favorite creator to continue their work by
+                contributing with ‘Say Thanks’!
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <div >
+          <div className={styles.cardmob}>
+            <div className={styles.cardInsidemob}>
+              <div className={styles.imgDivmob}>
+                <img className={styles.cardImgmob} src="images/Trolly2.png" alt="" />
+              </div>
+              <h3 className={styles.cardTitle}>Creator Store</h3>
+              <p>
+                Buy NFTs from your favorite creators and unlock special perks
+                curated exclusively!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className={styles.cardmob}>
+            <div className={styles.cardInsidemob}>
+              <div className={styles.imgDivmob}>
+                <img className={styles.cardImgmob} src="images/Diamond.png" alt="" />
+              </div>
+              <h3 className={styles.cardTitle}>NFTs With Perks</h3>
+              <p>
+                Buy NFTs from your favorite creators and unlock special perks
+                curated exclusively!
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <div>
+          <div className={styles.cardmob}>
+            <div className={styles.cardInsidemob}>
+              <div className={styles.imgDivmob}>
+                <img className={styles.cardImgmob} src="images/shoping.png" alt="" />
+              </div>
+              <h3 className={styles.cardTitle}>Memberships</h3>
+              <p>
+                Buy NFTs from your favorite creators and unlock special perks
+                curated exclusively!
+              </p>
+            </div>
+          </div>
+        </div>
+      </Slider>
+      </div>
+
 
       {/* Get your Social GAME going. */}
 
