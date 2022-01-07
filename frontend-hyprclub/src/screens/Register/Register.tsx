@@ -7,7 +7,8 @@ import Logo from "../../components/logo/Logo";
 import SocialLogins from "../../components/socialLogins/SocialLogins";
 import "./register.css";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import {
   useSelector,
   useDispatch,
@@ -16,10 +17,52 @@ import {
 } from "react-redux";
 import { useNavigate } from "react-router";
 const Register = () => {
+  const [data, setData] = useState({
+    fname: "",
+    lname:"",
+    email: "",
+    password: "",
+    cpassword: "",
+    username: "",
+    phone: ""
+  });
+  const [checked, setChecked] = useState(true);
+
+  //update the data in variable
+//   function updateState(e: React.ChangeEvent<HTMLInputElement>) : React.FunctionComponent  {
+//     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
+//     console.log({ data });
+//   }
+  const updateState = (e : React.ChangeEvent<HTMLInputElement>)=>{
+      setData((state) =>({...state,[e.target.name]:e.target.value}))
+      console.log({data})
+  }
   const navigate = useNavigate();
+
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+
+  //check whether username is unique or not
+  function checkUsername(e: React.ChangeEvent<any>) {}
+
+  //check whether password match or not
+  function checkPassword(e: React.ChangeEvent<any>) {}
+
+  //check for valid phone number
+
+  function checkPhoneNumber(e: React.ChangeEvent<any>) {}
+
+  //check for accepting terms and conditions
+
+  // function for handle submit
+  const handleSubmit = () => {
+    console.log({ data });
+  };
+
+  //function for google sign-in
+
+  //function fot facebook sign-in
 
   useEffect(() => {
     const run = async () => {
@@ -51,21 +94,24 @@ const Register = () => {
             </p>
             <div className="mb-3">
               <Form
-                action="#"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
+                // onSubmit={(e) => {
+                //   handleSubmit();
+                // }}
               >
                 <div className="d-flex registeInputs">
                   <InputField
                     typeOfInput="text"
+                    name = "fname"
                     half={true}
                     lableText={"First Name"}
+                    onChange={updateState}
                   />
                   <InputField
                     half={true}
+                    name = "lname"
                     typeOfInput="text"
                     lableText={"Last Name"}
+                    onChange={updateState}
                   />
                 </div>
                 <InputField
@@ -73,6 +119,7 @@ const Register = () => {
                   name="email"
                   half={false}
                   lableText={"Email Address:"}
+                  onChange={updateState}
                 />
                 <div className="d-flex registeInputs">
                   <InputField
@@ -80,12 +127,14 @@ const Register = () => {
                     half={true}
                     lableText={"Username"}
                     name="username"
+                    onChange={updateState}
                   />
                   <InputField
                     typeOfInput="tel"
                     half={true}
                     lableText={"Mobile Number"}
                     name="phone"
+                    onChange={updateState}
                   />
                 </div>
                 <div className="d-flex registeInputs">
@@ -94,12 +143,14 @@ const Register = () => {
                     half={true}
                     lableText={"Password"}
                     name="password"
+                    onChange={updateState}
                   />
                   <InputField
                     typeOfInput="text"
                     half={true}
                     lableText={"Confirm Password"}
                     name="cpassword"
+                    onChange={updateState}
                   />
                 </div>
                 <div className="d-flex checkBoxTexts align-items-center">
@@ -114,13 +165,11 @@ const Register = () => {
                 <div className="d-flex checkBoxTexts align-items-center">
                   <input name="newsletter" id="newsletter" type="checkbox" />
                   <label className="ms-2" htmlFor="newsletter">
-                    I would like to recieve promotional emails from HyprClub
+                    I would like to receive promotional emails from HyprClub
                   </label>
                 </div>
                 <div className="mt-3">
-                  <Link to="/follow">
-                    <ButtonItself btnPurpose={"Sign Up"} />
-                  </Link>
+                  <ButtonItself btnPurpose={"Sign Up"}  />
                 </div>
               </Form>
             </div>
