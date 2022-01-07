@@ -327,3 +327,17 @@
         margin-left: -5vw;
     }
 }
+
+@media only screen and (min-device-width:1200px) and (max-device-width:1300px){
+    .search{
+        margin-left: 34vw;
+    }
+
+    .signbtn{
+        margin-right: -0.3vw;
+    }
+
+    .logo{
+        margin-left: -0.3vw;
+    }
+}
