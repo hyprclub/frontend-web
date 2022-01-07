@@ -16,6 +16,7 @@ import {
   DefaultRootState,
 } from "react-redux";
 import { useNavigate } from "react-router";
+
 const Register = () => {
   const [data, setData] = useState({
     fname: "",
@@ -28,14 +29,8 @@ const Register = () => {
   });
   const [checked, setChecked] = useState(true);
 
-  //update the data in variable
-//   function updateState(e: React.ChangeEvent<HTMLInputElement>) {
-//     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
-//     console.log({ data });
-//   }
-  const updateState = (e : React.FormEvent<HTMLInputElement>)=>{
-      setData({...data,[e.currentTarget.name]:e.currentTarget.value})
-      console.log({data})
+  const updateState = (e : React.ChangeEvent<HTMLInputElement>)=>{
+    setData((state) => ({ ...state, [e.target.name]: e.target.value }));
   }
   const navigate = useNavigate();
 
@@ -44,16 +39,27 @@ const Register = () => {
   );
 
   //check whether username is unique or not
-  function checkUsername(e: React.ChangeEvent<any>) {}
+  
+  const checkUsername = () =>{
 
+  }
   //check whether password match or not
-  function checkPassword(e: React.ChangeEvent<any>) {}
+
+  const checkPassword = () =>{
+
+  }
 
   //check for valid phone number
 
-  function checkPhoneNumber(e: React.ChangeEvent<any>) {}
+  const checkPhoneNumber = () => {
+
+  }
 
   //check for accepting terms and conditions
+
+  const checkTerms = () =>{
+    
+  }
 
   // function for handle submit
   const handleSubmit = () => {
@@ -62,7 +68,15 @@ const Register = () => {
 
   //function for google sign-in
 
-  //function fot facebook sign-in
+  const googleSignIn = async () => {
+
+  }
+
+  //function for facebook sign-in
+  const facebookSignIn = async () => {
+
+  }
+
 
   useEffect(() => {
     const run = async () => {
@@ -94,38 +108,26 @@ const Register = () => {
             </p>
             <div className="mb-3">
               <Form
-                // onSubmit={(e) => {
-                //   handleSubmit();
-                // }}
+                onSubmit={(e) => {
+                  handleSubmit();
+                }}
               >
                 <div className="d-flex registeInputs">
                   <InputField
                     typeOfInput="text"
-                    value={data.fname}
-                    name = "fname"
-                    half={true}
-                    lableText={"First Name"}
-                    onChange={(event) : void=>{updateState(event as any)}}
+                    half={false}
+                    lableText={"Name"}
                   />
-                  <InputField
-                    half={true}
-                    name = "lname"
-                    typeOfInput="text"
-                    lableText={"Last Name"}
-                    onChange={(e)=>{
-                        updateState(e)
-                    }}
-                    onBlur={
-                        handleSubmit
-                    }
-                  />
+                  {/* <InputField  half={true} typeOfInput='text' lableText={"Last Name"}/> */}
                 </div>
                 <InputField
                   typeOfInput="email"
                   name="email"
                   half={false}
                   lableText={"Email Address:"}
-                  onChange={handleSubmit}
+                  onChange={(e : React.ChangeEvent<any>) =>{
+                    updateState(e)
+                  }}
                 />
                 <div className="d-flex registeInputs">
                  
@@ -135,14 +137,19 @@ const Register = () => {
                     value={data.username}
                     lableText={"Username"}
                     name="username"
-                    onChange={(e) => {updateState(e)} }
+                    onChange={(e : React.ChangeEvent<any>) =>{
+                      updateState(e)
+                    }}
+                   
                   />
                   <InputField
                     typeOfInput="tel"
                     half={true}
                     lableText={"Mobile Number"}
                     name="phone"
-                    onChange={updateState}
+                    onChange={(e : React.ChangeEvent<any>) =>{
+                      updateState(e)
+                    }}
                   />
                 </div>
                 <div className="d-flex registeInputs">
@@ -151,14 +158,18 @@ const Register = () => {
                     half={true}
                     lableText={"Password"}
                     name="password"
-                    onChange={updateState}
+                    onChange={(e : React.ChangeEvent<any>) =>{
+                      updateState(e)
+                    }}
                   />
                   <InputField
-                    typeOfInput="text"
+                    typeOfInput="password"
                     half={true}
                     lableText={"Confirm Password"}
                     name="cpassword"
-                    onChange={updateState}
+                    onChange={(e : React.ChangeEvent<any>) =>{
+                      updateState(e)
+                    }}
                   />
                 </div>
                 
@@ -181,9 +192,8 @@ const Register = () => {
                   <ButtonItself btnPurpose={"Sign Up"} />
                 </div>
               </Form>
-              <button onClick={handleSubmit}> a sas</button>
             </div>
-            <SocialLogins login={false} purpose={"Sign Up"} />
+            <SocialLogins registerGoogle={() => googleSignIn()} registerFacebook={()=> facebookSignIn()} login={false} purpose={"Sign Up"} />
           </div>
         </div>
       </div>
