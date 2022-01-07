@@ -7,6 +7,7 @@ import { Button} from "react-bootstrap";
 import BG_STARS from "./BG_STARS.svg";
 import clsx from 'clsx';
 import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
+import GradientBorder from "../../components/gradientBorderBtn/GradientBorder";
 
 
 const Landing = () => {
@@ -41,7 +42,6 @@ const Landing = () => {
           <img className={styles.nftcards} src="images/nft cards.png" alt="" />
       </div>
 
-    {/* creativity meets commerce */}
       <div className={clsx(styles.creativity)}>
             <h1 className={styles.title}><span className={styles.gradient}>Creativity </span>Meets <br /><span className={styles.gradient}> Commerce</span></h1>
             <p className={styles.desc}>Create or Join Exclusive Memberships, Buy or Sell Digital & Physical Items via Shop, Support your favourite creator through easy One-Time Payments. </p>
@@ -55,7 +55,6 @@ const Landing = () => {
                 </div>
             </div>
 
-          {/* Create store  */}
             <div className={clsx(styles.card, styles.CreatorStore)}>
               <div className={styles.cardInside}>
                 <div className={styles.imgDiv}>
@@ -66,7 +65,7 @@ const Landing = () => {
                 </div>
             </div>
 
-             {/* NFT with perks */}
+
              <div className={clsx(styles.card, styles.nftWithPerks)}>
               <div className={styles.cardInside}>
                 <div className={styles.imgDiv}>
@@ -78,7 +77,6 @@ const Landing = () => {
             </div>
 
 
-          {/* Membership  */}
 
             <div className={clsx(styles.card, styles.membership)}>
               <div className={styles.cardInside}>
@@ -158,7 +156,27 @@ const Landing = () => {
               </Slider>
             </CarouselProvider>
             */}
+
+
       </div>
+
+
+            {/* Get your Social GAME going. */}
+
+
+            <div className={styles.getYourSocialGame}>
+                <div className={styles.getSocialGameImgDiv}>
+                  <img className={styles.getSocialGameImg} src="images/profil.png" alt="" />
+                  <img className={styles.getSocialGameImgPhone} src="images/phoneProfil.png" alt="" />
+                </div>
+                <div className={styles.getSocialGameContent}>
+                  <p className={styles.forthefirsttime}>FOR THE FIRST TIME IN INDIA</p>
+                  <h1 className={styles.getSocialHeader}>Get your Social <span className={styles.game}>GAME</span>  going.</h1>
+                  <p className={styles.getSocialDesc}>Level up by gaining Experience, Get Virtual Currency or Gems which can be used to purchase various items in our Store like, Power Ups, Boosts and Amazing Deals.  </p>
+
+                  <div className={styles.button}><Button className={styles.postBtn}><span className={styles.PostbtnText}>Get Early Access</span></Button></div>
+                </div>
+            </div>
     </>
   );
 };
