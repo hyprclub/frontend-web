@@ -7,7 +7,36 @@ font-size: 16px;
   -webkit-text-fill-color: transparent;
 }
 
-.gradientBorder{
+
+.gradientBorder {
+  position: relative;
+  border-radius: 100rem;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-right: -2vw;
+  padding: 0 !important;
+  padding: 0px 20px !important;
+  font-size: 22px !important;
+  line-height: 32px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  letter-spacing: 0em !important;
+  text-align: center !important;
+  border-radius: 30px !important;
+  border: solid 3.5px transparent !important;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
+  rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+}
+
+.gradientBorder:active, .gradientBorder:focus {
+  color: white !important;
+
+}
+
+/* .gradientBorder{
     border: none !important;
     border-radius: 30px !important;
     font-weight: 600 !important;
@@ -32,4 +61,4 @@ font-size: 16px;
     content: '';
     z-index: -1;
     border-radius: 30px; 
-}
+} */

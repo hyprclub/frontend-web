@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import { Button } from 'react-bootstrap';
 import './button.css';
 
-interface BtnPurpose {
+interface BtnPurpose extends ButtonHTMLAttributes<HTMLButtonElement>{
     btnPurpose:string
+    onClick?: any
 }
 
-const ButtonItself = ({btnPurpose}: BtnPurpose) => {
+const ButtonItself = ({btnPurpose, onClick}: BtnPurpose) => {
     return (
         <div className=' d-flex justify-content-center'>
-            <Button type='submit' className='buttonItself'>{btnPurpose} <i className="bi bi-arrow-right"></i></Button>
+            <Button onClick={onClick} type='submit' className='buttonItself'>{btnPurpose} <i className="bi bi-arrow-right"></i></Button>
         </div>
     )
 }
