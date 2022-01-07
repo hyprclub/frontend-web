@@ -29,12 +29,12 @@ const Register = () => {
   const [checked, setChecked] = useState(true);
 
   //update the data in variable
-//   function updateState(e: React.ChangeEvent<HTMLInputElement>) : React.FunctionComponent  {
+//   function updateState(e: React.ChangeEvent<HTMLInputElement>) {
 //     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
 //     console.log({ data });
 //   }
-  const updateState = (e : React.ChangeEvent<HTMLInputElement>)=>{
-      setData((state) =>({...state,[e.target.name]:e.target.value}))
+  const updateState = (e : React.FormEvent<HTMLInputElement>)=>{
+      setData({...data,[e.currentTarget.name]:e.currentTarget.value})
       console.log({data})
   }
   const navigate = useNavigate();
@@ -101,17 +101,23 @@ const Register = () => {
                 <div className="d-flex registeInputs">
                   <InputField
                     typeOfInput="text"
+                    value={data.fname}
                     name = "fname"
                     half={true}
                     lableText={"First Name"}
-                    onChange={updateState}
+                    onChange={(event) : void=>{updateState(event as any)}}
                   />
                   <InputField
                     half={true}
                     name = "lname"
                     typeOfInput="text"
                     lableText={"Last Name"}
-                    onChange={updateState}
+                    onChange={(e)=>{
+                        updateState(e)
+                    }}
+                    onBlur={
+                        handleSubmit
+                    }
                   />
                 </div>
                 <InputField
@@ -119,15 +125,17 @@ const Register = () => {
                   name="email"
                   half={false}
                   lableText={"Email Address:"}
-                  onChange={updateState}
+                  onChange={handleSubmit}
                 />
                 <div className="d-flex registeInputs">
+                 
                   <InputField
                     typeOfInput="text"
                     half={true}
+                    value={data.username}
                     lableText={"Username"}
                     name="username"
-                    onChange={updateState}
+                    onChange={(e) => {updateState(e)} }
                   />
                   <InputField
                     typeOfInput="tel"
@@ -153,6 +161,7 @@ const Register = () => {
                     onChange={updateState}
                   />
                 </div>
+                
                 <div className="d-flex checkBoxTexts align-items-center">
                   <input id="terms" name="terms" type="checkbox" />
                   <label className="ms-2" htmlFor="terms">
@@ -169,9 +178,10 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="mt-3">
-                  <ButtonItself btnPurpose={"Sign Up"}  />
+                  <ButtonItself btnPurpose={"Sign Up"} />
                 </div>
               </Form>
+              <button onClick={handleSubmit}> a sas</button>
             </div>
             <SocialLogins login={false} purpose={"Sign Up"} />
           </div>
