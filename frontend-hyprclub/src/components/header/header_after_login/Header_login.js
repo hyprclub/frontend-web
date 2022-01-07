@@ -76,7 +76,7 @@ const nav = [
 
             </Link>
           </div>
-        <Upload_Button/>
+        {/* <Upload_Button/> */}
           {/* <Link
             className={cn("button-stroke button-small", styles.button)}
             to="/connect-wallet"
