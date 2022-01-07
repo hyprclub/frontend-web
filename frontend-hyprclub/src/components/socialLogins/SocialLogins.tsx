@@ -10,14 +10,14 @@ interface Purpose {
 const SocialLogins = ({login,purpose}: Purpose) => {
     return (
         <div className={clsx(' mt-4 justify-content-center mb-3', login ? 'd-flex flex-column align-items-center' : "row")}>
-            <div className={clsx(" m-1 ", !login ? 'col-md-5 register' : "Login")}>
+            <button className={clsx(" m-1 ", !login ? 'col-md-5 register' : "Login")}>
                 <img className='me-3 googleImg gl' src="images/Google.png" alt="google" />
                 <p className='socialLoginText'>{purpose} with Google</p>
-            </div>
-            <div className={clsx(" m-1 ", !login ? 'col-md-5 register' : " Login")}>
+            </button>
+            <button className={clsx(" m-1 ", !login ? 'col-md-5 register' : " Login")}>
                 <img className='me-3 googleImg fb' src="images/Facebook.png" alt="google" />
                 <p className='socialLoginText'>{purpose} with Facebook</p>
-            </div>
+            </button>
         </div>
     )
 }

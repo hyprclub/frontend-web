@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import { Button } from 'react-bootstrap';
 import './button.css';
 
-interface BtnPurpose{
+interface BtnPurpose extends ButtonHTMLAttributes<HTMLButtonElement>{
     btnPurpose:string
 }
 
