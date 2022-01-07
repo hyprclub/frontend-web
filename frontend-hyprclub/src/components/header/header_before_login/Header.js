@@ -74,11 +74,14 @@ const nav = [
               className={cn("button-small", styles.button)}
               to="/upload-variants"
             >
-
             </Link>
+            <Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button>
+            <Button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></Button>
           </div>
-          <Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button>
-          <Button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></Button>
+          <button
+          className={cn(styles.burger, { [styles.active]: visibleNav })}
+          onClick={() => setVisibleNav(!visibleNav)}
+        ></button>
         </div>
       </header>
       </div>
