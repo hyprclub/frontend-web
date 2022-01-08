@@ -1,6 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import styles from "./Users.module.css"
+import { Avatar } from "@mui/material";
 
 interface Users {
     className: any,
@@ -14,9 +15,7 @@ const Users = ({ className, items }: Users) => {
                 <div className={styles.list}>
                     {items.map((x: any, index: number) => (
                         <div className={styles.item} key={index}>
-                            <div className={styles.avatar}>
-                                <img src={x.avatar} alt="avatar" />
-                            </div>
+                            <Avatar alt="avatar" src={x.avatar} id={styles.avatar}/>
                             <div className={styles.details}>
                                 <div className={styles.position}>{x.position}</div>
                                 <div className={styles.name}>{x.name}</div>
