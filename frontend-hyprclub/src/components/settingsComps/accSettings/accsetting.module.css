@@ -67,3 +67,18 @@ font-size: 24px;
     height: 16px;
     cursor: pointer;
 }
+
+
+.modalDiv{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.201);
+    min-height: 100vh;
+    z-index: 99999;
+    overflow-y: auto;
+    min-height: calc(100vh - 210px);
+    
+}

@@ -3,6 +3,7 @@ import { X } from 'phosphor-react';
 import React from 'react'
 import GradientBorder from '../../gradientBorderBtn/GradientBorder';
 import styles from './accsetting.module.css';
+import Modal from './upgradeAccModal/Modal';
 
 const AccSettings = () => {
     return (
@@ -41,6 +42,10 @@ const AccSettings = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className={styles.modalDiv}>
+                <Modal/>
             </div>
         </>
     )
