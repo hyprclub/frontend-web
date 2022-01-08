@@ -24,8 +24,6 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <NFTS/>
-          <UploadNft/>
           <Routes>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
