@@ -12,7 +12,7 @@ import Header_login from './components/header/header_after_login/Header_login';
 import Profile from './screens/Profile/Profile';
 import Marketplace from './screens/Marketplace/Marketplace';
 import Settings from './screens/Settings/Settings';
-import Landing from './screens/Landing/Landng';
+import Landing from './screens/Landing/Landing';
 import NFTS from './screens/NFTs/NFTS';
 import UploadNft from './screens/UploadNft/UploadNft';
 // import logo from './logo.svg';
