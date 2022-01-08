@@ -42,6 +42,7 @@ function App() {
         <header className="App-header">
           <Routes>
             <Route path='/login' element={<Login/>}/>
+            <Route path ='/logout' element={<Logout/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/follow' element={<FollowCreater/>}/>
             <Route path='/interest' element={<Interests/>}/>
