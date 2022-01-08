@@ -8,7 +8,7 @@ import userData from './redux/slices/userData';
 
 const reducers = combineReducers({
     uploadBtn: uploadBtnReducer,
-     userData
+    userData
 })
 
 const middleware = [thunk];

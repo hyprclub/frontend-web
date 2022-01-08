@@ -18,24 +18,92 @@ import Settings from './screens/Settings/Settings';
 import Landing from './screens/Landing/Landing';
 import NFTS from './screens/NFTs/NFTS';
 import UploadNft from './screens/UploadNft/UploadNft';
+import { firebaseApp } from "./firebaseConfig";
+import { useNavigate } from "react-router";
+import {
+  getAuth,
+  onAuthStateChanged,
+  sendEmailVerification,
+} from "@firebase/auth";
+
+import {
+  getDoc,
+  doc,
+  where,
+  getDocs,
+  collection,
+  getFirestore,
+  query,
+  orderBy,
+  limit
+} from "firebase/firestore";
+
+import { UserDataActions } from './redux/slices/userData';
 // import logo from './logo.svg';
 // import './App.css';
 
 
 function App() {
-  
-// const {loggedIn , uid} = useSelector((state  : RootStateOrAny) => state.userData);
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  const auth = getAuth(firebaseApp);
+  const db  = getFirestore(firebaseApp);
 
-  // useEffect(() => {
-  //   const run = async () => {
-  //     if(loggedIn ){
-  //       console.log("logged IN");
-  //     }else{
-  //       console.log("logged out");
-  //     }
-  //   }
-  //   run();
-  // },[loggedIn]);
+  const dispatch = useDispatch();
+
+
+  // monitor any auth changes in the 
+  useEffect(() => {
+   
+   onAuthStateChanged(auth , (user) => {
+     if(user){
+       console.log(user);
+       if(user.emailVerified) {
+         dispatch(UserDataActions.login(user));
+       }else{
+         sendEmailVerification(user)
+         .then((result) =>{
+           console.log("Verification Mail Sent! please verify email to continue");
+         })
+         .catch((error) => {
+           if(error.code === "auth/too-many-requests"){
+              console.log("Verify Email to continue further");
+           }
+           else{
+             console.log("Something went wrong verification mail")
+           }
+         });
+       }
+     }else{
+       dispatch(UserDataActions.logout());
+     }
+   })
+
+  },[dispatch,auth]);
+
+
+  // fetching userData from firebase
+  useEffect(() => {
+    const run = async () => {
+      if(loggedIn && uid){
+        getDoc(doc(db,"hyprUsers",uid)).then((docSnap) => {
+          if(docSnap.exists()){
+            dispatch(UserDataActions.updateCurrentUserDetail(docSnap.data()));
+          }
+          else{
+            console.log("No User Data");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+      }else{
+        console.log("logged Out");
+      }
+    };
+    run();
+  },[dispatch,loggedIn,uid,db]);
 
 
   return (

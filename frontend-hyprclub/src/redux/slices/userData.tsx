@@ -40,7 +40,7 @@ const initialState = {
 };
 
 export const userDataSlice = createSlice({
-    name : 'UserData',
+    name : 'userData',
     initialState,
     reducers : {
         login : (state, {payload}) =>{

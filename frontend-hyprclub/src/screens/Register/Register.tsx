@@ -19,6 +19,7 @@ import {
 } from "react-redux";
 import { useNavigate } from "react-router";
 import { error } from "console";
+import userData from "../../redux/slices/userData";
 
 const Register = () => {
   const auth = getAuth(firebaseApp);
@@ -40,6 +41,8 @@ const Register = () => {
     console.log({data});
   };
   const navigate = useNavigate();
+
+  const userData = useSelector((state : RootStateOrAny) => state?.userData);
 
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
@@ -149,20 +152,22 @@ const Register = () => {
 
   //function for google sign-in
 
-  const googleSignIn = async () => {};
+  const googleSignIn = async () => {
+    console.log(userData)
+  };
 
   //function for facebook sign-in
   const facebookSignIn = async () => {};
 
-  useEffect(() => {
-    const run = async () => {
-      if (loggedIn && uid) {
-        navigate("/market");
-      } else {
-      }
-    };
-    run();
-  }, [loggedIn, uid, navigate]);
+  // useEffect(() => {
+  //   const run = async () => {
+  //     if (loggedIn && uid) {
+  //       navigate("/market");
+  //     } else {
+  //     }
+  //   };
+  //   run();
+  // }, [loggedIn, uid, navigate]);
 
   return (
     <div>
@@ -172,6 +177,7 @@ const Register = () => {
           <div className="registerForm">
             <h1 className="registerHeaderText">
               Join the Next Big Social Revolution
+              
             </h1>
             <p className="subtitleText">
               Already have an account?{" "}
