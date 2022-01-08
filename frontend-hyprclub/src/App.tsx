@@ -13,6 +13,8 @@ import Profile from './screens/Profile/Profile';
 import Marketplace from './screens/Marketplace/Marketplace';
 import Settings from './screens/Settings/Settings';
 import Landing from './screens/Landing/Landng';
+import NFTS from './screens/NFTs/NFTS';
+import UploadNft from './screens/UploadNft/UploadNft';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -22,6 +24,8 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
+          <NFTS/>
+          <UploadNft/>
           <Routes>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>

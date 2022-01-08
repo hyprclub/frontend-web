@@ -1,41 +1,59 @@
-.Wrapper{
+.Wrapper {
     width: 100%;
     padding: 96px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-evenly;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     height: auto;
 }
 
-.link{
-    color:inherit;
-    text-decoration: none;    
+.link {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 !important;
+    margin: 0 !important;
 }
-.link:hover, .link:active{
-    color:inherit;
-    text-decoration: none;  
+
+.link:hover, .link:active {
+    color: inherit;
+    text-decoration: none;
     cursor: pointer;
 }
-.back{
-    color:grey;
+
+.back {
+    color: #979797;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
 }
+
+.spn {
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
 .section {
     width: 100%;
     height: auto;
-    margin-bottom:80px;
+    margin-bottom: 120px;
+    padding-bottom: 150px;
+    border-bottom: 1px solid #E2E2E2;
 }
 
 @media only screen and (max-width: 1339px) {
     .Wrapper {
-        padding: 80px 0;
+        padding: 80px;
     }
 }
 
 @media only screen and (max-width: 767px) {
     .Wrapper {
-        padding: 64px 0;
+        padding: 64px;
     }
 }
 
@@ -50,10 +68,12 @@
     }
 }
 
+/* Nft View Styling*/
 .bg {
     position: relative;
     flex-grow: 1;
     margin-right: 96px;
+    
 }
 
 @media only screen and (max-width: 1339px) {
@@ -74,11 +94,46 @@
     }
 }
 
+.preview {
+    position: relative;
+    width:100%;
+    height: 100%;
+}
+
+#img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    background-repeat: no-repeat;
+    height: 967px;
+    width: 652px;
+}
+
+.options {
+    position: absolute;
+    top: 2.5%;
+    left: auto;
+    bottom: auto;
+    right: 2.5%;
+}
+
+/* Content Styling */
 .details {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     width: 584px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .details {
+        width: 484px;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    .details {
+        width: 400px;
+    }
 }
 
 @media only screen and (max-width: 1179px) {
@@ -91,25 +146,6 @@
     .details {
         width: 100%;
     }
-}
-
-.preview {
-    position: relative;
-}
-
-.preview img {
-    width: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-}
-
-
-.options {
-    position: absolute;
-    top: 2.5%;
-    left: auto;
-    bottom: auto;
-    right:2.5%;
 }
 
 .title {
@@ -178,35 +214,26 @@
 }
 
 .buy {
-    width: 99.5%;
-    height: 45px;
+    width: 100%;
+    height: 49px;
     border-radius: 30px;
     background: transparent;
     display: grid;
     place-items: center;
-    
-}
-.buys{
-    display:flex;
-    align-items: flex-start;
-    justify-content: center;
-    height:49px;
-    width: 100%;
     margin-bottom: 35px;
-    border-radius: 30px;
-    width: 100%;
-    border: 1px solid #0000
-}
-.buys:hover{
-    box-shadow: 0px 1px 1px rgb(128, 124, 124);
-   
 }
 
+
+.buy:hover {
+    box-shadow: 0px .5px .5px rgb(128, 124, 124);
+}
+
+/* Navigation Menu Styling */
 
 .nav {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #FFFFFF;
     border: 1px solid #C2C2C2;
     box-sizing: border-box;
@@ -214,7 +241,7 @@
     border-radius: 50px;
     width: 215px;
     height: 54px;
-    padding:0;
+    padding: 0;
 
 }
 
@@ -223,7 +250,7 @@
 }
 
 .navbtn {
-    margin:0;
+    margin: 0;
     padding: 6px 12px;
     height: 101%;
     width: 50%;
@@ -234,7 +261,7 @@
     font-size: 16px;
     line-height: 24px;
     color: #000000;
-    transition: all 30ms ease-in-out;
+    transition: all 200ms ease-in-out;
     border: none;
     outline: none;
 }
@@ -257,11 +284,17 @@
     color: white;
 }
 
-
-
 .users {
     margin-top: 20px;
     margin-bottom: auto;
 }
 
+/* More Nfts styling */
 
+.more {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 44px;
+    color: #000000;
+}
