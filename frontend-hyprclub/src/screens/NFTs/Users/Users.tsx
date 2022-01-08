@@ -3,7 +3,7 @@ import cn from "classnames";
 import styles from "./Users.module.css"
 
 interface Users {
-    className: string
+    className: any,
     items: any
 }
 

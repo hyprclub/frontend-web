@@ -16,6 +16,12 @@ export const Iitems = [
         desc: "orem Ipsum is simply dummy text of the printing and typesetting industry.",
         price: " INR 10,753",
         image: "images/createdImg.png"
+      },
+      {
+        title: "European themed Collage",
+        desc: "orem Ipsum is simply dummy text of the printing and typesetting industry.",
+        price: " INR 10,753",
+        image: "images/createdImg.png"
       }
   ];
 

@@ -228,7 +228,7 @@ const Landing = () => {
           />
           <img
             className={styles.getSocialGameImgPhone}
-            src="images/phoneProfil.png"
+            src="images/profil.png"
             alt=""
           />
         </div>
