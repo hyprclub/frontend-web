@@ -8,7 +8,7 @@ import SocialLogins from "../../components/socialLogins/SocialLogins";
 import "./register.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { setDoc, doc, getFirestore , collection , query, where, getDocs } from "firebase/firestore";
 import { firebaseApp } from "../../firebaseConfig";
 import {
@@ -153,7 +153,13 @@ const Register = () => {
   //function for google sign-in
 
   const googleSignIn = async () => {
-    console.log(userData)
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((dataUser) => {
+        console.log(dataUser);
+      }).catch((error) => {
+        console.log(error)
+      });
   };
 
   //function for facebook sign-in
