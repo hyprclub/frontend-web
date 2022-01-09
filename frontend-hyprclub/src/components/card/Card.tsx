@@ -24,7 +24,7 @@ const Card = ({ className, item, created }:any) => {
                 <p className={styles.owner}>Owner</p>
                 <p className={styles.username}>@{item.creatorUsername}</p>
               </div>
-              <div className={styles.price}>{item.price}</div>
+              <div className={styles.price}><span className={styles.pricetxt}>{item.price}</span></div>
             </div>
           </div>
         </div>

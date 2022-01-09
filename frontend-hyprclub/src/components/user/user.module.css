@@ -11,7 +11,8 @@
 }
     @media only screen and (max-width: 767px) {
       .user {
-        position: static; 
+        margin-top: 3vh;
+        position: static;
         } 
     }
   
@@ -27,6 +28,12 @@
       height: 190px;
       border-radius: 50%; 
     }
+    @media only screen and (max-width: 767px) {
+      .avatar {
+        margin-left: 6vw;
+        } 
+    }
+  
   /* .body {
     position: absolute;
     top: calc(100% + 20px);
@@ -239,3 +246,6 @@
   .text {
     margin-right: auto; }
   
+.gradbtn{
+  margin-right: 2vw;
+}
