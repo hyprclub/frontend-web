@@ -11,3 +11,8 @@
 .settingsMenu,.pageLinks, .showSection{
     margin-top: 20px !important;
 }
+/* @media (max-width: 768px){
+    .settingsMenu,.pageLinks, .showSection{
+       display: none;
+    }
+} */
