@@ -14,6 +14,7 @@ import SinglePost from "../../components/feedComponents/singlePost/SinglePost";
 import Nft from "../../components/NFT/Nft";
 import Store from "../../components/store/Store";
 import { useSelector ,RootStateOrAny } from "react-redux";
+import { useEffect } from "react";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = [
@@ -168,10 +169,24 @@ const followers = [
   },
 ];
 
-const Profile = () => {
+const Profile = () => {          // props to be passed here 
+
+
   const userData = useSelector(
     (state :RootStateOrAny) => state?.userData
   );
+
+  // useEffect(()=>{
+  //   if(props && props.match && props.match.params) {
+  //     const {
+  //       match : {
+  //         params : {username}
+  //       },
+
+  //     } = props;
+  //   }
+
+  // },[props])
   const socials = [
     {
       title: "twitter",

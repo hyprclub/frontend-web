@@ -51,7 +51,6 @@ function App() {
   const userData = useSelector((state : RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db  = getFirestore(firebaseApp);
-  const navigate = useNavigate();
   
 
 
@@ -113,15 +112,15 @@ function App() {
 
 
   //after login redirect to market place
-  useEffect(() => {
-    const run = async () => {
-      if (loggedIn && uid) {
-        navigate("/market");
-      } else {
-      }
-    };
-    run();
-  }, [loggedIn, uid, navigate]);
+  // useEffect(() => {
+  //   const run = async () => {
+  //     if (loggedIn && uid) {
+  //       navigate("/market");
+  //     } else {
+  //     }
+  //   };
+  //   run();
+  // }, [loggedIn, uid, navigate]);
 
 
   return (
@@ -138,6 +137,7 @@ function App() {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/market' element={<Marketplace/>}/>
             <Route path='/settings' element={<Settings/>}/>
+            {/* <Route path ='profile/:username' element= {<Profile/>}/> */}
             <Route path='/settings/:test' element={<Settings/>}/>
             <Route path='/' element={<Landing/>}></Route>
           </Routes>
