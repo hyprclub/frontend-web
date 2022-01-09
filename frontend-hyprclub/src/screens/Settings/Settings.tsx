@@ -27,25 +27,47 @@ const Settings = () => {
           <div className={clsx("col-lg-3", styles.settingsMenu)}>
             <SettingsMenu />
           </div>
-          {/* <Accordion>
-        
-              <h1>Accordion Item #1</h1>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Edit Profile</Accordion.Header>
-              <Accordion.Body>
-                <EditProfile></EditProfile>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion> */}
+          <div className={styles.showSection1}>
+            <Accordion>
+              <div className={styles.heading}>Settings</div>
+              <Accordion.Item className={styles.change} eventKey="0">
+                <Accordion.Header className={styles.but}>Edit Profile</Accordion.Header>
+                <Accordion.Body>
+                  <EditProfile></EditProfile>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item className={styles.change} eventKey="1">
+                <Accordion.Header >Account Settings</Accordion.Header>
+                <Accordion.Body>
+                  <AccSettings></AccSettings>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item className={styles.change} eventKey="2">
+                <Accordion.Header >Theme</Accordion.Header>
+                <Accordion.Body>
+                  <Theme></Theme>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item className={styles.change} eventKey="3">
+                <Accordion.Header >Privacy & Security</Accordion.Header>
+                <Accordion.Body>
+                  <Privacy></Privacy>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item className={styles.change} eventKey="4">
+                <Accordion.Header >Help</Accordion.Header>
+                <Accordion.Body>
+                  <Help></Help>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item className={styles.change} eventKey="5">
+                <Accordion.Header >Contact Us</Accordion.Header>
+                <Accordion.Body>
+                  <Contact></Contact>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
           <div className={clsx("col-lg-7", styles.showSection)}>
             {path === "/settings" && <EditProfile />}
             {path === "/settings/accountsettings" && <AccSettings />}
