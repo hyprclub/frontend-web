@@ -39,8 +39,6 @@ import {
 } from "firebase/firestore";
 
 
-
-
 import userData, { UserDataActions } from './redux/slices/userData';
 // import logo from './logo.svg';
 // import './App.css';

@@ -17,7 +17,6 @@ import { useSelector ,RootStateOrAny } from "react-redux";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = [
-  "Posts",
   "NFT",
 ];
 
@@ -241,7 +240,7 @@ const Profile = () => {
         <div className={clsx("container", styles.container)}>
           <User className={styles.user} item={socials} />
           <div className={styles.wrapper}>
-            <div className={styles.nav}>
+            {/* <div className={styles.nav}>
               {navLinks.map((x, index) => (
                 <button
                   className={clsx(styles.link, {
@@ -253,10 +252,10 @@ const Profile = () => {
                   {x}
                 </button>
               ))}
-            </div>
+            </div> */}
             <div className={styles.group}>
               <div className={styles.item}>
-                {activeIndex === 0 && (
+                {/* {activeIndex === 0 && (
                   <div className={styles.posts}>
                     <div className={styles.postSection}>
                       <SinglePost/>
@@ -264,8 +263,8 @@ const Profile = () => {
                       <SinglePost/>
                     </div>
                   </div>
-                )}
-                {activeIndex === 1 && (
+                )} */}
+                {activeIndex === 0 && (
                   <Nft/>
                 )}
               </div>

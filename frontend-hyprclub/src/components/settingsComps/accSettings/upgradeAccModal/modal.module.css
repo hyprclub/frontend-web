@@ -1,0 +1,75 @@
+.modal{
+    background: #FFFFFF;
+    width: 70vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+
+}
+
+.cross{
+    text-align: right;
+    padding: 28px 42px;
+    margin-bottom: 0;
+}
+
+
+.topTitleDiv{
+    text-align: center;
+}
+
+.gradientTitle{
+    background: linear-gradient(90deg, #ed4d6b,#8d00fd, #e70d8c, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    margin-bottom: 0;
+}
+
+.topDesc{
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0 20vw ;
+    margin-bottom: 0;
+    margin-top: 16px;
+}
+
+
+.sellYourNftDiv{
+    margin-top: 30px;
+}
+
+.sellYourNftTitle{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+}
+.sellYourNftdesc{
+    padding-right: 5vw;
+}
+.sellYourNftImg{
+    text-align: center;
+}
+
+
+.analyse{
+    text-align: right;
+}
+
+.analyseTitle{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.analysedesc{
+    font-size: 16px;
+line-height: 24px;
+}

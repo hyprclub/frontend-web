@@ -1,7 +1,12 @@
+.user {
+    margin: 0;
+    padding: 0;
+}
+
 .item {
     display: flex;
     align-items: center;
-    padding-bottom: 16px;
+    padding: 16px 0;
     border-bottom: 1px solid #E6E8EC;
 }
 
@@ -9,25 +14,22 @@
     border-color: #353945;
 }
 
-.item:not(:last-child) {
+/* .item:not(:last-child) {
     margin-bottom: 16px;
-}
+} */
 
-.avatar {
+#avatar {
     position: relative;
     flex-shrink: 0;
     width: 80px;
     height: 80px;
     margin-right: 16px;
-}
-
-.avatar>img {
+    object-fit: cover;
     border-radius: 320px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border: 3px solid black;
-}
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
 
 
 .details {
@@ -36,6 +38,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: flex-start;
+    justify-content: center;
+
 }
 
 .id {

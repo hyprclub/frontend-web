@@ -45,8 +45,8 @@ const User = ({ className, item }:UerType) => {
         {/* <div className={cn(styles.followersAndFollowiing, 'd-flex')}>
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
-        </div> */}
-        <GradientBorder text='View Dashboard'/>
+        </div>
+        <div className={styles.gradbtn}><GradientBorder text='View Dashboard'/></div>
         <div className={cn(styles.socials, 'my-3')}>
           {item.map((x, index) => (
             <a
