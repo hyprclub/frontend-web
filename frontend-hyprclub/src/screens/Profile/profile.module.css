@@ -48,7 +48,10 @@
     @media only screen and (max-width: 767px) {
       .btns .button {
         flex-grow: 1;
-        padding: 0 10px; } }
+        padding: 0 10px; }
+      .btns{
+        display: none;
+      } }
     .btns .button svg {
       fill: #FCFCFD; }
     .btns .button:not(:last-child) {
@@ -162,6 +165,13 @@
       width: 100%;
       margin: -32px 0 48px; } }
 
+      @media only screen and (max-width: 767px) {
+        .user {
+          width: 90%;
+          margin-left: 5vw;
+          margin-right: 5vw; } }
+
+
 .wrapper {
   flex: 0 0 calc(100% - 256px);
   width: calc(100% - 256px);
@@ -185,6 +195,8 @@
 
     }
 
+
+  
     @media only screen and (max-width: 767px) {
       .wrapper {
         width: 100%;
