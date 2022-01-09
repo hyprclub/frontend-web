@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useSelector , useDispatch, RootStateOrAny } from 'react-redux';
+import { useSelector , useDispatch, RootStateOrAny, DefaultRootState } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Chatbox from './components/ChatBox/Chatbox';
 import Footer from './components/footer/Footer';
@@ -38,7 +38,10 @@ import {
   limit
 } from "firebase/firestore";
 
-import { UserDataActions } from './redux/slices/userData';
+
+
+
+import userData, { UserDataActions } from './redux/slices/userData';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -47,8 +50,12 @@ function App() {
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+  const userData = useSelector((state : RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db  = getFirestore(firebaseApp);
+  const navigate = useNavigate();
+  
+
 
   const dispatch = useDispatch();
 
@@ -90,6 +97,7 @@ function App() {
         getDoc(doc(db,"hyprUsers",uid)).then((docSnap) => {
           if(docSnap.exists()){
             dispatch(UserDataActions.updateCurrentUserDetail(docSnap.data()));
+          console.log(userData);
           }
           else{
             console.log("No User Data");
@@ -104,6 +112,18 @@ function App() {
     };
     run();
   },[dispatch,loggedIn,uid,db]);
+
+
+  //after login redirect to market place
+  useEffect(() => {
+    const run = async () => {
+      if (loggedIn && uid) {
+        navigate("/market");
+      } else {
+      }
+    };
+    run();
+  }, [loggedIn, uid, navigate]);
 
 
   return (

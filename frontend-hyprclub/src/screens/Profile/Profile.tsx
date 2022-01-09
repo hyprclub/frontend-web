@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import styles from "./profile.module.css";
 import Icon from "../../components/Icon";
 
-
 // data
 import Followers from "../../components/followers/Followers";
 import User from "../../components/user/User";
@@ -14,6 +13,7 @@ import Header_login from "../../components/header/header_after_login/Header_logi
 import SinglePost from "../../components/feedComponents/singlePost/SinglePost";
 import Nft from "../../components/NFT/Nft";
 import Store from "../../components/store/Store";
+import { useSelector ,RootStateOrAny } from "react-redux";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = [
@@ -21,20 +21,7 @@ const navLinks = [
   "NFT",
 ];
 
-const socials = [
-  {
-    title: "twitter",
-    url: "https://twitter.com/ui8",
-  },
-  {
-    title: "instagram",
-    url: "https://www.instagram.com/ui8net/",
-  },
-  {
-    title: "facebook",
-    url: "https://www.facebook.com/ui8.net/",
-  },
-];
+
 
 const following = [
   {
@@ -183,6 +170,23 @@ const followers = [
 ];
 
 const Profile = () => {
+  const userData = useSelector(
+    (state :RootStateOrAny) => state?.userData
+  );
+  const socials = [
+    {
+      title: "twitter",
+      url: "https://twitter.com/" + userData?.twitterUsername + "/",
+    },
+    {
+      title: "instagram",
+      url: "https://www.instagram.com/" + userData?.instagramUsername + "/" ,
+    },
+    {
+      title: "facebook",
+      url: userData?.facebookUrl,
+    },
+  ];
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
 

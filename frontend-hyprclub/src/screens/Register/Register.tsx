@@ -9,7 +9,15 @@ import "./register.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { setDoc, doc, getFirestore , collection , query, where, getDocs } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { firebaseApp } from "../../firebaseConfig";
 import {
   useSelector,
@@ -24,6 +32,9 @@ import userData from "../../redux/slices/userData";
 const Register = () => {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
+  const [usernameTaken, setUsernameTaken] = useState(true);
+  const [termsAgreed , setTermsAgreed] = useState(false);
+  const [newsletter , setNewsletter] = useState(false);
   const [phonenumStatus, setPhonenumStatus] = useState(true);
   const [data, setData] = useState({
     name: "",
@@ -38,11 +49,11 @@ const Register = () => {
 
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
-    console.log({data});
+    console.log({ data });
   };
   const navigate = useNavigate();
 
-  const userData = useSelector((state : RootStateOrAny) => state?.userData);
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
 
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
@@ -50,22 +61,28 @@ const Register = () => {
 
   //check whether username is unique or not
 
-  const checkUsername = async (e : React.ChangeEvent<HTMLInputElement>) => {
-    if(e.target.value === "") {
-
-    }else{
+  const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+    } else {
       try {
-        // const q = query(
-        //   collection(db,"hyprApps","users")
-        // );
-        // const docSnap = await getDocs(q);
-        // console.log(docSnap);
-        
+        const q = query(
+          collection(db, "hyprUsers"),
+          where("username", "==", e.target.value)
+        );
+        const docSnap = await getDocs(q);
+        if (docSnap.size !== 0) {
+          console.log("Username Taken")
+          setUsernameTaken(true);
+        } else {
+          
+          setUsernameTaken(false);
+        }
       } catch (error) {
         console.error(error);
       }
     }
   };
+  
   //check whether password match or not
 
   const checkPassword = () => {};
@@ -76,12 +93,19 @@ const Register = () => {
 
   //check for accepting terms and conditions
 
-  const checkTerms = () => {};
+  const checkTerms = () => {
+
+  };
 
   // function for handle submit
-  const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
-   e.preventDefault();
+  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     console.log({ data });
+    if(usernameTaken){
+      console.log("Please Use a different Username");
+    }else{
+
+      
     try {
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
@@ -96,16 +120,16 @@ const Register = () => {
         current.getMonth() + 1
       }/${current.getFullYear()}`;
 
-      const personalDetailsInfo =  await setDoc(doc(db,  "hyprUsers", uid),{
+      const personalDetailsInfo = await setDoc(doc(db, "hyprUsers", uid), {
         name: data.name,
         email: data.email,
         username: data.username,
-        profileViewsCount : 0,
+        profileViewsCount: 0,
         phone: data.phone,
         category: "",
         age: 0,
         gender: "",
-        flagCounter : 0,
+        flagCounter: 0,
         bio: "",
         isNsfw: false,
         verified: false,
@@ -122,52 +146,47 @@ const Register = () => {
           purchasedNft: [],
           createdNft: [],
           savedNft: [
-            "/NFT's/3"    // remove this after few some time 
-          ]
+            "/NFT's/3", // remove this after few some time
+          ],
         },
         followers: [],
         following: [],
         followerCount: 0,
         followingCount: 0,
         posts: {
-          createdPosts:[],
-          savedPosts:[],
+          createdPosts: [],
+          savedPosts: [],
         },
-        bankAccountDetails : {
-          accountHolderName : "",
-          accountType : "",
-          ifscCode : "",
-          accountNumber : "",
-          branchName : "",
-          accountHolderPhoneNumber : ""
-        }
+        bankAccountDetails: {
+          accountHolderName: "",
+          accountType: "",
+          ifscCode: "",
+          accountNumber: "",
+          branchName: "",
+          accountHolderPhoneNumber: "",
+        },
       });
-     
-      console.log("Account Created : " , user);
+
+      console.log("Account Created : ", user);
       console.log(personalDetailsInfo);
     } catch (error) {
       console.error(error);
     }
+
+    }
+    
   };
 
   //function for google sign-in
 
   const googleSignIn = async () => {
-    console.log(userData)
+    console.log(userData);
   };
 
   //function for facebook sign-in
   const facebookSignIn = async () => {};
 
-  // useEffect(() => {
-  //   const run = async () => {
-  //     if (loggedIn && uid) {
-  //       navigate("/market");
-  //     } else {
-  //     }
-  //   };
-  //   run();
-  // }, [loggedIn, uid, navigate]);
+  
 
   return (
     <div>
@@ -177,7 +196,6 @@ const Register = () => {
           <div className="registerForm">
             <h1 className="registerHeaderText">
               Join the Next Big Social Revolution
-              
             </h1>
             <p className="subtitleText">
               Already have an account?{" "}
@@ -189,7 +207,7 @@ const Register = () => {
               </span>
             </p>
             <div className="mb-3">
-              <Form >
+              <Form>
                 <div className="d-flex registeInputs">
                   <InputField
                     typeOfInput="text"
@@ -222,6 +240,7 @@ const Register = () => {
                       updateState(e);
                       checkUsername(e);
                     }}
+                   
                   />
                   <InputField
                     typeOfInput="tel"
@@ -235,7 +254,7 @@ const Register = () => {
                 </div>
                 <div className="d-flex registeInputs">
                   <InputField
-                    typeOfInput="text"
+                    typeOfInput="password"
                     half={true}
                     lableText={"Password"}
                     name="password"
@@ -270,9 +289,12 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="mt-3">
-                  <ButtonItself btnPurpose={"Sign Up"} onClick={(e : React.ChangeEvent<HTMLInputElement>) =>{
-                    handleSubmit(e)
-                  }} />
+                  <ButtonItself
+                    btnPurpose={"Sign Up"}
+                    onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      handleSubmit(e);
+                    }}
+                  />
                 </div>
               </Form>
             </div>

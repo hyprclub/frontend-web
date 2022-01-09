@@ -11,9 +11,10 @@ interface Input extends InputHTMLAttributes<HTMLInputElement>{
     placeholder?:string
     onChange?: any
     name? : string
+    disabled? : boolean
 }
 
-const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange,name}: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange,name ,disabled}: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
             <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
@@ -27,6 +28,7 @@ const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, 
             placeholder={placeholder}
             onChange={onChange}
             name = {name}
+            disabled = {disabled}
             />
         </div>
     )
