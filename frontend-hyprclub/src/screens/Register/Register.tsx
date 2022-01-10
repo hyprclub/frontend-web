@@ -72,7 +72,19 @@ const Register = () => {
 
   //check for valid phone number
 
-  const checkPhoneNumber = () => {};
+  const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("checkPhoneNumber");
+    if (e.target.value == "") {
+      setPhonenumStatus(true);
+    } else {
+      const phoneValidString = "(0|91)?[7-9][0-9]{9}";
+      if (e.target.value.match(phoneValidString)) {
+        setPhonenumStatus(false);
+      } else {
+        setPhonenumStatus(true);
+      }
+    }
+  };
 
   //check for accepting terms and conditions
 
