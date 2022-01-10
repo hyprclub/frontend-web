@@ -75,8 +75,8 @@ const nav = [
               to="/upload-variants"
             >
             </Link>
-            <Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button>
-            <button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button>
+            <Link to='/login'><Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button></Link>
+            <Link to='register'><button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button></Link>
           </div>
           <button
           className={cn(styles.burger, { [styles.active]: visibleNav })}
