@@ -47,6 +47,7 @@
           margin-right: auto; } }
       .logo img {
         width: 100%; }
+
     
     .wrapper {
       display: flex;
@@ -55,7 +56,7 @@
       @media only screen and (max-width: 1179px) {
         .wrapper {
           flex-grow: 0; } }
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: 820px) {
         .wrapper {
           position: absolute;
           top: 0;
@@ -83,6 +84,11 @@
           .wrapper .button {
             display: inline-flex;
             margin-top: 16px; } }
+
+        @media only screen and (min-width:820px) and (max-width: 820px) {
+              .wrapper {
+                height: 33vh; }
+            }
     
    .nav {
       display: flex;
@@ -91,12 +97,23 @@
       @media only screen and (max-width: 1179px) {
         .nav {
           display: none; } }
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: 820px) {
         .nav {
           display: flex;
           flex-direction: column;
           margin: -5vh 0 2.5vh;
           border: none; } }
+
+      @media only screen and (min-width:768px) and (max-width: 820px) {
+            .nav {
+              display: flex;
+              flex-direction: column;
+              margin: -2vh 0 2.5vh;
+              border: none; }
+            .link{
+              font-size: 30px !important;
+            }
+             }
     
   .link {
       text-decoration: none;
@@ -126,14 +143,15 @@
       width: 256px;
       margin-right: 5px;
       margin-left: 10vw !important; }
-      @media only screen and (max-width: 1023px) {
-        .search {
-          display: none; } }
-       @media only screen and (max-width: 767px) {
+       @media only screen and (max-width: 820px) {
         .search {
           display: block;
           width: 100%;
           margin: 0 0 !important; } }
+        @media only screen and (min-width:768px) and (max-width: 820px) {
+            .search {
+              margin-bottom: 2vh !important; }
+          }
     
     .input {
       width: 100%;
@@ -181,7 +199,7 @@
     .burger {
       display: none;
        }
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: 820px) {
         .burger {
           display: block;
           position: relative;
@@ -239,7 +257,7 @@
     color: white !important;
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 820px) {
     .logBtn {
       display: block;
       width: 80%;
@@ -279,7 +297,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 820px) {
   .signbtn {
     display: block;
     width: 80%;
