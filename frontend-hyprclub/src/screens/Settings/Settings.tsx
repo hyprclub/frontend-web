@@ -12,6 +12,7 @@ import SettingsMenu from "../../components/settingsComps/settingsMenu/SettingsMe
 import Theme from "../../components/settingsComps/themeSettings/Theme";
 import styles from "./settings.module.css";
 import { Accordion } from "react-bootstrap";
+import { Button } from "@mui/material";
 const Settings = () => {
   const location = useLocation();
   const path = location.pathname;

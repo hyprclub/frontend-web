@@ -12,6 +12,20 @@
 
 }
 
+ .mainDiv1{
+  display: none;
+}
+
+@media only screen and (max-width:768px){
+    .mainDiv{
+        display: none;
+      }
+
+      .mainDiv1{
+        display: block;
+      }
+}
+
 .inputs{
     z-index: 1;
 }
@@ -20,6 +34,7 @@
     width: 100px;
     height: 100px;
 }
+
 
 .content{
     padding: 25px 10px 17px 20px;
@@ -60,4 +75,30 @@
     margin-top: -8px;
     margin-left: 10px;
     margin-bottom: 0;
+}
+
+
+@media only screen and (max-width:768px){
+    .pfImage{
+        margin: 0 0 4vh 0vw;
+    }
+    .avt{
+        justify-content: center !important;
+    }
+
+    .content{
+        padding: 20px 0 17px 0;
+    }
+
+    .usernameRange{
+        display: none;
+    }
+
+    .inName{
+        padding-bottom: 5px;
+    }
+
+    .button{
+     justify-content: center;
+    }
 }

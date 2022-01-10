@@ -34,7 +34,28 @@ font-size: 16px;
 
 .gradientBorder:active, .gradientBorder:focus {
   color: white !important;
+  background: none !important;
 
+}
+
+@media only screen and (max-device-width: 768px){
+  .gradientBorder{
+    cursor: pointer;
+    border: 4px solid rgba(231, 13, 140, 1) !important;
+    border-radius: 20px;
+    background-color: transparent !important;
+    background-image: none !important;
+    color:rgba(231, 13, 140, 1) !important ;
+    font-weight: 600;
+    font-size: 18px;
+}
+  .btnName{
+    color:rgba(231, 13, 140, 1) !important;
+    background: -webkit-linear-gradient(60deg, rgba(231, 13, 140, 1) 49%, rgba(231, 13, 140, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    
+  }
 }
 
 /* .gradientBorder{
