@@ -26,6 +26,7 @@ const Register = () => {
   const db = getFirestore(firebaseApp);
   const [phonenumStatus, setPhonenumStatus] = useState(true);
   const [termsAndConditon, setTermsAndConditon] = useState(false);
+  const [promotionalMails, setPromotionalMails] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -91,6 +92,11 @@ const Register = () => {
   const checkTerms = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTermsAndConditon(!termsAndConditon);
   };
+
+  // check for accepting promotional emails
+  const checkPromotional = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPromotionalMails(!promotionalMails);
+  }
 
   // function for handle submit
   const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -297,7 +303,11 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="d-flex checkBoxTexts align-items-center">
-                  <input name="newsletter" id="newsletter" type="checkbox" />
+                  <input name="newsletter" id="newsletter" type="checkbox" 
+                    onChange={(e: React.ChangeEvent<any>) => {
+                      updateState(e);
+                      checkPromotional(e);
+                    }} />
                   <label className="ms-2" htmlFor="newsletter">
                     I would like to receive promotional emails from HyprClub
                   </label>
