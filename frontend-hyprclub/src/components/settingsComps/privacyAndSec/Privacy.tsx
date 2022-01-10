@@ -31,9 +31,9 @@ const Privacy = () => {
                     </div>
                     <div className={styles.changePs1}>
                         <h3 className={styles.heading}>Change Password</h3>
-                        <div className='d-flex flex-column mb-2'>
-                            <InputField placeholder={'************'} garyBold half lableText='ENTER OLD PASSWORD' typeOfInput='text'/>
-                            <InputField placeholder={'************'} garyBold half lableText='ENTER NEW PASSWORD' typeOfInput='text'/>
+                        <div className={clsx('d-flex flex-column mb-2')}>
+                            <InputField placeholder={'************'} garyBold lableText='ENTER OLD PASSWORD' typeOfInput='text'/>
+                            <InputField placeholder={'************'} garyBold  lableText='ENTER NEW PASSWORD' typeOfInput='text'/>
                         </div>
                         <p className={styles.descPass}>Password should be 7-12 characters long with at least one uppercase letter, one lowercase letter and a number.</p>
                         <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
