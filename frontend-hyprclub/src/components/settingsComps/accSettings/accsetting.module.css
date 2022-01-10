@@ -79,6 +79,13 @@ font-size: 24px;
     min-height: 100vh;
     z-index: 99999;
     overflow-y: auto;
-    min-height: calc(100vh - 210px);
     
+}
+
+.show{
+    display: unset;
+}
+
+.hide{
+    display: none;
 }
