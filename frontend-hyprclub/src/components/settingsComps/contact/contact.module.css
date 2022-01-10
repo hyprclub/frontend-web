@@ -23,6 +23,7 @@
     font-size: 12px ;
 }
 
+
 .textarea{
     border-radius: 10px;
     margin: 5px 0px;
@@ -35,4 +36,29 @@
 .messageDIv{
     padding: 0 7px;
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width:770px){
+    .contact{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .avt{
+        justify-content: center !important;
+        margin-top: 25px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:770px){
+    .contact{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .avt{
+        justify-content: center !important;
+        margin-top: 25px;
+        margin-left: 30vw;
+    }
 }

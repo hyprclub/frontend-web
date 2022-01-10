@@ -43,7 +43,16 @@
 
 @media only screen and (max-width:768px){
     .avt{
-        padding-top:25px ;
+        padding-top:20px ;
         justify-content: center;
+    }
+}
+
+
+@media only screen and (min-width:768px) and (max-width:768px){
+    .avt{
+        padding-top:20px ;
+        justify-content: center;
+        margin-left: 30vw;
     }
 }

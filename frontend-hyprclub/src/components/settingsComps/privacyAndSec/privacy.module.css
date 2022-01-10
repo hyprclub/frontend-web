@@ -24,17 +24,6 @@
     margin-bottom: 10px;
 }
 
-.changePs1{
-    padding: 25px 10px 17px 20px;
-    margin-bottom: 10px;
-    display: none;
-}
-
-@media only screen and (max-width:768px) {
-    .changePs1{display: block;}
-    .changePs{display: none;}
-}
-
 .heading{
     font-weight: 600;
     font-size: 24px;
@@ -83,5 +72,18 @@
 
     .avt{
         justify-content: center;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .pass{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:768px){
+    .avt{
+        margin-left: 30vw;
     }
 }

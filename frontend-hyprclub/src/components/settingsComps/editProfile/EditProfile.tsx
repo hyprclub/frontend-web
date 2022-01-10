@@ -7,7 +7,7 @@ import GradientBorder from '../../gradientBorderBtn/GradientBorder'
 const EditProfile = () => {
     return (
         <>
-            <div className={styles.mainDiv}>
+            {/* <div className={styles.mainDiv}>
                 <h2 className={styles.title}>Edit Profile</h2>
                 <div className={clsx('row', styles.content)}>
                     <div className={clsx('col-md-3 text-center d-flex')}>
@@ -52,8 +52,8 @@ const EditProfile = () => {
                     </div>
 
                 </div>
-            </div>
-            <div className={styles.mainDiv1}>
+            </div> */}
+            <div className={styles.mainDiv}>
                 <h2 className={styles.title}>Edit Profile</h2>
                 <div className={clsx('row', styles.content)}>
                     <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
@@ -64,7 +64,7 @@ const EditProfile = () => {
                     </div>
                     <div className={clsx('col-md-9', styles.inputs)}>
                         <div className={styles.userDetails}>
-                            <div className='d-flex flex-column'>
+                            <div className={clsx('d-flex',styles.editProf)}>
                                 <div className={styles.inName}><InputField garyBold half lableText='NAME' typeOfInput='text' value={'Lorem Ipsum'}/></div>
                                 <InputField garyBold half lableText='CATEGORY' typeOfInput='text' value={'Digital Artist'}/>
                             </div>
@@ -75,7 +75,7 @@ const EditProfile = () => {
                         </div>
                         <div className={styles.linkedAccounts}>
                             <h3 className={styles.sectionHeading}>Linked Accounts</h3>
-                            <div className='d-flex flex-column'>
+                            <div className={clsx('d-flex',styles.editProf)}>
                                     <InputField garyBold half lableText='INSTAGRAM' value={'@loremipsum'} typeOfInput='text'/>
                                     <InputField garyBold half lableText='TWITTER' value={'@loremipsum'} typeOfInput='text'/>
                                 </div>
@@ -87,18 +87,16 @@ const EditProfile = () => {
                             <h3 className={styles.sectionHeading}>Personal Information</h3>
                             <InputField garyBold half={false} lableText='EMAIL ADDRESS' value={'lorem@hyprclub.com'} typeOfInput='email'/>
 
-                            <div className='d-flex flex-column'>
+                            <div className={clsx('d-flex',styles.editProf)}>
                                     <InputField garyBold half value={'+91 9990088776'} lableText='PHONE NUMBER' typeOfInput='tel'/>
                                     <InputField garyBold half value={'Female'} lableText='GENDER' typeOfInput='text'/>
                                 </div>
                         </div>
-                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
-                        <div className={styles.button}>
+
+                    </div>
+                    <div className={clsx('col-md-3 text-center d-flex',styles.gradbtn)}>
                             <GradientBorder text='Save Changes'/>
                         </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </>

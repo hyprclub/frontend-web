@@ -12,20 +12,6 @@
 
 }
 
- .mainDiv1{
-  display: none;
-}
-
-@media only screen and (max-width:768px){
-    .mainDiv{
-        display: none;
-      }
-
-      .mainDiv1{
-        display: block;
-      }
-}
-
 .inputs{
     z-index: 1;
 }
@@ -50,11 +36,7 @@
     font-size: 24px;
 }
 
-.button{
-    margin-top: 30px;
-    margin-left: 5px;
-    margin-bottom: 5vh;
-}
+
 
 .pencilIcon{
     cursor: pointer;
@@ -98,7 +80,23 @@
         padding-bottom: 5px;
     }
 
-    .button{
-     justify-content: center;
+}
+
+@media only screen and (max-width:768px){
+    .editProf{
+        display: flex !important;
+        flex-direction: column !important;
     }
+    .gradbtn{
+        justify-content: center !important;
+        padding-top: 20px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:768px){
+    .gradbtn{
+        margin-left: 43vw;
+        padding-top: 20px;
+    }
+    
 }
