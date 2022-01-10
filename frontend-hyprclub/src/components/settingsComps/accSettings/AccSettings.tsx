@@ -26,7 +26,7 @@ const AccSettings = () => {
                         <h3 className={styles.heading}>Switch Account Type</h3>
                         <p className={styles.desc}>Switch to a creator account and unlock new features! You will be able to sell your work as NFTs, Monetize your Content, Unlock special creator gifts and so much more!</p>
                         <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
-                        <div><GradientBorder text='Upgrade to Creator Account'/></div> 
+                        <div><GradientBorder onClick={upgradeToCreator} text='Upgrade to Creator Account'/></div> 
                         </div>
 
                     </div>
