@@ -15,6 +15,7 @@ const Modal = () => {
      const dispatch = useDispatch()
     const closeModal = () => {
         dispatch ({type: MODAL_CLOSE_SUCCESS})
+        setModals({modal1: true, modal2: false, modal3:false, modal4:false})
     }
 
     return (
