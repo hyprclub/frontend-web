@@ -19,10 +19,12 @@ const Card = ({ className, item, created }:any) => {
             </div>
             <div className={styles.title}>{item.title}</div>
             <div className={clsx('d-flex align-items-center justify-content-between w-100 mt-2')}>
-              <img className={styles.creatorImg} src={item.creatorImg} alt="" />
-              <div className={styles.ownerAndUsername}>
-                <p className={styles.owner}>Owner</p>
-                <p className={styles.username}>@{item.creatorUsername}</p>
+              <div className={clsx('d-flex align-items-center')}>
+                <img className={styles.creatorImg} src={item.creatorImg} alt="" />
+                <div className={styles.ownerAndUsername}>
+                  <p className={styles.owner}>Owner</p>
+                  <p className={styles.username}>@{item.creatorUsername}</p>
+                </div>
               </div>
               <div className={styles.price}><span className={styles.pricetxt}>{item.price}</span></div>
             </div>

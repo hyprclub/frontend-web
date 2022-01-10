@@ -151,7 +151,7 @@
   .body .container {
     display: flex;
     align-items: flex-start; }
-    @media only screen and (max-width: 1023px) {
+    @media only screen and (max-width: 1200px) {
       .body .container {
         display: block; } }
 
@@ -160,7 +160,7 @@
   margin-left: -2vw;
   width: 25%;
   margin-top: -52px; }
-  @media only screen and (max-width: 1023px) {
+  @media only screen and (max-width: 1200px) {
     .user {
       width: 100%;
       margin: -32px 0 48px; } }
@@ -179,7 +179,7 @@
   @media only screen and (max-width: 1339px) {
     .wrapper {
       padding-left: 32px; } }
-  @media only screen and (max-width: 1023px) {
+  @media only screen and (max-width: 1200px) {
     .wrapper {
       width: 100%;
       padding-left: 0; } }
