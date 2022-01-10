@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import { Button } from 'react-bootstrap';
 import styles from './gradientBorderBtn.module.css';
 
-interface BtnText {
+interface BtnText extends ButtonHTMLAttributes<HTMLButtonElement> {
     text: string
+    onClick?: any
 }
 
-const GradientBorder = ({text}:BtnText) => {
+const GradientBorder = ({text, onClick}:BtnText) => {
     return (
         <div>
-            <button className={styles.gradientBorder}><span className={styles.btnName}>{text}</span></button>
+            <button onClick={onClick} className={styles.gradientBorder}><span className={styles.btnName}>{text}</span></button>
         </div>
     )
 }

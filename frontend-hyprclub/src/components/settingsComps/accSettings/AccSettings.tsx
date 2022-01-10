@@ -1,14 +1,24 @@
 import clsx from 'clsx';
 import { X } from 'phosphor-react';
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { MODAL_OPEN_SUCCESS } from '../../../redux/constants/profileModals';
+import { RootStore } from '../../../store';
 import GradientBorder from '../../gradientBorderBtn/GradientBorder';
 import styles from './accsetting.module.css';
 import Modal from './upgradeAccModal/Modal';
 
 const AccSettings = () => {
-    return (
-        <>
-            <div className={styles.mainDiv}>
+    const { clicked } = useSelector((state: RootStore) => state.modalOpen)
+    const dispatch = useDispatch()
+
+    const upgradeToCreator = () => {
+        dispatch ({type: MODAL_OPEN_SUCCESS})
+    }
+
+    return(
+         <>
+                     <div className={styles.mainDiv}>
                 <h2 className={styles.title}>Account Settings</h2>
            
                 <div className={styles.content}>
@@ -19,6 +29,7 @@ const AccSettings = () => {
                         <div><GradientBorder text='Upgrade to Creator Account'/></div> 
                         </div>
 
+                        <GradientBorder onClick={upgradeToCreator} text='Upgrade to Creator Account'/>
                     </div>
 
                     <div className={styles.findTunes}>
@@ -90,11 +101,10 @@ const AccSettings = () => {
                     </div>
                 </div>
             </div>
-
-            {/* <div className={styles.modalDiv}>
+            <div className={clsx(styles.modalDiv, clicked? styles.show: styles.hide)}>
                 <Modal/>
-            </div> */}
-        </>
+            </div>
+         </>
     )
 }
 

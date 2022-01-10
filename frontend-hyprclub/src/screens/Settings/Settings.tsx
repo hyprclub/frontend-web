@@ -22,9 +22,9 @@ const Settings = () => {
       <Header_login />
       <div className={clsx(styles.container)}>
         <div className={clsx(styles.mainDiv, "row")}>
-          <div className={clsx("col-lg-2", styles.pageLinks)}>
+          {/* <div className={clsx("col-lg-2", styles.pageLinks)}>
             <PageLinks />
-          </div>
+          </div> */}
           <div className={clsx("col-lg-3", styles.settingsMenu)}>
             <SettingsMenu />
           </div>
@@ -69,7 +69,7 @@ const Settings = () => {
               </Accordion.Item>
             </Accordion>
           </div>
-          <div className={clsx("col-lg-7", styles.showSection)}>
+          <div className={clsx("col-lg-9", styles.showSection)}>
             {path === "/settings" && <EditProfile />}
             {path === "/settings/accountsettings" && <AccSettings />}
             {path === "/settings/theme" && <Theme />}
