@@ -25,6 +25,7 @@ const Register = () => {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
   const [phonenumStatus, setPhonenumStatus] = useState(true);
+  const [termsAndConditon, setTermsAndConditon] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -73,7 +74,6 @@ const Register = () => {
   //check for valid phone number
 
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("checkPhoneNumber");
     if (e.target.value == "") {
       setPhonenumStatus(true);
     } else {
@@ -88,7 +88,9 @@ const Register = () => {
 
   //check for accepting terms and conditions
 
-  const checkTerms = () => {};
+  const checkTerms = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTermsAndConditon(!termsAndConditon);
+  };
 
   // function for handle submit
   const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -282,7 +284,11 @@ const Register = () => {
                 </div>
 
                 <div className="d-flex checkBoxTexts align-items-center">
-                  <input id="terms" name="terms" type="checkbox" />
+                  <input id="terms" name="terms" type="checkbox" 
+                    onChange={(e: React.ChangeEvent<any>) => {
+                    updateState(e);
+                    checkTerms(e);
+                  }}/>
                   <label className="ms-2" htmlFor="terms">
                     Yes, I agree to all the{" "}
                     <a className="termsLink" href="#">
