@@ -3,24 +3,6 @@
     border-radius: 20px;
     z-index: -2;
 }
-
-.mainDiv1{
-    background: #fff;
-    border-radius: 20px;
-    z-index: -2;
-    display: none;
-}
-
-@media only screen and (max-width:768px){
-    .mainDiv{
-        display: none;
-      }
-
-      .mainDiv1{
-        display: block;
-      }
-}
-
 .title{
     font-weight: bold;
     font-size: 32px;

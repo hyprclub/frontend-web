@@ -59,6 +59,11 @@
     margin-bottom: 0;
 }
 
+.gradbtn{
+    justify-content: center !important;
+    padding-top: 20px;
+    margin-left: 14vw;
+}
 
 @media only screen and (max-width:768px){
     .pfImage{
@@ -78,6 +83,7 @@
 
     .inName{
         padding-bottom: 5px;
+
     }
 
 }
