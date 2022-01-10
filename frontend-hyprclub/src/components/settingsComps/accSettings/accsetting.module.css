@@ -4,6 +4,23 @@
     z-index: -2;
 }
 
+.mainDiv1{
+    background: #fff;
+    border-radius: 20px;
+    z-index: -2;
+    display: none;
+}
+
+@media only screen and (max-width:768px){
+    .mainDiv{
+        display: none;
+      }
+
+      .mainDiv1{
+        display: block;
+      }
+}
+
 .title{
     font-weight: bold;
     font-size: 32px;
@@ -35,6 +52,11 @@
 font-size: 24px;
 }
 
+.headingFine{
+    font-weight: 600;
+    font-size: 24px;
+}
+
 .desc{
     font-size: 16px;
     font-weight: normal;
@@ -54,6 +76,22 @@ font-size: 24px;
     border-radius: 20px;
     margin-right: 15px;
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width:512px){
+    .interest{
+     font-size: 12px !important; 
+     padding: 3px !important;
+     margin-right: 3vw;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .interest{
+     font-size: 13px;
+     padding: 6px;
+     margin-right: 3vw;
+    }
 }
 
 .checkbox{
@@ -81,4 +119,33 @@ font-size: 24px;
     overflow-y: auto;
     min-height: calc(100vh - 210px);
     
+}
+
+@media only screen and (max-width:768px){
+    .desc{
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .avt{
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width:390px){
+    .heading{
+        font-size: 20px;
+    }
+
+    .headingFine{
+        font-size: 19px !important;
+    }
+    .desc{
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width:426px){
+    .headingFine{
+        font-size: 20px;
+    }
 }
