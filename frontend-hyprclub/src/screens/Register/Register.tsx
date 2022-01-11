@@ -25,9 +25,8 @@ const Register = () => {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
   const [usernameTaken, setUsernameTaken] = useState(true);
-  const [termsAgreed , setTermsAgreed] = useState(false);
-  const [newsletter , setNewsletter] = useState(false);
-  const [phonenumStatus, setPhonenumStatus] = useState(true);
+
+  const [phoneCorrect, setPhoneCorrect] = useState(false);
   const [termsAndConditon, setTermsAndConditon] = useState(false);
   const [promotionalMails, setPromotionalMails] = useState(false);
   const [data, setData] = useState({
@@ -84,14 +83,16 @@ const Register = () => {
   //check for valid phone number
 
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value == "") {
-      setPhonenumStatus(true);
+    if (e.target.value === "") {
+      setPhoneCorrect(false);
     } else {
       const phoneValidString = "(0|91)?[7-9][0-9]{9}";
       if (e.target.value.match(phoneValidString)) {
-        setPhonenumStatus(false);
+        console.log("Phone num correct");
+        setPhoneCorrect(true)
       } else {
-        setPhonenumStatus(true);
+       console.log("Phone Num not correct");
+       setPhoneCorrect(false);
       }
     }
   };
@@ -100,89 +101,99 @@ const Register = () => {
 
   const checkTerms = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTermsAndConditon(!termsAndConditon);
+   
   };
 
   // check for accepting promotional emails
   const checkPromotional = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPromotionalMails(!promotionalMails);
+    
   }
 
   // function for handle submit
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log({ data });
+  
     if(usernameTaken){
       console.log("Please Use a different Username");
     }else{
-
+      if(phoneCorrect === false){
+        console.log("Incorrect Phone Number");
+      } else{
+        if(termsAndConditon === false){
+          console.log("Please Agree to terms and Condition before moving forward");
+        }else{
+          try {
+            const userCredentials = await createUserWithEmailAndPassword(
+              auth,
+              data.email,
+              data.password
+            );
       
-    try {
-      const userCredentials = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-
-      const user = userCredentials.user;
-      const uid = user.uid;
-      const current = new Date();
-      const date = `${current.getDate()}/${
-        current.getMonth() + 1
-      }/${current.getFullYear()}`;
-
-      const personalDetailsInfo = await setDoc(doc(db, "hyprUsers", uid), {
-        name: data.name,
-        email: data.email,
-        username: data.username,
-        profileViewsCount: 0,
-        phone: data.phone,
-        category: "",
-        age: 0,
-        gender: "",
-        flagCounter: 0,
-        bio: "",
-        isNsfw: false,
-        verified: false,
-        portfolioUrl: "",
-        instagramUsername: "",
-        twitterUsername: "",
-        facebookProfileUrl: "",
-        youtubeProfileUrl: "",
-        interests: {},
-        isCreator: "Not Applied",
-        dateOfJoining: date, // todo add todays date
-        isKycDone: false,
-        nfts: {
-          purchasedNft: [],
-          createdNft: [],
-          savedNft: [
-            "/NFT's/3", // remove this after few some time
-          ],
-        },
-        followers: [],
-        following: [],
-        followerCount: 0,
-        followingCount: 0,
-        posts: {
-          createdPosts: [],
-          savedPosts: [],
-        },
-        bankAccountDetails: {
-          accountHolderName: "",
-          accountType: "",
-          ifscCode: "",
-          accountNumber: "",
-          branchName: "",
-          accountHolderPhoneNumber: "",
-        },
-      });
-
-      console.log("Account Created : ", user);
-      console.log(personalDetailsInfo);
-    } catch (error) {
-      console.error(error);
-    }
-
+            const user = userCredentials.user;
+            const uid = user.uid;
+            const current = new Date();
+            const date = `${current.getDate()}/${
+              current.getMonth() + 1
+            }/${current.getFullYear()}`;
+      
+            const personalDetailsInfo = await setDoc(doc(db, "hyprUsers", uid), {
+              name: data.name,
+              email: data.email,
+              username: data.username,
+              profileViewsCount: 0,
+              phone: data.phone,
+              newsletterSubscription : promotionalMails,
+              category: "",
+              age: 0,
+              gender: "",
+              flagCounter: 0,
+              bio: "",
+              isNsfw: false,
+              verified: false,
+              portfolioUrl: "",
+              instagramUsername: "",
+              twitterUsername: "",
+              facebookProfileUrl: "",
+              youtubeProfileUrl: "",
+              interests: {},
+              isCreator: "Not Applied",
+              dateOfJoining: date, // todo add todays date
+              isKycDone: false,
+              nfts: {
+                purchasedNft: [],
+                createdNft: [],
+                savedNft: [
+                  "/NFT's/3", // remove this after few some time
+                ],
+              },
+              followers: [],
+              following: [],
+              followerCount: 0,
+              followingCount: 0,
+              posts: {
+                createdPosts: [],
+                savedPosts: [],
+              },
+              bankAccountDetails: {
+                accountHolderName: "",
+                accountType: "",
+                ifscCode: "",
+                accountNumber: "",
+                branchName: "",
+                accountHolderPhoneNumber: "",
+              },
+            });
+      
+            console.log("Account Created : ", user);
+            console.log(personalDetailsInfo);
+          } catch (error) {
+            console.error(error);
+          }
+      
+        }
+      }     
+    
     }
     
   };
@@ -239,6 +250,7 @@ const Register = () => {
                     half={false}
                     lableText={"Name"}
                     name="name"
+                    required
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
@@ -250,6 +262,7 @@ const Register = () => {
                   name="email"
                   half={false}
                   lableText={"Email Address:"}
+                  required
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
                   }}
@@ -261,6 +274,7 @@ const Register = () => {
                     value={data.username}
                     lableText={"Username"}
                     name="username"
+                    required
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                       checkUsername(e);
@@ -272,8 +286,10 @@ const Register = () => {
                     half={true}
                     lableText={"Mobile Number"}
                     name="phone"
+                    required
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      checkPhoneNumber(e);
                     }}
                   />
                 </div>
@@ -283,6 +299,7 @@ const Register = () => {
                     half={true}
                     lableText={"Password"}
                     name="password"
+                    required
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
@@ -292,6 +309,7 @@ const Register = () => {
                     half={true}
                     lableText={"Confirm Password"}
                     name="cpassword"
+                    required
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
