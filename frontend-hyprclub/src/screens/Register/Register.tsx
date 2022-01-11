@@ -28,6 +28,8 @@ const Register = () => {
   const [termsAgreed , setTermsAgreed] = useState(false);
   const [newsletter , setNewsletter] = useState(false);
   const [phonenumStatus, setPhonenumStatus] = useState(true);
+  const [termsAndConditon, setTermsAndConditon] = useState(false);
+  const [promotionalMails, setPromotionalMails] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -81,13 +83,29 @@ const Register = () => {
 
   //check for valid phone number
 
-  const checkPhoneNumber = () => {};
+  const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value == "") {
+      setPhonenumStatus(true);
+    } else {
+      const phoneValidString = "(0|91)?[7-9][0-9]{9}";
+      if (e.target.value.match(phoneValidString)) {
+        setPhonenumStatus(false);
+      } else {
+        setPhonenumStatus(true);
+      }
+    }
+  };
 
   //check for accepting terms and conditions
 
-  const checkTerms = () => {
-
+  const checkTerms = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTermsAndConditon(!termsAndConditon);
   };
+
+  // check for accepting promotional emails
+  const checkPromotional = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPromotionalMails(!promotionalMails);
+  }
 
   // function for handle submit
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -281,7 +299,11 @@ const Register = () => {
                 </div>
 
                 <div className="d-flex checkBoxTexts align-items-center">
-                  <input id="terms" name="terms" type="checkbox" />
+                  <input id="terms" name="terms" type="checkbox" 
+                    onChange={(e: React.ChangeEvent<any>) => {
+                    updateState(e);
+                    checkTerms(e);
+                  }}/>
                   <label className="ms-2" htmlFor="terms">
                     Yes, I agree to all the{" "}
                     <a className="termsLink" href="#">
@@ -290,7 +312,11 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="d-flex checkBoxTexts align-items-center">
-                  <input name="newsletter" id="newsletter" type="checkbox" />
+                  <input name="newsletter" id="newsletter" type="checkbox" 
+                    onChange={(e: React.ChangeEvent<any>) => {
+                      updateState(e);
+                      checkPromotional(e);
+                    }} />
                   <label className="ms-2" htmlFor="newsletter">
                     I would like to receive promotional emails from HyprClub
                   </label>
