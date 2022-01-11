@@ -10,7 +10,7 @@ function UploadNft() {
         <Header_login />
         <div className={styles.body}>
             <UploadNFT/>
-            <PreviewNFT/>
+            {/* <PreviewNFT/> */}
 
         </div>
             

@@ -13,11 +13,9 @@ const DropdownEmpty = ({ className, value, setValue, options }) => {
   };
 
   return (
-    
+
     <OutsideClickHandler onOutsideClick={() => setVisible(false)}>
-      <div
-        className={cn(styles.dropdown, className, { [styles.active]: visible })}
-      >
+      <div className={cn(styles.dropdown, className, { [styles.active]: visible })}>
         <div className={styles.head} onClick={() => setVisible(!visible)}>
           <div className={styles.selection}>{value}</div>
           <Icon name="arrow-bottom" size="15" />

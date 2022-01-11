@@ -24,9 +24,10 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          {/* <UploadNft></UploadNft> */}
+          
+          <UploadNft></UploadNft>
           <Routes>
-            <Route path='nft' element={<NFTS></NFTS>}/>
+            <Route path='/nft' element={<NFTS></NFTS>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/follow' element={<FollowCreater/>}/>

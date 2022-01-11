@@ -13,6 +13,7 @@ import GradBorder from "./GradBorder/GradBorder";
 import { Avatar } from "@mui/material";
 import ReadMore from "./Readmore/Readmore";
 import Polygon from "./Poly/Polygon";
+import { style } from "@mui/system";
 
 
 const navLinks = ["Info", "Bids"];
@@ -77,20 +78,13 @@ const NFTS = () => {
                             <h1 className={styles.title}>Edward Scissorhands</h1>
                             <div className={styles.cost}>
                                 <GradBorder className={styles.price} text="10,075 INR" />
-                                <div className={styles.avatar}>
-                                    <Avatar alt="profile" src="./images/nftprofile.png" id={styles.ava}/>
-                                    <div className={styles.accountInfo}>
-                                        <span className={styles.accid}>Creator</span>
-                                        <span className={styles.accId}>@chootalks</span>
-                                    </div>
-                                </div>
+                                <span className={styles.Stock}>10 in Stock</span>
                             </div>
-                            <BuyBtn text="Buy Now" className={styles.buy} />
+
+                            <GradBorder text="Buy Now" className={styles.buy} />
+
                             <div className={styles.Description_Perks}>
                                 <h3 className={styles.subHeading}>Description</h3>
-                                <p className={styles.info}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
                                 <ReadMore>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 </ReadMore>
@@ -103,29 +97,25 @@ const NFTS = () => {
                                     <li className={styles.li}>Get a free workbook with over 25 different art prompts! </li>
                                     <li className={styles.li}>I dont know I googled this from some patreon page. </li>
                                 </ul>
-                                <span onClick={toggleReadMore} className={cn(styles.readHide,styles.view2)}>
+                                <span onClick={toggleReadMore} className={cn(styles.readHide, styles.view2)}>
                                     {isViewMore ? "View more" : " View less"}
                                 </span>
 
                             </div>
 
-
-                            <div className={styles.nav}>
-                                {navLinks.map((x, index) => (
-                                    <button
-                                        className={cn(
-                                            { [styles.active]: index === activeIndex },
-                                            styles.navbtn)}
-                                        onClick={() => setActiveIndex(index)}
-                                        key={index}>
-                                        {x}
-                                    </button>
-                                ))}
-                            </div>
-                            {activeIndex === 0 && <Users className={styles.users} items={users} />}
-                            {activeIndex === 1 && <Bidders className={styles.users} items={bidders} />}
-                            <Polygon className={styles.poly}/>
                         </div>
+
+                    </div>
+                </div>
+                <div className={styles.bottom}>
+                    <div className={styles.Bottom_part}>
+                        <span className={styles.bottomHeading}>Owners</span>
+                        <Users className={styles.users} items={users} />
+                    </div>
+                    {/* {activeIndex === 1 && <Bidders className={styles.users} items={bidders} /> */}
+                    <div className={styles.Bottom_part1}>
+                        <span className={cn(styles.bottomHeading, styles.auth)}>View Authenticity</span>
+                        <Polygon className={styles.poly} />
                     </div>
                 </div>
                 <p className={styles.more}>Discover NFTs Related to Edward Scissorhands</p>

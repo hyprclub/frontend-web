@@ -6,7 +6,8 @@
 .item {
   display: flex;
   align-items: center;
-  padding: 16px 0;
+  padding: 0 0 16px 0;
+  margin-bottom:16px;
   border-bottom: 1px solid #E6E8EC;
 }
 
@@ -51,4 +52,11 @@
   font-size: 16px;
   line-height: 24px;
   color: #000000;
+}
+
+@media only screen and (max-width: 700px){
+  #avatar {
+    width:50px;
+    height:50px;
+  }
 }
