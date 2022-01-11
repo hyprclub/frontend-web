@@ -1,13 +1,23 @@
 import clsx from 'clsx';
 import { X } from 'phosphor-react';
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { MODAL_OPEN_SUCCESS } from '../../../redux/constants/profileModals';
+import { RootStore } from '../../../store';
 import GradientBorder from '../../gradientBorderBtn/GradientBorder';
 import styles from './accsetting.module.css';
 import Modal from './upgradeAccModal/Modal';
 
 const AccSettings = () => {
-    return (
-        <>
+    const { clicked } = useSelector((state: RootStore) => state.modalOpen)
+    const dispatch = useDispatch()
+
+    const upgradeToCreator = () => {
+        dispatch ({type: MODAL_OPEN_SUCCESS})
+    }
+
+    return(
+         <>
             <div className={styles.mainDiv}>
                 <h2 className={styles.title}>Account Settings</h2>
            
@@ -15,11 +25,14 @@ const AccSettings = () => {
                     <div className={styles.switchAccType}>
                         <h3 className={styles.heading}>Switch Account Type</h3>
                         <p className={styles.desc}>Switch to a creator account and unlock new features! You will be able to sell your work as NFTs, Monetize your Content, Unlock special creator gifts and so much more!</p>
-                        <GradientBorder text='Upgrade to Creator Account'/>
+                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
+                        <div><GradientBorder onClick={upgradeToCreator} text='Upgrade to Creator Account'/></div> 
+                        </div>
+
                     </div>
 
                     <div className={styles.findTunes}>
-                        <h3 className={styles.heading}>Fine Tune Your Interests</h3>
+                        <h3 className={styles.headingFine}>Fine Tune Your Interests</h3>
                         <p className={styles.desc}>Interests can be changed to show user’s genre’s of interest in Explore.</p>
                         <div className={styles.interests}>
                             <button className={clsx('d-inline', styles.interest)}><X size={20} weight='bold' /> &#128514; Comedy</button>
@@ -28,7 +41,10 @@ const AccSettings = () => {
                             <button className={clsx('d-inline', styles.interest)}><X size={20} weight='bold' /> &#128132; Beauty</button>
                             <button className={clsx('d-inline', styles.interest)}><X size={20} weight='bold' /> &#128187; Technology</button>
                         </div>
-                        <GradientBorder text='Reset Interests'/>
+                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
+                        <div><GradientBorder text='Reset Interests'/></div> 
+                        </div>
+
                     </div>
 
                     <div className={styles.NSFW}>
@@ -43,11 +59,10 @@ const AccSettings = () => {
                     </div>
                 </div>
             </div>
-
-            <div className={styles.modalDiv}>
+            <div className={clsx(styles.modalDiv, clicked? styles.show: styles.hide)}>
                 <Modal/>
             </div>
-        </>
+         </>
     )
 }
 

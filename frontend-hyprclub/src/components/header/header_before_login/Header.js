@@ -14,20 +14,8 @@ import Upload_Button from '../../uploadButton/UploadButton'
 
 const nav = [
     {
-      url: "/search01",
-      title: "Discover",
-    },
-    {
-      url: "/faq",
-      title: "How it work",
-    },
-    {
-      url: "/item",
-      title: "Create item",
-    },
-    {
-      url: "/profile",
-      title: "Profile",
+      url: "/market",
+      title: "Marketplace",
     },
   ];
   
@@ -52,6 +40,18 @@ const nav = [
             />
           </Link>
           <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
+          <nav className={styles.nav}>
+            {nav.map((x, index) => (
+              <Link
+                className={styles.link}
+                // activeClassName={styles.active}
+                to={x.url}
+                key={index}
+              >
+                {x.title}
+              </Link>
+            ))}
+            </nav>
             <form
               className={styles.search}
               action=""
@@ -75,8 +75,8 @@ const nav = [
               to="/upload-variants"
             >
             </Link>
-            <Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button>
-            <button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button>
+            <Link to='/login'><Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button></Link>
+            <Link to='register'><button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button></Link>
           </div>
           <button
           className={cn(styles.burger, { [styles.active]: visibleNav })}

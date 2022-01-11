@@ -8,10 +8,10 @@ const Contact = () => {
     return (
         <>
             <div className={styles.mainDiv}>
-                <h2 className={styles.title}>Edit Profile</h2>
+                <h2 className={styles.title}>Contact Us</h2>
                 <div className={styles.content}>
                     <p>Got any collaborations, ideas, or any questions? Let us know!</p>
-                    <div className='d-flex'>
+                    <div className={clsx('d-flex',styles.contact)}>
                         <InputField garyBold half lableText='NAME' typeOfInput='text' />
                         <InputField garyBold half lableText='PHONE NUMBER' typeOfInput='tel' />
                     </div>
@@ -20,7 +20,10 @@ const Contact = () => {
                         <label className={styles.lableText} htmlFor="exampleFormControlTextarea1">Your Message</label>
                         <textarea className={clsx("form-control", styles.textarea)} placeholder='Enter your message...' id="exampleFormControlTextarea1" rows={5}></textarea>
                     </div>
-                        <GradientBorder text='Submit'/>
+                    <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
+                    <GradientBorder text='Submit'/>
+                    </div>
+ 
 
                 </div>
             </div>

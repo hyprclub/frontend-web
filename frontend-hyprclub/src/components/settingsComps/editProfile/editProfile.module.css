@@ -21,6 +21,7 @@
     height: 100px;
 }
 
+
 .content{
     padding: 25px 10px 17px 20px;
 
@@ -35,11 +36,7 @@
     font-size: 24px;
 }
 
-.button{
-    margin-top: 30px;
-    margin-left: 5px;
-    margin-bottom: 5vh;
-}
+
 
 .pencilIcon{
     cursor: pointer;
@@ -60,4 +57,52 @@
     margin-top: -8px;
     margin-left: 10px;
     margin-bottom: 0;
+}
+
+.gradbtn{
+    justify-content: center !important;
+    padding-top: 20px;
+    margin-left: 14vw;
+}
+
+@media only screen and (max-width:768px){
+    .pfImage{
+        margin: 0 0 4vh 0vw;
+    }
+    .avt{
+        justify-content: center !important;
+    }
+
+    .content{
+        padding: 20px 0 17px 0;
+    }
+
+    .usernameRange{
+        display: none;
+    }
+
+    .inName{
+        padding-bottom: 5px;
+
+    }
+
+}
+
+@media only screen and (max-width:768px){
+    .editProf{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .gradbtn{
+        justify-content: center !important;
+        padding-top: 20px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:768px){
+    .gradbtn{
+        margin-left: 43vw;
+        padding-top: 20px;
+    }
+    
 }

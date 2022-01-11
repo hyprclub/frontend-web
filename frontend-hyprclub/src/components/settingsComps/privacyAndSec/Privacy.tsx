@@ -22,15 +22,16 @@ const Privacy = () => {
 
                     <div className={styles.changePs}>
                         <h3 className={styles.heading}>Change Password</h3>
-                        <div className='d-flex mb-2'>
+                        <div className={clsx('d-flex mb-2', styles.pass)}>
                             <InputField placeholder={'************'} garyBold half lableText='ENTER OLD PASSWORD' typeOfInput='text'/>
                             <InputField placeholder={'************'} garyBold half lableText='ENTER NEW PASSWORD' typeOfInput='text'/>
                         </div>
-                        <p className={styles.desc}>Password should be 7-12 characters long with at least one uppercase letter, one lowercase letter and a number.</p>
-                        <GradientBorder text='Save Changes'/>
+                        <p className={styles.descPass}>Password should be 7-12 characters long with at least one uppercase letter, one lowercase letter and a number.</p>
+                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
+                         <GradientBorder text='Save Changes'/>
                     </div>
 
-                    
+                    </div>
                 </div>
            </div> 
         </>

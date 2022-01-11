@@ -130,6 +130,7 @@
     .hypes{
         color: #4B4B4B;
     }
+
   
     .social{
         margin: 0 5px;
@@ -201,7 +202,7 @@
   .info {
     font-size: 12px;
     line-height: 1.66667;
-    color: #777E90; 
+    color: black; 
     text-align: center;
 }
   
@@ -249,3 +250,14 @@
 .gradbtn{
   margin-right: 2vw;
 }
+
+
+@media only screen and (max-width: 767px) {
+  .hypes {
+    display: none; }
+  .followers{
+    display: none;
+  }
+.followings{
+  display: none;
+} }

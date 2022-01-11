@@ -9,7 +9,7 @@ function Upload_Button() {
     }
     return (
         <div className="upButton">
-            <Button type="submit" onClick={ButtonHandler} className="upldbtn">Upload</Button>
+            <button type="submit" onClick={ButtonHandler} className="upldbtn">Upload</button>
             
         </div>
     )

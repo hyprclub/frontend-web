@@ -4,7 +4,7 @@
 }
 
 .halfWidth{
-    width: 50%;
+    width: 50% !important;
     padding: 0 7px;
 }
 
@@ -23,14 +23,15 @@ label {
 }
 
 .inputItself{
-    border-radius: 6px !important;
+    border-radius: 12px !important;
     font-weight: 500 !important;
     font-size: 14px !important;
     color: #777E91 !important;
+    height: 40px;
 }
 
 @media only screen and (max-width: 768px) {
     .halfWidth{
-        width: 100%;
+        width: 100% !important;
     }
   }

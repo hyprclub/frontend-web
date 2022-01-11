@@ -9,25 +9,13 @@ import Notification from './Notification/NotificationHead'
 
 import Upload_Button from '../../uploadButton/UploadButton'
 // import MobileNavigation from '../../MobileNav/MobileNavigation'
-// import UploadButton from '../../uploadButton/UploadButton'
+import UploadButton from '../../uploadButton/UploadButton'
 
 const nav = [
     {
-      url: "/search01",
-      title: "Discover",
-    },
-    {
-      url: "/faq",
-      title: "How it work",
-    },
-    {
-      url: "/item",
-      title: "Create item",
-    },
-    {
-      url: "/profile",
-      title: "Profile",
-    },
+      url: "/market",
+      title: "Marketplace",
+    }
   ];
   
   const Header_login = () => {
@@ -50,7 +38,19 @@ const nav = [
               alt="Fitness Pro"
             />
           </Link>
-          <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
+        <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
+          <nav className={styles.nav}>
+            {nav.map((x, index) => (
+              <Link
+                className={styles.link}
+                // activeClassName={styles.active}
+                to={x.url}
+                key={index}
+              >
+                {x.title}
+              </Link>
+            ))}
+            </nav>
             <form
               className={styles.search}
               action=""
@@ -73,16 +73,9 @@ const nav = [
               className={cn("button-small", styles.button)}
               to="/upload-variants"
             >
-
             </Link>
+            <button className={styles.up}> <span className={styles.uptxt}>Upload</span></button>
           </div>
-        {/* <Upload_Button/> */}
-          {/* <Link
-            className={cn("button-stroke button-small", styles.button)}
-            to="/connect-wallet"
-          >
-            Connect Wallet
-          </Link> */}
           <User className={styles.user} />
           <button
             className={cn(styles.burger, { [styles.active]: visibleNav })}

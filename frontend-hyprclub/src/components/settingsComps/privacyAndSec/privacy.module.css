@@ -35,12 +35,55 @@
     line-height: 20px;
 }
 
+.descPass{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
 .enableprivate{
     margin-bottom: 0;
     margin-right: 40px;
+    font-weight: 600;
 
 }
 
 .enablepvtdiv{
     margin-bottom: 20px;
+}
+
+
+@media only screen and (max-width:438px){
+    .enableprivate{
+        font-size: 13px !important;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .enableprivate{
+        font-size: 15px;
+    }
+
+    .descPass{
+        margin-top: 2vh;
+        margin-left: 1vw;
+        margin-bottom: 3vh;
+    }
+
+    .avt{
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .pass{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:768px){
+    .avt{
+        margin-left: 30vw;
+    }
 }

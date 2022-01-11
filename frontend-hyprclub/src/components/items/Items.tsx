@@ -11,7 +11,7 @@ const Items = ({ className, items, created, nft }:any) => {
       <div className={clsx(styles.list, 'row')}>
         {items.map((x:any, index:any) => (
           nft ?
-          <Card created={created} className={clsx(styles.card, 'col-md-4')} item={x} key={index} />
+          <Card created={created} className={clsx(styles.card, 'col-md-6 col-lg-4')} item={x} key={index} />
           :  
           <CardStore className={clsx(styles.card, 'col-md-4')} item={x} key={index} />
         ))}

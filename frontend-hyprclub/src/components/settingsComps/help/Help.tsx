@@ -15,7 +15,10 @@ const Help = () => {
 
                         <label className={styles.lableText} htmlFor="exampleFormControlTextarea1">Example textarea</label>
                         <textarea className={clsx("form-control", styles.textarea)} id="exampleFormControlTextarea1" rows={5}></textarea>
+                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
                         <GradientBorder text='Submit'/>
+                    </div>
+
                     </div>
                     <div className={styles.helpCenter}>
                         <h3 className={styles.heading}>Help Center</h3>

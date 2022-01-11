@@ -48,7 +48,10 @@
     @media only screen and (max-width: 767px) {
       .btns .button {
         flex-grow: 1;
-        padding: 0 10px; } }
+        padding: 0 10px; }
+      .btns{
+        display: none;
+      } }
     .btns .button svg {
       fill: #FCFCFD; }
     .btns .button:not(:last-child) {
@@ -148,7 +151,7 @@
   .body .container {
     display: flex;
     align-items: flex-start; }
-    @media only screen and (max-width: 1023px) {
+    @media only screen and (max-width: 1200px) {
       .body .container {
         display: block; } }
 
@@ -157,10 +160,17 @@
   margin-left: -2vw;
   width: 25%;
   margin-top: -52px; }
-  @media only screen and (max-width: 1023px) {
+  @media only screen and (max-width: 1200px) {
     .user {
       width: 100%;
       margin: -32px 0 48px; } }
+
+      @media only screen and (max-width: 767px) {
+        .user {
+          width: 90%;
+          margin-left: 5vw;
+          margin-right: 5vw; } }
+
 
 .wrapper {
   flex: 0 0 calc(100% - 256px);
@@ -169,7 +179,7 @@
   @media only screen and (max-width: 1339px) {
     .wrapper {
       padding-left: 32px; } }
-  @media only screen and (max-width: 1023px) {
+  @media only screen and (max-width: 1200px) {
     .wrapper {
       width: 100%;
       padding-left: 0; } }
@@ -185,6 +195,8 @@
 
     }
 
+
+  
     @media only screen and (max-width: 767px) {
       .wrapper {
         width: 100%;
