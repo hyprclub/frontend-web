@@ -11,11 +11,19 @@
     background: #FFFFFF;
     width: 70vw;
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 50%;
     border-radius: 20px;
     transform: translate(-50%, 0%);
     padding: 20px;
+    /* overflow-y: initial !important */
+    overflow: hidden;
+
+}
+
+
+.modalContent{
+    overflow-y: auto;
 
 }
 

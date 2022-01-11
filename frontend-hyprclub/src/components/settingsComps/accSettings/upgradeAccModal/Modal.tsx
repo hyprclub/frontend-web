@@ -21,7 +21,7 @@ const Modal = () => {
     return (
         <>
             <div className={styles.modal}>
-                <div className='container'>
+                <div className={clsx('container', styles.modalContent)}>
                     <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
                     <div className={clsx(styles.firstModal, modals.modal1 ? styles.show : styles.hide)}>
                         <div className={styles.topTitleDiv}>

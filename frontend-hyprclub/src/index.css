@@ -21,3 +21,8 @@ body{
 .slick-slider{
     margin-top: -20vh !important;
 }
+
+
+.accordion-body{
+    padding: 0 !important;
+}
