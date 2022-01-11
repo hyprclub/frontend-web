@@ -94,7 +94,7 @@ function App() {
         getDoc(doc(db,"hyprUsers",uid)).then((docSnap) => {
           if(docSnap.exists()){
             dispatch(UserDataActions.updateCurrentUserDetail(docSnap.data()));
-          console.log(userData);
+          console.log(docSnap.data());
           }
           else{
             console.log("No User Data");
