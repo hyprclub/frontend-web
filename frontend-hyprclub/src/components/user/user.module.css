@@ -12,7 +12,6 @@
     @media only screen and (max-width: 767px) {
       .user {
         margin-top: 3vh;
-        position: static;
         } 
     }
   
@@ -252,6 +251,117 @@
 }
 
 
+
+/****************** MODAL **********************/
+
+.modalDiv{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.201);
+  min-height: 100vh;
+  z-index: 9999999999;
+  overflow-y: auto;
+}
+
+
+.show{
+  display: unset;
+}
+
+.hide{
+  display: none;
+
+}
+
+
+
+.cross{
+  text-align: right;
+  padding: 25px 0 10px 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+
+
+
+.modal{
+  background: #FFFFFF;
+  width: 60vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  /* overflow-y: initial !important */
+  overflow: hidden;
+
+}
+
+
+.thankYouDiv{
+  padding: 0 14px 30px 14px;
+}
+
+.gradientTitle{
+  background: linear-gradient(90deg, #ed4d6b,#8d00fd, #e70d8c, #f6a44c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    margin-bottom: 24px;
+}
+
+
+.addContribution{
+  font-weight: bold;
+font-size: 16px;
+line-height: 24px;
+color: #737373;
+}
+
+
+.input{
+  width: 30% ;
+  border: none ;
+  border-bottom: 1px solid #e5e5e5 ;
+  border-radius: 0 ;
+  padding: 0 5px ;
+  margin-left: 14px;
+
+  font-weight: bold;
+font-size: 56px;
+line-height: 56px;
+
+}
+
+/* .inputDIV{
+  flex: 1;
+} */
+
+/* .inputAndINR{
+  flex: 1;
+} */
+
+.sayThanksBTN{
+
+}
+
+
+.INR{
+  font-weight: bold;
+  font-size: 24px;
+  color: #737373;
+  margin-left: 10px;
+}
+.modal input:focus{
+  outline: none !important;
+}
 @media only screen and (max-width: 767px) {
   .hypes {
     display: none; }
@@ -260,4 +370,34 @@
   }
 .followings{
   display: none;
-} }
+} 
+
+
+
+/* Modal */
+
+.modal{
+  width: 80vw;
+}
+
+.input{
+  width: 80%;
+}
+
+.inputAndINR{
+  margin-bottom: 20px;
+}
+
+
+.inputDIV{
+  flex-direction: column;
+}
+
+.thanksBtn{
+  width: 100%;
+  text-align: start;
+  margin-left: 20px;
+}
+}
+
+
