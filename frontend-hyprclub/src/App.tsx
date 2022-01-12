@@ -136,7 +136,7 @@ function App() {
             <Route path='/follow' element={<FollowCreater/>}/>
             <Route path='/interest' element={<Interests/>}/>
             <Route path='/feed' element={<Feed/>}/>
-            <Route path='/profile' element={<Profile/>}/>
+            {/* <Route path='/profile' element={<Profile/>}/> */}
             <Route path='/market' element={<Marketplace/>}/>
             <Route path='/settings' element={<Settings/>}/>
             <Route path ='profile/:username' element= {<Profile/>}/>

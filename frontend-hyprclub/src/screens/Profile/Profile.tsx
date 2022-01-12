@@ -178,29 +178,24 @@ const fetchData = async (username:any ) => {
     where("username", "==", username)
   );
   const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
+  querySnapshot.forEach(doc => {
+    console.log(doc.data())
   });
+
 }
 const Profile = () => {          // props to be passed here 
   const { username } = useParams();
-  fetchData(username);
+  
+ 
   const userData = useSelector(
     (state :RootStateOrAny) => state?.userData
   );
 
-  // useEffect(()=>{
-  //   if(props && props.match && props.match.params) {
-  //     const {
-  //       match : {
-  //         params : {username}
-  //       },
+  useEffect(()=>{
+    fetchData(username);
 
-  //     } = props;
-  //   }
+  },[username])
 
-  // },[props])
   const socials = [
     {
       title: "twitter",
