@@ -15,12 +15,13 @@ const Modal = () => {
      const dispatch = useDispatch()
     const closeModal = () => {
         dispatch ({type: MODAL_CLOSE_SUCCESS})
+        setModals({modal1: true, modal2: false, modal3:false, modal4:false})
     }
 
     return (
         <>
             <div className={styles.modal}>
-                <div className='container'>
+                <div className={clsx('container', styles.modalContent)}>
                     <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
                     <div className={clsx(styles.firstModal, modals.modal1 ? styles.show : styles.hide)}>
                         <div className={styles.topTitleDiv}>

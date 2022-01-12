@@ -1,0 +1,39 @@
+.mainDiv{
+    background: #fff;
+    border-radius: 20px;
+    z-index: -2;
+    min-height: 70vh;
+
+}
+.title{
+    font-weight: bold;
+    font-size: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E3E3E3;
+    padding: 25px 10px 17px 20px;
+}
+
+.loadMoreBtn{
+    background: #fff ;
+    color: black ;
+    border: 2px solid black ;
+    border-radius: 30px ;
+    font-weight: bold ;
+    font-size: 16px ;
+    padding: 5px 16px ;
+
+}
+
+
+.loadMoreBtn:hover{
+    background: #fff;
+    color: black;
+    border: 2px solid black;
+}
+/* 
+
+.loadMoreBtn:active{
+    background: #fff;
+    color: black;
+    border: 2px solid black;
+} */

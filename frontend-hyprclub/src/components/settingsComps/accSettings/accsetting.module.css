@@ -18,6 +18,19 @@
 
 }
 
+@media only screen and (max-width:767px){
+    .switchAccType{
+        padding: 25px 10px 17px 10px;
+    }
+    .findTunes{
+        padding: 25px 10px 17px 10px !important;
+    }
+    .NSFW{
+        padding: 25px 10px 25px 10px !important;
+        margin-bottom: 30px;
+    }
+}
+
 .findTunes{
     padding: 25px 10px 17px 20px;
     border-bottom: 1px solid #E3E3E3;
@@ -102,6 +115,15 @@ font-size: 24px;
     
 }
 
+
+.show{
+    display: unset;
+}
+
+.hide{
+    display: none;
+
+}
 
 @media only screen and (max-width:768px){
     .desc{

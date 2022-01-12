@@ -36,6 +36,12 @@ const SettingsMenu = () => {
     }
   };
 
+  const transactionHistroy = () => {
+    if (path !== "/settings/transactionhistory") {
+      navigate("/settings/transactionhistory");
+    }
+  }
+
   const help = () => {
     if (path !== "/settings/help") {
       navigate("/settings/help");
@@ -47,6 +53,7 @@ const SettingsMenu = () => {
       navigate("/settings/contact");
     }
   };
+
 
   return (
     <>
@@ -89,6 +96,17 @@ const SettingsMenu = () => {
             >
               Privacy & Security
             </p>
+
+            <p
+              onClick={transactionHistroy}
+              className={clsx(
+                styles.page,
+                path === "/settings/transactionhistory" && styles.active
+              )}
+            >
+              Transaction History
+            </p>
+
             <p
               onClick={help}
               className={clsx(

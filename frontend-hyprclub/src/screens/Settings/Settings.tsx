@@ -11,6 +11,7 @@ import SettingsMenu from "../../components/settingsComps/settingsMenu/SettingsMe
 import Theme from "../../components/settingsComps/themeSettings/Theme";
 import styles from "./settings.module.css";
 import { Accordion } from "react-bootstrap";
+import Transaction from "../../components/settingsComps/transaction/Transaction";
 const Settings = () => {
   const location = useLocation();
   const path = location.pathname;
@@ -35,36 +36,54 @@ const Settings = () => {
                   <EditProfile></EditProfile>
                 </Accordion.Body>
               </Accordion.Item>
+
               <Accordion.Item className={styles.change} eventKey="1">
                 <Accordion.Header >Account Settings</Accordion.Header>
                 <Accordion.Body>
                   <AccSettings></AccSettings>
                 </Accordion.Body>
               </Accordion.Item>
+
               <Accordion.Item className={styles.change} eventKey="2">
                 <Accordion.Header >Theme</Accordion.Header>
                 <Accordion.Body>
                   <Theme></Theme>
                 </Accordion.Body>
               </Accordion.Item>
+
+
               <Accordion.Item className={styles.change} eventKey="3">
                 <Accordion.Header >Privacy & Security</Accordion.Header>
                 <Accordion.Body>
                   <Privacy></Privacy>
                 </Accordion.Body>
               </Accordion.Item>
+
+
               <Accordion.Item className={styles.change} eventKey="4">
+                <Accordion.Header >Transaction History</Accordion.Header>
+                <Accordion.Body>
+                  <Transaction/>
+                </Accordion.Body>
+              </Accordion.Item>
+
+
+              <Accordion.Item className={styles.change} eventKey="5">
                 <Accordion.Header >Help</Accordion.Header>
                 <Accordion.Body>
                   <Help></Help>
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item className={styles.change} eventKey="5">
+
+
+              <Accordion.Item className={styles.change} eventKey="6">
                 <Accordion.Header >Contact Us</Accordion.Header>
                 <Accordion.Body>
                   <Contact></Contact>
                 </Accordion.Body>
               </Accordion.Item>
+
+
             </Accordion>
           </div>
           <div className={clsx("col-lg-9", styles.showSection)}>
@@ -72,6 +91,7 @@ const Settings = () => {
             {path === "/settings/accountsettings" && <AccSettings />}
             {path === "/settings/theme" && <Theme />}
             {path === "/settings/privacyandsecurity" && <Privacy />}
+            {path === "/settings/transactionhistory" && <Transaction />}
             {path === "/settings/help" && <Help />}
             {path === "/settings/contact" && <Contact />}
           </div>

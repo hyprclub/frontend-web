@@ -174,7 +174,7 @@
   .postBtna {
     width: 204px;
     height: 54px;
-    padding: 0 0 10px 0 !important;
+    padding: 0 0 10px 0;
   }
   .PostbtnTexta{
     font-size: 18px !important;

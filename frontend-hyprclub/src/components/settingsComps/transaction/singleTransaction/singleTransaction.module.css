@@ -1,0 +1,125 @@
+
+
+.pfImage{
+    width: 64px;
+    height: 64px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+
+
+.boldTitle{
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.date{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 0;
+    margin-top: 10px;
+
+}
+
+.username{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 10px;
+}
+
+.price{
+    background: -webkit-linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
+  rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.mainDiv{
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.nameUsernamePrice{
+    flex: 1;
+}
+
+.nameAndPrice{
+    width: 25vw;
+}
+
+@media only screen and (max-width:404px){
+    .pfImage{
+        width: 50px !important;
+        height: 50px !important;
+        margin-left: -3vw;
+    }
+
+    .boldTitle{
+        font-size: 10px !important;
+    }
+    
+    .date{
+        font-size: 8px !important;
+    }
+    .price{
+        font-size: 12px !important;
+        margin-right: -2vw;
+    }
+
+}
+@media only screen and (max-width:440px){
+    .pfImage{
+        width: 55px;
+        height: 55px;
+        margin-left: -3vw;
+    }
+
+    .boldTitle{
+        font-size: 12px;
+    }
+    
+    .date{
+        font-size: 10px;
+    }
+    .price{
+        font-size: 14px;
+        margin-right: -2vw;
+    }
+
+}
+
+@media only screen and (max-width:565px){
+    .pfImage{
+        width: 60px;
+        height: 60px;
+        margin-left: -3vw;
+    }
+
+    .boldTitle{
+        font-size: 14px;
+    }
+    
+    .price{
+        font-size: 14px;
+        margin-right: -2vw;
+    }
+
+}
+
+
+@media only screen and (max-width:768px){
+    .username{
+        display: none;
+    }
+
+    
+}
+
+
