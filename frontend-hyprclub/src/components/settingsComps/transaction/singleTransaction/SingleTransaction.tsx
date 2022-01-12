@@ -22,7 +22,7 @@ const SingleTransaction = ({purchased, NFTname, date, username}: Transaction) =>
                         </div>
                     
                         <p className={styles.username}>@{username}</p>
-                        <p className={styles.price}>10,475INR</p>
+                        <p className={styles.price}>10,475 INR</p>
                     </div>
                 </div>
             </div>

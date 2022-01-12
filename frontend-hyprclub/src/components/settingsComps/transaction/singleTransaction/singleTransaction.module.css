@@ -7,6 +7,8 @@
     border-radius: 50%;
 }
 
+
+
 .boldTitle{
     margin-bottom: 0;
     font-weight: 600;
@@ -52,6 +54,66 @@
     width: 25vw;
 }
 
+@media only screen and (max-width:404px){
+    .pfImage{
+        width: 50px !important;
+        height: 50px !important;
+        margin-left: -3vw;
+    }
+
+    .boldTitle{
+        font-size: 10px !important;
+    }
+    
+    .date{
+        font-size: 8px !important;
+    }
+    .price{
+        font-size: 12px !important;
+        margin-right: -2vw;
+    }
+
+}
+@media only screen and (max-width:440px){
+    .pfImage{
+        width: 55px;
+        height: 55px;
+        margin-left: -3vw;
+    }
+
+    .boldTitle{
+        font-size: 12px;
+    }
+    
+    .date{
+        font-size: 10px;
+    }
+    .price{
+        font-size: 14px;
+        margin-right: -2vw;
+    }
+
+}
+
+@media only screen and (max-width:565px){
+    .pfImage{
+        width: 60px;
+        height: 60px;
+        margin-left: -3vw;
+    }
+
+    .boldTitle{
+        font-size: 14px;
+    }
+    
+    .price{
+        font-size: 14px;
+        margin-right: -2vw;
+    }
+
+}
+
+
 @media only screen and (max-width:768px){
     .username{
         display: none;
@@ -59,3 +121,5 @@
 
     
 }
+
+
