@@ -16,6 +16,8 @@ import Store from "../../components/store/Store";
 import { useSelector ,RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
+import { firebaseApp } from "../../firebaseConfig";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = [
@@ -169,10 +171,21 @@ const navLinks = [
 //     ],
 //   },
 // ];
-
+const fetchData = async (username:any ) => {
+  const db = getFirestore(firebaseApp);
+  const q = query(
+    collection(db, "hyprUsers"),
+    where("username", "==", username)
+  );
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+  });
+}
 const Profile = () => {          // props to be passed here 
-
-  const {username} = useParams();
+  const { username } = useParams();
+  fetchData(username);
   const userData = useSelector(
     (state :RootStateOrAny) => state?.userData
   );
