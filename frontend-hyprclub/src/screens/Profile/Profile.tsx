@@ -15,6 +15,7 @@ import Nft from "../../components/NFT/Nft";
 import Store from "../../components/store/Store";
 import { useSelector ,RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
+import { useParams } from "react-router";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = [
@@ -171,7 +172,7 @@ const navLinks = [
 
 const Profile = () => {          // props to be passed here 
 
-
+  const {username} = useParams();
   const userData = useSelector(
     (state :RootStateOrAny) => state?.userData
   );
