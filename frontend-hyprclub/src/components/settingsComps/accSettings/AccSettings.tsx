@@ -25,9 +25,7 @@ const AccSettings = () => {
                     <div className={styles.switchAccType}>
                         <h3 className={styles.heading}>Switch Account Type</h3>
                         <p className={styles.desc}>Switch to a creator account and unlock new features! You will be able to sell your work as NFTs, Monetize your Content, Unlock special creator gifts and so much more!</p>
-                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
-                            <div><GradientBorder onClick={upgradeToCreator} text='Upgrade to Creator Account'/></div> 
-                        </div>
+                            <div className={styles.upgrade}><GradientBorder onClick={upgradeToCreator} text='Upgrade to Creator Account'/></div> 
 
                     </div>
 
@@ -41,9 +39,8 @@ const AccSettings = () => {
                             <button className={clsx('d-inline', styles.interest)}><X size={20} weight='bold' /> &#128132; Beauty</button>
                             <button className={clsx('d-inline', styles.interest)}><X size={20} weight='bold' /> &#128187; Technology</button>
                         </div>
-                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
-                        <div><GradientBorder text='Reset Interests'/></div> 
-                        </div>
+                        <div className={styles.upgrade}><GradientBorder text='Reset Interests'/></div> 
+
 
                     </div>
 

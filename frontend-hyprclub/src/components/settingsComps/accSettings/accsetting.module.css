@@ -133,6 +133,9 @@ font-size: 24px;
     .avt{
         justify-content: center;
     }
+    .upgrade{
+        text-align: center !important;
+    }
 }
 
 @media only screen and (max-width:390px){
@@ -162,3 +165,4 @@ font-size: 24px;
 
 }
 }
+
