@@ -2,11 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import ExpSearchBar from '../expandablesearch/ExpSearchBar';
-
-
-
-
-
 const NavLinks = (props:any) => {
     const animateFrom = { opacity: 0, y: -40 }
     const animateTo = { opacity: 1, y: 0 }

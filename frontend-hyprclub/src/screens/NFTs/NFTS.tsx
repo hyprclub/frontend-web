@@ -3,7 +3,6 @@ import styles from "./NFTS.module.css";
 import cn from "classnames";
 import Users from "./Users/Users";
 import Bidders from "./Bidders/Bidders";
-import BuyBtn from "./BuyBtn/BuyBtn";
 import Option from "./Options/Option";
 import Header_login from "../../components/header/header_after_login/Header_login";
 import { ArrowLeft } from "phosphor-react";
@@ -69,8 +68,8 @@ const NFTS = () => {
                                     src="./images/nft-image.png"
                                     alt="NFT"
                                 />
+                                <Option className={styles.options} />
                             </div>
-                            <Option className={styles.options} />
                         </div>
 
 
