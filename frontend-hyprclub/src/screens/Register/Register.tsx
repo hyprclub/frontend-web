@@ -15,7 +15,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
-import {getDownloadURL , getStorage ,ref , uploadBytesResumable.
+import {getDownloadURL , getStorage ,ref , uploadBytesResumable
 } from "firebase/storage";
 import {
   setDoc,
@@ -159,10 +159,10 @@ const Register = () => {
               "users/" + uid + "profile.jpg"
             );
 
-            const uploadTask =  await uploadBytesResumable(
-              profilePhotoRef,
+            // const uploadTask =  await uploadBytesResumable(
+            //   profilePhotoRef,
               
-            )
+            // )
 
             const personalDetailsInfo = await setDoc(
               doc(db, "hyprUsers", uid),
