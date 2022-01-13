@@ -23,6 +23,8 @@ import {
   query,
   where,
   getDocs,
+  doc,
+  updateDoc
 } from "firebase/firestore";
 import { profile } from "console";
 // import { isStepDivisible } from "react-range/lib/utils";
@@ -181,6 +183,7 @@ const Profile = () => {
   // props to be passed here
   const { username } = useParams();
   const [profileData , setProfileData] = useState<any | null>({});
+  const [docID, setDocID] = useState("");
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
@@ -191,9 +194,24 @@ const Profile = () => {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
+      setDocID(doc.id);
       setProfileData(doc.data());
     });
   };
+  const ProfileCount = async () => {
+    const db = getFirestore(firebaseApp);
+    const ref = doc(db, "hyprUsers", docID);
+    await updateDoc(ref, {
+      profileViewsCount: profileData?.profileViewsCount + 1
+    })
+      .then(() => {
+        console.log("count++");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+  ProfileCount();
   useEffect(() => {
     fetchData(username);
 
