@@ -1,44 +1,52 @@
-import React from "react";
+import React, {useState} from "react";
 import cn from "classnames";
 import styles from "./user.module.css";
 import Icon from "../Icon";
 import GradientBorder from "../gradientBorderBtn/GradientBorder";
 import { useSelector ,RootStateOrAny} from "react-redux";
+
 interface Item {
     title: string,
     url : string
 }
 
-interface UerType{
+interface UserType{
     className: string,
-    item: Item[]
+    item: Item[],
+    name : any,
+    username : any,
+    category : any,
+    portfolioUrl : any,
+    bio : any,
+    joiningDate : any 
 }
 
-const User = ({ className, item }:UerType) => {
+const User = ({ className, item ,name , username ,category , portfolioUrl,bio,joiningDate }:UserType) => {
   const userData = useSelector((state : RootStateOrAny) => state.userData);
-
+  const [visiblity , setVisiblity] = useState("hidden");
+  
   return (
     <>
       <div className={cn(styles.user, className)}>
         <div className={styles.avatar}>
           <img src="/images/content/avatar-big.jpg" alt="Avatar" />
         </div>
-        <div className={styles.name}>{userData?.name}</div>
+        <div className={styles.name}>{name}</div>
         <div className={styles.code}>
-          <div className={styles.username}>@{userData?.username}</div>
-          <div className={styles.prof}>{userData?.category}</div>
+          <div className={styles.username}>@{username}</div>
+          <div className={styles.prof}>{category}</div>
         </div>
         <div className={styles.info}>
-          {userData?.bio}
+          {bio}
         </div>
         <a
           className={styles.href}
-          href={userData?.portfolioUrl}
+          href={portfolioUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
           <i className={cn("bi bi-link", styles.linkicon)}></i>
-          <span>{userData?.portfolioUrl}</span>
+          <span>{portfolioUrl}</span>
         </a>
         {/* <div>
         <p className={cn(styles.hypes, 'text-center')}> <img src="images/FireSimple.png" className={styles.fire} alt="" /> 1,000,573 hypes</p> */}
@@ -58,12 +66,12 @@ const User = ({ className, item }:UerType) => {
               rel="noopener noreferrer"
               key={index}
             >
-              <Icon name={x.title} size="30" />
+              <Icon  name={x.title} size="30" />
             </a>
           ))}
         </div>
         <hr className={styles.hr} />
-        <div className={styles.note}><i className={cn("bi bi-calendar-week", styles.calendarIcon)}></i>Member since {userData?.dateOfJoining}</div>
+        <div className={styles.note}><i className={cn("bi bi-calendar-week", styles.calendarIcon)}></i>Member since {joiningDate}</div>
       </div>
     </>
   );

@@ -115,13 +115,13 @@ function Card_interest() {
     let [selected, setSelected] = useState<any[]>([])
 
 
-    const click = (id:any) => {
+    const click = ( name : any) => {
 
-        if (!selected.includes(id)) {
+        if (!selected.includes(name)) {
             if(selected.length < 5)
-                setSelected([...selected, id])
+                setSelected([...selected, name])
           } else {
-             setSelected(selected.filter((index) => index !== id))
+             setSelected(selected.filter((index) => index !== name))
           }
     }
 
@@ -145,12 +145,12 @@ function Card_interest() {
                
                 {card___content.map(data=>{
                     let sel = ''
-                    if(selected.includes(data.id)){
+                    if(selected.includes(data.name)){
                         sel = "borderBlack"
                     }
 
                     
-                    return <Button onClick={() => click(data.id)} key={data.id} id="Interestbtn" type="button" className={clsx(sel === "borderBlack" ? " borderBlack" : "buttonWhole", data.classname)}>
+                    return <Button onClick={() => click(data.name)} key={data.name} id="Interestbtn" type="button" className={clsx(sel === "borderBlack" ? " borderBlack" : "buttonWhole", data.classname)}>
                                 { (sel === 'borderBlack') && <img src={data.srcclose} alt=""/>}
                                 <img src={data.src} alt=""/>
                                 <span className={sel === "borderBlack" ? " textBold" : "textNormal"}>{data.name}</span>

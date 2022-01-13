@@ -8,8 +8,24 @@ import SocialLogins from "../../components/socialLogins/SocialLogins";
 import "./register.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
-import { setDoc, doc, getFirestore , collection , query, where, getDocs } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
+import {getDownloadURL , getStorage ,ref , uploadBytesResumable.
+} from "firebase/storage";
+import {
+  setDoc,
+  doc,
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { firebaseApp } from "../../firebaseConfig";
 import {
   useSelector,
@@ -27,7 +43,7 @@ const Register = () => {
   const [usernameTaken, setUsernameTaken] = useState(true);
 
   const [phoneCorrect, setPhoneCorrect] = useState(false);
-  const [termsAndConditon, setTermsAndConditon] = useState(false);
+  const [termsAndCondition, setTermsAndCondition] = useState(false);
   const [promotionalMails, setPromotionalMails] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -64,10 +80,9 @@ const Register = () => {
         );
         const docSnap = await getDocs(q);
         if (docSnap.size !== 0) {
-          console.log("Username Taken")
+          console.log("Username Taken");
           setUsernameTaken(true);
         } else {
-          
           setUsernameTaken(false);
         }
       } catch (error) {
@@ -75,7 +90,7 @@ const Register = () => {
       }
     }
   };
-  
+
   //check whether password match or not
 
   const checkPassword = () => {};
@@ -89,10 +104,10 @@ const Register = () => {
       const phoneValidString = "(0|91)?[7-9][0-9]{9}";
       if (e.target.value.match(phoneValidString)) {
         console.log("Phone num correct");
-        setPhoneCorrect(true)
+        setPhoneCorrect(true);
       } else {
-       console.log("Phone Num not correct");
-       setPhoneCorrect(false);
+        console.log("Phone Num not correct");
+        setPhoneCorrect(false);
       }
     }
   };
@@ -100,113 +115,187 @@ const Register = () => {
   //check for accepting terms and conditions
 
   const checkTerms = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTermsAndConditon(!termsAndConditon);
-   
+    setTermsAndCondition(!termsAndCondition);
   };
 
   // check for accepting promotional emails
   const checkPromotional = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPromotionalMails(!promotionalMails);
-    
-  }
+  };
 
   // function for handle submit
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-  
-    if(usernameTaken){
+
+    if (usernameTaken) {
       console.log("Please Use a different Username");
-    }else{
-      if(phoneCorrect === false){
+    } else {
+      if (phoneCorrect === false) {
         console.log("Incorrect Phone Number");
-      } else{
-        if(termsAndConditon === false){
-          console.log("Please Agree to terms and Condition before moving forward");
-        }else{
+      } else {
+        if (termsAndCondition === false) {
+          console.log(
+            "Please Agree to terms and Condition before moving forward"
+          );
+        } else {
           try {
+            const storage = getStorage(firebaseApp);
+            
             const userCredentials = await createUserWithEmailAndPassword(
               auth,
               data.email,
               data.password
             );
-      
+
             const user = userCredentials.user;
             const uid = user.uid;
             const current = new Date();
             const date = `${current.getDate()}/${
               current.getMonth() + 1
             }/${current.getFullYear()}`;
-      
-            const personalDetailsInfo = await setDoc(doc(db, "hyprUsers", uid), {
-              name: data.name,
-              email: data.email,
-              username: data.username,
-              profileViewsCount: 0,
-              phone: data.phone,
-              newsletterSubscription : promotionalMails,
-              category: "",
-              age: 0,
-              gender: "",
-              flagCounter: 0,
-              bio: "",
-              isNsfw: false,
-              verified: false,
-              portfolioUrl: "",
-              instagramUsername: "",
-              twitterUsername: "",
-              facebookProfileUrl: "",
-              youtubeProfileUrl: "",
-              interests: {},
-              isCreator: "Not Applied",
-              dateOfJoining: date, // todo add todays date
-              isKycDone: false,
-              nfts: {
-                purchasedNft: [],
-                createdNft: [],
-                savedNft: [
-                  "/NFT's/3", // remove this after few some time
-                ],
-              },
-              followers: [],
-              following: [],
-              followerCount: 0,
-              followingCount: 0,
-              posts: {
-                createdPosts: [],
-                savedPosts: [],
-              },
-              bankAccountDetails: {
-                accountHolderName: "",
-                accountType: "",
-                ifscCode: "",
-                accountNumber: "",
-                branchName: "",
-                accountHolderPhoneNumber: "",
-              },
-            });
-      
+
+            const profilePhotoRef = ref(
+              storage ,
+              "users/" + uid + "profile.jpg"
+            );
+
+            const uploadTask =  await uploadBytesResumable(
+              profilePhotoRef,
+              
+            )
+
+            const personalDetailsInfo = await setDoc(
+              doc(db, "hyprUsers", uid),
+              {
+                name: data.name,
+                email: data.email,
+                username: data.username,
+                profileViewsCount: 0,
+                phone: data.phone,
+                uid: uid,
+                newsletterSubscription: promotionalMails,
+                category: "",
+                age: 0,
+                gender: "",
+                flagCounter: 0,
+                profileUrl: "",
+                coverPhotoUrl: "", // add firebase storage function url here
+                profilePhotoUrl: "", // add firebase storage function here
+                bio: "",
+                isNsfw: false,
+                verified: false,
+                portfolioUrl: "",
+                instagramUsername: "",
+                twitterUsername: "",
+                facebookProfileUrl: "",
+                youtubeProfileUrl: "",
+                interests: {},
+                isCreator: "Not Applied",
+                dateOfJoining: date, // todo add todays date
+                isKycDone: false,
+                nfts: {
+                  purchasedNft: [],
+                  createdNft: [],
+                  savedNft: [
+                    "/NFT's/3", // remove this after few some time
+                  ],
+                },
+                followers: [],
+                following: [],
+                followerCount: 0,
+                followingCount: 0,
+                posts: {
+                  createdPosts: [],
+                  savedPosts: [],
+                },
+                bankAccountDetails: {
+                  accountHolderName: "",
+                  accountType: "",
+                  ifscCode: "",
+                  accountNumber: "",
+                  branchName: "",
+                  accountHolderPhoneNumber: "",
+                },
+              }
+            );
+
             console.log("Account Created : ", user);
             console.log(personalDetailsInfo);
           } catch (error) {
             console.error(error);
           }
-      
         }
-      }     
-    
+      }
     }
-    
   };
 
   //function for google sign-in
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((dataUser) => {
-        console.log(dataUser);
-      }).catch((error) => {
-        console.log(error)
+    const current = new Date();
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
+    await signInWithPopup(auth, provider)
+      .then((userCredentials) => {
+        const uid = userCredentials.user.uid;
+        const name = userCredentials.user.displayName;
+        const email = userCredentials.user.email;
+        const photoUrl = userCredentials.user.photoURL;
+        const phone = userCredentials.user.phoneNumber;
+        setDoc(doc(db, "hyprUsers", uid), {
+          name: name,
+          email: email,
+          username: data.username,
+          profileViewsCount: 0,
+          phone: phone,
+          uid: uid,
+          newsletterSubscription: promotionalMails,
+          category: "",
+          age: 0,
+          gender: "",
+          flagCounter: 0,
+          profileUrl: "",
+          coverPhotoUrl: "", // add firebase storage function url here
+          profilePhotoUrl: photoUrl, // add firebase storage function here
+          bio: "",
+          isNsfw: false,
+          verified: false,
+          portfolioUrl: "",
+          instagramUsername: "",
+          twitterUsername: "",
+          facebookProfileUrl: "",
+          youtubeProfileUrl: "",
+          interests: {},
+          isCreator: "Not Applied",
+          dateOfJoining: date, 
+          isKycDone: false,
+          nfts: {
+            purchasedNft: [],
+            createdNft: [],
+            savedNft: [],
+          },
+          followers: [],
+          following: [],
+          followerCount: 0,
+          followingCount: 0,
+          posts: {
+            createdPosts: [],
+            savedPosts: [],
+          },
+          bankAccountDetails: {
+            accountHolderName: "",
+            accountType: "",
+            ifscCode: "",
+            accountNumber: "",
+            branchName: "",
+            accountHolderPhoneNumber: "",
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -215,14 +304,12 @@ const Register = () => {
     const provider = new FacebookAuthProvider();
     await signInWithPopup(auth, provider)
       .then((dataUser) => {
-        console.log(dataUser)
+        console.log(dataUser);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
   };
-
-  
 
   return (
     <div>
@@ -279,7 +366,6 @@ const Register = () => {
                       updateState(e);
                       checkUsername(e);
                     }}
-                   
                   />
                   <InputField
                     typeOfInput="tel"
@@ -317,11 +403,15 @@ const Register = () => {
                 </div>
 
                 <div className="d-flex checkBoxTexts align-items-center">
-                  <input id="terms" name="terms" type="checkbox" 
+                  <input
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
                     onChange={(e: React.ChangeEvent<any>) => {
-                    updateState(e);
-                    checkTerms(e);
-                  }}/>
+                      updateState(e);
+                      checkTerms(e);
+                    }}
+                  />
                   <label className="ms-2" htmlFor="terms">
                     Yes, I agree to all the{" "}
                     <a className="termsLink" href="#">
@@ -330,11 +420,15 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="d-flex checkBoxTexts align-items-center">
-                  <input name="newsletter" id="newsletter" type="checkbox" 
+                  <input
+                    name="newsletter"
+                    id="newsletter"
+                    type="checkbox"
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                       checkPromotional(e);
-                    }} />
+                    }}
+                  />
                   <label className="ms-2" htmlFor="newsletter">
                     I would like to receive promotional emails from HyprClub
                   </label>
