@@ -5,12 +5,13 @@ import styles from './gradientBorderBtn.module.css';
 interface BtnText extends ButtonHTMLAttributes<HTMLButtonElement> {
     text: string
     onClick?: any
+    className?: string
 }
 
-const GradientBorder = ({text, onClick}:BtnText) => {
+const GradientBorder = ({text, onClick, className}:BtnText) => {
     return (
-        <div>
-            <button onClick={onClick} className={styles.gradientBorder}><span className={styles.btnName}>{text}</span></button>
+        <div className={className}>
+            <button onClick={onClick} className={(styles.gradientBorder)}><span className={styles.btnName}>{text}</span></button>
         </div>
     )
 }

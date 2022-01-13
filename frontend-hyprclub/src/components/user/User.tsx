@@ -5,6 +5,9 @@ import Icon from "../Icon";
 import GradientBorder from "../gradientBorderBtn/GradientBorder";
 import { useSelector ,RootStateOrAny} from "react-redux";
 
+import clsx from "clsx";
+import { X } from "phosphor-react";
+import { Form } from "react-bootstrap";
 interface Item {
     title: string,
     url : string
@@ -20,11 +23,16 @@ interface UserType{
     bio : any,
     joiningDate : any 
 }
+const closeModal = () => {
+  console.log("Hello there")
+}
 
 const User = ({ className, item ,name , username ,category , portfolioUrl,bio,joiningDate }:UserType) => {
   const userData = useSelector((state : RootStateOrAny) => state.userData);
   const [visiblity , setVisiblity] = useState("hidden");
-  
+  const [thanksValue, setThanksValue] = useState('100.00');
+
+
   return (
     <>
       <div className={cn(styles.user, className)}>
@@ -44,6 +52,7 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
           href={portfolioUrl}
           target="_blank"
           rel="noopener noreferrer"
+          
         >
           <i className={cn("bi bi-link", styles.linkicon)}></i>
           <span>{portfolioUrl}</span>
@@ -57,6 +66,7 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
         <GradientBorder text='View Dashboard'/>
         </div> */}
         <div className={styles.gradbtn}><GradientBorder text='View Dashboard'/></div>
+        <div className={styles.gradbtn}><GradientBorder text='Say Thanks'/></div>
         <div className={cn(styles.socials, 'my-3')}>
           {item.map((x, index) => (
             <a
@@ -73,6 +83,30 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
         <hr className={styles.hr} />
         <div className={styles.note}><i className={cn("bi bi-calendar-week", styles.calendarIcon)}></i>Member since {joiningDate}</div>
       </div>
+
+
+      {/* MODAL */}
+
+      {/* <div className={styles.modalDiv}>
+            <div className={styles.modal}>
+              <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
+                <div className={styles.thankYouDiv}>
+                    <h2 className={styles.gradientTitle}>Say Thanks to {name}</h2>
+                    <p className={styles.lastDesc}>We will reach out to you soon! Be sure to check your registered email to activate your creator account at HyprClub. </p>
+
+                    <p className={styles.addContribution}>Add a Contribution</p>
+                </div>
+                <div className={clsx("d-flex align-items-center", styles.inputDIV)}>
+                  <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
+                    <input onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
+                    <span className={styles.INR}>INR</span>
+                  </div>
+                    <div className={styles.thanksBtn}>
+                     <GradientBorder text="Say Thanks"/>
+                    </div>
+                </div>
+            </div>
+      </div> */}
     </>
   );
 };
