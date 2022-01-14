@@ -543,6 +543,7 @@ line-height: 24px;
   background: linear-gradient(90deg, #ed4d6b,#8d00fd, #e70d8c, #f6a44c);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  letter-spacing: -0.1rem;
 }
 .getYourSocialGame {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
@@ -577,8 +578,9 @@ line-height: 24px;
 .getSocialHeader {
   margin-top: 46px;
   font-weight: bold;
-  font-size: 64px;
+  font-size: 66px;
   line-height: 64px;
+  letter-spacing: -0.1rem;
   /* padding-left: 20vw; */
 }
 
