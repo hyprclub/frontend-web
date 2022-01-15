@@ -16,16 +16,16 @@ interface UerType{
     item: Item[]
 }
 
-const closeModal = () => {
-  console.log("Hello there")
-}
 
 
 const User = ({ className, item }:UerType) => {
 
 const [thanksValue, setThanksValue] = useState('100.00');
+const [showModal, setShowModal] = useState(false);
 
-
+const closeModal = () => {
+  setShowModal(false)
+}
   return (
     <>
       <div className={cn(styles.user, className)}>
@@ -38,8 +38,7 @@ const [thanksValue, setThanksValue] = useState('100.00');
           <div className={styles.prof}>Digital Artist</div>
         </div>
         <div className={styles.info}>
-          A wholesome farm owner in Montana. Upcoming gallery solo show in
-          Germany
+        she/her | 19y old artist based in Queens! USC’23
         </div>
         <a
           className={styles.href}
@@ -49,15 +48,15 @@ const [thanksValue, setThanksValue] = useState('100.00');
           
         >
           <i className={cn("bi bi-link", styles.linkicon)}></i>
-          <span>https://ui8.net</span>
+          <span>www.lorem.net</span>
         </a>
 
-        <p className={cn(styles.hypes, 'text-center')}> <img src="images/FireSimple.png" className={styles.fire} alt="" /> 1,000,573 hypes</p>
-        <div className={cn(styles.followersAndFollowiing, 'd-flex')}>
+        {/* <p className={cn(styles.hypes, 'text-center')}> <img src="images/FireSimple.png" className={styles.fire} alt="" /> 1,000,573 hypes</p> */}
+        {/* <div className={cn(styles.followersAndFollowiing, 'd-flex')}>
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
-        </div>
-        <div className={styles.gradbtn}><GradientBorder text='Say Thanks'/></div>
+        </div> */}
+        <div className={styles.gradbtn}><GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/></div>
         <div className={cn(styles.socials, 'my-3')}>
           {item.map((x, index) => (
             <a
@@ -78,7 +77,7 @@ const [thanksValue, setThanksValue] = useState('100.00');
 
       {/* MODAL */}
 
-      <div className={styles.modalDiv}>
+      <div className={clsx(styles.modalDiv, showModal ? styles.show: styles.hide)}>
             <div className={styles.modal}>
               <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
                 <div className={styles.thankYouDiv}>
