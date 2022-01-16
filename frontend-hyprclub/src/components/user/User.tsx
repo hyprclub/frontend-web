@@ -86,7 +86,7 @@ const closeModal = () => {
 
                     <p className={styles.addContribution}>Add a Contribution</p>
                 </div>
-                <div className={clsx("d-flex align-items-center", styles.inputDIV)}>
+                <div className={clsx("d-flex align-items-baseline", styles.inputDIV)}>
                   <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
                     <input onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
                     <span className={styles.INR}>INR</span>

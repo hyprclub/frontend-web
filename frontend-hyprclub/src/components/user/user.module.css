@@ -248,10 +248,10 @@
   
   .text {
     margin-right: auto; }
-  
+/*   
 .gradbtn{
   margin-right: 2vw;
-}
+} */
 
 
 
@@ -347,9 +347,9 @@ line-height: 56px;
   flex: 1;
 } */
 
-/* .inputAndINR{
+.inputAndINR{
   flex: 1;
-} */
+}
 
 .sayThanksBTN{
 

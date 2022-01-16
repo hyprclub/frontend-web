@@ -30,6 +30,12 @@ label {
     height: 40px;
 }
 
+.form-control:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+}
+
 @media only screen and (max-width: 768px) {
     .halfWidth{
         width: 100% !important;
