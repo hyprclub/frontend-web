@@ -74,7 +74,9 @@ const nav = [
               to="/upload-variants"
             >
             </Link>
+            <Link to="/uploadnft">
             <button className={styles.up}> <span className={styles.uptxt}>Upload</span></button>
+            </Link>
           </div>
           <User className={styles.user} />
           <button
