@@ -31,7 +31,7 @@ const Settings = () => {
             <Accordion>
               <div className={styles.heading}>Settings</div>
               <Accordion.Item className={styles.change} eventKey="0">
-                <Accordion.Header className={styles.but}>Edit Profile</Accordion.Header>
+                <Accordion.Header>Edit Profile</Accordion.Header>
                 <Accordion.Body>
                   <EditProfile></EditProfile>
                 </Accordion.Body>

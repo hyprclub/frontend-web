@@ -28,6 +28,7 @@
     text-decoration: none !important;
     outline: none !important;
     box-shadow: none !important;
+    color: black !important;
 }
 .showSection1{
     display: none;
@@ -38,6 +39,9 @@
     border-radius: 20px;
     z-index: 0;
 }
+
+
+
 .heading{
     font-weight: bold;
     font-size: 32px;
