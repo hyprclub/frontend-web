@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import styles from "./user.module.css";
 import Icon from "../Icon";
 import GradientBorder from "../gradientBorderBtn/GradientBorder";
 import clsx from "clsx";
 import { X } from "phosphor-react";
-import { Form } from "react-bootstrap";
 interface Item {
     title: string,
     url : string
@@ -26,6 +25,16 @@ const [showModal, setShowModal] = useState(false);
 const closeModal = () => {
   setShowModal(false)
 }
+
+useEffect(() => {
+ if(showModal){
+  document.body.style.overflow = 'hidden';
+ } 
+ else{
+  document.body.style.overflow = 'unset';
+ }
+}, [showModal])
+
   return (
     <>
       <div className={cn(styles.user, className)}>
@@ -77,8 +86,8 @@ const closeModal = () => {
 
       {/* MODAL */}
 
-      <div className={clsx(styles.modalDiv, showModal ? styles.show: styles.hide)}>
-            <div className={styles.modal}>
+      <div onClick={closeModal} className={clsx(styles.modalDiv, showModal ? styles.show: styles.hide)}>
+            <div onClick={e => e.stopPropagation()} className={styles.modal}>
               <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
                 <div className={styles.thankYouDiv}>
                     <h2 className={styles.gradientTitle}>Say Thanks to Lorem!</h2>

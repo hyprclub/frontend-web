@@ -11,21 +11,28 @@
     background: #FFFFFF;
     width: 70vw;
     position: absolute;
-    top: 5%;
+    top: 50%;
     left: 50%;
     border-radius: 20px;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -50%);
     padding: 20px;
-    /* overflow-y: initial !important */
+    overflow-y: initial !important;
     overflow: hidden;
+    max-height: 90vh;
+    z-index: 2222;
 
 }
 
 
-.modalContent{
+.modal::-webkit-scrollbar {
+    display: none;
+  }
+
+
+/* .modalContent{
     overflow-y: auto;
 
-}
+} */
 
 .cross{
     text-align: right;
@@ -107,6 +114,7 @@ line-height: 24px;
     padding: 0 13vw;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .comingSoon{
@@ -185,6 +193,7 @@ line-height: 24px;
 
 .modal2Btn{
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .select{
@@ -194,6 +203,12 @@ line-height: 24px;
     font-weight: 500 !important;
 font-size: 14px !important;
 cursor: pointer;
+}
+
+@media(max-width:768px){
+    .savingsAndCurrent{
+        flex-direction: column;
+    } 
 }
 
 
