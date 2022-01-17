@@ -10,6 +10,11 @@
   /* background-size: cover; */
   /* background-size: 1300px 500px; */
 }
+
+.mainDiv{
+  background-image: url('/public/images/bg.png');
+  /* z-index: -1; */
+}
 .hypr {
   margin-top: 70px !important;
   height: 36px !important;
@@ -192,13 +197,11 @@
 }
 
 .creativity {
-  /* background: #d36d6d; */
+  background-color: #FEFEFE;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  background: var(--bg-2);
-  border-radius: 25px;
+  /* background: var(--bg-2); */
   transition: all 0.2s linear;
-  border-radius: 22px;
   transition: all 0.2s linear 0s;
   width: 75%;
   height: 600px;
@@ -388,6 +391,7 @@ line-height: 24px;
 /* nft */
 
 .buyNFT {
+  background-color: #FEFEFE;
   margin-top: 20vh;
   /* margin-bottom: 20vh; */
   /* background: chocolate; */
@@ -546,6 +550,8 @@ line-height: 24px;
   letter-spacing: -0.1rem;
 }
 .getYourSocialGame {
+  background-color: #FEFEFE;
+
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   padding: 20px 60px 20px 0;
