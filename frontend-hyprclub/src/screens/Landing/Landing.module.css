@@ -216,6 +216,8 @@
   .creativity{
     padding-left: 5vw;
     padding-right: 5vw;
+  border-radius: 35px;
+
   }
   .desc{
     font-size: 16.5px !important;
@@ -348,7 +350,7 @@ line-height: 24px;
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
 
   .desktopcards{
     display: none;
@@ -412,6 +414,7 @@ line-height: 24px;
   .buyNFT{
   padding-left: 6vw;
   padding-right: 6vw;
+  border-radius: 35px;
   }
   .forthefirsttime{
     font-size: 18px !important;
@@ -480,7 +483,7 @@ line-height: 24px;
   width: 626px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   /* .forthefirsttime{
     font-size: 20px;
   } */
@@ -643,8 +646,10 @@ line-height: 24px;
   font-weight: bold !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .getYourSocialGame {
+  border-radius: 35px;
+
     width: auto;
     flex-direction: column;
     padding: 0;
