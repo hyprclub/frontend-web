@@ -13,6 +13,7 @@ import { Avatar } from "@mui/material";
 import ReadMore from "./Readmore/Readmore";
 import Polygon from "./Poly/Polygon";
 import { style } from "@mui/system";
+import ItemsCarousel from "./ItemsCarousel/ItemsCarousel";
 
 
 const navLinks = ["Info", "Bids"];
@@ -118,7 +119,7 @@ const NFTS = () => {
                     </div>
                 </div>
                 <p className={styles.more}>Discover NFTs Related to Edward Scissorhands</p>
-                <Nft />
+                <ItemsCarousel />
             </div>
         </>
     );

@@ -2,7 +2,7 @@ import { ArrowLeft, ArrowRight } from "phosphor-react";
 import React from "react";
 import Slider from "react-slick";
 import styles from "./Collection.module.css";
-
+ 
 
 const Collection = ({ item }: any) => {
     const NextArrow = ({ onClick }: any) => {
@@ -64,7 +64,7 @@ const Collection = ({ item }: any) => {
                             <div className={styles.body}>
                                 <span className={styles.Heading}>{x.title}</span>
                             </div>
-                        </div>
+                        </div>                        
                     ))}
                 </Slider>
             </div>

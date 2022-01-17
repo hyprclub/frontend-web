@@ -7,12 +7,6 @@
     outline: none;
 }
 
-:global(.dark-mode) .options {
-    background: #23262F;
-}
-
-
-
 #star:hover  {
     fill: #EF466F;
     color:#ff0040;
