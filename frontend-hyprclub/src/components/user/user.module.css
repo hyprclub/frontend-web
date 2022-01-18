@@ -373,7 +373,7 @@ line-height: 56px;
 .modal input:focus{
   outline: none !important;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 994px) {
   .hypes {
     display: none; }
   .followers{
@@ -392,7 +392,7 @@ line-height: 56px;
 }
 
 .input{
-  width: 80%;
+  width: 80% !important;
 }
 
 .inputAndINR{
@@ -412,3 +412,8 @@ line-height: 56px;
 }
 
 
+@media only screen and (max-width: 1358px){
+  .input{
+    width: 44%;
+  }
+}

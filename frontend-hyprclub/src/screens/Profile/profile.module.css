@@ -17,14 +17,28 @@
   @media only screen and (max-width: 1023px) {
     .head {
       height: 260px;
-      padding-bottom: 64px; } }
+      padding-bottom: 64px; 
+    } 
+
+  }
   @media only screen and (max-width: 767px) {
-    .head {
-      height: 230px;
-      padding-bottom: 56px; }
-    .btns{
+    /* .head {
+      height: 260px;
+      padding-bottom: 56px; } */
+    /* .btns{
       margin-bottom: 13vh;
-    } }
+    }  */
+  }
+
+  @media only screen and (max-width: 991px) {
+    .btns{
+      position: absolute;
+      top: 10%;
+      right: 5%;
+    } 
+  }
+
+
   .head .container {
     display: flex;
     justify-content: flex-end; }
@@ -48,10 +62,7 @@
     @media only screen and (max-width: 767px) {
       .btns .button {
         flex-grow: 1;
-        padding: 0 10px; }
-      .btns{
-        display: none;
-      } }
+        padding: 0 10px; } }
     .btns .button svg {
       fill: #FCFCFD; }
     .btns .button:not(:last-child) {
