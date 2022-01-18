@@ -123,9 +123,6 @@ function App() {
       
       <div className="App">
         <header className="App-header">
-          
-          {/* <UploadNft></UploadNft> */}
-          
           <Routes>
             <Route path='/nft' element={<NFTS></NFTS>}/>
             <Route path='/login' element={<Login/>}/>
@@ -139,6 +136,7 @@ function App() {
             <Route path='/settings' element={<Settings/>}/>
             <Route path ='/:username' element= {<Profile/>}/>
             <Route path='/settings/:test' element={<Settings/>}/>
+            <Route path='/uploadnft' element={<UploadNft/>}/>
             <Route path='/' element={<Landing/>}></Route>
           </Routes>
           

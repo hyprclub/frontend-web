@@ -28,6 +28,7 @@
     text-decoration: none !important;
     outline: none !important;
     box-shadow: none !important;
+    color: black !important;
 }
 .showSection1{
     display: none;
@@ -38,6 +39,9 @@
     border-radius: 20px;
     z-index: 0;
 }
+
+
+
 .heading{
     font-weight: bold;
     font-size: 32px;
@@ -53,5 +57,26 @@
     }
     .showSection1{
         display:block;
+    }
+    .mainDiv{
+        width: 92%;
+        margin: 0 !important;
+        height: 100%;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width:820px) and (max-width:820px){
+    .mainDiv{
+        width: 95%;
+        margin: 0 !important;
+        height: 100%;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
     }
 }

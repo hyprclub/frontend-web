@@ -6,14 +6,13 @@ import styles from './UploadNft.module.css';
 
 function UploadNft() {
     return (
-        <>
-        <Header_login />
-        <div className={styles.body}>
-            <UploadNFT/>
-            {/* <PreviewNFT/> */}
+        <>  
+            <Header_login />
+            <div className={styles.body}>
+                <UploadNFT />
+                {/* <PreviewNFT/> */}
+            </div>
 
-        </div>
-            
         </>
     )
 }

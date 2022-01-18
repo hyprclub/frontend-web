@@ -10,14 +10,6 @@
     border-bottom: 1px solid #E6E8EC;
 }
 
-:global(.dark-mode) .item {
-    border-color: #353945;
-}
-
-/* .item:not(:last-child) {
-    margin-bottom: 16px;
-} */
-
 #avatar {
     position: relative;
     flex-shrink: 0;

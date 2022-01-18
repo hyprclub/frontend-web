@@ -7,9 +7,16 @@
     border-radius: 20px;
     background: #fff;
     padding: 0 15px;
-    z-index: -2;
+    /* z-index: -2; */
 }
     @media only screen and (max-width: 767px) {
+      .user {
+        margin-top: 3vh;
+        } 
+    }
+
+
+    @media only screen and (max-width: 1024px) {
       .user {
         margin-top: 3vh;
         } 
@@ -21,6 +28,7 @@
     height: 50%; 
     position: absolute;
     top: -15vh;
+    text-align: center;
   }
     .avatar img {
       width: 190px;
@@ -28,9 +36,9 @@
       border-radius: 50%; 
     }
     @media only screen and (max-width: 767px) {
-      .avatar {
+      /* .avatar {
         margin-left: 6vw;
-        } 
+        }  */
     }
   
   /* .body {
@@ -115,10 +123,13 @@
     }
 
     .href{
-        color: black;
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
+      color: black;
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 30px;
     }
 
     .linkicon{
@@ -199,7 +210,7 @@
       border-radius: 50%; }
   
   .info {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.66667;
     color: black; 
     text-align: center;
@@ -245,10 +256,10 @@
   
   .text {
     margin-right: auto; }
-  
+/*   
 .gradbtn{
   margin-right: 2vw;
-}
+} */
 
 
 
@@ -344,9 +355,9 @@ line-height: 56px;
   flex: 1;
 } */
 
-/* .inputAndINR{
+.inputAndINR{
   flex: 1;
-} */
+}
 
 .sayThanksBTN{
 
@@ -362,7 +373,7 @@ line-height: 56px;
 .modal input:focus{
   outline: none !important;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 994px) {
   .hypes {
     display: none; }
   .followers{
@@ -381,7 +392,7 @@ line-height: 56px;
 }
 
 .input{
-  width: 80%;
+  width: 80% !important;
 }
 
 .inputAndINR{
@@ -401,3 +412,8 @@ line-height: 56px;
 }
 
 
+@media only screen and (max-width: 1358px){
+  .input{
+    width: 44%;
+  }
+}

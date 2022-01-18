@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { X } from 'phosphor-react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { MODAL_OPEN_SUCCESS } from '../../../redux/constants/profileModals';
+import { MODAL_CLOSE_SUCCESS, MODAL_OPEN_SUCCESS } from '../../../redux/constants/profileModals';
 import { RootStore } from '../../../store';
 import GradientBorder from '../../gradientBorderBtn/GradientBorder';
 import styles from './accsetting.module.css';
@@ -14,6 +14,20 @@ const AccSettings = () => {
 
     const upgradeToCreator = () => {
         dispatch ({type: MODAL_OPEN_SUCCESS})
+    }
+
+
+    useEffect(() => {
+        if(clicked){
+         document.body.style.overflow = 'hidden';
+        } 
+        else{
+         document.body.style.overflow = 'unset';
+        }
+       }, [clicked])
+
+       const closeModal = () => {
+        dispatch ({type: MODAL_CLOSE_SUCCESS})
     }
 
     return(
@@ -51,12 +65,13 @@ const AccSettings = () => {
                         <br />
                         Help us make HyprClub a safe space for users of all ages by flagging your account as NSFW. If you fail to flag your account and get reported by a user, HyprClub has full rights to suspend your account. </p>
                         <div className={clsx('d-flex align-items-center')}>
-                            <input className={styles.checkboxInput} id='terms' name='terms' type="checkbox" /><label className={clsx('ms-2', styles.checkbox)} htmlFor="terms">Flag my content as NSFW</label>
+                            <input className={styles.checkboxInput} id="terms" name='terms' type="checkbox" />
+                            <label className={clsx('ms-2', styles.checkbox)} htmlFor="terms">Flag my content as NSFW</label>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={clsx(styles.modalDiv, clicked? styles.show: styles.hide)}>
+            <div onClick={closeModal} className={clsx(styles.modalDiv, clicked? styles.show: styles.hide)}>
                 <Modal/>
             </div>
          </>

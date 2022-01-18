@@ -30,8 +30,10 @@
     line-height: 50px;
     color: #000000;
     align-self: center;
+    margin-bottom: 19px;
 }
 
+/* Upload Nft Styling */
 .Upload {
     display: flex;
     flex-direction: column;
@@ -102,6 +104,7 @@
     color: #777E91;
 }
 
+/* Input fields styling */
 .ItemName {
     width: 100%;
     display: flex;
@@ -184,7 +187,7 @@
 }
 
 .Input:hover, .Input_1:hover, .Input_Description:hover {
-    border: 2px solid #d2d2d2;
+    border: 2px solid #d2d2d2 !important;
 }
 
 .note {
@@ -196,6 +199,8 @@
     color: #959595;
     margin-bottom: 1px;
 }
+
+/* Perks styling */
 
 .Perks {
     width: 100%;
@@ -222,8 +227,16 @@
     gap: 5px;
 }
 
+.Heading_transfer {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #959595;
+}
+
 .PerkBody {
-    margin-top:5px;
+    margin-top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -243,8 +256,9 @@
     cursor: pointer;
     border: 1px solid #ebebeb;
 }
-.Plus:hover{
-    box-shadow:0 .5px .5px #aaa8a8;
+
+.Plus:hover {
+    box-shadow: 0 .5px .5px #aaa8a8;
 }
 
 .AddPerk {
@@ -342,6 +356,7 @@
 }
 
 .Previewbtn {
+    width: 123px;
     border: none;
     outline: none;
     background: transparent;
@@ -356,11 +371,66 @@
     color: #494949;
 }
 
+/* Responsive */
+@media only screen and (max-width: 1260px) {
+    .wrapper {
+        padding: 60px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .wrapper {
+        padding: 30px;
+    }
+}
+
 @media only screen and (max-width: 1025px) {
-    .Bottom {
+    .Item_stck_prc {
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .ItemCred {
         width: 100%;
     }
-    .wrapper{
-        padding:30px
+}
+
+@media only screen and (max-width:900px) {
+    .wrapper {
+        padding: 45px;
+    }
+}
+
+
+@media only screen and (max-width:620px) {
+    .wrapper {
+        padding: 60px 20px
+    }
+}
+
+
+@media only screen and (max-width:360px) {
+    .wrapper {
+        padding: 60px 10px
+    }
+
+    .btns {
+        width: 100%;
+        gap: 20px;
+    }
+
+    .Previewbtn {
+        width: 90px;
+    }
+
+    .btnText {
+        font-size: 14px;
+    }
+
+    .Gradbtn {
+        width: 90px !important;
+        font-size: 14px !important;
+        height: 30px !important;
+
     }
 }

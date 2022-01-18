@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import cn from "classnames";
 import styles from "./UploadNFT.module.css";
 import { FileUploader } from "react-drag-drop-files";
 import ToggleBtn from "./ToggleBtn/ToggleBtn";
 import Collection from "./Collection_Categories/Collection";
-import { CaretDown, FileArrowUp, Plus } from "phosphor-react";
+import {FileArrowUp, Plus } from "phosphor-react";
 import GradBorder from "../../../screens/NFTs/GradBorder/GradBorder";
 import { Form } from "react-bootstrap";
-
 
 
 const fileTypes = ["GIF", "PNG", "WEBP", "MP4", "MP3"];
@@ -81,7 +79,7 @@ const UploadNFT = () => {
                         <div className={styles.PerkHead}>
                             <span className={styles.Heading}>ADD Perk</span>
                             <div className={styles.transferable}>
-                                <span className={styles.Heading}>Make Transferable</span>
+                                <span className={styles.Heading_transfer}>Make Transferable</span>
                                 <ToggleBtn />
                             </div>
                         </div>
@@ -95,9 +93,9 @@ const UploadNFT = () => {
                     <div className={styles.dropdown}>
                         <span className={styles.Heading}>Category</span>
                         <Form.Select aria-label="Default select example" className={styles.drop}>
-                           {Categories.map((x,index)=>(
-                               <option key={index}>{x} </option>
-                           ))}                            
+                            {Categories.map((x, index) => (
+                                <option key={index}>{x} </option>
+                            ))}
                         </Form.Select>
                     </div>
                 </div>

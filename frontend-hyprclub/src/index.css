@@ -26,3 +26,7 @@ body{
 .accordion-body{
     padding: 0 !important;
 }
+
+a{
+    color: inherit !important;
+}

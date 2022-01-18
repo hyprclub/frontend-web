@@ -32,8 +32,13 @@
 }
 
 .textarea{
-    border-radius: 10px;
-    margin: 10px 0px;
+    border-radius: 12px !important;
+    margin: 10px 0px !important;
+    border: 2px solid #E6E8EC !important;
+    font-size: 14px !important;
+    color: #777E91 !important;
+
+
 }
 
 .helpCenter{

@@ -21,8 +21,10 @@ const Landing = () => {
   };
   return (
     <>
+      <div className={styles.mainDiv}>
       <Header />
       {/* style={{ backgroundImage: `url(${BG_STARS})` }} */}
+
       <div className={styles.part1}>
         <div className={styles.hypr}>
           <span>
@@ -249,6 +251,7 @@ const Landing = () => {
             </Button>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

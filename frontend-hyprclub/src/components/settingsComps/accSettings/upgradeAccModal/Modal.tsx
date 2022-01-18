@@ -20,7 +20,7 @@ const Modal = () => {
 
     return (
         <>
-            <div className={styles.modal}>
+            <div onClick={e=> e.stopPropagation()} className={styles.modal}>
                 <div className={clsx('container', styles.modalContent)}>
                     <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
                     <div className={clsx(styles.firstModal, modals.modal1 ? styles.show : styles.hide)}>
@@ -91,15 +91,15 @@ const Modal = () => {
                                 <InputField className='mb-3' garyBold lableText='ACCOUNT NUMBER' typeOfInput='number' placeholder='eg. 1234567890'/>
                                 <InputField  className='mb-3' garyBold lableText='IFSC CODE' typeOfInput='text' placeholder='eg. HYPR09879854'/>
                                 
-                                <div className='d-flex mt-3 align-items-center'>
+                                <div className={clsx('d-flex align-items-center', styles.savingsAndCurrent)}>
                                     <div className={clsx(styles.selectDiv, 'halfWidth')}>
                                         <label className="grayBold">ACCOUNT TYPE</label>
-                                        <Form.Select className={clsx( styles.select, 'mb-1 ')} aria-label="Default select example">
+                                        <Form.Select className={clsx( styles.select, 'mb-3')} aria-label="Default select example">
                                             <option value="1">SAVINGS</option>
                                             <option value="2">CURRENT</option>
                                         </Form.Select>
                                     </div>
-                                    <InputField half garyBold lableText='PHONE NUMBER' typeOfInput='number' placeholder='+91 1234567890'/>
+                                    <InputField className='mb-3' half garyBold lableText='PHONE NUMBER' typeOfInput='number' placeholder='+91 1234567890'/>
                                 </div>
                             </div>
 

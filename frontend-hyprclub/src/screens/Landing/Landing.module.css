@@ -10,6 +10,13 @@
   /* background-size: cover; */
   /* background-size: 1300px 500px; */
 }
+
+.mainDiv{
+  background-image: url('/public/images/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* z-index: -1; */
+}
 .hypr {
   margin-top: 70px !important;
   height: 36px !important;
@@ -192,13 +199,11 @@
 }
 
 .creativity {
-  /* background: #d36d6d; */
+  background-color: #FEFEFE;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  background: var(--bg-2);
-  border-radius: 25px;
+  /* background: var(--bg-2); */
   transition: all 0.2s linear;
-  border-radius: 22px;
   transition: all 0.2s linear 0s;
   width: 75%;
   height: 600px;
@@ -213,6 +218,8 @@
   .creativity{
     padding-left: 5vw;
     padding-right: 5vw;
+  border-radius: 35px;
+
   }
   .desc{
     font-size: 16.5px !important;
@@ -345,7 +352,7 @@ line-height: 24px;
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
 
   .desktopcards{
     display: none;
@@ -388,6 +395,7 @@ line-height: 24px;
 /* nft */
 
 .buyNFT {
+  background-color: #FEFEFE;
   margin-top: 20vh;
   /* margin-bottom: 20vh; */
   /* background: chocolate; */
@@ -408,6 +416,7 @@ line-height: 24px;
   .buyNFT{
   padding-left: 6vw;
   padding-right: 6vw;
+  border-radius: 35px;
   }
   .forthefirsttime{
     font-size: 18px !important;
@@ -476,7 +485,7 @@ line-height: 24px;
   width: 626px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   /* .forthefirsttime{
     font-size: 20px;
   } */
@@ -543,8 +552,11 @@ line-height: 24px;
   background: linear-gradient(90deg, #ed4d6b,#8d00fd, #e70d8c, #f6a44c);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  letter-spacing: -0.1rem;
 }
 .getYourSocialGame {
+  background-color: #FEFEFE;
+
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   padding: 20px 60px 20px 0;
@@ -577,8 +589,9 @@ line-height: 24px;
 .getSocialHeader {
   margin-top: 46px;
   font-weight: bold;
-  font-size: 64px;
+  font-size: 66px;
   line-height: 64px;
+  letter-spacing: -0.1rem;
   /* padding-left: 20vw; */
 }
 
@@ -635,8 +648,10 @@ line-height: 24px;
   font-weight: bold !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .getYourSocialGame {
+  border-radius: 35px;
+
     width: auto;
     flex-direction: column;
     padding: 0;

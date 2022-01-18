@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import styles from "./user.module.css";
 import Icon from "../Icon";
@@ -7,7 +7,6 @@ import { useSelector ,RootStateOrAny} from "react-redux";
 
 import clsx from "clsx";
 import { X } from "phosphor-react";
-import { Form } from "react-bootstrap";
 interface Item {
     title: string,
     url : string
@@ -31,7 +30,20 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
   const userData = useSelector((state : RootStateOrAny) => state.userData);
   const [visiblity , setVisiblity] = useState("hidden");
   const [thanksValue, setThanksValue] = useState('100.00');
+  const [showModal, setShowModal] = useState(false);
 
+const closeModal = () => {
+  setShowModal(false)
+}
+
+useEffect(() => {
+ if(showModal){
+  document.body.style.overflow = 'hidden';
+ } 
+ else{
+  document.body.style.overflow = 'unset';
+ }
+}, [showModal])
 
   return (
     <>
@@ -87,8 +99,8 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
 
       {/* MODAL */}
 
-      {/* <div className={styles.modalDiv}>
-            <div className={styles.modal}>
+      <div onClick={closeModal} className={clsx(styles.modalDiv, showModal ? styles.show: styles.hide)}>
+            <div onClick={e => e.stopPropagation()} className={styles.modal}>
               <p className={styles.cross}><X onClick={closeModal} size={30} weight='bold' /></p>
                 <div className={styles.thankYouDiv}>
                     <h2 className={styles.gradientTitle}>Say Thanks to {name}</h2>
@@ -96,7 +108,7 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
 
                     <p className={styles.addContribution}>Add a Contribution</p>
                 </div>
-                <div className={clsx("d-flex align-items-center", styles.inputDIV)}>
+                <div className={clsx("d-flex align-items-baseline", styles.inputDIV)}>
                   <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
                     <input onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
                     <span className={styles.INR}>INR</span>
@@ -106,7 +118,7 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
                     </div>
                 </div>
             </div>
-      </div> */}
+      </div> 
     </>
   );
 };
