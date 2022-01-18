@@ -24,7 +24,8 @@ import {
   where,
   getDocs,
   doc,
-  updateDoc
+  updateDoc,
+  setDoc
 } from "firebase/firestore";
 import { profile } from "console";
 // import { isStepDivisible } from "react-range/lib/utils";
@@ -180,10 +181,12 @@ const navLinks = ["NFT"];
 // ];
 
 const Profile = () => {
-  // props to be passed here
   const { username } = useParams();
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
   const [profileData , setProfileData] = useState<any | null>({});
-  const [docID, setDocID] = useState("");
+  const [docId, setDocId] = useState("");
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
@@ -194,26 +197,34 @@ const Profile = () => {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      setDocID(doc.id);
+      setDocId(doc.id);
       setProfileData(doc.data());
     });
   };
-  const ProfileCount = async () => {
+  const ProfileViewCount = async () => {
     const db = getFirestore(firebaseApp);
-    const ref = doc(db, "hyprUsers", docID);
-    await updateDoc(ref, {
-      profileViewsCount: profileData?.profileViewsCount + 1
-    })
-      .then(() => {
-        console.log("count++");
+
+    const ref = doc(db, "hyprUsers", docId);
+    if(docId === uid){
+      //do nothing
+    }
+    else{
+      await updateDoc(ref, {
+        profileViewsCount: profileData?.profileViewsCount + 1
       })
-      .catch((error) => {
-        console.log(error);
-      })
+        .then(() => {
+          console.log("++");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    
   };
-  ProfileCount();
+  ProfileViewCount();
   useEffect(() => {
     fetchData(username);
+  
 
   }, [username]);
 
@@ -228,7 +239,7 @@ const Profile = () => {
     },
     {
       title: "facebook",
-      url: profileData?.facebookUrl,
+      url: profileData?.facebookProfileUrl,
     },
   ];
   const [activeIndex, setActiveIndex] = useState(0);
@@ -291,7 +302,6 @@ const Profile = () => {
               portfolioUrl={profileData?.portfolioUrl}
               bio = {profileData?.bio}
               joiningDate={profileData?.dateOfJoining}
-
             />
             <div className={styles.wrapper}>
               {/* <div className={styles.nav}>
