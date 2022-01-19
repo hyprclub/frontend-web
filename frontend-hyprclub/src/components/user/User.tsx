@@ -35,13 +35,15 @@ useEffect(() => {
  }
 }, [showModal])
 
+const [creator, setCreator] = useState(true);
+
   return (
     <>
       <div className={cn(styles.user, className)}>
         <div className={styles.avatar}>
           <img src="/images/content/avatar-big.jpg" alt="Avatar" />
         </div>
-        <div className={styles.name}>Lorem Ipsum</div>
+        <div className={creator ? styles.creatorName : styles.nonCreatorName}>Lorem Ipsum</div>
         <div className={styles.code}>
           <div className={styles.username}>@loremipsum_</div>
           <div className={styles.prof}>Digital Artist</div>

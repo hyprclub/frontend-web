@@ -11,6 +11,7 @@ interface Input extends InputHTMLAttributes<HTMLInputElement>{
     placeholder?:string
     onChange?: any
     className? : any
+    required?: boolean
 }
 
 const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange , className}: Input) => {

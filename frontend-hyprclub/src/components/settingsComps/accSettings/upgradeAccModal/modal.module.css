@@ -35,12 +35,21 @@
 } */
 
 .cross{
+    /* text-align: right; */
+    padding: 25px 0 10px 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crossLast, .crossFirst{
     text-align: right;
     padding: 25px 0 10px 0;
     margin-bottom: 0;
     cursor: pointer;
 }
-
 
 
 

@@ -25,7 +25,7 @@ const Login = () => {
                                     <InputField onChange={()=> console.log('ok')} typeOfInput='text' half={false} lableText={"Email Address/ Username"}/>
                                     <InputField typeOfInput='password' half={false} lableText={"Password"}/>
                                     <p className="forgotPassword"><a href="#" className='link'>Forgot Password?</a></p>
-                                <ButtonItself onClick={() => console.log('hii')} btnPurpose={"Login"}/>
+                                    <ButtonItself onClick={() => console.log('hii')} btnPurpose={"Login"}/>
                             </Form>
                             <div className='social'>
                              <SocialLogins loginGoogle={() => console.log('log in with google')} loginFacebook={()=> console.log('log in with facebook')} login={true} purpose={"Login"}/>
