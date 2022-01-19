@@ -224,8 +224,6 @@ const Profile = () => {
   ProfileViewCount();
   useEffect(() => {
     fetchData(username);
-  
-
   }, [username]);
 
   const socials = [
@@ -242,6 +240,7 @@ const Profile = () => {
       url: profileData?.facebookProfileUrl,
     },
   ];
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   console.log(profileData);
