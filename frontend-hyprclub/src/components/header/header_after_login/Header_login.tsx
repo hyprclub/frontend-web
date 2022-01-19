@@ -1,45 +1,41 @@
 import React,  { useState } from 'react'
 import { Link } from 'react-router-dom'
-import styles from "./Header.module.css"
+import styles from "./Header_login.module.css"
 import cn from "classnames"
 import Icon from '../../Icon'
 import Image from '../../Image'
-import { Button} from "react-bootstrap";
-// import User from './UserHead/UserHead'
-// import Notification from './Notification/NotificationHead'
-
-import Upload_Button from '../../uploadButton/UploadButton'
-// import MobileNavigation from '../../MobileNav/MobileNavigation'
-// import UploadButton from '../../uploadButton/UploadButton'
+import User from './UserHead/UserHead'
 
 const nav = [
     {
       url: "/market",
       title: "Marketplace",
-    },
+    }
   ];
   
-  const Header = () => {
+  const Header_login = () => {
     const [visibleNav, setVisibleNav] = useState(false);
     const [search, setSearch] = useState("");
   
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
       alert();
     };
   
     return (
       <div className={styles.headDiv}>
       <header className={styles.header}>
-        <div className={styles.container}>
+        <div className={cn("container", styles.container)}>
           <Link className={styles.logo} to="/">
             <Image
               className={styles.pic}
               src="/images/logo.png"
               srcDark="/images/logo.png"
+              srcSet="/images/logo.png"
+              srcSetDark="/images/logo.png"
               alt="Fitness Pro"
             />
           </Link>
-          <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
+        <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
           <nav className={styles.nav}>
             {nav.map((x, index) => (
               <Link
@@ -75,13 +71,15 @@ const nav = [
               to="/upload-variants"
             >
             </Link>
-            <Link to='/login'><Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button></Link>
-            <Link to='register'><button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button></Link>
+            <Link to="/uploadnft">
+            <button className={styles.up}> <span className={styles.uptxt}>Upload</span></button>
+            </Link>
           </div>
+          <User className={styles.user} />
           <button
-          className={cn(styles.burger, { [styles.active]: visibleNav })}
-          onClick={() => setVisibleNav(!visibleNav)}
-        ></button>
+            className={cn(styles.burger, { [styles.active]: visibleNav })}
+            onClick={() => setVisibleNav(!visibleNav)}
+          ></button>
         </div>
       </header>
       </div>
@@ -89,5 +87,5 @@ const nav = [
     );
   };
   
-  export default Header;
+  export default Header_login;
   
