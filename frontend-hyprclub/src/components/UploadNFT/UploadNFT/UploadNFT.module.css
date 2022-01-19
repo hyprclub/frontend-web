@@ -31,7 +31,8 @@
     line-height: 50px;
     color: #000000;
     align-self: center;
-    margin-bottom: 19px;
+    margin: 0 0 19px 0;
+    padding: 0;
 }
 
 /* Upload Nft Styling */
@@ -49,6 +50,8 @@
 }
 
 .upldFile {
+    margin: 0;
+    padding: 0;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -62,13 +65,14 @@
 }
 
 .drag {
+    margin: 0 0 7px 0;
+    padding: 0;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 20px;
     display: flex;
     color: #777E91;
-    margin-bottom: 7px;
 }
 
 /* FileUploader Styling */
@@ -97,6 +101,8 @@
 }
 
 .fileTypes {
+    margin: 0;
+    padding: 0;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -119,25 +125,27 @@
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
-    line-height: 12px;    
+    line-height: 12px;
     text-transform: uppercase;
     color: #B1B5C4;
     margin: 0;
+    padding: 0;
 }
 
 .Input {
-    display: flex!important;
-    flex-direction: row!important;
-    align-items: flex-start!important;
-    padding: 12px 16px!important;
-    width: 100%!important;
-    height: 48px!important;
-    border: 2px solid #E6E8EC!important;
-    box-sizing: border-box!important;
-    border-radius: 12px!important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    height: 48px !important;
+    border: 2px solid #E6E8EC !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
     outline: none !important;
 }
-.Input:focus{
+
+.Input:focus {
     box-shadow: none;
     outline: none;
 }
@@ -177,7 +185,7 @@
     box-sizing: border-box;
     border-radius: 12px;
     margin: 12px 0 0 0;
-    outline:none;
+    outline: none;
 }
 
 .Input:hover, .Input_Description:hover {
@@ -191,7 +199,8 @@
     line-height: 20px;
     text-decoration-line: underline;
     color: #959595;
-    margin-bottom: 1px;
+    margin: 0 0 1px 0;
+    padding: 0;
 }
 
 /* Perks styling */
@@ -227,15 +236,19 @@
     font-size: 12px;
     line-height: 16px;
     color: #959595;
+    margin: 0;
+    padding: 0;
 }
 
 .PerkBody {
+    width: 100%;
     margin-top: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 17px;
-    width: auto;
+    flex-wrap: wrap;
+    border: 10px solid #0000;
 }
 
 .Plus {
@@ -244,6 +257,7 @@
     width: 40px;
     height: 40px;
     display: flex;
+    outline: none;
     place-items: center;
     justify-content: center;
     align-items: center;
@@ -252,16 +266,21 @@
 }
 
 .Plus:hover {
-    box-shadow: 0 .5px .5px #aaa8a8;
+    box-shadow: 0 .25px .25px #e6e6e6;
+    transform: translateY(-1px);
+    transition: .25s ease-in-out;
 }
 
 .AddPerk {
+    margin: 0;
+    padding: 0;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: 24px;
     letter-spacing: 0em;
     color: #494949;
+    text-transform: capitalize;
 
 }
 
@@ -296,7 +315,7 @@
     display: flex !important;
     align-items: center !important;
     color: #23262F !important;
-    box-shadow: none!important;
+    box-shadow: none !important;
 }
 
 .Bottom {
@@ -334,6 +353,8 @@
     font-size: 12px;
     line-height: 20px;
     color: #777E91;
+    margin: 0;
+    padding: 0;
 }
 
 .btns {
@@ -364,6 +385,9 @@
     line-height: 24px;
     text-decoration: underline;
     color: #494949;
+    margin: 0;
+    padding: 0;
+
 }
 
 /* Responsive */
@@ -407,6 +431,11 @@
 @media only screen and (max-width:360px) {
     .wrapper {
         padding: 60px 10px
+    }
+
+    .title {
+        font-size: 30px;
+        line-height: 30px;
     }
 
     .btns {
