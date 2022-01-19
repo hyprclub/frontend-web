@@ -1,16 +1,11 @@
 .body {
-    padding: 36px 52px;
-    display: flex;
-    /* place-items: center; */
-    flex-direction: column;
-    /* align-items: center; */
-    /* justify-content:center; */
-    gap:23px;
+   
+    width:100%;
 
 }
 
-/* Responsive */
-/* @media only screen and (max-width: 1400px) {
+/* Responsive  */
+ /* @media only screen and (max-width: 1400px) {
     .body {
         padding:36px 150px;
 

@@ -14,9 +14,11 @@ import ReadMore from "./Readmore/Readmore";
 import Polygon from "./Poly/Polygon";
 import { style } from "@mui/system";
 import ItemsCarousel from "./ItemsCarousel/ItemsCarousel";
+import Perks from "./Perks/Perks";
 
 
-const navLinks = ["Info", "Bids"];
+const Desc = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+
 
 const users = [
     {
@@ -31,30 +33,32 @@ const users = [
     },
 ];
 
-const bidders = [
-    {
-        name: "HyprClub",
-        id: "@hyprclub",
-        avatar: "./images/logo-dark.jpg",
-        bids: "11,345 INR"
 
+const Perk_list = [
+    {
+        id: 1,
+        content: "Unlock the creator discord channel.",
     },
     {
-        name: "HyprClub",
-        id: "@hyprclub",
-        avatar: "./images/logo-dark.jpg",
-        bids: "9,345 INR"
+        id: 2,
+        content: "Get a free workbook with over 25 different art prompts!",
     },
-];
+    {
+        id: 3,
+        content: "I dont know I googled this from some patreon page.",
+    },
 
+    {
+        id: 4,
+        content: "Unlock the creator discord channel.",
+    },
+    {
+        id: 5,
+        content: "Get a free workbook with over 25 different art prompts!",
+    },
+]
 
 const NFTS = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isViewMore, setIsViewMore] = useState(true);
-    const toggleReadMore = () => {
-        setIsViewMore(!isViewMore);
-    };
-
     return (
         <>
             <Header_login />
@@ -86,21 +90,13 @@ const NFTS = () => {
                             <div className={styles.Description_Perks}>
                                 <h3 className={styles.subHeading}>Description</h3>
                                 <ReadMore>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    {Desc}
                                 </ReadMore>
                             </div>
 
                             <div className={styles.Description_Perks}>
                                 <h3 className={styles.subHeading}>Perks</h3>
-                                <ul className={styles.ul}>
-                                    <li className={styles.li}>Unlock the creator discord channel </li>
-                                    <li className={styles.li}>Get a free workbook with over 25 different art prompts! </li>
-                                    <li className={styles.li}>I dont know I googled this from some patreon page. </li>
-                                </ul>
-                                <span onClick={toggleReadMore} className={cn(styles.readHide, styles.view2)}>
-                                    {isViewMore ? "View more" : " View less"}
-                                </span>
-
+                                <Perks item={Perk_list} />
                             </div>
 
                         </div>
@@ -112,8 +108,7 @@ const NFTS = () => {
                         <span className={styles.bottomHeading}>Owners</span>
                         <Users className={styles.users} items={users} />
                     </div>
-                    {/* {activeIndex === 1 && <Bidders className={styles.users} items={bidders} /> */}
-                    <div className={styles.Bottom_part1}>
+                   <div className={styles.Bottom_part1}>
                         <span className={cn(styles.bottomHeading, styles.auth)}>View Authenticity</span>
                         <Polygon className={styles.poly} />
                     </div>
