@@ -24,6 +24,7 @@ const initialState = {
     username : undefined,
     verified : false,
     youtubeUrl : undefined,
+    profilePhotoUrl : undefined,
     bankDetails : {
         accountHolderName : undefined,
         accountHolderPhoneNumber : undefined,
@@ -81,6 +82,9 @@ export const userDataSlice = createSlice({
             state.nfts.createdNft = payload?.nfts.createdNft;
             state.nfts.purchasedNft = payload?.nfts.purchasedNft;
             state.nfts.savedNft = payload?.nfts.savedNft;
+        },
+        updateUserDp: (state, {payload}) => {
+            state.profilePhotoUrl = payload?.profileDP;
         }
     }
 });

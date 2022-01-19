@@ -40,8 +40,8 @@ import userData from "../../redux/slices/userData";
 const Register = () => {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
+  
   const [usernameTaken, setUsernameTaken] = useState(true);
-
   const [phoneCorrect, setPhoneCorrect] = useState(false);
   const [termsAndCondition, setTermsAndCondition] = useState(false);
   const [promotionalMails, setPromotionalMails] = useState(false);
@@ -310,6 +310,16 @@ const Register = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    if(loggedIn && userData.username) {
+      navigate("/" + userData.username);
+
+      console.log(userData.username);
+    }else{
+      console.log("No username");
+    }
+  },[navigate,loggedIn,uid,userData])
 
   return (
     <div>

@@ -25,168 +25,28 @@ import {
   getDocs,
   doc,
   updateDoc,
-  setDoc
+  setDoc,
 } from "firebase/firestore";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { profile } from "console";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = ["NFT"];
-
-
-
-// const following = [
-//   {
-//     name: "Sally Fadel",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-5.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "stroke",
-//     buttonContent: "Unfollow",
-//     gallery: [
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-2.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//       "/images/content/follower-pic-4.jpg",
-//     ],
-//   },
-//   {
-//     name: "Aniya Harber",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-6.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "stroke",
-//     buttonContent: "Unfollow",
-//     gallery: [
-//       "/images/content/follower-pic-5.jpg",
-//       "/images/content/follower-pic-6.jpg",
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//     ],
-//   },
-//   {
-//     name: "Edwardo Bea",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-7.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "stroke",
-//     buttonContent: "Unfollow",
-//     gallery: [
-//       "/images/content/follower-pic-4.jpg",
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//       "/images/content/follower-pic-6.jpg",
-//     ],
-//   },
-//   {
-//     name: "Reymundo",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-8.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "stroke",
-//     buttonContent: "Unfollow",
-//     gallery: [
-//       "/images/content/follower-pic-5.jpg",
-//       "/images/content/follower-pic-2.jpg",
-//       "/images/content/follower-pic-6.jpg",
-//       "/images/content/follower-pic-1.jpg",
-//     ],
-//   },
-//   {
-//     name: "Jeanette",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-9.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "stroke",
-//     buttonContent: "Unfollow",
-//     gallery: [
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//       "/images/content/follower-pic-5.jpg",
-//       "/images/content/follower-pic-4.jpg",
-//     ],
-//   },
-// ];
-
-// const followers = [
-//   {
-//     name: "Sally Fadel",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-5.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "blue",
-//     buttonContent: "Follow",
-//     gallery: [
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-2.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//       "/images/content/follower-pic-4.jpg",
-//     ],
-//   },
-//   {
-//     name: "Aniya Harber",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-6.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "blue",
-//     buttonContent: "Follow",
-//     gallery: [
-//       "/images/content/follower-pic-5.jpg",
-//       "/images/content/follower-pic-6.jpg",
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//     ],
-//   },
-//   {
-//     name: "Edwardo Bea",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-7.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "blue",
-//     buttonContent: "Follow",
-//     gallery: [
-//       "/images/content/follower-pic-4.jpg",
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//       "/images/content/follower-pic-6.jpg",
-//     ],
-//   },
-//   {
-//     name: "Reymundo",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-8.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "blue",
-//     buttonContent: "Follow",
-//     gallery: [
-//       "/images/content/follower-pic-5.jpg",
-//       "/images/content/follower-pic-2.jpg",
-//       "/images/content/follower-pic-6.jpg",
-//       "/images/content/follower-pic-1.jpg",
-//     ],
-//   },
-//   {
-//     name: "Jeanette",
-//     counter: "161 followers",
-//     avatar: "/images/content/avatar-9.jpg",
-//     url: "https://ui8.net",
-//     buttonClass: "blue",
-//     buttonContent: "Follow",
-//     gallery: [
-//       "/images/content/follower-pic-1.jpg",
-//       "/images/content/follower-pic-3.jpg",
-//       "/images/content/follower-pic-5.jpg",
-//       "/images/content/follower-pic-4.jpg",
-//     ],
-//   },
-// ];
 
 const Profile = () => {
   const { username } = useParams();
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
-  const [profileData , setProfileData] = useState<any | null>({});
+  const [profileData, setProfileData] = useState<any | null>({});
   const [docId, setDocId] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState<any | null>();
+  const [coverPhoto, setCoverPhoto] = useState<any | null>();
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
@@ -201,27 +61,49 @@ const Profile = () => {
       setProfileData(doc.data());
     });
   };
+
+  const GetProfilePhoto = async () => {
+    const storage = getStorage(firebaseApp);
+    try {
+      console.log(profileData.uid);
+      const storagePFref = ref(
+        storage,
+        "users/" + profileData.uid + "/profile.jpg"
+      );
+      const storageCoverRef = ref(
+        storage,
+        "users/" + profileData.uid + "/cover.jpg"
+      );
+
+      const url = await getDownloadURL(ref(storagePFref));
+      const coverUrl = await getDownloadURL(ref(storageCoverRef));
+      setCoverPhoto(coverUrl);
+      setProfilePhoto(url);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const ProfileViewCount = async () => {
     const db = getFirestore(firebaseApp);
 
     const ref = doc(db, "hyprUsers", docId);
-    if(docId === uid){
+    if (docId === uid) {
       //do nothing
-    }
-    else{
+    } else {
       await updateDoc(ref, {
-        profileViewsCount: profileData?.profileViewsCount + 1
+        profileViewsCount: profileData?.profileViewsCount + 1,
       })
         .then(() => {
           console.log("++");
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     }
-    
   };
   ProfileViewCount();
+  GetProfilePhoto();
   useEffect(() => {
     fetchData(username);
   }, [username]);
@@ -243,8 +125,6 @@ const Profile = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
-  console.log(profileData);
-
   return (
     <>
       <Header_login />
@@ -252,7 +132,7 @@ const Profile = () => {
         <div
           className={clsx(styles.head, { [styles.active]: visible })}
           style={{
-            backgroundImage: "url(images/bg-img.png)",
+            backgroundImage: `url(${coverPhoto || "images/bg-img.png"} )`,
           }}
         >
           <div className={clsx("container", styles.container)}>
@@ -265,7 +145,7 @@ const Profile = () => {
                 <Icon name="edit" size="16" />
               </button>
 
-              <Link to="settings">
+              <Link to="/settings">
                 <button
                   className={clsx("button-stroke button-small", styles.button)}
                 >
@@ -297,10 +177,11 @@ const Profile = () => {
               item={socials}
               username={profileData?.username}
               category={profileData?.category}
-              name = {profileData?.name}
+              name={profileData?.name}
               portfolioUrl={profileData?.portfolioUrl}
-              bio = {profileData?.bio}
+              bio={profileData?.bio}
               joiningDate={profileData?.dateOfJoining}
+              profilePhotoUrl={profilePhoto}
             />
             <div className={styles.wrapper}>
               {/* <div className={styles.nav}>

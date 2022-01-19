@@ -20,13 +20,14 @@ interface UserType{
     category : any,
     portfolioUrl : any,
     bio : any,
-    joiningDate : any 
+    joiningDate : any ,
+    profilePhotoUrl : any
 }
 const closeModal = () => {
   console.log("Hello there")
 }
 
-const User = ({ className, item ,name , username ,category , portfolioUrl,bio,joiningDate }:UserType) => {
+const User = ({ className, item ,name , username ,category , portfolioUrl,bio,joiningDate,profilePhotoUrl }:UserType) => {
   const userData = useSelector((state : RootStateOrAny) => state.userData);
   const [visiblity , setVisiblity] = useState("hidden");
   const [thanksValue, setThanksValue] = useState('100.00');
@@ -49,7 +50,7 @@ useEffect(() => {
     <>
       <div className={cn(styles.user, className)}>
         <div className={styles.avatar}>
-          <img src="/images/content/avatar-big.jpg" alt="Avatar" />
+          <img src={ profilePhotoUrl || "/images/content/avatar-big.jpg"} alt="Avatar" />
         </div>
         <div className={styles.name}>{name}</div>
         <div className={styles.code}>

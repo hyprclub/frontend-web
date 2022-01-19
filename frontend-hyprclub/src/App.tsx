@@ -38,8 +38,12 @@ import {
   limit
 } from "firebase/firestore";
 
-
-
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 import userData, { UserDataActions } from './redux/slices/userData';
 // import logo from './logo.svg';
@@ -53,12 +57,8 @@ function App() {
   const userData = useSelector((state : RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db  = getFirestore(firebaseApp);
- 
-  
-
-
+  const storage = getStorage(firebaseApp);
   const dispatch = useDispatch();
-
 
   // monitor any auth changes in the 
   useEffect(() => {
@@ -114,7 +114,23 @@ function App() {
   },[dispatch,loggedIn,uid,db]);
 
 
-  //after login redirect to market place
+//fetch user profile photo from 
+
+useEffect(() => {
+ const run = async () =>{
+   if(loggedIn && uid ) {
+    const storagePFref = ref(
+      storage,
+      "users/" + uid + "/profile.jpg"
+    );
+    const profileDpUrl = await getDownloadURL(ref(storagePFref));
+    dispatch(UserDataActions.updateUserDp({profileDp : profileDpUrl }))
+   }else{
+      console.log("Logged Out profile one");
+   }
+ }
+ run();
+},[loggedIn , uid , storage , dispatch])
   
 
 

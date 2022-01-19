@@ -1,29 +1,100 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import ButtonItself from "../../components/loginSignUpBtn/ButtonItself";
 import InputField from "../../components/inputField/Input";
 import Logo from "../../components/logo/Logo";
 import SocialLogins from "../../components/socialLogins/SocialLogins";
 import "./login.css";
+import { useSelector , RootStateOrAny } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { firebaseApp } from "../../firebaseConfig";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { signInWithEmailAndPassword, getAuth, signInWithPopup,GoogleAuthProvider} from "firebase/auth";
+import { getFirestore ,setDoc,doc } from "firebase/firestore";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  const userData = useSelector((state : RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
+  const navigate = useNavigate();
 
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
 
-  const googleSignIn =async () => {
-      
-  }
+  const googleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    const current = new Date();
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
+    await signInWithPopup(auth, provider)
+      .then((userCredentials) => {
+        const uid = userCredentials.user.uid;
+        const name = userCredentials.user.displayName;
+        const email = userCredentials.user.email;
+        const photoUrl = userCredentials.user.photoURL;
+        const phone = userCredentials.user.phoneNumber;
+        setDoc(doc(db, "hyprUsers", uid), {
+          name: name,
+          email: email,
+          username: email,
+          profileViewsCount: 0,
+          phone: phone,
+          uid: uid,
+          newsletterSubscription: false,
+          category: "",
+          age: 0,
+          gender: "",
+          flagCounter: 0,
+          profileUrl: "",
+          coverPhotoUrl: "", // add firebase storage function url here
+          profilePhotoUrl: photoUrl, // add firebase storage function here
+          bio: "",
+          isNsfw: false,
+          verified: false,
+          portfolioUrl: "",
+          instagramUsername: "",
+          twitterUsername: "",
+          facebookProfileUrl: "",
+          youtubeProfileUrl: "",
+          interests: {},
+          isCreator: "Not Applied",
+          dateOfJoining: date, 
+          isKycDone: false,
+          nfts: {
+            purchasedNft: [],
+            createdNft: [],
+            savedNft: [],
+          },
+          followers: [],
+          following: [],
+          followerCount: 0,
+          followingCount: 0,
+          posts: {
+            createdPosts: [],
+            savedPosts: [],
+          },
+          bankAccountDetails: {
+            accountHolderName: "",
+            accountType: "",
+            ifscCode: "",
+            accountNumber: "",
+            branchName: "",
+            accountHolderPhoneNumber: "",
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const facebookSignIn =async () => {
       
@@ -49,6 +120,16 @@ const Login = () => {
          }
      })
   };
+
+  useEffect(() => {
+    if(loggedIn && userData.username) {
+      navigate("/" + userData.username);
+
+      console.log(userData.username);
+    }else{
+      console.log("No username");
+    }
+  },[navigate,loggedIn,uid,userData])
 
   const forgetPassword = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     console.log("Forget Password");
