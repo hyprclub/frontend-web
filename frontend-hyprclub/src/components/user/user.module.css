@@ -29,6 +29,9 @@
     position: absolute;
     top: -15vh;
     text-align: center;
+    z-index: 2;
+
+
   }
     .avatar img {
       width: 190px;
