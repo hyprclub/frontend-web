@@ -5,12 +5,8 @@ import styles from "./profile.module.css";
 import Icon from "../../components/Icon";
 
 // data
-import Followers from "../../components/followers/Followers";
 import User from "../../components/user/User";
-import Items from "../../components/items/Items";
-import { Iitems } from "../../components/item";
 import Header_login from "../../components/header/header_after_login/Header_login";
-import SinglePost from "../../components/feedComponents/singlePost/SinglePost";
 import Nft from "../../components/NFT/Nft";
 import Store from "../../components/store/Store";
 import { useSelector, RootStateOrAny } from "react-redux";

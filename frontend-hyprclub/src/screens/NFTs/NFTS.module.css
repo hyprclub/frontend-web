@@ -58,6 +58,7 @@
     display: flex;
     justify-content: center;
     gap: 42px;
+    /* margin-bottom: 50px; */
 }
 
 
@@ -100,8 +101,8 @@
 
 .options {
     position: absolute !important;
-    top: 2%;
-    right: 2.5%;
+    top: 2.5%;
+    right: 3%;
     z-index: 10;
 }
 
@@ -187,18 +188,18 @@
 
 .Description_Perks {
     width: 100%;
-    height: auto;
+    /* height: 230px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding: 20px 30px;
     gap: 15px;
     background: #FFFFFF;
     box-shadow: -14px 14px 28px rgba(230, 230, 230, 0.2), 14px -14px 28px rgba(230, 230, 230, 0.2), -14px -14px 28px rgba(255, 255, 255, 0.9), 14px 14px 35px rgba(230, 230, 230, 0.9), inset 1px 1px 2px rgba(255, 255, 255, 0.3), inset -1px -1px 2px rgba(230, 230, 230, 0.5);
     border-radius: 20px;
-    transition: all 100ms ease-in-out;
+    transition: height 100ms ease-in-out;
 }
 
 .subHeading {
@@ -211,7 +212,7 @@
     padding: 0;
 }
 
-.info {
+/* .info {
     margin: 0;
     padding: 0;
     font-style: normal;
@@ -219,7 +220,7 @@
     font-size: 16px;
     line-height: 24px;
     color: #565656;
-}
+} */
 
 .readHide {
     display: flex;
@@ -321,6 +322,8 @@
     font-size: 32px;
     line-height: 44px;
     color: #000000;
+    width:100%;
+    height: 100%;
 }
 
 /* Responsive */

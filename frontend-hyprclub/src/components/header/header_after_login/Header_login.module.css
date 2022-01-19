@@ -5,6 +5,95 @@
   flex-grow: 1;
 }
 
+.logBtn {
+  position: relative;
+  padding: 0px 20px !important;
+  height: 35px;
+  margin-right: 10px;
+  margin-left: 1vw;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 30px !important;
+  justify-content: center !important;
+  background: linear-gradient(
+    60deg,
+    rgba(141, 0, 253, 1) 4%,
+    rgba(231, 13, 140, 1) 49%,
+    rgba(237, 77, 107, 1),
+    rgba(246, 164, 76, 1) 85%,
+    rgba(252, 199, 55, 1) 92%
+  ) !important;
+}
+
+.logbtnTxt {
+  font-size: 16px !important;
+  color: white !important;
+}
+
+@media only screen and (max-width: 820px) {
+  .logBtn {
+    display: block;
+    width: 80%;
+    margin: 0 0 0 6vw;
+  }
+}
+
+.signbtn {
+  border-radius: 100rem;
+  position: relative;
+  height: 35px;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-right: -2vw;
+  padding: 0 !important;
+  padding: 0px 10px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0em !important;
+  text-align: center !important;
+  border-radius: 24.5px !important;
+  border: solid 3.5px transparent !important;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0)
+    ),
+    linear-gradient(
+      60deg,
+      rgba(141, 0, 253, 1) 4%,
+      rgba(231, 13, 140, 1) 49%,
+      rgba(237, 77, 107, 1),
+      rgba(246, 164, 76, 1) 85%,
+      rgba(252, 199, 55, 1) 92%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px #fff inset;
+}
+
+.signbtn:active,
+.signbtn:focus {
+  color: white !important;
+}
+
+.signbtntxt {
+  background: -webkit-linear-gradient(
+    27deg,
+    rgba(158, 1, 235, 1) 0%,
+    rgba(211, 24, 126, 1) 49%,
+    rgba(243, 189, 56, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media only screen and (max-width: 820px) {
+  .signbtn {
+    display: block;
+    width: 80%;
+    margin: 2vh 0 0 6vw;
+  }
+}
+
 .header {
   width: 93%;
   position: relative;
