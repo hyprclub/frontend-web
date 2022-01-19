@@ -5,6 +5,7 @@ import Header from "../../components/header/header_before_login/Header";
 import { height, style } from "@mui/system";
 import { Button } from "react-bootstrap";
 import BG_STARS from "./BG_STARS.svg";
+import Header_login from "../../components/header/header_after_login/Header_login";
 import clsx from "clsx";
 import GradientBorder from "../../components/gradientBorderBtn/GradientBorder";
 import Slider from "react-slick";
@@ -22,7 +23,8 @@ const Landing = () => {
   return (
     <>
       <div className={styles.mainDiv}>
-      <Header />
+      {/* <Header /> */}
+      <Header_login></Header_login>
       {/* style={{ backgroundImage: `url(${BG_STARS})` }} */}
 
       <div className={styles.part1}>
