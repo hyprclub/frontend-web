@@ -66,11 +66,11 @@ const nav = [
                 <Icon name="search" size="20" />
               </button>
             </form>
-            <Link
+            {/* <Link
               className={cn("button-small", styles.button)}
               to="/upload-variants"
             >
-            </Link>
+            </Link> */}
             <Link to='/login'><Button className={styles.logBtn}> <span className={styles.logbtnTxt}>Log In</span></Button></Link>
             <Link to='register'><button className={styles.signbtn}> <span className={styles.signbtntxt}>Sign up</span></button></Link>
           </div>

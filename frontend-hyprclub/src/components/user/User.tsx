@@ -25,7 +25,7 @@ const [showModal, setShowModal] = useState(false);
 const closeModal = () => {
   setShowModal(false)
 }
-
+const [vis,setvis]=useState(false);
 useEffect(() => {
  if(showModal){
   document.body.style.overflow = 'hidden';
@@ -65,7 +65,11 @@ useEffect(() => {
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        <div className={styles.gradbtn}><GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/></div>
+        {vis==true &&
+        <div className={styles.gradbtn}>
+          <GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/>
+        </div>
+        }
         <div className={cn(styles.socials, 'my-3')}>
           {item.map((x, index) => (
             <a
