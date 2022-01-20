@@ -6,6 +6,7 @@ import Icon from "../../Icon";
 import Image from "../../Image";
 import User from "./UserHead/UserHead";
 import { Button } from "react-bootstrap";
+import { useSelector, RootStateOrAny } from "react-redux";
 const nav = [
   {
     url: "/market",
@@ -16,6 +17,12 @@ const nav = [
 const Header_login = () => {
   const [visibleNav, setVisibleNav] = useState(false);
   const [search, setSearch] = useState("");
+  const  userData = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
   const handleSubmit = () => {
     alert();
   };
@@ -66,7 +73,7 @@ const Header_login = () => {
               </button>
             </form>
             {/* //upload button only of creater */}
-            {visibleNav == true && (
+            {visibleNav === true && (
               <Link to="/uploadnft">
                 <button className={styles.up}>
                   {" "}
@@ -74,7 +81,7 @@ const Header_login = () => {
                 </button>
               </Link>
             )}
-            {visibleNav == true && (
+            {visibleNav === true && (
               <Link to="/login">
                 <Button className={styles.logBtn}>
                   {" "}
@@ -82,7 +89,7 @@ const Header_login = () => {
                 </Button>
               </Link>
             )}
-            {visibleNav == true &&
+            {visibleNav === true &&
             <Link to="register">
               <button className={styles.signbtn}>
                 {" "}

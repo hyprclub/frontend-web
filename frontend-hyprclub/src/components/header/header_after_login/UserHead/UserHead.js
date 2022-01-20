@@ -3,48 +3,55 @@ import { Link } from "react-router-dom";
 import cn from "classnames";
 import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./UserHead.module.css";
+import { useSelector, RootStateOrAny } from "react-redux";
 import Icon from "../../../Icon";
 
-const items = [
-  {
-    title: "My profile",
-    url: "/profile",
-  },
 
-  {
-    title: "Settings",
-    url: "/settings",
-  },
 
-  {
-    title: "Creator Dashboard",
-    url: "#"
-  },
-  {
-    title: "Disconnect",
-    url: "https://ui8.net/ui8/products/crypter-nft-marketplace-ui-kit",
-  },
-];
 
 const User = ({ className }) => {
   const [visible, setVisible] = useState(false);
-
+  
+  const userData = useSelector(
+    (state) => state?.userData
+  );
+  const items = [
+    {
+      title: "My profile",
+      url: "/"+userData.username,
+    },
+  
+    {
+      title: "Settings",
+      url: "/settings",
+    },
+  
+    {
+      title: "Creator Dashboard",
+      url: "#"
+    },
+    {
+      title: "Logout",
+      url: "/logout",
+    },
+  ];
+  
   return (
     <OutsideClickHandler onOutsideClick={() => setVisible(false)}>
       <div className={cn(styles.user, className)}>
         <div className={styles.head} onClick={() => setVisible(!visible)}>
           <div className={styles.avatar}>
-            <img src="/images/content/avatar-user.jpg" alt="Avatar" />
+            <img src= { userData?.profilePhotoUrl || "/images/content/avatar-user.jpg"} alt="Avatar" />
           </div>
         </div>
         {visible && (
           <div className={styles.body}>
           <div className="d-flex flex-row">
-          <div className={styles.userprof}><img src="/images/content/avatar-user.jpg" alt="Avatar" /></div>
+          <div className={styles.userprof}><img src={ userData?.profilePhotoUrl || "/images/content/avatar-user.jpg"} alt="Avatar" /></div>
           <div className="d-flex flex-column">
-          <div className={styles.name}>Enrico Cole</div>
+          <div className={styles.name}>{userData.name}</div>
           <div className={styles.code}>
-              <div className={styles.username}>@chootalks</div>
+              <div className={styles.username}>@{userData.username}</div>
             </div>
           </div>
           </div>

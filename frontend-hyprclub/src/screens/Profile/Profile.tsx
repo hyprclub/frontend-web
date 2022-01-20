@@ -55,20 +55,22 @@ const Profile = () => {
     querySnapshot.forEach((doc) => {
       setDocId(doc.id);
       setProfileData(doc.data());
-    });
+      GetProfilePhoto(doc.id);
+
+    })
   };
 
-  const GetProfilePhoto = async () => {
+  const GetProfilePhoto = async (uid : any) => {
     const storage = getStorage(firebaseApp);
     try {
-      console.log(profileData.uid);
+      // console.log(uid);
       const storagePFref = ref(
         storage,
-        "users/" + profileData.uid + "/profile.jpg"
+        "users/" + uid + "/profile.jpg"
       );
       const storageCoverRef = ref(
         storage,
-        "users/" + profileData.uid + "/cover.jpg"
+        "users/" + uid + "/cover.jpg"
       );
 
       const url = await getDownloadURL(ref(storagePFref));
@@ -98,10 +100,11 @@ const Profile = () => {
         });
     }
   };
-  ProfileViewCount();
-  GetProfilePhoto();
+ 
   useEffect(() => {
     fetchData(username);
+    ProfileViewCount();
+    
   }, [username]);
 
   const socials = [
@@ -204,7 +207,7 @@ const Profile = () => {
                     </div>
                   </div>
                 )} */}
-                  {activeIndex === 0 && <Nft />}
+                  {activeIndex === 0 && (<Nft />)}
                 </div>
               </div>
             </div>

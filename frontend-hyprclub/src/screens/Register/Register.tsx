@@ -15,10 +15,15 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
-import {getDownloadURL , getStorage ,ref , uploadBytesResumable
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
 } from "firebase/storage";
 import {
   setDoc,
+  getDoc,
   doc,
   getFirestore,
   collection,
@@ -36,11 +41,12 @@ import {
 import { useNavigate } from "react-router";
 import { error } from "console";
 import userData from "../../redux/slices/userData";
+import { WindowRounded } from "@mui/icons-material";
 
 const Register = () => {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
-  
+
   const [usernameTaken, setUsernameTaken] = useState(true);
   const [phoneCorrect, setPhoneCorrect] = useState(false);
   const [termsAndCondition, setTermsAndCondition] = useState(false);
@@ -140,7 +146,7 @@ const Register = () => {
         } else {
           try {
             const storage = getStorage(firebaseApp);
-            
+
             const userCredentials = await createUserWithEmailAndPassword(
               auth,
               data.email,
@@ -155,13 +161,13 @@ const Register = () => {
             }/${current.getFullYear()}`;
 
             const profilePhotoRef = ref(
-              storage ,
+              storage,
               "users/" + uid + "profile.jpg"
             );
 
             // const uploadTask =  await uploadBytesResumable(
             //   profilePhotoRef,
-              
+
             // )
 
             const personalDetailsInfo = await setDoc(
@@ -244,59 +250,71 @@ const Register = () => {
         const email = userCredentials.user.email;
         const photoUrl = userCredentials.user.photoURL;
         const phone = userCredentials.user.phoneNumber;
-        setDoc(doc(db, "hyprUsers", uid), {
-          name: name,
-          email: email,
-          username: data.username,
-          profileViewsCount: 0,
-          phone: phone,
-          uid: uid,
-          newsletterSubscription: promotionalMails,
-          category: "",
-          age: 0,
-          gender: "",
-          flagCounter: 0,
-          profileUrl: "",
-          coverPhotoUrl: "", // add firebase storage function url here
-          profilePhotoUrl: photoUrl, // add firebase storage function here
-          bio: "",
-          isNsfw: false,
-          verified: false,
-          portfolioUrl: "",
-          instagramUsername: "",
-          twitterUsername: "",
-          facebookProfileUrl: "",
-          youtubeProfileUrl: "",
-          interests: {},
-          isCreator: "Not Applied",
-          dateOfJoining: date, 
-          isKycDone: false,
-          nfts: {
-            purchasedNft: [],
-            createdNft: [],
-            savedNft: [],
-          },
-          followers: [],
-          following: [],
-          followerCount: 0,
-          followingCount: 0,
-          posts: {
-            createdPosts: [],
-            savedPosts: [],
-          },
-          bankAccountDetails: {
-            accountHolderName: "",
-            accountType: "",
-            ifscCode: "",
-            accountNumber: "",
-            branchName: "",
-            accountHolderPhoneNumber: "",
-          },
+        getDoc(doc(db, "hyprUsers", uid)).then((querySnapshot) => {
+          if (querySnapshot.exists()) {
+            console.log("User Data Exits");
+          } else {
+            console.log("Set Doc");
+            const username = "Hello312";
+            setDoc(doc(db, "hyprUsers", uid), {
+              name: name,
+              email: email,
+              username: "hello", //add username here
+              profileViewsCount: 0,
+              phone: phone,
+              uid: uid,
+              newsletterSubscription: false,
+              category: "",
+              age: 0,
+              gender: "",
+              flagCounter: 0,
+              profileUrl: "",
+              bio: "",
+              isNsfw: false,
+              verified: false,
+              portfolioUrl: "",
+              instagramUsername: "",
+              twitterUsername: "",
+              facebookProfileUrl: "",
+              youtubeProfileUrl: "",
+              interests: {},
+              isCreator: "Not Applied",
+              dateOfJoining: date,
+              isKycDone: false,
+              nfts: {
+                purchasedNft: [],
+                createdNft: [],
+                savedNft: [],
+              },
+              followers: [],
+              following: [],
+              followerCount: 0,
+              followingCount: 0,
+              posts: {
+                createdPosts: [],
+                savedPosts: [],
+              },
+              bankAccountDetails: {
+                accountHolderName: "",
+                accountType: "",
+                ifscCode: "",
+                accountNumber: "",
+                branchName: "",
+                accountHolderPhoneNumber: "",
+              },
+            }).then((snap)=>{
+              window.location.reload();
+            });
+            
+          }
+        }).catch((error)=>{
+          console.log(error)
         });
       })
       .catch((error) => {
         console.log(error);
       });
+      
   };
 
   //function for facebook sign-in
@@ -312,14 +330,15 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if(loggedIn && userData.username) {
+    if (loggedIn && userData.username) {
       navigate("/" + userData.username);
 
       console.log(userData.username);
-    }else{
+    } else {
       console.log("No username");
+      
     }
-  },[navigate,loggedIn,uid,userData])
+  }, [navigate, loggedIn, uid, userData]);
 
   return (
     <div>

@@ -62,7 +62,6 @@ function App() {
 
   // monitor any auth changes in the 
   useEffect(() => {
-   
    onAuthStateChanged(auth , (user) => {
      if(user){
        console.log(user);
@@ -97,7 +96,7 @@ function App() {
         getDoc(doc(db,"hyprUsers",uid)).then((docSnap) => {
           if(docSnap.exists()){
             dispatch(UserDataActions.updateCurrentUserDetail(docSnap.data()));
-          console.log(docSnap.data());
+          
           }
           else{
             console.log("No User Data");
@@ -111,11 +110,10 @@ function App() {
       }
     };
     run();
-  },[dispatch,loggedIn,uid,db]);
+  },[dispatch,loggedIn,uid,db,userData]);
 
 
 //fetch user profile photo from 
-
 useEffect(() => {
  const run = async () =>{
    if(loggedIn && uid ) {
@@ -124,7 +122,7 @@ useEffect(() => {
       "users/" + uid + "/profile.jpg"
     );
     const profileDpUrl = await getDownloadURL(ref(storagePFref));
-    dispatch(UserDataActions.updateUserDp({profileDp : profileDpUrl }))
+    dispatch(UserDataActions.updateUserDp({profilePhotoUrl : profileDpUrl }))
    }else{
       console.log("Logged Out profile one");
    }
@@ -132,6 +130,27 @@ useEffect(() => {
  run();
 },[loggedIn , uid , storage , dispatch])
   
+
+// fetch nft id for marketplace 
+useEffect(()=>{
+  const run = async () =>{
+    await getDocs(collection(db,"nfts"))
+    .then((querySnapShot)=>{
+      const nftIds:string[] = [];
+      querySnapShot.forEach((elem)=>{
+        nftIds.push(elem.id);
+        dispatch(UserDataActions.nftTokenId({
+          nftIds : nftIds.map(elem => parseInt(elem)).sort((a,b)=> b-a).map(elem => elem.toString())
+        }))
+      });
+      console.log(nftIds);
+    })
+    .catch((error)=>{
+      console.error(error);
+    });
+  }
+  run();
+},[dispatch, db])
 
 
   return (

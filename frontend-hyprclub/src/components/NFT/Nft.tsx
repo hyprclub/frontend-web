@@ -21,8 +21,8 @@ const Nft = () => {
     return (
         <div className={styles.Nft}>
             <p className={styles.navLinks}>
-                <span onClick={createdClick} className={clsx(styles.created, createdSel && styles.active)}>Created</span>
-                <span onClick={ownedClick} className={clsx(styles.owned, ownedSel && styles.active)}>Owned</span>
+                <span onClick={createdClick} className={clsx(styles.created, createdSel && styles.active)}>Owned</span>
+                <span onClick={ownedClick} className={clsx(styles.owned, ownedSel && styles.active)}>Created</span>
             </p>
             <Items nft created={createdSel} items={Iitems} />
         </div>

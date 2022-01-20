@@ -6,19 +6,24 @@ import InputField from "../../components/inputField/Input";
 import Logo from "../../components/logo/Logo";
 import SocialLogins from "../../components/socialLogins/SocialLogins";
 import "./login.css";
-import { useSelector , RootStateOrAny } from 'react-redux';
+import { useSelector, RootStateOrAny } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { firebaseApp } from "../../firebaseConfig";
-import { signInWithEmailAndPassword, getAuth, signInWithPopup,GoogleAuthProvider} from "firebase/auth";
-import { getFirestore ,setDoc,doc } from "firebase/firestore";
+import {
+  signInWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
-  const userData = useSelector((state : RootStateOrAny) => state.userData);
+  const userData = useSelector((state: RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
   const navigate = useNavigate();
@@ -41,84 +46,92 @@ const Login = () => {
         const email = userCredentials.user.email;
         const photoUrl = userCredentials.user.photoURL;
         const phone = userCredentials.user.phoneNumber;
-        setDoc(doc(db, "hyprUsers", uid), {
-          name: name,
-          email: email,
-          username: email,
-          profileViewsCount: 0,
-          phone: phone,
-          uid: uid,
-          newsletterSubscription: false,
-          category: "",
-          age: 0,
-          gender: "",
-          flagCounter: 0,
-          profileUrl: "",
-          coverPhotoUrl: "", // add firebase storage function url here
-          profilePhotoUrl: photoUrl, // add firebase storage function here
-          bio: "",
-          isNsfw: false,
-          verified: false,
-          portfolioUrl: "",
-          instagramUsername: "",
-          twitterUsername: "",
-          facebookProfileUrl: "",
-          youtubeProfileUrl: "",
-          interests: {},
-          isCreator: "Not Applied",
-          dateOfJoining: date, 
-          isKycDone: false,
-          nfts: {
-            purchasedNft: [],
-            createdNft: [],
-            savedNft: [],
-          },
-          followers: [],
-          following: [],
-          followerCount: 0,
-          followingCount: 0,
-          posts: {
-            createdPosts: [],
-            savedPosts: [],
-          },
-          bankAccountDetails: {
-            accountHolderName: "",
-            accountType: "",
-            ifscCode: "",
-            accountNumber: "",
-            branchName: "",
-            accountHolderPhoneNumber: "",
-          },
+        getDoc(doc(db, "hyprUsers", uid)).then((querySnapshot) => {
+          if (querySnapshot.exists()) {
+            console.log("User Data Exits");
+          } else {
+            console.log("Set Doc");
+            const username = "Hello312";
+            setDoc(doc(db, "hyprUsers", uid), {
+              name: name,
+              email: email,
+              username: "hello", //add username here
+              profileViewsCount: 0,
+              phone: phone,
+              uid: uid,
+              newsletterSubscription: false,
+              category: "",
+              age: 0,
+              gender: "",
+              flagCounter: 0,
+              profileUrl: "",
+              bio: "",
+              isNsfw: false,
+              verified: false,
+              portfolioUrl: "",
+              instagramUsername: "",
+              twitterUsername: "",
+              facebookProfileUrl: "",
+              youtubeProfileUrl: "",
+              interests: {},
+              isCreator: "Not Applied",
+              dateOfJoining: date,
+              isKycDone: false,
+              nfts: {
+                purchasedNft: [],
+                createdNft: [],
+                savedNft: [],
+              },
+              followers: [],
+              following: [],
+              followerCount: 0,
+              followingCount: 0,
+              posts: {
+                createdPosts: [],
+                savedPosts: [],
+              },
+              bankAccountDetails: {
+                accountHolderName: "",
+                accountType: "",
+                ifscCode: "",
+                accountNumber: "",
+                branchName: "",
+                accountHolderPhoneNumber: "",
+              },
+            }).then((snap)=>{
+              window.location.reload();
+            });
+            
+          }
+        }).catch((error)=>{
+          console.log(error)
         });
       })
       .catch((error) => {
         console.log(error);
       });
+      
   };
 
-  const facebookSignIn =async () => {
-      
-  }
+  const facebookSignIn = async () => {};
 
-  const handleSubmit = async (e : React.FormEvent<any>) => { 
+  const handleSubmit = async (e: React.FormEvent<any>) => {
     e.preventDefault();
 
-     await signInWithEmailAndPassword(auth , data.email,data.password)
-     .then((userCredentials) => {
-         console.log(userCredentials.user);
-     })
-     .catch((error) => {
-         console.error(error);
-         if(error.code === "auth/user-not-found"){
-             console.log("User Not Found")
-         }
-         else if(error.code === "auth/invalid-email"){
-             console.log("Please Enter Valid Email Address");
-         }
-         else{
-             console.log("Invalid Credentials")
-         }
-     })
+    await signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredentials) => {
+        console.log(userCredentials.user);
+      })
+      .catch((error) => {
+        console.error(error);
+        if (error.code === "auth/user-not-found") {
+          console.log("User Not Found");
+        } else if (error.code === "auth/invalid-email") {
+          console.log("Please Enter Valid Email Address");
+        } else {
+          console.log("Invalid Credentials");
+        }
+      });
   };
 
   useEffect(() => {
@@ -128,13 +141,14 @@ const Login = () => {
       console.log(userData.username);
     }else{
       console.log("No username");
+     
     }
   },[navigate,loggedIn,uid,userData])
 
   const forgetPassword = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     console.log("Forget Password");
   };
-  
+
   return (
     <div>
       <Logo />
@@ -153,9 +167,12 @@ const Login = () => {
                 </Link>{" "}
               </span>
             </p>
-            <Form action="#"
-            onSubmit={(e : React.FormEvent<any>) => {
-                handleSubmit(e)}}>
+            <Form
+              action="#"
+              onSubmit={(e: React.FormEvent<any>) => {
+                handleSubmit(e);
+              }}
+            >
               <InputField
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   updateState(e)
@@ -196,7 +213,7 @@ const Login = () => {
             </Form>
             <div className="social">
               <SocialLogins
-                loginGoogle={() => googleSignIn}
+                loginGoogle={googleSignIn}
                 loginFacebook={() => facebookSignIn}
                 login={true}
                 purpose={"Login"}

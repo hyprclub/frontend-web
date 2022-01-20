@@ -14,7 +14,7 @@ const initialState = {
     gender : undefined,
     instagramUsername : undefined,
     interests : [],
-    isCreator : undefined,
+    isCreator : false,
     isKycDone : false,
     isNsfw : false,
     phone : undefined,
@@ -37,7 +37,8 @@ const initialState = {
         createdNft : [],
         purchasedNft : [],
         savedNft : []
-    }
+    },
+    nftTokenIds : []
 };
 
 export const userDataSlice = createSlice({
@@ -84,7 +85,10 @@ export const userDataSlice = createSlice({
             state.nfts.savedNft = payload?.nfts.savedNft;
         },
         updateUserDp: (state, {payload}) => {
-            state.profilePhotoUrl = payload?.profileDP;
+            state.profilePhotoUrl = payload?.profilePhotoUrl;
+        },
+        nftTokenId : (state , {payload}) =>{
+            state.nftTokenIds = payload?.nftIds;
         }
     }
 });
