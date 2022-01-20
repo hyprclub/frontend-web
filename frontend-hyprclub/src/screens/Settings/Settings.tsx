@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect , useState } from "react";
 import { useLocation } from "react-router";
 import Header_login from "../../components/header/header_after_login/Header_login";
 import AccSettings from "../../components/settingsComps/accSettings/AccSettings";
@@ -11,11 +11,19 @@ import SettingsMenu from "../../components/settingsComps/settingsMenu/SettingsMe
 import Theme from "../../components/settingsComps/themeSettings/Theme";
 import styles from "./settings.module.css";
 import { Accordion } from "react-bootstrap";
+import { useSelector, RootStateOrAny } from "react-redux";
+
 import Transaction from "../../components/settingsComps/transaction/Transaction";
 const Settings = () => {
   const location = useLocation();
   const path = location.pathname;
-
+  const [data , setData] = useState<any | null >({})
+  const userData = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  useEffect(()=>{
+    setData(userData);
+  },[userData])
   return (
     <>
       <Header_login />

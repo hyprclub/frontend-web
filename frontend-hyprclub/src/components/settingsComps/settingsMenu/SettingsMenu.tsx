@@ -4,9 +4,11 @@ import { useLocation, useNavigate } from "react-router";
 import styles from "./settingsMenu.module.css";
 import { Accordion } from "react-bootstrap";
 import EditProfile from "../editProfile/EditProfile";
+import { useSelector, RootStateOrAny } from "react-redux";
+
 const SettingsMenu = () => {
   const location = useLocation();
-  console.log(location.pathname);
+  
 
   const path = location.pathname;
 

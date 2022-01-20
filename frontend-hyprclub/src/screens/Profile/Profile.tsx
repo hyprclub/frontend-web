@@ -29,6 +29,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+
 import { profile } from "console";
 // import { isStepDivisible } from "react-range/lib/utils";
 
@@ -36,6 +37,7 @@ const navLinks = ["NFT"];
 
 const Profile = () => {
   const { username } = useParams();
+  const storage = getStorage(firebaseApp);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
@@ -56,22 +58,14 @@ const Profile = () => {
       setDocId(doc.id);
       setProfileData(doc.data());
       GetProfilePhoto(doc.id);
-
-    })
+    });
   };
 
-  const GetProfilePhoto = async (uid : any) => {
-    const storage = getStorage(firebaseApp);
+  const GetProfilePhoto = async (uid: any) => {
     try {
       // console.log(uid);
-      const storagePFref = ref(
-        storage,
-        "users/" + uid + "/profile.jpg"
-      );
-      const storageCoverRef = ref(
-        storage,
-        "users/" + uid + "/cover.jpg"
-      );
+      const storagePFref = ref(storage, "users/" + uid + "/profile.jpg");
+      const storageCoverRef = ref(storage, "users/" + uid + "/cover.jpg");
 
       const url = await getDownloadURL(ref(storagePFref));
       const coverUrl = await getDownloadURL(ref(storageCoverRef));
@@ -81,7 +75,25 @@ const Profile = () => {
       console.error(error);
     }
   };
+  const handleFileChange = async (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
 
+    console.log(file.size);
+    if (file.size >= 5242880) {
+      console.log("File Size Too Big");
+    } else {
+      const storagePFref = ref(storage, "users/" + userData.uid + "/cover.jpg");
+      await uploadBytesResumable(storagePFref, file)
+        .then((result) => {
+          console.log(result.state);
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
   const ProfileViewCount = async () => {
     const db = getFirestore(firebaseApp);
 
@@ -100,11 +112,10 @@ const Profile = () => {
         });
     }
   };
- 
+
   useEffect(() => {
     fetchData(username);
     ProfileViewCount();
-    
   }, [username]);
 
   const socials = [
@@ -154,7 +165,12 @@ const Profile = () => {
               </Link>
             </div>
             <div className={styles.file}>
-              <input type="file" />
+              <input
+                accept=".jpeg,.jpg,.png,image/jpeg,image/png"
+                id="fileInput"
+                type="file"
+                style={{ display: "none" }}
+              />
               <div className={styles.wrap}>
                 <Icon name="upload-file" size="48" />
                 <div className={styles.info}>Drag and drop your photo here</div>
@@ -207,7 +223,7 @@ const Profile = () => {
                     </div>
                   </div>
                 )} */}
-                  {activeIndex === 0 && (<Nft />)}
+                  {activeIndex === 0 && <Nft />}
                 </div>
               </div>
             </div>

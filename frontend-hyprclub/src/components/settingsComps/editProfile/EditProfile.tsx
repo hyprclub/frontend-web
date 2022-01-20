@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./editProfile.module.css";
 import InputField from "../../inputField/Input";
 import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import { useSelector, RootStateOrAny } from "react-redux";
-import { useState, useEffect } from "react";
+
 import { firebaseApp } from "../../../firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
@@ -16,70 +16,85 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
+  const storage = getStorage(firebaseApp);
 
-// file changes
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
+
+  // file changes
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
     if (!file) return;
     setFile(file);
+    console.log(file.size);
+    if (file.size >= 5242880) {
+      console.log("File Size Too Big");
+    } else {
+      const storagePFref = ref(
+        storage,
+        "users/" + userData.uid + "/profile.jpg"
+      );
+      await uploadBytesResumable(storagePFref, file)
+        .then((result) => {
+          
+          console.log(result.state);
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
-  const userData = useSelector(
+  const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
-  const {loggedIn , uid} = useSelector(
-    (state: RootStateOrAny) => state?.userData
-  );
-  
-  const [data, setData] = useState({
-    name: "",
-    category: "",
-    username: "",
-    bio: "",
-    website: "",
-    instagramUsername: "",
-    twitterUsername: "",
-    facebookProfileUrl: "",
-    youtubeProfileUrl: "",
-    email: "",
-    phone: "",
-    gender: ""
-  });
-  
+
+  const [data, setData] = useState<any | null>({});
+
   // handle update state changes
-  const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData((state) => ({ ...state, [e.target.name]: e.target.value }));
+  const updateState = (e: any) => {
+    setData((state: any) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
 
- // update user data here.
-  const handleSubmit = async() => {
+  // update user data here.
+  const handleSubmit = async () => {
     const db = getFirestore(firebaseApp);
     const ref = doc(db, "hyprUsers", uid);
-    updateDoc(ref, {
-      name: data.name,
-      category: data.category,
-      username: data.username,
-      bio: data.bio,
-      website: data.website,
-      instagramUsername: data.instagramUsername,
-      twitterUsername: data.twitterUsername,
-      facebookProfileUrl: data.facebookProfileUrl,
-      youtubeProfileUrl: data.youtubeProfileUrl,
-      email: data.email,
-      phone: data.phone,
-      gender: data.gender
-    })
-      .then(() => {
-        console.log("Data Updated");
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+    console.log(data);
+
+    // await updateDoc(ref, {
+    //   name: data.name,
+    //   category: data.category,
+    //   bio: data.bio,
+    //   website: data.website,
+    //   instagramUsername: data.instagramUsername,
+    //   twitterUsername: data.twitterUsername,
+    //   facebookProfileUrl: data.facebookProfileUrl,
+    //   youtubeProfileUrl: data.youtubeProfileUrl,
+    //   phone: data.phone,
+    //   gender: data.gender,
+    // })
+    //   .then(() => {
+    //     console.log("Data Updated");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
+  useEffect(() => {
+    setData(userData);
+  }, [userData]);
   return (
     <>
       <div className={styles.mainDiv}>
@@ -87,7 +102,11 @@ const EditProfile = () => {
         <div className={clsx("row", styles.content)}>
           <div className={clsx("col-md-3 text-center d-flex", styles.avt)}>
             <div className={clsx("position-relative d-inline")}>
-              <img src="images/pfImage.png" alt="" className={styles.pfImage} />
+              <img
+                src={data.profilePhotoUrl}
+                alt=""
+                className={styles.pfImage}
+              />
               <label htmlFor="fileInput">
                 <i
                   className={clsx(
@@ -115,7 +134,8 @@ const EditProfile = () => {
                     name="name"
                     lableText="NAME"
                     typeOfInput="text"
-                    value={userData.name}
+                    defaultValue={data.name}
+                    // value = {data?.name}
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
@@ -128,7 +148,7 @@ const EditProfile = () => {
                     name="category"
                     lableText="CATEGORY"
                     typeOfInput="text"
-                    value={"Digital Artist"}
+                    defaultValue={`${data.category}`}
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
@@ -139,12 +159,13 @@ const EditProfile = () => {
                 garyBold
                 half={false}
                 name="username"
-                value={"@loremipsum_"}
+                defaultValue={data?.username}
                 lableText="USERNAME"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
                   updateState(e);
                 }}
+                disabled
               />
               <p className={styles.usernameRange}>
                 Username can range between 3-10 characters.
@@ -153,7 +174,7 @@ const EditProfile = () => {
                 garyBold
                 half={false}
                 name="bio"
-                value={"lorem@hyprclub.com"}
+                defaultValue={data?.bio}
                 lableText="BIO"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -164,7 +185,7 @@ const EditProfile = () => {
                 garyBold
                 half={false}
                 name="website"
-                value={"www.lorem.art"}
+                defaultValue={data?.portfolioUrl}
                 lableText="WEBSITE"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -180,7 +201,7 @@ const EditProfile = () => {
                   half
                   name="instagramUsername"
                   lableText="INSTAGRAM"
-                  value={"@loremipsum"}
+                  defaultValue={data?.instagramUsername}
                   typeOfInput="text"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
@@ -191,7 +212,7 @@ const EditProfile = () => {
                   half
                   name="twitterUsername"
                   lableText="TWITTER"
-                  value={"@loremipsum"}
+                  defaultValue={data?.twitterUsername}
                   typeOfInput="text"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
@@ -201,9 +222,9 @@ const EditProfile = () => {
               <InputField
                 garyBold
                 half={false}
-                name= "facebookProfileUrl"
-                value={"www.facebook.com/loremipsum"}
-                lableText="FACEBOOK"
+                name="facebookProfileUrl"
+                defaultValue={data?.facebookUrl}
+                lableText="FACEBOOK PROFILE URL"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
                   updateState(e);
@@ -212,9 +233,9 @@ const EditProfile = () => {
               <InputField
                 garyBold
                 half={false}
-                name= "youtubeProfileUrl"
-                value={"www.youtube.com/c/hyprclub"}
-                lableText="YOUTUBE"
+                name="youtubeProfileUrl"
+                defaultValue={data.youtubeUrl}
+                lableText="YOUTUBE CHANNEL URL"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
                   updateState(e);
@@ -229,11 +250,12 @@ const EditProfile = () => {
                 half={false}
                 name="email"
                 lableText="EMAIL ADDRESS"
-                value={"lorem@hyprclub.com"}
+                defaultValue={data.email}
                 typeOfInput="email"
                 onChange={(e: React.ChangeEvent<any>) => {
                   updateState(e);
                 }}
+                disabled
               />
 
               <div className={clsx("d-flex", styles.editProf)}>
@@ -241,7 +263,7 @@ const EditProfile = () => {
                   garyBold
                   half
                   name="phone"
-                  value={"+91 9990088776"}
+                  defaultValue={data?.phone}
                   lableText="PHONE NUMBER"
                   typeOfInput="tel"
                   onChange={(e: React.ChangeEvent<any>) => {
@@ -251,10 +273,21 @@ const EditProfile = () => {
                 <InputField
                   garyBold
                   half
-                  value={"Female"}
+                  defaultValue={data?.gender}
                   name="gender"
                   lableText="GENDER"
                   typeOfInput="text"
+                  onChange={(e: React.ChangeEvent<any>) => {
+                    updateState(e);
+                  }}
+                />
+                <InputField
+                  garyBold
+                  half
+                  defaultValue={data.age}
+                  name="age"
+                  lableText="Age"
+                  typeOfInput="number"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
                   }}
@@ -263,8 +296,8 @@ const EditProfile = () => {
             </div>
           </div>
           <div className={clsx("col-md-3 text-center d-flex", styles.gradbtn)}>
-            <GradientBorder 
-              text="Save Changes" 
+            <GradientBorder
+              text="Save Changes"
               onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
                 handleSubmit();
               }}
