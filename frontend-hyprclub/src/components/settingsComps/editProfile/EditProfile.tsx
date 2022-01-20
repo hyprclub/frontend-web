@@ -16,6 +16,11 @@ const EditProfile = () => {
 
   console.log(file)
 
+  const [ name, setName] = useState('')
+
+  console.log(name);
+  
+
     return (
         <>
             <div className={styles.mainDiv}>
@@ -33,8 +38,8 @@ const EditProfile = () => {
                     <div className={clsx('col-md-9', styles.inputs)}>
                         <div className={styles.userDetails}>
                             <div className={clsx('d-flex',styles.editProf)}>
-                                <div className={clsx('flex-grow-1',styles.inName)}><InputField garyBold half={false} lableText='NAME' typeOfInput='text' value={'Lorem Ipsum'}/></div>
-                                <div className='flex-grow-1'><InputField garyBold half={false} lableText='CATEGORY' typeOfInput='text' value={'Digital Artist'}/></div>
+                                <InputField onChange={(e:any) => setName(e.target.value)} garyBold half={true} lableText='NAME' typeOfInput='text' value={'Lorem Ipsum'}/>
+                                <InputField garyBold half={true} lableText='CATEGORY' typeOfInput='text' value={'Digital Artist'}/>
                             </div>
                             <InputField garyBold half={false} value={'@loremipsum_'} lableText='USERNAME' typeOfInput='text'/>
                             <p className={styles.usernameRange}>Username can range between 3-10 characters.</p>
