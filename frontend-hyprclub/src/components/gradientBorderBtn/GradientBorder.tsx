@@ -12,7 +12,7 @@ interface BtnText extends ButtonHTMLAttributes<HTMLButtonElement> {
 const GradientBorder = ({text, onClick, className, types}:BtnText) => {
     return (
         <div className={className}>
-            <button type={types} onClick={onClick} className={(styles.gradientBorder)}><span className={styles.btnName}>{text}</span></button>
+            <Button type='submit' onClick={onClick} className={(styles.gradientBorder)}><span className={styles.btnName}>{text}</span></Button>
         </div>
     )
 }

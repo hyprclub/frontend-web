@@ -1,10 +1,21 @@
 import clsx from 'clsx'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './editProfile.module.css'
 import InputField from '../../inputField/Input'
 import GradientBorder from '../../gradientBorderBtn/GradientBorder'
 
 const EditProfile = () => {
+
+  const [file, setFile] = useState<any>(null)
+
+  const handleFileChange = async (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    setFile(file)
+  }
+
+  console.log(file)
+
     return (
         <>
             <div className={styles.mainDiv}>
@@ -13,7 +24,10 @@ const EditProfile = () => {
                     <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
                         <div className={clsx('position-relative d-inline')}>
                             <img src="images/pfImage.png" alt="" className={styles.pfImage} />
-                            <i className={clsx("bi position-absolute bi-pencil-fill", styles.pencilIcon)}></i>
+                            <label htmlFor="fileInput">
+                                <i className={clsx("bi position-absolute bi-pencil-fill", styles.pencilIcon)}></i>
+                            </label>
+                            <input  accept=".jpeg,.jpg,.png,image/jpeg,image/png" id="fileInput" type="file" style={{ display: "none" }} onChange={handleFileChange}/>
                         </div>
                     </div>
                     <div className={clsx('col-md-9', styles.inputs)}>
