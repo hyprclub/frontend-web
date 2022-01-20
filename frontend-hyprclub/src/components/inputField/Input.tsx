@@ -13,6 +13,7 @@ interface Input extends InputHTMLAttributes<HTMLInputElement>{
     name? : string
     disabled? : boolean
     className? : any
+    required?: boolean
 }
 
 

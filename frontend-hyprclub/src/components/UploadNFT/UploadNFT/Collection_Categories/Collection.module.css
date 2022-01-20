@@ -52,7 +52,9 @@
 
 .Plus{
     color:transparent;
-    
+}
+.item:first-child>.circle>.Plus{
+    color:#ffffff!important;
 }
 
 .Heading {

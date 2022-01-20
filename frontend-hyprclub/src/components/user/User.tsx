@@ -36,7 +36,7 @@ const User = ({ className, item ,name , username ,category , portfolioUrl,bio,jo
 const closeModal = () => {
   setShowModal(false)
 }
-const [vis,setvis]=useState(false);
+const [vis,setvis]=useState(true);
 useEffect(() => {
  if(showModal){
   document.body.style.overflow = 'hidden';
@@ -46,13 +46,15 @@ useEffect(() => {
  }
 }, [showModal])
 
+const [creator, setCreator] = useState(true);
+
   return (
     <>
       <div className={cn(styles.user, className)}>
         <div className={styles.avatar}>
           <img src={ profilePhotoUrl || "/images/content/avatar-big.jpg"} alt="Avatar" />
         </div>
-        <div className={styles.name}>{name}</div>
+        <div className={creator ? styles.creatorName : styles.nonCreatorName}>{name}</div>
         <div className={styles.code}>
           <div className={styles.username}>@{username}</div>
           <div className={styles.prof}>{category}</div>
@@ -76,7 +78,7 @@ useEffect(() => {
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        {vis==true &&
+        {vis===true &&
         <div className={styles.gradbtn}>
           <GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/>
         </div>
@@ -110,15 +112,17 @@ useEffect(() => {
 
                     <p className={styles.addContribution}>Add a Contribution</p>
                 </div>
+                  <form>
                 <div className={clsx("d-flex align-items-baseline", styles.inputDIV)}>
-                  <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
-                    <input onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
-                    <span className={styles.INR}>INR</span>
-                  </div>
-                    <div className={styles.thanksBtn}>
-                     <GradientBorder text="Say Thanks"/>
+                    <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
+                      <input required min={100} onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
+                      <span className={styles.INR}>INR</span>
                     </div>
+                      <div className={styles.thanksBtn}>
+                      <GradientBorder disable={(parseInt(thanksValue)<100)} text="Say Thanks"/>
+                      </div>
                 </div>
+                    </form>
             </div>
       </div> 
     </>
