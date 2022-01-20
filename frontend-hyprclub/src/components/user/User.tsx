@@ -25,7 +25,7 @@ const [showModal, setShowModal] = useState(false);
 const closeModal = () => {
   setShowModal(false)
 }
-const [vis,setvis]=useState(false);
+const [vis,setvis]=useState(true);
 useEffect(() => {
  if(showModal){
   document.body.style.overflow = 'hidden';
@@ -67,7 +67,7 @@ const [creator, setCreator] = useState(true);
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        {vis==true &&
+        {vis===true &&
         <div className={styles.gradbtn}>
           <GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/>
         </div>
@@ -101,15 +101,17 @@ const [creator, setCreator] = useState(true);
 
                     <p className={styles.addContribution}>Add a Contribution</p>
                 </div>
+                  <form>
                 <div className={clsx("d-flex align-items-baseline", styles.inputDIV)}>
-                  <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
-                    <input onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
-                    <span className={styles.INR}>INR</span>
-                  </div>
-                    <div className={styles.thanksBtn}>
-                     <GradientBorder text="Say Thanks"/>
+                    <div className={clsx('d-flex align-items-end', styles.inputAndINR)}>
+                      <input required min={100} onChange={(e)=> setThanksValue((e.target.value)) } value={(thanksValue)} className={styles.input} type="number"/>
+                      <span className={styles.INR}>INR</span>
                     </div>
+                      <div className={styles.thanksBtn}>
+                      <GradientBorder disable={(parseInt(thanksValue)<100)} text="Say Thanks"/>
+                      </div>
                 </div>
+                    </form>
             </div>
       </div>
     </>

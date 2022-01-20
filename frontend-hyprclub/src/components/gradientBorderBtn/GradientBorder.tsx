@@ -6,13 +6,13 @@ interface BtnText extends ButtonHTMLAttributes<HTMLButtonElement> {
     text: string
     onClick?: any
     className?: string
-    types?:"button" | "submit" | "reset" | undefined
+    disable?:boolean
 }
 
-const GradientBorder = ({text, onClick, className, types}:BtnText) => {
+const GradientBorder = ({text, onClick, className, disable}:BtnText) => {
     return (
         <div className={className}>
-            <Button type='submit' onClick={onClick} className={(styles.gradientBorder)}><span className={styles.btnName}>{text}</span></Button>
+            <button disabled={disable} type='submit' onClick={onClick} className={(styles.gradientBorder)}><span className={styles.btnName}>{text}</span></button>
         </div>
     )
 }

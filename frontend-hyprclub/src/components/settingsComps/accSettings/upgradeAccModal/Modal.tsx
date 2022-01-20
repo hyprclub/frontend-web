@@ -80,7 +80,7 @@ const Modal = () => {
                                     </div>
 
                                     <div className={styles.modal2Btn}>
-                                        <GradientBorder types='submit' onClick={() => setModals({modal1: false, modal2: false, modal3:true, modal4:false})} text='Next'/>
+                                        <GradientBorder onClick={() => setModals({modal1: false, modal2: false, modal3:true, modal4:false})} text='Next'/>
                                     </div>
                                 </form>
 
