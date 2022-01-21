@@ -111,6 +111,7 @@ const Explore = () => {
                         value={date}
                         setValue={setDate}
                         options={dateOptions}
+                        height=" max(min(3.35vw,48px),40px)"
                     />
                 </div>
                 <div className={styles.Navbar}>
@@ -122,14 +123,7 @@ const Explore = () => {
                         >{x}</button>
                     ))}
                 </div>
-                <div className={clsx(styles.dropdown, styles.tabletView)}>
-                    <Dropdown
-                        className={styles.dropdown_1}
-                        value={navlinks}
-                        setValue={setNavlinks}
-                        options={navLinks}
-                    />
-                </div>
+
                 <button className={clsx(styles.filter, { [styles.active]: visible })} onClick={() => setVisible(!visible)}>
                     <p className={styles.filter_text}>Filter</p>
                     <div className={styles.toggle}>
@@ -139,6 +133,17 @@ const Explore = () => {
             </div>
             <div className={clsx(styles.filters, { [styles.active]: visible })}>
                 <div className={styles.sorting}>
+                    <div className={clsx(styles.cell, styles.tabletView)}>
+                        <div className={styles.label}>Category</div>
+                        <Dropdown
+                            className={styles.dropdown_1}
+                            value={navlinks}
+                            setValue={setNavlinks}
+                            options={navLinks}
+                            height=" max(min(3.35vw,48px),40px)"
+                        />
+
+                    </div>
                     <div className={styles.cell}>
                         <div className={styles.label}>Price</div>
                         <Dropdown
@@ -146,6 +151,7 @@ const Explore = () => {
                             value={price}
                             setValue={setPrice}
                             options={priceOptions}
+                            height=" max(min(3.35vw,48px),40px)"
                         />
                     </div>
                     <div className={styles.cell}>
@@ -155,6 +161,7 @@ const Explore = () => {
                             value={likes}
                             setValue={setLikes}
                             options={likesOptions}
+                            height=" max(min(3.35vw,48px),40px)"
                         />
                     </div>
                     <div className={styles.cell}>
@@ -164,6 +171,7 @@ const Explore = () => {
                             value={creator}
                             setValue={setCreator}
                             options={creatorOptions}
+                            height=" max(min(3.35vw,48px),40px)"
                         />
                     </div>
                     <div className={styles.cell}>

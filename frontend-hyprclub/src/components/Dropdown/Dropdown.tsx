@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./Dropdown.module.css"
 
-const Dropdown = ({ className, value, setValue, options }: any) => {
+const Dropdown = ({ className, value, setValue, options, height }: any) => {
     const [visible, setVisible] = useState(false);
     const handleClick=(value:any)=>{
         setValue(value);
@@ -14,7 +14,7 @@ const Dropdown = ({ className, value, setValue, options }: any) => {
     return (
         <OutsideClickHandler onOutsideClick={() => setVisible(false)}>
             <div className={clsx(styles.dropdown, className, { [styles.active]: visible })}>
-                <div className={styles.head} onClick={() => setVisible(!visible)}>
+                <div className={styles.head} style={{height:height}} onClick={() => setVisible(!visible)}>
                     <div className={styles.selection}>{value}</div>
                     <div className={styles.arrow}>
                         <CaretDown size={18} id={styles.down}/>
