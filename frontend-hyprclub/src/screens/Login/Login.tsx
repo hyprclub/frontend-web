@@ -46,71 +46,73 @@ const Login = () => {
         const email = userCredentials.user.email;
         const photoUrl = userCredentials.user.photoURL;
         const phone = userCredentials.user.phoneNumber;
-        getDoc(doc(db, "hyprUsers", uid)).then((querySnapshot) => {
-          if (querySnapshot.exists()) {
-            console.log("User Data Exits");
-          } else {
-            console.log("Set Doc");
-            const username = "Hello312";
-            setDoc(doc(db, "hyprUsers", uid), {
-              name: name,
-              email: email,
-              username: "hello", //add username here
-              profileViewsCount: 0,
-              phone: phone,
-              uid: uid,
-              newsletterSubscription: false,
-              category: "",
-              age: 0,
-              gender: "",
-              flagCounter: 0,
-              profileUrl: "",
-              bio: "",
-              isNsfw: false,
-              verified: false,
-              portfolioUrl: "",
-              instagramUsername: "",
-              twitterUsername: "",
-              facebookProfileUrl: "",
-              youtubeProfileUrl: "",
-              interests: {},
-              isCreator: "Not Applied",
-              dateOfJoining: date,
-              isKycDone: false,
-              nfts: {
-                purchasedNft: [],
-                createdNft: [],
-                savedNft: [],
-              },
-              followers: [],
-              following: [],
-              followerCount: 0,
-              followingCount: 0,
-              posts: {
-                createdPosts: [],
-                savedPosts: [],
-              },
-              bankAccountDetails: {
-                accountHolderName: "",
-                accountType: "",
-                ifscCode: "",
-                accountNumber: "",
-                branchName: "",
-                accountHolderPhoneNumber: "",
-              },
-            }).then((snap)=>{
-              window.location.reload();
-            });
-            
-          }
-        }).catch((error)=>{
-          console.log(error)
-        });
+        getDoc(doc(db, "hyprUsers", uid))
+          .then((querySnapshot) => {
+            if (querySnapshot.exists()) {
+              console.log("User Data Exits");
+            } else {
+              console.log("Set Doc");
+              const username = "Hello312";
+              setDoc(doc(db, "hyprUsers", uid), {
+                name: name,
+                email: email,
+                username: "hello", //add username here
+                profileViewsCount: 0,
+                phone: phone,
+                uid: uid,
+                newsletterSubscription: false,
+                category: "",
+                age: "",
+                gender: "",
+                flagCounter: 0,
+                profileUrl: "",
+                bio: "",
+                isNsfw: false,
+                verified: false,
+                socials: {
+                  portfolioUrl: "",
+                  instagramUsername: "",
+                  twitterUsername: "",
+                  facebookProfileUrl: "",
+                  youtubeProfileUrl: "",
+                },
+                interests: {},
+                isCreator: "Not Applied",
+                dateOfJoining: date,
+                isKycDone: false,
+                nfts: {
+                  purchasedNft: [],
+                  createdNft: [],
+                  savedNft: [],
+                },
+                followers: [],
+                following: [],
+                followerCount: 0,
+                followingCount: 0,
+                posts: {
+                  createdPosts: [],
+                  savedPosts: [],
+                },
+                bankAccountDetails: {
+                  accountHolderName: "",
+                  accountType: "",
+                  ifscCode: "",
+                  accountNumber: "",
+                  branchName: "",
+                  accountHolderPhoneNumber: "",
+                },
+              }).then((snap) => {
+                window.location.reload();
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
-      
   };
 
   const facebookSignIn = async () => {};
@@ -135,15 +137,14 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if(loggedIn && userData.username) {
+    if (loggedIn && userData.username) {
       navigate("/" + userData.username);
 
       console.log(userData.username);
-    }else{
+    } else {
       console.log("No username");
-     
     }
-  },[navigate,loggedIn,uid,userData])
+  }, [navigate, loggedIn, uid, userData]);
 
   const forgetPassword = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     console.log("Forget Password");

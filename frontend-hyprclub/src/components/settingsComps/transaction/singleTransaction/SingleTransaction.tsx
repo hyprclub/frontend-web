@@ -1,15 +1,21 @@
 import clsx from 'clsx';
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './singleTransaction.module.css';
 
 interface Transaction {
-    purchased?: boolean
-    NFTname: string
-    date: Date | string
-    username: string
+    // purchased?: boolean
+    // NFTname: string
+    // date: Date | string
+    // username: string,
+    item :any,
+    key:any,
+   
 }
 
-const SingleTransaction = ({purchased, NFTname, date, username}: Transaction) => {
+const SingleTransaction = ({item : itemFromProps}: Transaction) => {
+    useEffect(()=>{
+        console.log(itemFromProps);
+    },[itemFromProps])
     return (
         <>
             <div className={styles.mainDiv}>
@@ -17,11 +23,11 @@ const SingleTransaction = ({purchased, NFTname, date, username}: Transaction) =>
                         <img src="/images/pfImage.png" alt="" className={styles.pfImage} />
                     <div className={clsx('d-flex justify-content-between ', styles.nameUsernamePrice)}>
                         <div className={styles.nameAndPrice}>
-                            <p className={styles.boldTitle}>{purchased ? "Purchased" : 'Your' } NFT - {NFTname}{!purchased && " was Purchased!"}</p>
-                            <p className={styles.date}>{date}</p>
+                            <p className={styles.boldTitle}> NFT purachased 1233</p>
+                            <p className={styles.date}>12/12/2001</p>
                         </div>
                     
-                        <p className={styles.username}>@{username}</p>
+                        <p className={styles.username}>@loremipsem</p>
                         <p className={styles.price}>10,475 INR</p>
                     </div>
                 </div>

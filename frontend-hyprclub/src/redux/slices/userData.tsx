@@ -9,21 +9,21 @@ const initialState = {
     bio : undefined,
     category : undefined,
     dateOfJoining : undefined,
-    facebookUrl : undefined,
+  
     flagCounter : undefined,
     gender : undefined,
-    instagramUsername : undefined,
+ 
     interests : [],
     isCreator : false,
     isKycDone : false,
     isNsfw : false,
     phone : undefined,
     profileViews : undefined,
-    portfolioUrl : undefined,
-    twitterUsername : undefined,
+  
+   
     username : undefined,
     verified : false,
-    youtubeUrl : undefined,
+  
     profilePhotoUrl : undefined,
     bankDetails : {
         accountHolderName : undefined,
@@ -33,6 +33,13 @@ const initialState = {
         branchName : undefined,
         ifscCode : undefined
     },
+    socials: {
+        instagramUsername: undefined,
+        twitterUsername: undefined,
+        facebookUrl: undefined,
+        youtubeUrl: undefined,
+        portfolioUrl : undefined
+      },
     nfts : {
         createdNft : [],
         purchasedNft : [],
@@ -59,21 +66,21 @@ export const userDataSlice = createSlice({
             state.bio = payload?.bio;
             state.category = payload?.category;
             state.dateOfJoining = payload?.dateOfJoining;
-            state.facebookUrl = payload?.facebookProfileUrl;
+            state.socials.facebookUrl = payload?.socials.facebookProfileUrl;
             state.flagCounter = payload?.flagCounter;
             state.gender = payload?.gender;
-            state.instagramUsername = payload?.instagramUsername;
+            state.socials.instagramUsername = payload?.socials.instagramUsername;
             state.interests = payload?.interests;
             state.isCreator = payload?.isCreator;
             state.isKycDone = payload?.isKycDone;
             state.isNsfw = payload?.isNsfw;
             state.phone = payload?.phone;
-            state.portfolioUrl = payload?.portfolioUrl;
+            state.socials.portfolioUrl = payload?.socials.portfolioUrl;
             state.profileViews = payload?.profileViewsCount;
-            state.twitterUsername = payload?.twitterUsername;
+            state.socials.twitterUsername = payload?.socials.twitterUsername;
             state.username = payload?.username;
             state.verified = payload?.verified;
-            state.youtubeUrl = payload?.youtubeProfileUrl;
+            state.socials.youtubeUrl = payload?.socials.youtubeProfileUrl;
             state.bankDetails.accountHolderName = payload?.bankAccountDetails.accountHolderName;
             state.bankDetails.accountHolderPhoneNumber = payload?.bankAccountDetails.accountHolderPhoneNumber;
             state.bankDetails.accountNumber = payload?.bankAccountDetails.accountNumber;

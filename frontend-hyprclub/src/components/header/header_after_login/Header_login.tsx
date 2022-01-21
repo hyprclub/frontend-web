@@ -26,7 +26,6 @@ const Header_login = () => {
   const handleSubmit = () => {
     alert();
   };
-
   return (
     <div className={styles.headDiv}>
       <header className={styles.header}>
@@ -73,7 +72,7 @@ const Header_login = () => {
               </button>
             </form>
             {/* //upload button only of creater */}
-            {visibleNav === true && (
+            {loggedIn && userData.isCreator && (
               <Link to="/uploadnft">
                 <button className={styles.up}>
                   {" "}
@@ -81,7 +80,7 @@ const Header_login = () => {
                 </button>
               </Link>
             )}
-            {visibleNav === true && (
+            {loggedIn === false && (
               <Link to="/login">
                 <Button className={styles.logBtn}>
                   {" "}
@@ -89,7 +88,7 @@ const Header_login = () => {
                 </Button>
               </Link>
             )}
-            {visibleNav === true &&
+            {loggedIn === false &&
             <Link to="register">
               <button className={styles.signbtn}>
                 {" "}
@@ -98,7 +97,7 @@ const Header_login = () => {
             </Link>
             }
           </div>
-          <User className={styles.user} />
+          {loggedIn && <User className={styles.user} />}
           <button
             className={cn(styles.burger, { [styles.active]: visibleNav })}
             onClick={() => setVisibleNav(!visibleNav)}

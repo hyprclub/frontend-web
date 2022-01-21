@@ -23,8 +23,10 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
+
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
+  const [phoneCorrect, setPhoneCorrect] = useState(true);
   const storage = getStorage(firebaseApp);
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
@@ -44,7 +46,6 @@ const EditProfile = () => {
       );
       await uploadBytesResumable(storagePFref, file)
         .then((result) => {
-          
           console.log(result.state);
           window.location.reload();
         })
@@ -54,47 +55,86 @@ const EditProfile = () => {
     }
   };
 
+
+  // check for valid phone number or not.
+  const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "" || e.target.value.length > 10) {
+      setPhoneCorrect(true);
+    } else {
+      const phoneValidString = "(0|91)?[7-9][0-9]{9}";
+      if (e.target.value.match(phoneValidString)) {
+        console.log("Phone num correct");
+        setPhoneCorrect(false);
+      } else {
+        console.log("Phone Num not correct");
+        setPhoneCorrect(true);
+      }
+    }
+  };
+
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
 
-  const [data, setData] = useState<any | null>({});
+  const [data, setData] = useState({
+    name: userData.name,
+    email: userData.email,
+    age: userData.age,
+    category: userData.category,
+    username: userData.username,
+    profilePhotoUrl: userData.profilePhotoUrl,
+    bio: userData.bio,
+    portfolioUrl: userData.socials.portfolioUrl,
+    instagramUsername: userData.socials.instagramUsername,
+    twitterUsername: userData.socials.twitterUsername,
+    facebookUrl: userData.socials.facebookUrl,
+    youtubeUrl: userData.socials.youtubeUrl,
+    phone: userData.phone,
+    gender: userData.gender,
+  });
+
 
   // handle update state changes
-  const updateState = (e: any) => {
-    setData((state: any) => ({ ...state, [e.target.name]: e.target.value }));
+  const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData((state) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
 
+  
   // update user data here.
   const handleSubmit = async () => {
     const db = getFirestore(firebaseApp);
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
-
-    // await updateDoc(ref, {
-    //   name: data.name,
-    //   category: data.category,
-    //   bio: data.bio,
-    //   website: data.website,
-    //   instagramUsername: data.instagramUsername,
-    //   twitterUsername: data.twitterUsername,
-    //   facebookProfileUrl: data.facebookProfileUrl,
-    //   youtubeProfileUrl: data.youtubeProfileUrl,
-    //   phone: data.phone,
-    //   gender: data.gender,
-    // })
-    //   .then(() => {
-    //     console.log("Data Updated");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    console.log(data.twitterUsername)
+    if (phoneCorrect === true) {
+      console.log("Please Enter Correct Phone Number");
+    } else {
+      
+      await updateDoc(ref, {
+        name: data.name,
+        category: data.category,
+        bio: data.bio,
+        age : data.age,
+        socials : {
+          instagramUsername: data.instagramUsername,
+          twitterUsername: data.twitterUsername,
+          facebookProfileUrl: data.facebookUrl,
+          youtubeProfileUrl: data.youtubeUrl,
+          portfolioUrl: data.portfolioUrl
+        },
+        phone: data.phone,
+        gender: data.gender,
+      })
+        .then(() => {
+          console.log("Data Updated");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
-  useEffect(() => {
-    setData(userData);
-  }, [userData]);
   return (
     <>
       <div className={styles.mainDiv}>
@@ -132,11 +172,11 @@ const EditProfile = () => {
                     garyBold
                     half={false}
                     name="name"
-                    lableText="NAME"
+                    lableText={"NAME"}
                     typeOfInput="text"
-                    defaultValue={data.name}
-                    // value = {data?.name}
-                    onChange={(e: React.ChangeEvent<any>) => {
+                    value={data?.name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      e.preventDefault();
                       updateState(e);
                     }}
                   />
@@ -148,7 +188,7 @@ const EditProfile = () => {
                     name="category"
                     lableText="CATEGORY"
                     typeOfInput="text"
-                    defaultValue={`${data.category}`}
+                    value={data.category}
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
@@ -159,7 +199,7 @@ const EditProfile = () => {
                 garyBold
                 half={false}
                 name="username"
-                defaultValue={data?.username}
+                value={data?.username}
                 lableText="USERNAME"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -174,7 +214,7 @@ const EditProfile = () => {
                 garyBold
                 half={false}
                 name="bio"
-                defaultValue={data?.bio}
+                value={data?.bio}
                 lableText="BIO"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -184,8 +224,8 @@ const EditProfile = () => {
               <InputField
                 garyBold
                 half={false}
-                name="website"
-                defaultValue={data?.portfolioUrl}
+                name="portfolioUrl"
+                value={data?.portfolioUrl}
                 lableText="WEBSITE"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -201,7 +241,7 @@ const EditProfile = () => {
                   half
                   name="instagramUsername"
                   lableText="INSTAGRAM"
-                  defaultValue={data?.instagramUsername}
+                  value={data?.instagramUsername}
                   typeOfInput="text"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
@@ -212,7 +252,7 @@ const EditProfile = () => {
                   half
                   name="twitterUsername"
                   lableText="TWITTER"
-                  defaultValue={data?.twitterUsername}
+                  value={data?.twitterUsername}
                   typeOfInput="text"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
@@ -223,7 +263,7 @@ const EditProfile = () => {
                 garyBold
                 half={false}
                 name="facebookProfileUrl"
-                defaultValue={data?.facebookUrl}
+                value={data?.facebookUrl}
                 lableText="FACEBOOK PROFILE URL"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -233,8 +273,8 @@ const EditProfile = () => {
               <InputField
                 garyBold
                 half={false}
-                name="youtubeProfileUrl"
-                defaultValue={data.youtubeUrl}
+                name="youtubeUrl"
+                value={data.youtubeUrl}
                 lableText="YOUTUBE CHANNEL URL"
                 typeOfInput="text"
                 onChange={(e: React.ChangeEvent<any>) => {
@@ -250,7 +290,7 @@ const EditProfile = () => {
                 half={false}
                 name="email"
                 lableText="EMAIL ADDRESS"
-                defaultValue={data.email}
+                value={data.email}
                 typeOfInput="email"
                 onChange={(e: React.ChangeEvent<any>) => {
                   updateState(e);
@@ -263,17 +303,18 @@ const EditProfile = () => {
                   garyBold
                   half
                   name="phone"
-                  defaultValue={data?.phone}
+                  value={data?.phone}
                   lableText="PHONE NUMBER"
                   typeOfInput="tel"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
+                    checkPhoneNumber(e);
                   }}
                 />
                 <InputField
                   garyBold
                   half
-                  defaultValue={data?.gender}
+                  value={data?.gender}
                   name="gender"
                   lableText="GENDER"
                   typeOfInput="text"
@@ -284,11 +325,11 @@ const EditProfile = () => {
                 <InputField
                   garyBold
                   half
-                  defaultValue={data.age}
+                  value={data.age}
                   name="age"
                   lableText="Age"
                   typeOfInput="number"
-                  onChange={(e: React.ChangeEvent<any>) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     updateState(e);
                   }}
                 />

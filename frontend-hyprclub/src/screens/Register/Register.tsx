@@ -170,63 +170,61 @@ const Register = () => {
 
             // )
 
-            const personalDetailsInfo = await setDoc(
-              doc(db, "hyprUsers", uid),
-              {
-                name: data.name,
-                email: data.email,
-                username: data.username,
-                profileViewsCount: 0,
-                phone: data.phone,
-                uid: uid,
-                newsletterSubscription: promotionalMails,
-                category: "",
-                age: 0,
-                gender: "",
-                flagCounter: 0,
-                profileUrl: "",
-                coverPhotoUrl: "", // add firebase storage function url here
-                profilePhotoUrl: "", // add firebase storage function here
-                bio: "",
-                isNsfw: false,
-                verified: false,
+            await setDoc(doc(db, "hyprUsers", uid), {
+              name: data.name,
+              email: data.email,
+              username: data.username,
+              profileViewsCount: 0,
+              phone: data.phone,
+              uid: uid,
+              newsletterSubscription: promotionalMails,
+              category: "",
+              age: "",
+              gender: "",
+              flagCounter: 0,
+              profileUrl: "",
+              coverPhotoUrl: "", // add firebase storage function url here
+              profilePhotoUrl: "", // add firebase storage function here
+              bio: "",
+              isNsfw: false,
+              verified: false,
+              interests: {},
+              isCreator: "Not Applied",
+              dateOfJoining: date, // todo add todays date
+              isKycDone: false,
+              socials: {
                 portfolioUrl: "",
                 instagramUsername: "",
                 twitterUsername: "",
                 facebookProfileUrl: "",
                 youtubeProfileUrl: "",
-                interests: {},
-                isCreator: "Not Applied",
-                dateOfJoining: date, // todo add todays date
-                isKycDone: false,
-                nfts: {
-                  purchasedNft: [],
-                  createdNft: [],
-                  savedNft: [
-                    "/NFT's/3", // remove this after few some time
-                  ],
-                },
-                followers: [],
-                following: [],
-                followerCount: 0,
-                followingCount: 0,
-                posts: {
-                  createdPosts: [],
-                  savedPosts: [],
-                },
-                bankAccountDetails: {
-                  accountHolderName: "",
-                  accountType: "",
-                  ifscCode: "",
-                  accountNumber: "",
-                  branchName: "",
-                  accountHolderPhoneNumber: "",
-                },
-              }
-            );
+              },
+              nfts: {
+                purchasedNft: [],
+                createdNft: [],
+                savedNft: [
+                  "/NFT's/3", // remove this after few some time
+                ],
+              },
+              followers: [],
+              following: [],
+              followerCount: 0,
+              followingCount: 0,
+              posts: {
+                createdPosts: [],
+                savedPosts: [],
+              },
+              bankAccountDetails: {
+                accountHolderName: "",
+                accountType: "",
+                ifscCode: "",
+                accountNumber: "",
+                branchName: "",
+                accountHolderPhoneNumber: "",
+              },
+            });
 
             console.log("Account Created : ", user);
-            console.log(personalDetailsInfo);
           } catch (error) {
             console.error(error);
           }
@@ -250,71 +248,73 @@ const Register = () => {
         const email = userCredentials.user.email;
         const photoUrl = userCredentials.user.photoURL;
         const phone = userCredentials.user.phoneNumber;
-        getDoc(doc(db, "hyprUsers", uid)).then((querySnapshot) => {
-          if (querySnapshot.exists()) {
-            console.log("User Data Exits");
-          } else {
-            console.log("Set Doc");
-            const username = "Hello312";
-            setDoc(doc(db, "hyprUsers", uid), {
-              name: name,
-              email: email,
-              username: "hello", //add username here
-              profileViewsCount: 0,
-              phone: phone,
-              uid: uid,
-              newsletterSubscription: false,
-              category: "",
-              age: 0,
-              gender: "",
-              flagCounter: 0,
-              profileUrl: "",
-              bio: "",
-              isNsfw: false,
-              verified: false,
-              portfolioUrl: "",
-              instagramUsername: "",
-              twitterUsername: "",
-              facebookProfileUrl: "",
-              youtubeProfileUrl: "",
-              interests: {},
-              isCreator: "Not Applied",
-              dateOfJoining: date,
-              isKycDone: false,
-              nfts: {
-                purchasedNft: [],
-                createdNft: [],
-                savedNft: [],
-              },
-              followers: [],
-              following: [],
-              followerCount: 0,
-              followingCount: 0,
-              posts: {
-                createdPosts: [],
-                savedPosts: [],
-              },
-              bankAccountDetails: {
-                accountHolderName: "",
-                accountType: "",
-                ifscCode: "",
-                accountNumber: "",
-                branchName: "",
-                accountHolderPhoneNumber: "",
-              },
-            }).then((snap)=>{
-              window.location.reload();
-            });
-            
-          }
-        }).catch((error)=>{
-          console.log(error)
-        });
+        getDoc(doc(db, "hyprUsers", uid))
+          .then((querySnapshot) => {
+            if (querySnapshot.exists()) {
+              console.log("User Data Exits");
+            } else {
+              console.log("Set Doc");
+              const username = "Hello312";
+              setDoc(doc(db, "hyprUsers", uid), {
+                name: name,
+                email: email,
+                username: "hello", //add username here
+                profileViewsCount: 0,
+                phone: phone,
+                uid: uid,
+                newsletterSubscription: false,
+                category: "",
+                age: "",
+                gender: "",
+                flagCounter: 0,
+                profileUrl: "",
+                bio: "",
+                isNsfw: false,
+                verified: false,
+                socials: {
+                  portfolioUrl: "",
+                  instagramUsername: "",
+                  twitterUsername: "",
+                  facebookProfileUrl: "",
+                  youtubeProfileUrl: "",
+                },
+                interests: {},
+                isCreator: "Not Applied",
+                dateOfJoining: date,
+                isKycDone: false,
+                nfts: {
+                  purchasedNft: [],
+                  createdNft: [],
+                  savedNft: [],
+                },
+                followers: [],
+                following: [],
+                followerCount: 0,
+                followingCount: 0,
+                posts: {
+                  createdPosts: [],
+                  savedPosts: [],
+                },
+                bankAccountDetails: {
+                  accountHolderName: "",
+                  accountType: "",
+                  ifscCode: "",
+                  accountNumber: "",
+                  branchName: "",
+                  accountHolderPhoneNumber: "",
+                },
+              }).then((snap) => {
+                window.location.reload();
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
-      
   };
 
   //function for facebook sign-in
@@ -336,7 +336,6 @@ const Register = () => {
       console.log(userData.username);
     } else {
       console.log("No username");
-      
     }
   }, [navigate, loggedIn, uid, userData]);
 

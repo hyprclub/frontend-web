@@ -58,6 +58,7 @@ const Profile = () => {
       setDocId(doc.id);
       setProfileData(doc.data());
       GetProfilePhoto(doc.id);
+      GetCoverPhoto(doc.id);
     });
   };
 
@@ -65,16 +66,27 @@ const Profile = () => {
     try {
       // console.log(uid);
       const storagePFref = ref(storage, "users/" + uid + "/profile.jpg");
-      const storageCoverRef = ref(storage, "users/" + uid + "/cover.jpg");
-
+     
       const url = await getDownloadURL(ref(storagePFref));
-      const coverUrl = await getDownloadURL(ref(storageCoverRef));
-      setCoverPhoto(coverUrl);
+   
+     
       setProfilePhoto(url);
     } catch (error) {
       console.error(error);
     }
   };
+  const GetCoverPhoto = async (uid : any )=>{
+    try {
+      // console.log(uid);
+      const storageCoverRef = ref(storage, "users/" + uid + "/cover.jpg");
+
+      const coverUrl = await getDownloadURL(ref(storageCoverRef));
+      setCoverPhoto(coverUrl);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -121,15 +133,15 @@ const Profile = () => {
   const socials = [
     {
       title: "twitter",
-      url: "https://twitter.com/" + profileData?.twitterUsername + "/",
+      url: "https://twitter.com/" + profileData.socials?.twitterUsername + "/",
     },
     {
       title: "instagram",
-      url: "https://www.instagram.com/" + profileData?.instagramUsername + "/",
+      url: "https://www.instagram.com/" + profileData.socials?.instagramUsername + "/",
     },
     {
       title: "facebook",
-      url: profileData?.facebookProfileUrl,
+      url: profileData.socials?.facebookProfileUrl,
     },
   ];
 
@@ -193,7 +205,7 @@ const Profile = () => {
               username={profileData?.username}
               category={profileData?.category}
               name={profileData?.name}
-              portfolioUrl={profileData?.portfolioUrl}
+              portfolioUrl={profileData.socials?.portfolioUrl}
               bio={profileData?.bio}
               joiningDate={profileData?.dateOfJoining}
               profilePhotoUrl={profilePhoto}
