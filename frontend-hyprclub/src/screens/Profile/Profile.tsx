@@ -59,6 +59,7 @@ const Profile = () => {
       setProfileData(doc.data());
       GetProfilePhoto(doc.id);
       GetCoverPhoto(doc.id);
+      console.log(doc.data());
     });
   };
 
@@ -86,7 +87,7 @@ const Profile = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
     if (!file) return;

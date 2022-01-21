@@ -93,10 +93,10 @@ function App() {
   useEffect(() => {
     const run = async () => {
       if(loggedIn && uid){
-        getDoc(doc(db,"hyprUsers",uid)).then((docSnap) => {
+        await getDoc(doc(db,"hyprUsers",uid)).then((docSnap) => {
           if(docSnap.exists()){
             dispatch(UserDataActions.updateCurrentUserDetail(docSnap.data()));
-          
+           
           }
           else{
             console.log("No User Data");
@@ -151,7 +151,6 @@ useEffect(()=>{
   }
   run();
 },[dispatch, db])
-
 
   return (
     <Router>

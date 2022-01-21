@@ -189,7 +189,11 @@ const Register = () => {
               isNsfw: false,
               verified: false,
               interests: {},
-              isCreator: "Not Applied",
+              creatorApproval: {
+                approvalStatus: "Not Applied",
+                comments: "",
+              },
+              isCreator: false,
               dateOfJoining: date, // todo add todays date
               isKycDone: false,
               socials: {
@@ -279,7 +283,11 @@ const Register = () => {
                   youtubeProfileUrl: "",
                 },
                 interests: {},
-                isCreator: "Not Applied",
+                isCreator: false,
+                creatorApproval: {
+                  approvalStatus: "Not Applied",
+                  comments: "",
+                },
                 dateOfJoining: date,
                 isKycDone: false,
                 nfts: {

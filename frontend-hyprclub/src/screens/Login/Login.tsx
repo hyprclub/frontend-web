@@ -77,7 +77,11 @@ const Login = () => {
                   youtubeProfileUrl: "",
                 },
                 interests: {},
-                isCreator: "Not Applied",
+                isCreator: false,
+                creatorApproval: {
+                  approvalStatus: "Not Applied",
+                  comments: "",
+                },
                 dateOfJoining: date,
                 isKycDone: false,
                 nfts: {

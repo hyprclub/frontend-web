@@ -7,6 +7,7 @@ interface transaction {
 }
 
 const Transaction = ({items} : transaction) => {
+    
     return (
         <>
             <div className={styles.mainDiv}>

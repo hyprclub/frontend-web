@@ -12,9 +12,12 @@ const initialState = {
   
     flagCounter : undefined,
     gender : undefined,
- 
+    creatorApproval : {
+        approvalStatus : undefined,
+        comments : undefined
+    },
     interests : [],
-    isCreator : false,
+    isCreator : undefined,
     isKycDone : false,
     isNsfw : false,
     phone : undefined,
@@ -90,6 +93,8 @@ export const userDataSlice = createSlice({
             state.nfts.createdNft = payload?.nfts.createdNft;
             state.nfts.purchasedNft = payload?.nfts.purchasedNft;
             state.nfts.savedNft = payload?.nfts.savedNft;
+            state.creatorApproval.approvalStatus=payload?.creatorApproval.approvalStatus;
+            state.creatorApproval.comments = payload?.creatorApproval.comments;
         },
         updateUserDp: (state, {payload}) => {
             state.profilePhotoUrl = payload?.profilePhotoUrl;
