@@ -13,9 +13,6 @@
   
 }
 
-:global(.dark-mode) .dropdown.active .head {
-  background: #141416;
-}
 
 .dropdown.active .head svg {
   transform: translateY(-50%) rotate(180deg);
@@ -58,10 +55,6 @@
   transform: translateY(-50%);
   fill: #23262F;
   transition: all .2s;
-}
-
-:global(.dark-mode) .head svg {
-  fill: #FCFCFD;
 }
 
 .head:hover {

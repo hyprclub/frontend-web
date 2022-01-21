@@ -52,7 +52,7 @@ h3.title {
 .nav {
   position: absolute;
   top: 10px;
-  left: 50%;
+  left: 80%;
   display: flex;
   justify-content: center;
   transform: translateX(-50%);
@@ -99,10 +99,7 @@ h3.title {
   color: #FCFCFD;
 }
 
-:global(.dark-mode) .link.active {
-  background: #FCFCFD;
-  color: #23262F;
-}
+
 
 @media only screen and (max-width: 1179px) {
   .link:nth-child(n+5) {
@@ -112,7 +109,7 @@ h3.title {
 
 .filter {
   position: relative;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   padding: 0 0 0 24px;

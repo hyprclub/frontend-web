@@ -2,7 +2,6 @@ import React from 'react';
 import Items from "../../../components/items/Items";
 import { Iitems } from "../../../components/item";
 import styles from "./ItemsCarousel.module.css"
-import CardStore from '../../../components/store/Card/Card';
 import Card from '../../../components/card/Card';
 
 const ItemsCarousel = () => {

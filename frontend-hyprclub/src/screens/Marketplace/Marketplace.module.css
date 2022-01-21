@@ -1,12 +1,8 @@
 .home {
-  background: #f3f0f0;
+  background: E5E5E5;
   display: flex;
   flex-direction: column;
-  gap: 100px;
-}
-
-.divider {
-  border-top: 2px solid #bbb;
-  margin-left: 6.5vw;
-  margin-right: 6.5vw;
+  width:94.5%;
+  margin:25px auto;
+  gap: max(min(3.475vw,50px),25px);
 }
