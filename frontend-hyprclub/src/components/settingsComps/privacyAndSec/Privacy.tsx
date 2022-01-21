@@ -23,10 +23,9 @@ const Privacy = () => {
                     <div className={styles.changePs}>
                         <h3 className={styles.heading}>Change Password</h3>
                         <div className={clsx('d-flex mb-2', styles.pass)}>
-                            <InputField placeholder={'************'} garyBold half lableText='ENTER OLD PASSWORD' typeOfInput='text'/>
-                            <InputField placeholder={'************'} garyBold half lableText='ENTER NEW PASSWORD' typeOfInput='text'/>
+                            <InputField placeholder={'example@hyprclub.com'} garyBold lableText='ENTER REGISTERED EMAIL' typeOfInput='text'/>
                         </div>
-                        <p className={styles.descPass}>Password should be 7-12 characters long with at least one uppercase letter, one lowercase letter and a number.</p>
+                        <p className={styles.descPass}>A password reset link will be sent to your registered email address.</p>
                         <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
                          <GradientBorder text='Save Changes'/>
                     </div>

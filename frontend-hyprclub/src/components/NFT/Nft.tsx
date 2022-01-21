@@ -24,7 +24,9 @@ const Nft = () => {
                 <span onClick={createdClick} className={clsx(styles.created, createdSel && styles.active)}>Owned</span>
                 <span onClick={ownedClick} className={clsx(styles.owned, ownedSel && styles.active)}>Created</span>
             </p>
-            <Items nft created={createdSel} items={Iitems} />
+            {createdSel && <Items nft created={createdSel} items={Iitems} />}
+            {ownedSel && <Items nft  items={Iitems} />}
+            
         </div>
     )
 }
