@@ -39,6 +39,7 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
+    margin-left: 0.5vw;
 }
 
 .enableprivate{
@@ -52,6 +53,9 @@
     margin-bottom: 20px;
 }
 
+.pass{
+    margin-right: 15vw;
+}
 
 @media only screen and (max-width:438px){
     .enableprivate{
@@ -65,8 +69,8 @@
     }
 
     .descPass{
-        margin-top: 2vh;
-        margin-left: 1vw;
+        margin-top: 1vh;
+        margin-left: 1.5vw;
         margin-bottom: 3vh;
     }
 
