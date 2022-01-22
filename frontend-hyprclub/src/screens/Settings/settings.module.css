@@ -88,3 +88,10 @@
         justify-content: center;
     }
 }
+
+@media only screen and (min-width:1630px){
+    .mainDiv{
+        margin: 0 55px !important;
+        
+    }
+}
