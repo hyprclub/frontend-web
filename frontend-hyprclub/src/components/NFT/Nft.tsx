@@ -4,7 +4,10 @@ import { Iitems } from "../../components/item";
 import Items from '../items/Items';
 import styles from './nft.module.css'
 
-const Nft = () => {
+interface nft {
+    token : any
+}
+const Nft = ({token} : nft) => {
     const [createdSel, setCreatedSel] = useState(true)
     const [ownedSel, setOwnedSel] = useState(false)
 
@@ -24,7 +27,7 @@ const Nft = () => {
                 <span onClick={createdClick} className={clsx(styles.created, createdSel && styles.active)}>Owned</span>
                 <span onClick={ownedClick} className={clsx(styles.owned, ownedSel && styles.active)}>Created</span>
             </p>
-            {createdSel && <Items nft created={createdSel} items={Iitems} />}
+            {createdSel && <Items nft created={createdSel} items={token}  />}
             {ownedSel && <Items nft  items={Iitems} />}
             
         </div>

@@ -6,7 +6,7 @@ import clsx from "clsx";
 import CardStore from "../store/Card/Card";
 import { Link } from "react-router-dom";
 
-const Items = ({ className, items, created, nft, owned }:any) => {
+const Items = ({ className, items, created, nft, owned,token }:any) => {
   return (
     <div className={cn(styles.items, className)}>
       <div className={clsx(styles.list, 'row')}>
