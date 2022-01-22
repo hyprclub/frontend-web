@@ -5,6 +5,9 @@ import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./UserHead.module.css";
 import Icon from "../../../Icon";
 
+interface ClassName{
+  className:any
+}
 const items = [
   {
     title: "My profile",
@@ -26,7 +29,7 @@ const items = [
   },
 ];
 
-const User = ({ className }) => {
+const User = (className:any) => {
   const [visible, setVisible] = useState(false);
 
   return (
