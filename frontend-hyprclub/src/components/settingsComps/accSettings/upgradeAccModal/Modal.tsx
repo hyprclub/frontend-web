@@ -10,18 +10,21 @@ import styles from './modal.module.css';
 
 const Modal = () => {
 
-    const [modals, setModals] = useState({modal1: true, modal2: false, modal3:false, modal4:false})
+    const [modals, setModals] = useState({modal1: true, modal2: false, modal3:false, modal4:false, modal5:false})
 
      const dispatch = useDispatch()
     const closeModal = () => {
         dispatch ({type: MODAL_CLOSE_SUCCESS})
-        setModals({modal1: true, modal2: false, modal3:false, modal4:false})
+        setModals({modal1: true, modal2: false, modal3:false, modal4:false, modal5:false})
     }
 
     return (
         <>
             <div onClick={e=> e.stopPropagation()} className={styles.modal}>
                 <div className={clsx('container', styles.modalContent)}>
+
+
+                    
                     <div className={clsx(styles.firstModal, modals.modal1 ? styles.show : styles.hide)}>
                     <p className={styles.crossFirst}><X onClick={closeModal} size={30} weight='bold' /></p>
                         <div className={styles.topTitleDiv}>
@@ -53,7 +56,7 @@ const Modal = () => {
                             <p className={styles.comingSoon}>Many more features are coming soon!</p>
                             <p className={styles.comingSoonDesc}>With a creator account, you can unlock a plethora of benefits and extra features.</p>
 
-                            <GradientBorder onClick={() => setModals({modal1: false, modal2: true, modal3:false, modal4:false})} text='Upgrade to Creator Account' />
+                            <GradientBorder onClick={() => setModals({modal1: false, modal2: true, modal3:false, modal4:false, modal5:false})} text='Upgrade to Creator Account' />
                         </div>
 
                     </div>
@@ -62,7 +65,7 @@ const Modal = () => {
 
 
                     <div className={clsx(styles.secondModal, modals.modal2 ? styles.show : styles.hide)}>
-                    <p className={styles.cross}><ArrowLeft onClick={() => setModals({modal1: true, modal2: false, modal3:false, modal4:false})} size={30} weight="bold" /><X onClick={closeModal} size={30} weight='bold' /></p>
+                    <p className={styles.cross}><ArrowLeft onClick={() => setModals({modal1: true, modal2: false, modal3:false, modal4:false, modal5:false})} size={30} weight="bold" /><X onClick={closeModal} size={30} weight='bold' /></p>
                     <h2 className={styles.gradientTitle}>Upgrade to a Creator Account</h2>
 
                         <p className={styles.secTopDesc}>We check each creator application manually to ensure authenticity on the platform. Don’t worry, you don’t need to have a huge following to be a creator, we welcome all, small or big influencers.  </p>
@@ -80,7 +83,7 @@ const Modal = () => {
                                     </div>
 
                                     <div className={styles.modal2Btn}>
-                                        <GradientBorder onClick={() => setModals({modal1: false, modal2: false, modal3:true, modal4:false})} text='Next'/>
+                                        <GradientBorder onClick={() => setModals({modal1: false, modal2: false, modal3:true, modal4:false, modal5:false})} text='Next'/>
                                     </div>
                                 </form>
 
@@ -89,7 +92,7 @@ const Modal = () => {
 
 
                     <div className={clsx(styles.thirdModal, modals.modal3 ? styles.show : styles.hide)}>
-                    <p className={styles.cross}><ArrowLeft onClick={() => setModals({modal1: false , modal2: true, modal3:false, modal4:false})} size={30} weight="bold" /><X onClick={closeModal} size={30} weight='bold' /></p>
+                    <p className={styles.cross}><ArrowLeft onClick={() => setModals({modal1: false , modal2: true, modal3:false, modal4:false, modal5:false})} size={30} weight="bold" /><X onClick={closeModal} size={30} weight='bold' /></p>
                         <h2 className={styles.gradientTitle}>Upgrade to a Creator Account</h2>
                         <p className={styles.secTopDesc}>We check each creator application manually to ensure authenticity on the platform. Don’t worry, you don’t need to have a huge following to be a creator, we welcome all, small or big influencers.  </p>
                         <div className={styles.step2}>
@@ -112,7 +115,7 @@ const Modal = () => {
                             </div>
 
                             <div className={styles.modal2Btn}>
-                                <GradientBorder onClick={() => setModals({modal1: false, modal2: false, modal3:false, modal4:true})} text='Next'/>
+                                <GradientBorder onClick={() => setModals({modal1: false, modal2: false, modal3:false, modal4:true, modal5:false})} text='Next'/>
                             </div>
                         </div>
                     </div>
