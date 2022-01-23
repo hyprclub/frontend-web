@@ -83,7 +83,7 @@ const Register = () => {
                 </div>
                 <div className="mt-3">
                   <Link to="/follow">
-                    <ButtonItself btnPurpose={"Sign Up"} />
+                    <ButtonItself arrow btnPurpose={"Sign Up"} />
                   </Link>
                 </div>
               </Form>

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { ButtonHTMLAttributes } from 'react'
 import { Button } from 'react-bootstrap';
 import './button.css';
@@ -5,12 +6,15 @@ import './button.css';
 interface BtnPurpose extends ButtonHTMLAttributes<HTMLButtonElement>{
     btnPurpose:string
     onClick?: any
+    full?:boolean
+    className?:string
+    arrow?:boolean
 }
 
-const ButtonItself = ({btnPurpose, onClick}: BtnPurpose) => {
+const ButtonItself = ({btnPurpose, onClick, full, className, arrow}: BtnPurpose) => {
     return (
-        <div className=' d-flex justify-content-center'>
-            <Button onClick={onClick} type='submit' className='buttonItself'>{btnPurpose} <i className="bi bi-arrow-right"></i></Button>
+        <div className={clsx('d-flex justify-content-center', full && 'w-100')}>
+            <Button onClick={onClick} type='submit' className={clsx(' buttonItself', className, full&& 'w-100')}>{btnPurpose} {arrow && <i className="bi bi-arrow-right"></i>}</Button>
         </div>
     )
 }
