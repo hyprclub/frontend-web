@@ -72,7 +72,7 @@ const Settings = () => {
                 <Accordion.Header >Transaction History</Accordion.Header>
                 <Accordion.Body>
                   <Transaction
-                  items = {['123','312','412','333']}
+                
                   />
                 </Accordion.Body>
               </Accordion.Item>
@@ -101,7 +101,7 @@ const Settings = () => {
             {path === "/settings/accountsettings" && <AccSettings />}
             {path === "/settings/theme" && <Theme />}
             {path === "/settings/privacyandsecurity" && <Privacy />}
-            {path === "/settings/transactionhistory" && <Transaction items ={['123','312','412','333']} />}
+            {path === "/settings/transactionhistory" && <Transaction  />}
             {path === "/settings/help" && <Help />}
             {path === "/settings/contact" && <Contact />}
           </div>

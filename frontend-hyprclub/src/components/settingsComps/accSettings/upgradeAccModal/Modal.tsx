@@ -116,14 +116,80 @@ const Modal = () => {
 
                     </div>
 
- 
+  
 
-                                    <div className={styles.modal2Btn}>
+                    <div className={clsx(styles.secondModal, modals.modal2 ? styles.show : styles.hide)}>
+                    <p className={styles.cross}><ArrowLeft onClick={() => setModals({modal1: true, modal2: false, modal3:false, modal4:false, modal5:false})} size={30} weight="bold" /><X onClick={closeModal} size={30} weight='bold' /></p>
+                    <h2 className={styles.gradientTitle}>Upgrade to a Creator Account</h2>
+
+              
+
+                                    {/* <div className={styles.modal2Btn}>
                                         <GradientBorder onClick={() => setModals({modal1: false, modal2: false, modal3:true, modal4:false, modal5:false})} text='Next'/>
-                                    </div>
-                               
+                                    </div> */}
+                                
 
-          
+             <p className={styles.secTopDesc}>
+              We check each creator application manually to ensure authenticity
+              on the platform. Don’t worry, you don’t need to have a huge
+              following to be a creator, we welcome all, small or big
+              influencers.{" "}
+             </p>
+             <div className={styles.step1}>
+               <p className={styles.step1Title}>STEP 1: SOCIAL MEDIA HANDLES</p>
+                <form action="#">
+                <div className={styles.inputs}>
+                  <InputField
+                    required
+                    garyBold
+                    lableText="INSTAGRAM"
+                    typeOfInput="text"
+                    placeholder="Enter Instagram Username"
+                    
+                  />
+                  <div className="invalid-feedback">
+                    Please choose a username.
+                  </div>
+                  <InputField
+                    required
+                    garyBold
+                    lableText="TWITTER"
+                    typeOfInput="text"
+                    placeholder="Enter Link..."
+                  />
+                  <InputField
+                    required
+                    garyBold
+                    lableText="YOUTUBE"
+                    typeOfInput="text"
+                    placeholder="Enter Link..."
+                  />
+                  <InputField
+                    required
+                    garyBold
+                    lableText="YOUR PERSONAL WEBSITE"
+                    typeOfInput="text"
+                    placeholder="Enter Link..."
+                  />
+                </div>
+
+                <div className={styles.modal2Btn}>
+                  <GradientBorder
+                    onClick={() =>
+                      setModals({
+                        modal1: false,
+                        modal2: false,
+                        modal3: true,
+                        modal4: false,
+                        modal5 : false
+                      })
+                    }
+                    text="Next"
+                  />
+                </div>
+               </form>
+                </div>
+                </div>
 
                     <div className={clsx(styles.thirdModal, modals.modal3 ? styles.show : styles.hide)}>
                         <p className={styles.cross}><ArrowLeft onClick={() => setModals({modal1: false , modal2: true, modal3:false, modal4:false, modal5:false})} size={30} weight="bold" /><X onClick={closeModal} size={30} weight='bold' /></p>
@@ -208,9 +274,22 @@ const Modal = () => {
                         </div>
                     </div>
 
-              
-            </div>
-          </div>
+              {/* <div className={styles.modal2Btn}>
+                <GradientBorder
+                  onClick={() =>
+                    setModals({
+                      modal1: false,
+                      modal2: false,
+                      modal3: false,
+                      modal4: true,
+                      modal5 : false
+                    })
+                  }
+                  text="Next"
+                />
+              </div> */}
+             </div>
+              </div>
 
                     {/* last one */}
                     <div className={clsx(styles.thirdModal, modals.modal5 ? styles.show : styles.hide)}>
@@ -220,10 +299,8 @@ const Modal = () => {
                             <p className={styles.lastDesc}>We will reach out to you soon! Be sure to check your registered email to activate your creator account at HyprClub. </p>
                         </div>
                     </div>
-               
-            
-          </div>
-        </div>
+              
+        
     </>
   );
 };
