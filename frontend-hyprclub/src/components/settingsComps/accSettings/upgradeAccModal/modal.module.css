@@ -139,7 +139,40 @@ line-height: 24px;
     margin-bottom: 20px;
 }
 
+.verificationDocumentDiv{
+    margin: 1.25rem 0;
+}
 
+
+.uploadText{
+    font-weight: 500;
+    font-size: 16px;
+    color: #23262F;
+}
+
+.dragndrop{
+    color: #777E91;
+    font-size: 12px;
+}
+
+.dragField{
+    height: 122px;
+    background: #F4F5F6;
+    border-radius: 16px;
+
+}
+
+.dragField i{
+    color: #777E91;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.pngorjpeg{
+    font-size: 12px;
+    color: #777E91;
+    margin-bottom: 0;
+}
 
 @media(max-width:768px) {
 
@@ -166,6 +199,10 @@ line-height: 24px;
 
     .bottom{
         padding: 0 0 30px 0;
+    }
+
+    .dragField{
+        height: 200px;
     }
 
 }
@@ -206,6 +243,21 @@ line-height: 24px;
 }
 
 .select{
+    height: 40px !important;
+    border-radius: 12px !important;
+    color: #23262F;
+    font-weight: 500 !important;
+font-size: 14px !important;
+cursor: pointer;
+}
+
+.select:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+}
+
+.select2{
     height: 40px !important;
     border-radius: 12px !important;
     color: #23262F;

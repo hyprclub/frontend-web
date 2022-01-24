@@ -17,12 +17,14 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { Key } from "phosphor-react";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+  const [forgotPass, setForgotPass] = useState(false);
   const userData = useSelector((state: RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
@@ -198,17 +200,7 @@ const Login = () => {
                 lableText={"Password"}
                 required
               />
-              <p className="forgotPassword">
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    forgetPassword(e);
-                  }}
-                  className="link"
-                >
-                  Forgot Password?
-                </a>
-              </p>
+              <p className="forgotPassword"><a onClick={() => setForgotPass(true)} className='link'>Forgot Password?</a></p>
               <ButtonItself
                 onClick={(e: React.FormEvent<HTMLInputElement>) =>
                   handleSubmit(e)
@@ -224,6 +216,18 @@ const Login = () => {
                 purpose={"Login"}
               />
             </div>
+            {forgotPass && <div className="forgotPasswordDiv">
+                        <i onClick={()=> setForgotPass(false)} className="leftArr bi bi-arrow-left"></i>
+                            <div className='d-flex flex-column justify-content-center align-items-center'>
+                                <Key className='key' size={64} weight="bold" />
+                                <h3 className='forgotPasstext text-center'>Forgot Password?</h3>
+                                <p className='text-center'>Dont worry, it happens! Please enter your registered email and we will send you a link to reset your password.</p>
+                                <form className='w-100' action="#">
+                                    <InputField required lableText='ENTER EMAIL ID' typeOfInput='email' garyBold placeholder='example@hyprclub.com'/>
+                                    <ButtonItself className='my-4 p-2'  full onClick={() => console.log('hii')} btnPurpose={"Reset Password"}/>
+                                </form>
+                            </div>
+                    </div>}
           </div>
         </div>
       </div>

@@ -10,6 +10,37 @@
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
 }
 
+.forgotPasswordDiv{
+  padding: 10px 70px 20px;
+  border-radius: 25px;
+  width: 46%;
+  margin-bottom: 40px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.forgotPasswordDiv .leftArr{
+  font-size: 32px;
+}
+
+.forgotPasswordDiv .key{
+  background-color: #ED0090;
+  color: #fff;
+  padding: 15px;
+  border-radius: 13px;
+}
+
+
+.forgotPasswordDiv .forgotPasstext{
+  font-weight: bold;
+  font-size: 30px;
+  color: #010101;
+  margin: 2.2rem 0;
+}
+
+.forgotPasswordDiv p{
+  color: #010101;
+}
+
 .loginHeaderText {
   font-weight: bold;
   font-size: 40px;
@@ -53,6 +84,12 @@
     width: 95% !important;
     margin-top: 3vh;
     padding: 10px 50px;
+  }
+
+  .forgotPasswordDiv{
+    width: 95% !important;
+    margin-top: 3vh;
+    padding: 10px 29px;
   }
 
   .loginHeaderText {
@@ -110,6 +147,12 @@
 
   }
 
+  .forgotPasswordDiv{
+    width: 75%;
+    margin-top: 7vh;
+
+  }
+
   .loginHeaderText{
     font-size: 47px;
     padding-top: 1.5vh;
@@ -130,6 +173,12 @@
     width: 80% !important;
     margin-top: 8.5vh;
     padding: 10px 60px 20px;
+  }
+
+  .forgotPasswordDiv{
+    width: 80% !important;
+    margin-top: 8.5vh;
+
   }
 
   .loginHeaderText {

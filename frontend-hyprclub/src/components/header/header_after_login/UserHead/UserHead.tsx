@@ -6,14 +6,17 @@ import styles from "./UserHead.module.css";
 import { useSelector, RootStateOrAny } from "react-redux";
 import Icon from "../../../Icon";
 
+interface ClassName{
+  className:any
+}
 
 
 
-const User = ({ className }) => {
+const User = (className:any) => {
   const [visible, setVisible] = useState(false);
   
   const userData = useSelector(
-    (state) => state?.userData
+    (state : RootStateOrAny) => state?.userData
   );
   const items = [
     {
