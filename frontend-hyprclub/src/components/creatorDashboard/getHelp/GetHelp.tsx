@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import styles from "./getHelp.module.css";
 
-const GetHelp = () => {
+const GetHelp = ({className}:any) => {
   return (
     <>
-      <div className={clsx(styles.mainDiv)}>
+      <div className={clsx(styles.mainDiv, className)}>
         <h1 className={styles.heading}>Get Help</h1>
         <div className={clsx(styles.content)}>
             <p className={styles.ques}>Got any questions? Check out our <Link to='#'><span>FAQ page.</span></Link></p>

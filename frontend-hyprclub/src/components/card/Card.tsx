@@ -7,7 +7,7 @@ import PostButton from "../postButton/PostButton";
 
 
 
-const Card = ({ className, item, created }:any) => {
+const Card = ({ className, item, created, creatorPage }:any) => {
 
   return (
     <div className={cn(styles.card, className)}>
@@ -16,6 +16,9 @@ const Card = ({ className, item, created }:any) => {
           <div className={styles.line}>
             <div className={clsx(styles.imgAndBtn, 'position-relative w-100')}>
               <img className={styles.image} src={item.image} alt="" />
+              {
+              creatorPage && <span className={clsx((item.stage==="under review") && styles.underRev, (item.stage==="rejected") && styles.rejected, (item.stage==="approved") && styles.approved)}>{item.stage}</span>
+              }
             </div>
             <div className={styles.title}>{item.title}</div>
             <div className={clsx('d-flex align-items-center justify-content-between w-100 mt-2')}>

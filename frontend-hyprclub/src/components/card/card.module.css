@@ -121,3 +121,33 @@ font-size: 14px;
   width: 40px;
   margin-right: 10px;
 }
+
+
+/*  */
+
+.imgAndBtn span{
+  position: absolute;
+  text-transform: uppercase;
+  left: 1rem;
+  top: 1rem;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.5rem ;
+  border-radius: 10px;
+
+}
+
+.underRev{
+  background: linear-gradient(27deg, rgba(158,1,235,1) 0%, rgba(211,24,126,1) 49%, rgba(243,189,56,1) 100%) !important;
+  color: #fff;
+}
+
+.rejected{
+  background: #EB3F3F;
+  color: #fff;
+
+}
+
+.approved{
+  background: #95FF63;
+}
