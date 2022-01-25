@@ -15,6 +15,7 @@ import Settings from './screens/Settings/Settings';
 import Landing from './screens/Landing/Landing';
 import NFTS from './screens/NFTs/NFTS';
 import UploadNft from './screens/UploadNft/UploadNft';
+import Admindash from './screens/AdminDashboard/Admindash';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Admindash/>
         <header className="App-header">
           <Routes>
             <Route path='/nft' element={<NFTS></NFTS>}/>
