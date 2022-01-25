@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../logo/Logo';
+import Logo from '../../../logo/Logo';
 import styles from "./Dashboardheader.module.css"
 
 const Dashboardheader = () => {

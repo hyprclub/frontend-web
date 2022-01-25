@@ -90,7 +90,7 @@ const Dashtable = () => {
                     </tr>
                 ))}
             </table>
-            <button type="submit" className={styles.btn}><p className={styles.p}>Load More</p></button>
+            <button type="submit" className={styles.btn} ><p className={styles.p}>Load More</p></button>
         </div>
     );
 };

@@ -16,6 +16,7 @@ import Landing from './screens/Landing/Landing';
 import NFTS from './screens/NFTs/NFTS';
 import UploadNft from './screens/UploadNft/UploadNft';
 import Admindash from './screens/AdminDashboard/Admindash';
+import AdminLogin from './screens/AdminLogin/AdminLogin';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -24,21 +25,22 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Admindash/> */}
         <header className="App-header">
           <Routes>
-            <Route path='/nft' element={<NFTS></NFTS>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
-            <Route path='/follow' element={<FollowCreater/>}/>
-            <Route path='/interest' element={<Interests/>}/>
-            <Route path='/feed' element={<Feed/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/market' element={<Marketplace/>}/>
-            <Route path='/settings' element={<Settings/>}/>
-            <Route path='/settings/:test' element={<Settings/>}/>
-            <Route path='/uploadnft' element={<UploadNft/>}/>
-            <Route path='/' element={<Landing/>}></Route>
+            <Route path='/nft' element={<NFTS></NFTS>} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/follow' element={<FollowCreater />} />
+            <Route path='/interest' element={<Interests />} />
+            <Route path='/feed' element={<Feed />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/market' element={<Marketplace />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/settings/:test' element={<Settings />} />
+            <Route path='/uploadnft' element={<UploadNft />} />
+            <Route path='/adminlogin' element={<AdminLogin />} />
+            <Route path='/admindashboard' element={<Admindash />} />
+            <Route path='/' element={<Landing />}></Route>
           </Routes>
           {/* <Header></Header>
           <Footer></Footer> */}
@@ -46,10 +48,11 @@ function App() {
       </div>
     </Router>
 
-    )}
-    
+  )
+}
 
 
- 
+
+
 
 export default App;

@@ -36,22 +36,25 @@ const UploadNFT = () => {
     const [category, setCategory] = useState(Categories[0]);
     const [perks, setPerks]: any[] = useState([])
     const [file, setFile] = useState(null);
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const [itemname, setItemname] = useState('');
+    const [stock, setStock] = useState('');
+    const [cred, setCred] = useState('');
+    // const [desc, setDesc] = useState('');
+    // const [itemname, setItemname]=useState('');
 
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    // const textRef =useRef<HTMLTextAreaElement | null>(null);
     // console.log(perks);
     const addPerk = () => {
         if (inputRef!.current!.value === "") return;
         setPerks([...perks, inputRef!.current!.value]);
         inputRef!.current!.value = "";
     }
-    const enterPerk=(e:any)=>{
-        if(e.key==='Enter') return addPerk();
+    const enterPerk = (e: any) => {
+        if (e.key === 'Enter') return addPerk();
 
     }
-    // const Perkdiv=()=>{
-    //     <>
-    //     </>
-    // }
+    // const descs=
 
     const handleChange = () => {
         setFile(file);
@@ -76,7 +79,7 @@ const UploadNFT = () => {
                             lableText="ENTER ITEM NAME"
                             garyBold={true}
                             className={styles.Input}
-                            onChange={() => console.log("fjndk")} />
+                            onChange={(e: any) => setItemname(e.target.value)} />
                     </div>
                     <div className={styles.Item_stck_prc}>
                         <div className={styles.ItemCred}>
@@ -85,7 +88,7 @@ const UploadNFT = () => {
                                 lableText="ENTER STOCK NUMBER"
                                 garyBold={true}
                                 className={styles.Input}
-                                onChange={() => console.log("fjndk")} />
+                                onChange={(e: any) => setStock(e.target.value)} />
                         </div>
                         <div className={styles.ItemCred}>
                             <InputField
@@ -93,7 +96,7 @@ const UploadNFT = () => {
                                 lableText="ENTER PRICE"
                                 garyBold={true}
                                 className={styles.Input}
-                                onChange={() => console.log("fjndk")} />
+                                onChange={(e: any) => setCred(e.target.value)} />
                         </div>
                     </div>
                     <div className={styles.ItemDesc}>
