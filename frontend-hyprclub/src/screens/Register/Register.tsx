@@ -329,8 +329,85 @@ const Register = () => {
   const facebookSignIn = async () => {
     const provider = new FacebookAuthProvider();
     await signInWithPopup(auth, provider)
-      .then((dataUser) => {
-        console.log(dataUser);
+      .then((userCredentials) => {
+        const uid = userCredentials.user.uid;
+        const name = userCredentials.user.displayName;
+        const email = userCredentials.user.email;
+        const photoUrl = userCredentials.user.photoURL;
+        const phone = userCredentials.user.phoneNumber;
+        const current = new Date();
+         const date = `${current.getDate()}/${
+             current.getMonth() + 1
+           }/${current.getFullYear()}`;
+
+        getDoc(doc(db, "hyprUsers", uid))
+          .then((querySnapshot) => {
+            if (querySnapshot.exists()) {
+              console.log("User Data Exits");
+            } else {
+              console.log("Set Doc");
+              const username = "Hello312";
+              setDoc(doc(db, "hyprUsers", uid), {
+                name: name,
+                email: email,
+                username: "hello3", //add username here
+                profileViewsCount: 0,
+                phone: phone,
+                uid: uid,
+                newsletterSubscription: false,
+                category: "",
+                age: "",
+                gender: "",
+                flagCounter: 0,
+                profileUrl: "",
+                bio: "",
+                isNsfw: false,
+                verified: false,
+                socials: {
+                  portfolioUrl: "",
+                  instagramUsername: "",
+                  twitterUsername: "",
+                  facebookProfileUrl: "",
+                  youtubeProfileUrl: "",
+                },
+                interests: {},
+                isCreator: false,
+                creatorApproval: {
+                  approvalStatus: "Not Applied",
+                  comments: "",
+                },
+                dateOfJoining: date,
+                isKycDone: false,
+                nfts: {
+                  purchasedNft: [],
+                  createdNft: [],
+                  savedNft: [],
+                },
+                followers: [],
+                following: [],
+                followerCount: 0,
+                followingCount: 0,
+                posts: {
+                  createdPosts: [],
+                  savedPosts: [],
+                },
+                bankAccountDetails: {
+                  accountHolderName: "",
+                  accountType: "",
+                  ifscCode: "",
+                  accountNumber: "",
+                  branchName: "",
+                  accountHolderPhoneNumber: "",
+                },
+              }).then((snap) => {
+                window.location.reload();
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        
       })
       .catch((error) => {
         console.log(error);

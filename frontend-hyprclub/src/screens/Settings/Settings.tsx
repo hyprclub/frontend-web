@@ -12,18 +12,24 @@ import Theme from "../../components/settingsComps/themeSettings/Theme";
 import styles from "./settings.module.css";
 import { Accordion } from "react-bootstrap";
 import { useSelector, RootStateOrAny } from "react-redux";
-
+import { useNavigate} from "react-router";
 import Transaction from "../../components/settingsComps/transaction/Transaction";
 const Settings = () => {
   const location = useLocation();
   const path = location.pathname;
-  const [data , setData] = useState<any | null >({})
+ const navigate = useNavigate();
+  const {loggedIn , uid} = useSelector((state : RootStateOrAny) => state.userData);
   const userData = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
   useEffect(()=>{
-    setData(userData);
-  },[userData])
+    if(loggedIn && uid){
+
+    }
+    else{
+      navigate("/login")
+    }
+  },[loggedIn , uid , navigate])
   return (
     <>
       <Header_login />

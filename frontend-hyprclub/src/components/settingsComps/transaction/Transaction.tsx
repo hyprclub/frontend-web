@@ -14,6 +14,7 @@ const Transaction = () => {
               <div className={clsx("col-sm",styles.contP)}>Product</div>
               <div className={clsx("col-sm",styles.contD)}>Date</div>
               <div className={clsx("col-sm",styles.contT)}>Transaction ID</div>
+              <div className={clsx("col-sm",styles.contO)}><p>Item Type</p></div>
               <div className={clsx("col-sm ",styles.contS)}>Status</div>
               <div className={clsx("col-sm",styles.contO)}><p>Order Total</p></div>
             </div>
@@ -22,6 +23,7 @@ const Transaction = () => {
           <SingleTransaction
             price="10,475"
             transactionID="HYPR9459207532"
+            transactionType="SayThanks"
             date={"14/01/2022"}
             success
             NFTname="Ethereal Skies"
@@ -29,12 +31,14 @@ const Transaction = () => {
           <SingleTransaction
             price="15,560"
             transactionID="HYPR9459207532"
+            transactionType="SayThanks"
             date={"14/01/2022"}
             NFTname="Homegrown Tulips"
           />
           <SingleTransaction
             price="10,475"
             transactionID="HYPR9459207532"
+            transactionType="SayThanks"
             date={"14/01/2022"}
             success
             NFTname="Ethereal Skies"
@@ -42,12 +46,14 @@ const Transaction = () => {
           <SingleTransaction
             price="15,560"
             transactionID="HYPR9459207532"
+            transactionType="SayThanks"
             date={"14/01/2022"}
             NFTname="Homegrown Tulips"
           />
           <SingleTransaction
             price="10,475"
             transactionID="HYPR9459207532"
+            transactionType="SayThanks"
             date={"14/01/2022"}
             success
             NFTname="Ethereal Skies"
@@ -55,6 +61,7 @@ const Transaction = () => {
           <SingleTransaction
             price="15,560"
             transactionID="HYPR9459207532"
+            transactionType="SayThanks"
             date={"14/01/2022"}
             NFTname="Homegrown Tulips"
           />

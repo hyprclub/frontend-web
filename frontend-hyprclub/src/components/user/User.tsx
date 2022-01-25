@@ -21,13 +21,15 @@ interface UserType{
     portfolioUrl : any,
     bio : any,
     joiningDate : any ,
-    profilePhotoUrl : any
+    profilePhotoUrl : any,
+    isCreator : any,
+    myProfile : any
 }
 const closeModal = () => {
   console.log("Hello there")
 }
 
-const User = ({ className, item ,name , username ,category , portfolioUrl,bio,joiningDate,profilePhotoUrl }:UserType) => {
+const User = ({ className, item ,name , username ,category , portfolioUrl,bio,joiningDate,profilePhotoUrl,isCreator,myProfile }:UserType) => {
   const userData = useSelector((state : RootStateOrAny) => state.userData);
   const [visiblity , setVisiblity] = useState("hidden");
   const [thanksValue, setThanksValue] = useState('100.00');
@@ -78,9 +80,14 @@ const [creator, setCreator] = useState(true);
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        {vis===true &&
+        {isCreator===true &&
         <div className={styles.gradbtn}>
           <GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/>
+        </div>
+        }
+        {isCreator && myProfile  &&
+        <div className={styles.gradbtn}>
+          <GradientBorder onClick={() => setShowModal(true)} text='View Dashboard'/>
         </div>
         }
         <div className={cn(styles.socials, 'my-3')}>
@@ -119,7 +126,7 @@ const [creator, setCreator] = useState(true);
                       <span className={styles.INR}>INR</span>
                     </div>
                       <div className={styles.thanksBtn}>
-                      <GradientBorder disable={(parseInt(thanksValue)<100)} text="Say Thanks"/>
+                      <button><GradientBorder disable={(parseInt(thanksValue)<100)} text="Say Thanks"/></button>
                       </div>
                 </div>
                     </form>

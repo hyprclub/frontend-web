@@ -14,13 +14,14 @@ import {
   signInWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { Key } from "phosphor-react";
 
 const Login = () => {
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({email : "" , password : ""});
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
@@ -121,7 +122,93 @@ const Login = () => {
       });
   };
 
-  const facebookSignIn = async () => {};
+  const facebookSignIn = async () => {
+    const provider = new FacebookAuthProvider();
+    await signInWithPopup(auth, provider)
+      .then((userCredentials) => {
+        const uid = userCredentials.user.uid;
+        const name = userCredentials.user.displayName;
+        const email = userCredentials.user.email;
+        const photoUrl = userCredentials.user.photoURL;
+        const phone = userCredentials.user.phoneNumber;
+        const current = new Date();
+         const date = `${current.getDate()}/${
+             current.getMonth() + 1
+           }/${current.getFullYear()}`;
+
+        getDoc(doc(db, "hyprUsers", uid))
+          .then((querySnapshot) => {
+            if (querySnapshot.exists()) {
+              console.log("User Data Exits");
+            } else {
+              console.log("Set Doc");
+              const username = "Hello312";
+              setDoc(doc(db, "hyprUsers", uid), {
+                name: name,
+                email: email,
+                username: "hello3", //add username here
+                profileViewsCount: 0,
+                phone: phone,
+                uid: uid,
+                newsletterSubscription: false,
+                category: "",
+                age: "",
+                gender: "",
+                flagCounter: 0,
+                profileUrl: "",
+                bio: "",
+                isNsfw: false,
+                verified: false,
+                socials: {
+                  portfolioUrl: "",
+                  instagramUsername: "",
+                  twitterUsername: "",
+                  facebookProfileUrl: "",
+                  youtubeProfileUrl: "",
+                },
+                interests: {},
+                isCreator: false,
+                creatorApproval: {
+                  approvalStatus: "Not Applied",
+                  comments: "",
+                },
+                dateOfJoining: date,
+                isKycDone: false,
+                nfts: {
+                  purchasedNft: [],
+                  createdNft: [],
+                  savedNft: [],
+                },
+                followers: [],
+                following: [],
+                followerCount: 0,
+                followingCount: 0,
+                posts: {
+                  createdPosts: [],
+                  savedPosts: [],
+                },
+                bankAccountDetails: {
+                  accountHolderName: "",
+                  accountType: "",
+                  ifscCode: "",
+                  accountNumber: "",
+                  branchName: "",
+                  accountHolderPhoneNumber: "",
+                },
+              }).then((snap) => {
+                window.location.reload();
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleSubmit = async (e: React.FormEvent<any>) => {
     e.preventDefault();
@@ -211,7 +298,7 @@ const Login = () => {
             <div className="social">
               <SocialLogins
                 loginGoogle={googleSignIn}
-                loginFacebook={() => facebookSignIn}
+                loginFacebook={facebookSignIn}
                 login={true}
                 purpose={"Login"}
               />

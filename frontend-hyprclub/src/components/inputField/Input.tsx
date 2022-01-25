@@ -16,7 +16,7 @@ interface Input extends InputHTMLAttributes<HTMLInputElement>{
     required?: boolean
 }
 
-const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange , className, required}: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange , name ,className, required}: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
             <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
@@ -28,7 +28,7 @@ const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, 
             aria-describedby="basic-addon2"
             placeholder={placeholder}
             onChange={onChange}
-            name='input'
+            name={name}
             required={required}
             />
         </div>

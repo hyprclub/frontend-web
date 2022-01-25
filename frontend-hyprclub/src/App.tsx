@@ -134,20 +134,52 @@ useEffect(() => {
 // fetch nft id for marketplace 
 useEffect(()=>{
   const run = async () =>{
-    await getDocs(collection(db,"nfts"))
-    .then((querySnapShot)=>{
-      const nftIds:string[] = [];
-      querySnapShot.forEach((elem)=>{
-        nftIds.push(elem.id);
-        dispatch(UserDataActions.nftTokenId({
-          nftIds : nftIds.map(elem => parseInt(elem)).sort((a,b)=> b-a).map(elem => elem.toString())
-        }))
-      });
-      console.log(nftIds);
+    await getDoc(doc(db,"marketplace","Nfts")).then((querySnapshot)=>{
+      if(querySnapshot.exists()){
+        const collectionTag : string[] = querySnapshot.data().collections;
+        console.log(collectionTag);
+        const i = collectionTag.length;
+        for(let j = 0 ; j<i ; j++){
+          let collectionName = collectionTag[j];
+          console.log(collectionName);
+          getDocs(collection(db,"marketplace","Nfts",collectionName
+          )).then((querySnapshot)=>{
+            querySnapshot.forEach((elem)=>{
+              console.log(elem);
+            })
+            
+            })
+            .catch((error)=>{
+              console.log(error);
+          });
+        }
+        
+        // getDocs(collection(db,"marketplace","Nfts",))
+      }
+      else{
+        console.log("No collections");
+      }
+     
+      // getDocs(collection(db,"marketplace","Nfts",))
     })
     .catch((error)=>{
-      console.error(error);
-    });
+      console.log(error);
+    })
+    // await getDocs(collection(db,"marketplace","Nfts","singleNfts"))
+    // .then((querySnapShot)=>{
+    //   // const nftIds:string[] = [];
+    //   querySnapShot.forEach((elem)=>{
+    //     console.log(elem);
+    //     // nftIds.push(elem.id);
+    //     // dispatch(UserDataActions.nftTokenId({
+    //     //   nftIds : nftIds.map(elem => parseInt(elem)).sort((a,b)=> b-a).map(elem => elem.toString())
+    //     // }))
+    //   });
+    //   // console.log(nftIds);
+    // })
+    // .catch((error)=>{
+    //   console.error(error);
+    // });
   }
   run();
 },[dispatch, db])

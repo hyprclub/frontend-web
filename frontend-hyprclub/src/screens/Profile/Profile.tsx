@@ -42,6 +42,7 @@ const Profile = () => {
     (state: RootStateOrAny) => state?.userData
   );
   const [profileData, setProfileData] = useState<any | null>({});
+  const [myProfile , setMyProfile] = useState(false);
   const [docId, setDocId] = useState("");
   const [profilePhoto, setProfilePhoto] = useState<any | null>();
   const [coverPhoto, setCoverPhoto] = useState<any | null>();
@@ -56,6 +57,12 @@ const Profile = () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setDocId(doc.id);
+      if(doc.id === userData.uid){
+        setMyProfile(true)
+      }else{
+        setMyProfile(false)
+      }
+      
       setProfileData(doc.data());
       GetProfilePhoto(doc.id);
       GetCoverPhoto(doc.id);
@@ -113,6 +120,7 @@ const Profile = () => {
     const ref = doc(db, "hyprUsers", docId);
     if (docId === uid) {
       //do nothing
+      
     } else {
       await updateDoc(ref, {
         profileViewsCount: profileData?.profileViewsCount + 1,
@@ -210,6 +218,8 @@ const Profile = () => {
               bio={profileData?.bio}
               joiningDate={profileData?.dateOfJoining}
               profilePhotoUrl={profilePhoto}
+              isCreator={profileData?.isCreator}
+              myProfile={myProfile}
             />
             <div className={styles.wrapper}>
               {/* <div className={styles.nav}>

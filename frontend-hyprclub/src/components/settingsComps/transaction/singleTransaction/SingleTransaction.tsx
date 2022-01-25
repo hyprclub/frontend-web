@@ -10,10 +10,11 @@ interface Transaction {
     transactionID: string
     date: Date | string
     price: string
+    transactionType : string
 
 }
 
-const SingleTransaction = ({success, NFTname, transactionID, date, price}: Transaction) => {
+const SingleTransaction = ({success, NFTname, transactionID, date, price, transactionType}: Transaction) => {
     return (
         <>
             <div className={styles.mainDiv}>
@@ -29,6 +30,7 @@ const SingleTransaction = ({success, NFTname, transactionID, date, price}: Trans
                         <Link to='#'><li className={styles.boldTitleDesk}>{NFTname}</li></Link>
                         <p className={styles.dateDesk}>{date}</p>
                         <p className={styles.transDesk}>{transactionID}</p>
+                        <p className={styles.transDesk}>{transactionType}</p>
                         <li className={styles.statusDesk}>{success ? "🟢 Success" : "🔴 Failed" }</li>
                         <p className={styles.price}><span className={styles.statusMob}>{success ? "🟢" : "🔴" }</span> INR {price}</p>
                     </div>
