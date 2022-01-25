@@ -47,9 +47,6 @@ const Modal = () => {
         console.log(files);
     }
 
-
-
-
     const dragOver1 = (e:any) => {
         e.preventDefault();
         console.log("dragged");
