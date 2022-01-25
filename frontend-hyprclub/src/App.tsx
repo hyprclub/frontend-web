@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Admindash/>
+        {/* <Admindash/> */}
         <header className="App-header">
           <Routes>
             <Route path='/nft' element={<NFTS></NFTS>}/>
