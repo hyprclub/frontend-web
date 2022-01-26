@@ -10,8 +10,7 @@ import { useSelector , RootStateOrAny } from "react-redux";
 import { useNavigate } from "react-router";
 
 const Contact = () => {
-    const {loggedIn ,uid} = useSelector((state : RootStateOrAny) => state.userData);
-    const navigate = useNavigate();
+    
 const userData = useSelector((state : RootStateOrAny) => state.userData);
   const [data, setData] = useState({
     name: userData?.name,
@@ -40,7 +39,7 @@ const userData = useSelector((state : RootStateOrAny) => state.userData);
     const date = `${current.getDate()}/${
       current.getMonth() + 1
     }/${current.getFullYear()}`;
-    const contactUsId = "contact_id_"+makeContactUsId(26);
+    const contactUsId = "contactUs_id_"+makeContactUsId(26);
     await setDoc(doc(db, "contactus",contactUsId), {
       name: data.name,
       phone: data.phone,

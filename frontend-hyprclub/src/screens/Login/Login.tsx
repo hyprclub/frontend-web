@@ -79,7 +79,7 @@ const Login = () => {
                   facebookProfileUrl: "",
                   youtubeProfileUrl: "",
                 },
-                interests: {},
+                interests: [],
                 isCreator: false,
                 creatorApproval: {
                   approvalStatus: "Not Applied",
@@ -166,7 +166,7 @@ const Login = () => {
                   facebookProfileUrl: "",
                   youtubeProfileUrl: "",
                 },
-                interests: {},
+                interests: [],
                 isCreator: false,
                 creatorApproval: {
                   approvalStatus: "Not Applied",

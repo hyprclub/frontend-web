@@ -50,6 +50,11 @@ useEffect(() => {
 
 const [creator, setCreator] = useState(true);
 
+const  handleSayThanks = (e : any) => {
+  e.preventDefault();
+  console.log("Pay User " + thanksValue);
+}
+
   return (
     <>
       <div className={cn(styles.user, className)}>
@@ -126,7 +131,7 @@ const [creator, setCreator] = useState(true);
                       <span className={styles.INR}>INR</span>
                     </div>
                       <div className={styles.thanksBtn}>
-                      <button><GradientBorder disable={(parseInt(thanksValue)<100)} text="Say Thanks"/></button>
+                      <GradientBorder onClick={(e : React.ChangeEvent<HTMLInputElement>)=>handleSayThanks(e)} disable={(parseInt(thanksValue)<100)} text="Say Thanks"/>
                       </div>
                 </div>
                     </form>

@@ -188,7 +188,7 @@ const Register = () => {
               bio: "",
               isNsfw: false,
               verified: false,
-              interests: {},
+              interests: [],
               creatorApproval: {
                 approvalStatus: "Not Applied",
                 comments: "",
@@ -282,7 +282,7 @@ const Register = () => {
                   facebookProfileUrl: "",
                   youtubeProfileUrl: "",
                 },
-                interests: {},
+                interests: [],
                 isCreator: false,
                 creatorApproval: {
                   approvalStatus: "Not Applied",
@@ -370,7 +370,7 @@ const Register = () => {
                   facebookProfileUrl: "",
                   youtubeProfileUrl: "",
                 },
-                interests: {},
+                interests: [],
                 isCreator: false,
                 creatorApproval: {
                   approvalStatus: "Not Applied",

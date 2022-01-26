@@ -1,27 +1,49 @@
 import clsx from 'clsx';
 import React, { useState } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection,setDoc,doc, getFirestore } from 'firebase/firestore';
 import { firebaseApp } from '../../../firebaseConfig';
 import GradientBorder from '../../gradientBorderBtn/GradientBorder';
 import styles from './help.module.css';
 
 const Help = () => {
-    const userData = useSelector((state: RootStateOrAny) => state?.userData);
-    const today = new Date(Date.now()).toLocaleString().split(',')[0];
-    const [bug, setBug] = useState({
-        data: today,
-        description: "",
-        reportedBy: userData.username
-    });
+   
+    
+    const current = new Date();
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
+    
+    const userData = useSelector((state : RootStateOrAny) => state.userData);
+    const [data, setData] = useState({
+        name: userData?.name,
+        description: '',
+        reportedBy: userData?.email,
+     });
+    const makeReportABugId = (len : number) =>{
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const characterLengths = characters.length;
+        for( let i = 0 ; i< len ; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characterLengths));
+        } 
+        return result;
+    }
     const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setBug((state) => ({ ...state, [e.target.name]: e.target.value }));
-        console.log({ bug });
+        setData((state) => ({ ...state, [e.target.name]: e.target.value }));
+        console.log({ data });
     };
     // Function that reports the problem when the submitted
     const handleSubmit = async () => {
         const db = getFirestore(firebaseApp);
-        await addDoc(collection(db, "bugReport"), bug)
+        const bugId = "bug_id_"+makeReportABugId(26);
+        await setDoc(doc(db, "bugReport",bugId),{
+            dateOfReporting : date,
+            description : data.description,
+            reporterEmailId : userData?.email,
+            reporterUid : userData?.uid,
+            isResolved : false
+        })
         .then(() => {
             console.log("Reported");
         })

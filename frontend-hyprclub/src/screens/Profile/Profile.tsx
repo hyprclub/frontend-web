@@ -42,7 +42,7 @@ const Profile = () => {
     (state: RootStateOrAny) => state?.userData
   );
   const [profileData, setProfileData] = useState<any | null>({});
-  const [myProfile , setMyProfile] = useState(false);
+  const [myProfile, setMyProfile] = useState(false);
   const [docId, setDocId] = useState("");
   const [profilePhoto, setProfilePhoto] = useState<any | null>();
   const [coverPhoto, setCoverPhoto] = useState<any | null>();
@@ -57,12 +57,12 @@ const Profile = () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setDocId(doc.id);
-      if(doc.id === userData.uid){
-        setMyProfile(true)
-      }else{
-        setMyProfile(false)
+      if (doc.id === userData.uid) {
+        setMyProfile(true);
+      } else {
+        setMyProfile(false);
       }
-      
+
       setProfileData(doc.data());
       GetProfilePhoto(doc.id);
       GetCoverPhoto(doc.id);
@@ -74,23 +74,21 @@ const Profile = () => {
     try {
       // console.log(uid);
       const storagePFref = ref(storage, "users/" + uid + "/profile.jpg");
-     
+
       const url = await getDownloadURL(ref(storagePFref));
-   
-     
+
       setProfilePhoto(url);
     } catch (error) {
       console.error(error);
     }
   };
-  const GetCoverPhoto = async (uid : any )=>{
+  const GetCoverPhoto = async (uid: any) => {
     try {
       // console.log(uid);
       const storageCoverRef = ref(storage, "users/" + uid + "/cover.jpg");
 
       const coverUrl = await getDownloadURL(ref(storageCoverRef));
       setCoverPhoto(coverUrl);
-      
     } catch (error) {
       console.error(error);
     }
@@ -120,7 +118,6 @@ const Profile = () => {
     const ref = doc(db, "hyprUsers", docId);
     if (docId === uid) {
       //do nothing
-      
     } else {
       await updateDoc(ref, {
         profileViewsCount: profileData?.profileViewsCount + 1,
@@ -146,7 +143,10 @@ const Profile = () => {
     },
     {
       title: "instagram",
-      url: "https://www.instagram.com/" + profileData.socials?.instagramUsername + "/",
+      url:
+        "https://www.instagram.com/" +
+        profileData.socials?.instagramUsername +
+        "/",
     },
     {
       title: "facebook",
@@ -167,24 +167,29 @@ const Profile = () => {
           }}
         >
           <div className={clsx("container", styles.container)}>
-            <div className={styles.btns}>
-              <button
-                className={clsx("button-stroke button-small", styles.button)}
-                onClick={() => setVisible(true)}
-              >
-                <span className="me-2 editCover">Edit cover photo</span>
-                <Icon name="edit" size="16" />
-              </button>
-
-              <Link to="/settings">
+            {myProfile && (
+              <div className={styles.btns}>
                 <button
                   className={clsx("button-stroke button-small", styles.button)}
+                  onClick={() => setVisible(true)}
                 >
-                  <span className="me-2">Edit profile</span>
-                  <Icon name="image" size="16" />
+                  <span className="me-2 editCover">Edit cover photo</span>
+                  <Icon name="edit" size="16" />
                 </button>
-              </Link>
-            </div>
+
+                <Link to="/settings">
+                  <button
+                    className={clsx(
+                      "button-stroke button-small",
+                      styles.button
+                    )}
+                  >
+                    <span className="me-2">Edit profile</span>
+                    <Icon name="image" size="16" />
+                  </button>
+                </Link>
+              </div>
+            )}
             <div className={styles.file}>
               <input
                 accept=".jpeg,.jpg,.png,image/jpeg,image/png"
@@ -246,7 +251,7 @@ const Profile = () => {
                     </div>
                   </div>
                 )} */}
-                  {activeIndex === 0 && <Nft token={['1','4','4']}/>}
+                  {activeIndex === 0 && <Nft token={["1", "4", "4"]} />}
                 </div>
               </div>
             </div>
