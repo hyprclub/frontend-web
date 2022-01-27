@@ -12,6 +12,32 @@ const razorpay = new Razorpay({
   key_secret: "K4f2rnA1gKa9dX9CIorcBmPX",
 });
 
+app.post("/razorpay", async (req, res) => {
+  const payment_capture = 1;
+  const amount = 399;
+  const currency = "INR";
+
+  const options = {
+    amount: amount * 100,
+    currency,
+    receipt: shortid.generate(),
+    payment_capture,
+  };
+
+  try {
+    const response = await razorpay.orders.create(options);
+    console.log(response);
+    res.json({
+      id: response.id,
+      currency: response.currency,
+      amount: response.amount,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// put the url to this request in the razor webhook
 app.post("/verification", (req, res) => {
   // do a validation
   const secret = "12345678";
@@ -37,31 +63,6 @@ app.post("/verification", (req, res) => {
     // pass it
   }
   res.json({ status: "ok" });
-});
-
-app.post("/razorpay", async (req, res) => {
-  const payment_capture = 1;
-  const amount = 399;
-  const currency = "INR";
-
-  const options = {
-    amount: amount * 100,
-    currency,
-    receipt: shortid.generate(),
-    payment_capture,
-  };
-
-  try {
-    const response = await razorpay.orders.create(options);
-    console.log(response);
-    res.json({
-      id: response.id,
-      currency: response.currency,
-      amount: response.amount,
-    });
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 app.listen(1337, () => {
