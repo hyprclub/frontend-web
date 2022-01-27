@@ -36,9 +36,11 @@ async function displayRazorpay(): Promise<void> {
     name: "Donation",
     description: "Show support to your favourite creators.",
     handler: function (response: any) {
-      alert(response.razorpay_payment_id);
-      alert(response.razorpay_order_id);
-      alert(response.razorpay_signature);
+      console.log(response)
+      alert('Payment succesful')
+      // alert(response.razorpay_payment_id);
+      // alert(response.razorpay_order_id);
+      // alert(response.razorpay_signature);
     },
     prefill: {
       name: "Kartikey",
