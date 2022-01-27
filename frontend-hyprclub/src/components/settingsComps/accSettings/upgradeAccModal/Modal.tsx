@@ -68,7 +68,23 @@ const Modal = () => {
         console.log('drag1');
         
     }
-    
+    const [data, setData] = useState({
+        instagramUsername: "",
+        twitterUsername: "",
+        youtubeProfileUrl: "",
+        portfolioUrl: "",
+        accountHolderName: "",
+        accountNumber: "",
+        ifscCode: "",
+        accountType: "",
+        accountHolderPhoneNumber: ""
+    });
+
+    // handle update state changes
+    const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setData((state) => ({ ...state, [e.target.name]: e.target.value }));
+        console.log({ data });
+    }
 
     return (
         <>
@@ -139,9 +155,13 @@ const Modal = () => {
                   <InputField
                     required
                     garyBold
+                    name="instagramUsername"
                     lableText="INSTAGRAM"
                     typeOfInput="text"
                     placeholder="Enter Instagram Username"
+                    onChange={(e: React.ChangeEvent<any>) => {
+                        updateState(e);
+                    }}
                     
                   />
                   <div className="invalid-feedback">
@@ -150,23 +170,35 @@ const Modal = () => {
                   <InputField
                     required
                     garyBold
+                    name="twitterUsername"
                     lableText="TWITTER"
                     typeOfInput="text"
                     placeholder="Enter Link..."
+                    onChange={(e: React.ChangeEvent<any>) => {
+                        updateState(e);
+                    }}
                   />
                   <InputField
                     required
                     garyBold
+                    name="youtubeProfileUrl"
                     lableText="YOUTUBE"
                     typeOfInput="text"
                     placeholder="Enter Link..."
+                    onChange={(e: React.ChangeEvent<any>) => {
+                        updateState(e);
+                    }}
                   />
                   <InputField
                     required
                     garyBold
+                    name="portfolioUrl"
                     lableText="YOUR PERSONAL WEBSITE"
                     typeOfInput="text"
                     placeholder="Enter Link..."
+                    onChange={(e: React.ChangeEvent<any>) => {
+                        updateState(e);
+                    }}
                   />
                 </div>
 
@@ -195,19 +227,65 @@ const Modal = () => {
                         <div className={styles.step2}>
                             <p className={styles.step1Title}>STEP 2: SUBMIT BANK DETAILS</p>
                             <div className={styles.inputs}>
-                                <InputField className='mb-3' garyBold lableText='NAME OF THE ACCOUNT HOLDER' typeOfInput='text' placeholder='eg. John Maxwell'/>
-                                <InputField className='mb-3' garyBold lableText='ACCOUNT NUMBER' typeOfInput='number' placeholder='eg. 1234567890'/>
-                                <InputField  className='mb-3' garyBold lableText='IFSC CODE' typeOfInput='text' placeholder='eg. HYPR09879854'/>
+                                <InputField 
+                                    className='mb-3' 
+                                    garyBold 
+                                    name="accountHolderName"
+                                    lableText='NAME OF THE ACCOUNT HOLDER' 
+                                    typeOfInput='text' 
+                                    placeholder='eg. John Maxwell'
+                                    onChange={(e: React.ChangeEvent<any>) => {
+                                        updateState(e);
+                                    }}
+                                />
+                                <InputField 
+                                    className='mb-3' 
+                                    garyBold 
+                                    name="accountNumber"
+                                    lableText='ACCOUNT NUMBER' 
+                                    typeOfInput='number' 
+                                    placeholder='eg. 1234567890'
+                                    onChange={(e: React.ChangeEvent<any>) => {
+                                        updateState(e);
+                                    }}
+                                />
+                                <InputField  
+                                    className='mb-3' 
+                                    garyBold 
+                                    name="ifscCode"
+                                    lableText='IFSC CODE' 
+                                    typeOfInput='text' 
+                                    placeholder='eg. HYPR09879854'
+                                    onChange={(e: React.ChangeEvent<any>) => {
+                                        updateState(e);
+                                    }}
+                                />
                                 
                                 <div className={clsx('d-flex align-items-center', styles.savingsAndCurrent)}>
                                     <div className={clsx(styles.selectDiv, 'halfWidth')}>
                                         <label className="grayBold">ACCOUNT TYPE</label>
-                                        <Form.Select name='bank acc' className={clsx( styles.select, 'mb-3')} aria-label="Default select example">
+                                        <Form.Select
+                                            name='accountType'
+                                            className={clsx(styles.select, 'mb-3')}
+                                            aria-label="Default select example"
+                                            onChange={(e: React.ChangeEvent<any>) => {
+                                                updateState(e);
+                                            }}>
                                             <option value="1">SAVINGS</option>
                                             <option value="2">CURRENT</option>
                                         </Form.Select>
                                     </div>
-                                    <InputField  className='mb-3' half garyBold lableText='PHONE NUMBER' typeOfInput='number' placeholder='+91 1234567890'/>
+                                    <InputField
+                                        className='mb-3'
+                                        half garyBold
+                                        name="accountHolderPhoneNumber"
+                                        lableText='PHONE NUMBER'
+                                        typeOfInput='number'
+                                        placeholder='+91 1234567890'
+                                        onChange={(e: React.ChangeEvent<any>) => {
+                                            updateState(e);
+                                        }}
+                                    />
                                 </div>
                             </div>
 
