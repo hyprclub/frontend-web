@@ -1,9 +1,64 @@
-import React from 'react';
+import React , {useEffect ,useState} from 'react';
 import cn from 'classnames'
 import styles from "./ExploreCard.module.css"
 import clsx from 'clsx';
+import axios from "axios";
+import { getFirestore, getDoc , doc } from 'firebase/firestore';
+import { firebaseApp } from '../../../../firebaseConfig';
+import { getStorage , getDownloadURL,ref } from 'firebase/storage';
 
-const ExploreCard = ({ className, item }: any) => {
+const ExploreCard = ({ className, items : itemFromProps }: any) => {
+    const [item , setItem] = useState<null | any>({});
+    const db = getFirestore(firebaseApp);
+    const storage = getStorage(firebaseApp);
+    const [price, setPrice] = useState(0);
+    const [creatorPhoto , setCreatorPhoto] = useState('');
+    const [creatorUsername , setCreatorUsername] = useState('');
+
+
+    useEffect(()=>{
+        console.log(itemFromProps);
+        const run = async () => {
+            if(itemFromProps){
+             await getDoc(doc(db ,"marketplace","Nfts","singleNfts",itemFromProps))
+             .then((docs)=>{
+                 if(docs.exists()){
+                     setPrice(docs.data().price)
+                     getDoc(doc(db,"hyprUsers",docs.data().creatorUid))
+                     .then((document)=>{
+                         if(document.exists()){
+                            setCreatorUsername(document.data().username);
+                            const creatorPhotoRef  = ref(storage , "users/" +docs.data().creatorUid+"/profile.jpg");
+                             getDownloadURL(ref(creatorPhotoRef))
+                             .then((url) =>{
+                                 setCreatorPhoto(url);
+                             })
+                             .catch((err) =>{
+                                 console.error(err);
+                             })
+            
+                         }        
+                     })
+                     .catch((err)=>{
+                         console.error(err);
+                     })
+                     axios
+                        .get("https://cdn.hyprclub.com/alumini/"+itemFromProps)
+                        .then((repns)=>{
+                            setItem(repns.data);
+                        })
+                        .catch((error) =>{
+                            console.error(error);
+                        })
+
+                 }
+             })
+            }else{
+
+            }
+        }
+        run();
+    },[setItem , itemFromProps])
     return (
         <div className={cn(styles.card, className)}>
             {/* <Link className={styles.link} to={item.url}> */}
@@ -12,16 +67,16 @@ const ExploreCard = ({ className, item }: any) => {
                     <div className={clsx(styles.imgAndBtn, 'position-relative w-100')}>
                         <img className={styles.image} src={item.image} alt="" />
                     </div>
-                    <div className={styles.title}>{item.title}</div>
+                    <div className={styles.title}>{item.name}</div>
                     <div className={clsx('d-flex align-items-center justify-content-between w-100 mt-2')}>
                         <div className={clsx('d-flex align-items-center')}>
-                            <img className={styles.creatorImg} src={item.creatorImg} alt="" />
+                            <img className={styles.creatorImg} src={creatorPhoto} alt="creatorPht" />
                             <div className={styles.ownerAndUsername}>
                                 <p className={styles.owner}>Creator</p>
-                                <p className={styles.username}>@{item.creatorUsername}</p>
+                                <p className={styles.username}>@{creatorUsername}</p>
                             </div>
                         </div>
-                        <div className={styles.price}><span className={styles.pricetxt}>{item.price}</span></div>
+                        <div className={styles.price}><span className={styles.pricetxt}>INR {price}</span></div>
                     </div>
                 </div>
             </div>

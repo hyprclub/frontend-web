@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React , {useEffect} from 'react';
 import CreatorStats from '../../components/creatorDashboard/creatorStats/CreatorStats';
 import GetHelp from '../../components/creatorDashboard/getHelp/GetHelp';
 import MyNfts from '../../components/creatorDashboard/myNFTs/MyNfts';
@@ -8,7 +8,19 @@ import Perks from '../../components/creatorDashboard/Perks/Perks';
 import TransactionHistory from '../../components/creatorDashboard/TransactionHistory';
 import Header_login from '../../components/header/header_after_login/Header_login';
 import styles from './styles.module.css'
+import { RootStateOrAny, useSelector } from 'react-redux';
 const Creator = () => {
+    const userData = useSelector((state : RootStateOrAny) => state.userData);
+    const {loggedIn , uid} = useSelector((state : RootStateOrAny) => state.userData);
+
+    useEffect(()=>{
+        if(userData.isCreator && loggedIn && uid){
+
+        }else{
+            console.log("Looks like your are not a creator");
+        }
+
+    },[userData , loggedIn , uid])
   return <>
         <div className={styles.body}>
             <Header_login/>

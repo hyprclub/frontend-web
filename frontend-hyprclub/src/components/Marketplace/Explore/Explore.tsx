@@ -14,6 +14,11 @@ const navLinks = ["All items", "Art", "Beauty", "Photography", "Comedy"];
 const priceOptions = ["Highest price", "The lowest price"];
 const likesOptions = ["Most liked", "Least liked"];
 const creatorOptions = ["Verified only", "All", "Most liked"];
+
+interface explore {
+    items : any
+}
+
 const card_items = [
     {
         title: "Amazing digital art",
@@ -88,7 +93,7 @@ const card_items = [
 
     }]
 
-const Explore = () => {
+const Explore = ( {items} : explore ) => {
     const [date, setDate] = useState(dateOptions[0]);
     const [navlinks, setNavlinks] = useState(navLinks[0]);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -255,8 +260,8 @@ const Explore = () => {
             </div>
             <div className={styles.body}>
                 <div className={styles.grid}>
-                    {card_items.map((x, index) => (
-                        <ExploreCard className={styles.card} item={x} key={index} />
+                    {items?.map((x :any, index:any) => (
+                        <ExploreCard className={styles.card} items={x} key={index} />
                     ))}
 
                 </div>

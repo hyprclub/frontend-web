@@ -9,7 +9,6 @@ const initialState = {
     bio : undefined,
     category : undefined,
     dateOfJoining : undefined,
-  
     flagCounter : undefined,
     gender : undefined,
     creatorApproval : {
@@ -48,7 +47,7 @@ const initialState = {
         purchasedNft : [],
         savedNft : []
     },
-    nftTokenIds : []
+    nftIds : []
 };
 
 export const userDataSlice = createSlice({
@@ -100,7 +99,7 @@ export const userDataSlice = createSlice({
             state.profilePhotoUrl = payload?.profilePhotoUrl;
         },
         nftTokenId : (state , {payload}) =>{
-            state.nftTokenIds = payload?.nftIds;
+            state.nftIds = payload?.nftIds;
         }
     }
 });
