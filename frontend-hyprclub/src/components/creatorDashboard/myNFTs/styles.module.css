@@ -25,10 +25,31 @@ line-height: 32px;
 .createdNfts{
     margin-top: 1rem !important;
     background: #FEFEFE;
-    padding: 4rem 0;
+    padding: 3rem ;
     border: 1px solid #E3E3E3;
     box-sizing: border-box;
     border-radius: 20px;
-    row-gap: 1rem;
-    column-gap: 1.5rem;
+    column-gap: 2.5rem;
+    overflow-x: auto;
+}
+
+.createdNfts::-webkit-scrollbar {
+    display: none;
+  }
+  
+
+.selectDiv{
+    width: 25%;
+}
+
+.selectDiv select{
+    border-radius: 12px;
+
+}
+
+.selectDiv select:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+
 }

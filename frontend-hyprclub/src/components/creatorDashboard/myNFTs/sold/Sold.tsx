@@ -95,35 +95,32 @@ const Content = [
 
 const Sold = () => {
   return <>
-        <div className={styles.main}>
-            <table className={styles.table}>
-                <thead>
-                    <tr className={styles.head}>
-                        <th className={styles.heading}>Item Name</th>
-                        <th className={styles.heading}>Purchased By</th>
-                        <th className={styles.heading}>Date</th>
-                        <th className={styles.heading}>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {Content.map((e, index) => (
-                    <tr className={styles.body} key={index}>
-                        <td className={styles.items}><Link to={e.to} className={styles.link}> <span className={styles.bold}>{e.product}</span> </Link> <br /> {e.id}</td>
-                        <td className={styles.items}> 
-                            <div className={clsx('d-flex align-items-center')}>
-                                    <img className={styles.creatorImg} src={e.img} alt="" />
+        <div className={styles.main2}>
+            <div className={clsx('d-flex w-100 ', styles.heading)}>
+                <div className={styles.heading1}>Item Name</div>
+                <div className={styles.heading2}>Purchased By</div>
+                <div className={styles.heading3}>Date</div>
+                <div className={styles.heading4}>Amount</div>
+            </div>
+            {
+                Content.map((c, index) => {
+                    return <div className={clsx('d-flex w-100 align-items-center', styles.elemm)}>
+                                <div className={styles.elem}>
+                                    <span className={styles.bold}>{c.product}</span>
+                                    <p className={styles.id}>{c.id}</p>
+                                </div>
+                                <div className={clsx(styles.elem, 'd-flex align-items-center justify-content-center')}>
+                                    <img className={styles.creatorImg} src={c.img} alt="" />
                                     <div className={styles.ownerAndUsername}>
-                                        <p className={styles.owner}>{e.name}</p>
-                                        <p className={styles.username}>@{e.username}</p>
+                                        <p className={clsx(styles.owner)}>{c.name}</p>
+                                        <p className={styles.username}>@{c.username}</p>
                                     </div>
+                                </div>
+                                <div className={styles.elem}>{c.date}</div>
+                                <div className={clsx(styles.elem, styles.Pricebold, 'd-flex align-items-center justify-content-center')}><span className={styles.circle} style={{ backgroundColor: c.color }} />{c.price} </div>
                             </div>
-                        </td>
-                        <td className={styles.items}> {e.date}</td>
-                        <td className={styles.bold}>  <span className={styles.circle} style={{ backgroundColor: e.color }} />{e.price} </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+                })
+            }
         </div>
   </>;
 };
