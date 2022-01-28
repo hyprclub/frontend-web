@@ -18,6 +18,7 @@ import UploadNft from './screens/UploadNft/UploadNft';
 import Admindash from './screens/AdminDashboard/Admindash';
 import AdminLogin from './screens/AdminLogin/AdminLogin';
 import Creator from './screens/Creator/Creator';
+import LineChart from './components/creatorDashboard/charts/SalesChart';
 // import logo from './logo.svg';
 // import './App.css';
 
