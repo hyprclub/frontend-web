@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import styles from "./NFTS.module.css";
 import cn from "classnames";
 import Users from "./Users/Users";
@@ -58,7 +58,15 @@ const Perk_list = [
     },
 ]
 
-const NFTS = () => {
+const NFTS = ({props} : any) => {
+    useEffect(() =>{
+        const run = async () =>{
+            const nftToken = new URLSearchParams(props?.location?.search).get("idToken");
+            console.log(nftToken);
+        }
+        run();
+    },[])
+
     return (
         <>
             <Header_login />

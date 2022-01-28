@@ -182,7 +182,7 @@ const Register = () => {
               age: "",
               gender: "",
               flagCounter: 0,
-              profileUrl: "",
+              profileUrl: "",    // add profile url here
               coverPhotoUrl: "", // add firebase storage function url here
               profilePhotoUrl: "", // add firebase storage function here
               bio: "",
