@@ -22,7 +22,7 @@ const ExploreCard = ({ className, items : itemFromProps }: any) => {
     }
 
     const handleSendNft = () =>{
-        navigate("/nft?idToken="+itemFromProps);
+        navigate("/nft/singleNfts/"+itemFromProps);
     }
 
     useEffect(()=>{

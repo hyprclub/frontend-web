@@ -225,7 +225,7 @@ function App() {
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/admindashboard" element={<Admindash />} />
             <Route path="/" element={<Landing />}></Route>
-            <Route path="/nft" element={<NFTS></NFTS>} />
+            <Route path="/nft/:collectionTag/:idToken" element={<NFTS></NFTS>} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />

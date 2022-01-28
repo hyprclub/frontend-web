@@ -15,6 +15,7 @@ import Polygon from "./Poly/Polygon";
 import { style } from "@mui/system";
 import ItemsCarousel from "./ItemsCarousel/ItemsCarousel";
 import Perks from "./Perks/Perks";
+import { useParams } from "react-router";
 
 
 const Desc = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -58,14 +59,14 @@ const Perk_list = [
     },
 ]
 
-const NFTS = ({props} : any) => {
-    useEffect(() =>{
-        const run = async () =>{
-            const nftToken = new URLSearchParams(props?.location?.search).get("idToken");
-            console.log(nftToken);
-        }
-        run();
-    },[])
+const NFTS = () => {
+    const {collectionTag , idToken} = useParams();
+
+    useEffect(()=>{
+        // const idToken = new URLSearchParams(window?.location?.search).get("idToken");
+        console.log(collectionTag);
+        console.log(idToken);
+    },[collectionTag,idToken])
 
     return (
         <>
