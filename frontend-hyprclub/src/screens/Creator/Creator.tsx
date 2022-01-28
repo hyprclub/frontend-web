@@ -16,6 +16,7 @@ const Creator = () => {
                     <CreatorStats/>
                 <div className={clsx('mt-4 pt-4 row', styles.mainDiv)}>
                     <div className='col-lg-8'>
+                        {/* Place graph here */}
                         <MyNfts/>
                         <Perks/>
                         <SayThanks/>
