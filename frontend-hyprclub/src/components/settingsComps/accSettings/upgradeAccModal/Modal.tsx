@@ -1,8 +1,10 @@
 import clsx from "clsx";
+import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { ArrowLeft, X } from "phosphor-react";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { firebaseApp } from "../../../../firebaseConfig";
 import { MODAL_CLOSE_SUCCESS } from "../../../../redux/constants/profileModals";
 import GradientBorder from "../../../gradientBorderBtn/GradientBorder";
 import InputField from "../../../inputField/Input";
@@ -75,16 +77,22 @@ const Modal = () => {
     console.log(files);
     console.log("drag1");
   };
+  
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  const [phoneCorrect, setPhoneCorrect] = useState(true);
   const [data, setData] = useState({
-    instagramUsername: "",
-    twitterUsername: "",
-    youtubeProfileUrl: "",
-    portfolioUrl: "",
-    accountHolderName: "",
-    accountNumber: "",
-    ifscCode: "",
-    accountType: "",
-    accountHolderPhoneNumber: "",
+    instagramUsername: userData.socials.instagramUsername,
+    twitterUsername: userData.socials.twitterUsername,
+    youtubeProfileUrl: userData.socials.youtubeUrl,
+    portfolioUrl: userData.socials.portfolioUrl,
+    accountHolderName: userData.bankDetails.accountHolderName,
+    accountNumber: userData.bankDetails.accountNumber,
+    ifscCode: userData.bankDetails.ifscCode,
+    accountType: userData.bankDetails.accountType,
+    accountHolderPhoneNumber: userData.bankDetails.accountHolderPhoneNumber,
   });
 
   // handle update state changes
@@ -92,7 +100,55 @@ const Modal = () => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
+  // check for valid phone number or not.
+  const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "" || e.target.value.length > 10) {
+      setPhoneCorrect(true);
+    } else {
+      const phoneValidString = "(0|91)?[7-9][0-9]{9}";
+      if (e.target.value.match(phoneValidString)) {
+        console.log("Phone num correct");
+        setPhoneCorrect(false);
+      } else {
+        console.log("Phone Num not correct");
+        setPhoneCorrect(true);
+      }
+    }
+  };
 
+  const handleSubmit = async () => {
+    const db = getFirestore(firebaseApp);
+    const ref = doc(db, "hyprUsers", uid);
+    if (phoneCorrect === true) {
+      console.log("Please Enter Correct Phone Number");
+    } else {
+      await updateDoc(ref, {
+        socials: {
+          instagramUsername: data.instagramUsername,
+          twitterUsername: data.twitterUsername,
+          youtubeProfileUrl: data.youtubeProfileUrl,
+          portfolioUrl: data.portfolioUrl
+        },
+        bankAccountDetails: {
+          accountHolderName: data.accountHolderName,
+          accountNumber: data.accountNumber,
+          ifscCode: data.ifscCode,
+          accountType: data.accountType,
+          accountHolderPhoneNumber: data.accountHolderPhoneNumber
+        },
+        creatorApproval: {
+          approvalStatus: "Applied"
+        }
+      })
+        .then(() => {
+          console.log("Data Updated");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+  };
   return (
     <>
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
@@ -221,6 +277,7 @@ const Modal = () => {
                     garyBold
                     name="instagramUsername"
                     lableText="INSTAGRAM"
+                    value={data?.instagramUsername}
                     typeOfInput="text"
                     placeholder="Enter Instagram Username"
                     onChange={(e: React.ChangeEvent<any>) => {
@@ -235,6 +292,7 @@ const Modal = () => {
                     garyBold
                     name="twitterUsername"
                     lableText="TWITTER"
+                    value={data?.twitterUsername}
                     typeOfInput="text"
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
@@ -246,6 +304,7 @@ const Modal = () => {
                     garyBold
                     name="youtubeProfileUrl"
                     lableText="YOUTUBE"
+                    value={data?.youtubeProfileUrl}
                     typeOfInput="text"
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
@@ -257,6 +316,7 @@ const Modal = () => {
                     garyBold
                     name="portfolioUrl"
                     lableText="YOUR PERSONAL WEBSITE"
+                    value={data?.portfolioUrl}
                     typeOfInput="text"
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
@@ -323,6 +383,7 @@ const Modal = () => {
                   garyBold
                   name="accountHolderName"
                   lableText="NAME OF THE ACCOUNT HOLDER"
+                  value={data?.accountHolderName}
                   typeOfInput="text"
                   placeholder="eg. John Maxwell"
                   onChange={(e: React.ChangeEvent<any>) => {
@@ -334,6 +395,7 @@ const Modal = () => {
                   garyBold
                   name="accountNumber"
                   lableText="ACCOUNT NUMBER"
+                  value={data?.accountNumber}
                   typeOfInput="number"
                   placeholder="eg. 1234567890"
                   onChange={(e: React.ChangeEvent<any>) => {
@@ -345,6 +407,7 @@ const Modal = () => {
                   garyBold
                   name="ifscCode"
                   lableText="IFSC CODE"
+                  value={data?.ifscCode}
                   typeOfInput="text"
                   placeholder="eg. HYPR09879854"
                   onChange={(e: React.ChangeEvent<any>) => {
@@ -362,14 +425,15 @@ const Modal = () => {
                     <label className="grayBold">ACCOUNT TYPE</label>
                     <Form.Select
                       name="accountType"
+                      value={data?.accountType}
                       className={clsx(styles.select, "mb-3")}
                       aria-label="Default select example"
                       onChange={(e: React.ChangeEvent<any>) => {
                         updateState(e);
                       }}
                     >
-                      <option value="1">SAVINGS</option>
-                      <option value="2">CURRENT</option>
+                      <option value="savings">SAVINGS</option>
+                      <option value="current">CURRENT</option>
                     </Form.Select>
                   </div>
                   <InputField
@@ -378,10 +442,12 @@ const Modal = () => {
                     garyBold
                     name="accountHolderPhoneNumber"
                     lableText="PHONE NUMBER"
+                    value={data?.accountHolderPhoneNumber}
                     typeOfInput="number"
                     placeholder="+91 1234567890"
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      checkPhoneNumber(e);
                     }}
                   />
                 </div>
@@ -535,14 +601,16 @@ const Modal = () => {
 
               <div className={styles.modal2Btn}>
                 <GradientBorder
-                  onClick={() =>
+                  onClick={(e: React.ChangeEvent<any>) => {
+                    handleSubmit();
                     setModals({
                       modal1: false,
                       modal2: false,
                       modal3: false,
                       modal4: false,
                       modal5: true,
-                    })
+                    });
+                  }
                   }
                   text="Next"
                 />
