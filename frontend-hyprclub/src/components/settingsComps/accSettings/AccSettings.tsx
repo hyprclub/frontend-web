@@ -43,7 +43,7 @@ const AccSettings = () => {
 
                     </div>
 
-                    <div className={styles.findTunes}>
+                    {/* <div className={styles.findTunes}>
                         <h3 className={styles.headingFine}>Fine Tune Your Interests</h3>
                         <p className={styles.desc}>Interests can be changed to show user’s genre’s of interest in Explore.</p>
                         <div className={styles.interests}>
@@ -56,7 +56,7 @@ const AccSettings = () => {
                         <div className={styles.upgrade}><GradientBorder text='Reset Interests'/></div> 
 
 
-                    </div>
+                    </div> */}
 
                     <div className={styles.NSFW}>
                         <h3 className={styles.heading}>NSFW Content</h3>
