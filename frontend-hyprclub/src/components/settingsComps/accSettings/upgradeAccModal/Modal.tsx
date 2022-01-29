@@ -72,9 +72,11 @@ const Modal = () => {
     if (doc.size >= 5242880){
       console.log("File Size Too Big");
     } else {
+      const fileName = doc.name;
+      const fileExtension = fileName.split('.').pop();
       const storagePFref = ref(
         storage,
-        "users/" + userData.uid + "/Kyc_Details/" + data.docType + ".jpg"
+        "users/" + userData.uid + "/Kyc_Details/" + data.docType + "." + fileExtension
       );
       await uploadBytesResumable(storagePFref, doc)
         .then((result) => {
@@ -95,9 +97,11 @@ const Modal = () => {
     if (sign.size >= 5242880) {
       console.log("File Size Too Big");
     } else {
+      const fileName = sign.name;
+      const fileExtension = fileName.split('.').pop();
       const storagePFref = ref(
         storage,
-        "users/" + userData.uid + "/Kyc_Details/" + "sign.jpg"
+        "users/" + userData.uid + "/Kyc_Details/" + "sign." + fileExtension
       );
       await uploadBytesResumable(storagePFref, sign)
         .then((result) => {
