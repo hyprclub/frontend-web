@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { doc, getFirestore, updateDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { ArrowLeft, X } from "phosphor-react";
 import React, { useState } from "react";
@@ -32,6 +32,10 @@ const Modal = () => {
     });
   };
 
+  const current = new Date();
+  const date = `${current.getDate()}/${current.getMonth() + 1
+    }/${current.getFullYear()}`;
+
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
@@ -47,7 +51,8 @@ const Modal = () => {
     ifscCode: userData.bankDetails.ifscCode,
     accountType: userData.bankDetails.accountType,
     accountHolderPhoneNumber: userData.bankDetails.accountHolderPhoneNumber,
-    docType: "adhar"
+    docType: "adhar",
+    documentNumber: ""
   });
 
   // handle update state changes
@@ -58,11 +63,11 @@ const Modal = () => {
   
   // Document upload
   const storage = getStorage(firebaseApp);
-  const [doc, setDoc] = useState<any>(null);
+  const [document, setDocument] = useState<any>(null);
   const uploadDocument = async (event: any) => {
     const doc = event.target.files[0];
     if (!doc) return;
-    setDoc(doc);
+    setDocument(document);
     console.log(doc.size);
     if (doc.size >= 5242880){
       console.log("File Size Too Big");
@@ -160,6 +165,16 @@ const Modal = () => {
     }
   };
 
+  const makeRequestId = (len: number) => {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characterLengths = characters.length;
+    for (let i = 0; i < len; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    }
+    return result;
+  }
+
   const handleSubmit = async () => {
     const db = getFirestore(firebaseApp);
     const ref = doc(db, "hyprUsers", uid);
@@ -192,6 +207,22 @@ const Modal = () => {
         });
     }
 
+  };
+  const updateRequest = async () => {
+    const db = getFirestore(firebaseApp);
+    const requestId = "bug_id_" + makeRequestId(26);
+    await setDoc(doc(db, "creatorRequest", requestId), {
+      dateOfReporting: date,
+      reporterEmailId: userData?.email,
+      reporterUid: userData?.uid,
+      documentNumber: data.documentNumber
+    })
+      .then(() => {
+        console.log("Updated");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <>
@@ -572,9 +603,14 @@ const Modal = () => {
                     className="mb-3"
                     half
                     garyBold
+                    name="documentNumber"
                     lableText="ENTER DOCUMENT NUMBER"
+                    value={data?.documentNumber}
                     typeOfInput="text"
                     placeholder=""
+                    onChange={(e: React.ChangeEvent<any>) => {
+                      updateState(e);
+                    }}
                   />
                 </div>
 
@@ -653,6 +689,7 @@ const Modal = () => {
                 <GradientBorder
                   onClick={(e: React.ChangeEvent<any>) => {
                     handleSubmit();
+                    updateRequest();
                     setModals({
                       modal1: false,
                       modal2: false,
