@@ -6,7 +6,7 @@ const Polygon=({className}:any)=>{
     return(
         <>
         <div className={cn(className, styles.poly)}>
-            <img id={styles.img} src="./images/polygonscan.png" alt="polygonscan"/>
+            <img id={styles.img} src="../../images/polygonscan.png" alt="polygonscan"/>
 
         </div>
         </>

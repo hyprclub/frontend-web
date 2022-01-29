@@ -25,12 +25,12 @@ const users = [
     {
         name: "HyprClub",
         position: "Owner",
-        avatar: "./images/logo-dark.jpg"
+        avatar: "../../images/logo-dark.jpg"
     },
     {
         name: "HyprClub",
         position: "Creator",
-        avatar: "./images/logo-dark.jpg"
+        avatar: "../../images/logo-dark.jpg"
     },
 ];
 
@@ -79,7 +79,7 @@ const NFTS = () => {
                             <div className={styles.preview}>
                                 <img
                                     id={styles.img}
-                                    src="./images/nft-image.png"
+                                    src="../../images/nft-image.png"
                                     alt="NFT"
                                 />
                                 <Option className={styles.options} />
