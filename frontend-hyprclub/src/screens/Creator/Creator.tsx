@@ -24,7 +24,7 @@ const Creator = () => {
                     </div>
                     <div className='col-lg-4  mt-4 pt-4'>
                         <TransactionHistory/>
-                        <GetHelp className='mt-4'/>
+                        <GetHelp className='mt-5'/>
                     </div>
 
                 </div>

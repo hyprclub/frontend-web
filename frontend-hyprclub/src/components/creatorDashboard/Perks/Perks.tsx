@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { Check } from 'phosphor-react';
 import React, { useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { PERK_MODAL_OPEN_SUCCESS } from '../../../redux/constants/perkModal';
@@ -45,7 +46,19 @@ const Perks = () => {
 
   return <>
 <div className={clsx(styles.main, 'container')}>
-        <h2 className={styles.h2}>Perks</h2>
+        <div className='d-flex'>
+        <h2 className={styles.h2}>My Perks</h2>
+        <div className={clsx(styles.selectDiv)}>
+        <label className="grayBold">SORT BY</label>
+                    <Form.Select name='bank acc' className={clsx( styles.select, ' mb-3')} aria-label="Default select example">
+                        <option selected>Filter</option>
+                        <option value="1">Fulfilled</option>
+                        <option value="2">Not Fulfilled</option>
+                    </Form.Select>
+        </div>
+
+        </div>
+        
         <div className={styles.main2}>
             <div className={clsx('d-flex w-100 ', styles.heading)}>
                 <div className={styles.heading1}>Perk</div>

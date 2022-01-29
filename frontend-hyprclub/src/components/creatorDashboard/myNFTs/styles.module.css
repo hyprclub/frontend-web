@@ -1,3 +1,9 @@
+.mainDiv{
+    margin-top: 100px;
+}
+
+
+
 .heading{
     font-style: normal;
 font-weight: bold;
@@ -23,7 +29,7 @@ line-height: 32px;
 }
 
 .createdNfts{
-    margin-top: 1rem !important;
+    margin-top: 0.3rem !important;
     background: #FEFEFE;
     padding: 3rem ;
     border: 1px solid #E3E3E3;

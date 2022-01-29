@@ -1,14 +1,39 @@
-.Heading{
+/* .Heading{
     font-weight: bold;
     font-size: 24px;
     color: #000000;
     margin-bottom: 0;
+} */
+.h2{
+    font-weight: bold;
+font-size: 24px;
+margin-top: 5px;
+width: 75%;
 }
 
-.select{
+.mainDiv{
+    margin-top: 100px;
+}
+.selectDiv{
+    width: 25%;
+  }
+  
+  .selectDiv select{
+    border: none;
+
+  }
+  
+  
+  .selectDiv select:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: none !important;
+  
+  }
+/* .select{
     border:none !important;
     background: #FCFCFC !important;
-}
+} */
 
 .customTooltip{
     background: linear-gradient(
@@ -31,12 +56,12 @@
 
 }
 
-.select:focus{
+/* .select:focus{
     outline:none !important;
     outline-width: none !important;
     box-shadow: none !important;
     
-}
+} */
 
 .chart{
     width: 100%;

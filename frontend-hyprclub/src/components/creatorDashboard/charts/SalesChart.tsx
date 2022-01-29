@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { ClassNames } from "@emotion/react";
+import { Form } from "react-bootstrap";
 
 const data = [
   {
@@ -59,17 +60,17 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const SalesChart = () => {
   return (
     <>
-      <div className="container">
-        <div className="d-flex align-items-center justify-content-between">
-          <h2 className={styles.Heading}>Sales Chart</h2>
-          <select
-            className={clsx("form-select w-25", styles.select)}
-            aria-label="Default select example"
-          >
-            <option value="1">All Time</option>
-            <option value="2">Monthly</option>
-            <option value="3">Yearly</option>
-          </select>
+      <div className={clsx("container",styles.mainDiv)}>
+      <div className='d-flex'>
+        <h2 className={styles.h2}>Sales Chart</h2>
+        <div className={clsx(styles.selectDiv)}>
+                    <Form.Select name='bank acc' className={clsx( styles.select, 'mb-3')} aria-label="Default select example">
+                        <option value="1">Monthly</option>
+                        <option value="2">Weekly</option>
+                        <option value="3">All Time</option>
+                    </Form.Select>
+        </div>
+
         </div>
         <div className={styles.chart}>
           <ResponsiveContainer>

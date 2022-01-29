@@ -18,7 +18,7 @@ const CreatorStats = () => {
                 <div className={styles.card}>
                     <CurrencyCircleDollar className={styles.icon} size={64} weight="bold" />
                     <p className={styles.text}>Total revenue earned</p>
-                    <p className={styles.price}>₹ 100,00,00</p>
+                    <p className={styles.price}>₹ 75,000</p>
                 </div>
 
                 <div className={styles.card}>
