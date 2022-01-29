@@ -41,8 +41,6 @@ const Modal = () => {
     (state: RootStateOrAny) => state?.userData
   );
 
-  let docurl = '';
-  const [docUrl , setDocUrl] = useState<RootStateOrAny>();
 
   const [phoneCorrect, setPhoneCorrect] = useState(true);
   const [data, setData] = useState({
@@ -182,27 +180,7 @@ const Modal = () => {
     return result;
   }
 
-  const handleSubmit = async () => {
-    const db = getFirestore(firebaseApp);
-    const ref = doc(db, "hyprUsers", uid);
-    if (phoneCorrect === true) {
-      console.log("Please Enter Correct Phone Number");
-    } else {
-      await updateDoc(ref, {
-        
-        creatorApproval: {
-          approvalStatus: "Applied"
-        }
-      })
-        .then(() => {
-          console.log("Data Updated");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-
-  };
+ 
   const updateRequest = async () => {
     const db = getFirestore(firebaseApp);
     const requestId = "CR_id_" + makeCreatorRequestId(26);
@@ -225,16 +203,40 @@ const Modal = () => {
         documentType : data.docType,
         documentNumber: data.documentNumber,
       },
+      personalDetails : {
+        emailId: userData?.email,
+        uid: userData?.uid,
+        name : userData?.name,
+        username : userData?.username,
+        age : userData?.age,
+        gender : userData?.gender
+      },
       isApproved : false,
       isDecisionTaken : false,
       dateOfJoining: userData?.dateOfJoining,
       dateOfRequest : date,
-      emailId: userData?.email,
-      uid: userData?.uid,
+      
+
      
     })
       .then(() => {
         console.log("Updated");
+        const ref = doc(db, "hyprUsers", uid);
+     updateDoc(ref, { 
+       //add function for sending mail to user.
+       // todo make upload file thing correct.
+        creatorApproval: {
+          approvalStatus: "Applied",
+          comments : "",
+        }
+      })
+        .then(() => {
+          console.log("Data Updated");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       })
       .catch((error) => {
         console.log(error);
@@ -370,7 +372,7 @@ const Modal = () => {
                     lableText="INSTAGRAM"
                     value={data?.instagramLink}
                     typeOfInput="text"
-                    placeholder="Enter Instagram Username"
+                    placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                     }}
@@ -704,7 +706,6 @@ const Modal = () => {
               <div className={styles.modal2Btn}>
                 <GradientBorder
                   onClick={(e: React.ChangeEvent<any>) => {
-                    handleSubmit();
                     updateRequest();
                     setModals({
                       modal1: false,
@@ -736,10 +737,7 @@ const Modal = () => {
                 />
               </div> */}
         </div>
-      </div>
-
-      {/* last one */}
-      <div
+        <div
         className={clsx(
           styles.thirdModal,
           modals.modal5 ? styles.show : styles.hide
@@ -756,6 +754,10 @@ const Modal = () => {
           </p>
         </div>
       </div>
+      </div>
+
+      {/* last one */}
+      
     </>
   );
 };

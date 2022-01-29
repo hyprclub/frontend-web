@@ -202,12 +202,10 @@ const EditProfile = () => {
                 value={data?.username}
                 lableText="USERNAME"
                 typeOfInput="text"
-                onChange={(e: React.ChangeEvent<any>) => {
-                  updateState(e);
-                }}
                 disabled
               />
               <p className={styles.usernameRange}>
+                <br/>
                 Username can range between 3-10 characters.
               </p>
               <InputField
@@ -292,9 +290,6 @@ const EditProfile = () => {
                 lableText="EMAIL ADDRESS"
                 value={data.email}
                 typeOfInput="email"
-                onChange={(e: React.ChangeEvent<any>) => {
-                  updateState(e);
-                }}
                 disabled
               />
 

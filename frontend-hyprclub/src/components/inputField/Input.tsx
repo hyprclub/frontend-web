@@ -16,12 +16,13 @@ interface Input extends InputHTMLAttributes<HTMLInputElement>{
     required?: boolean
 }
 
-const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange , name ,className, required}: Input) => {
+const InputField = ({half, lableText, typeOfInput, garyBold,value, placeholder, onChange , name ,className, required,disabled}: Input) => {
     return (
         <div className = {half ? "halfWidth" : "fullWidth"} >
             <label className={garyBold ? "grayBold" : ''}>{lableText}</label>
             <FormControl
             defaultValue={value ? value :''}
+            disabled = {disabled}
             type={typeOfInput}
             className={clsx('mb-1 inputItself', className)}
             aria-label="Recipient's username"
