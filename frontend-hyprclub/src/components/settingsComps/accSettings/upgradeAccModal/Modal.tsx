@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { doc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable , getDownloadURL } from "firebase/storage";
 import { ArrowLeft, X } from "phosphor-react";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
@@ -40,17 +40,21 @@ const Modal = () => {
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+
+  let docurl = '';
+  const [docUrl , setDocUrl] = useState<RootStateOrAny>();
+
   const [phoneCorrect, setPhoneCorrect] = useState(true);
   const [data, setData] = useState({
-    instagramUsername: userData.socials.instagramUsername,
-    twitterUsername: userData.socials.twitterUsername,
-    youtubeProfileUrl: userData.socials.youtubeUrl,
-    portfolioUrl: userData.socials.portfolioUrl,
-    accountHolderName: userData.bankDetails.accountHolderName,
-    accountNumber: userData.bankDetails.accountNumber,
-    ifscCode: userData.bankDetails.ifscCode,
-    accountType: userData.bankDetails.accountType,
-    accountHolderPhoneNumber: userData.bankDetails.accountHolderPhoneNumber,
+    instagramLink: "",
+    twitterLink: "",
+    youtubeProfileUrl: "",
+    portfolioUrl: "",
+    accountHolderName: "",
+    accountNumber: "",
+    ifscCode: "",
+    accountType: "",
+    accountHolderPhoneNumber: "",
     docType: "adhar",
     documentNumber: ""
   });
@@ -72,11 +76,11 @@ const Modal = () => {
     if (doc.size >= 5242880){
       console.log("File Size Too Big");
     } else {
-      const storagePFref = ref(
+      const storageDocRef = ref(
         storage,
         "users/" + userData.uid + "/Kyc_Details/" + data.docType + ".jpg"
       );
-      await uploadBytesResumable(storagePFref, doc)
+      await uploadBytesResumable(storageDocRef, doc)
         .then((result) => {
           console.log(result.state);
         })
@@ -85,6 +89,8 @@ const Modal = () => {
         });
     }
   };
+
+
   // Signature upload
   const [signature, setSign] = useState<any>(null);
   const uploadSignature = async (event: any) => {
@@ -92,14 +98,15 @@ const Modal = () => {
     if (!sign) return;
     setSign(signature);
     console.log(sign.size);
+    console.log(sign);
     if (sign.size >= 5242880) {
       console.log("File Size Too Big");
     } else {
-      const storagePFref = ref(
+      const storageSignRef = ref(
         storage,
         "users/" + userData.uid + "/Kyc_Details/" + "sign.jpg"
       );
-      await uploadBytesResumable(storagePFref, sign)
+      await uploadBytesResumable(storageSignRef, sign)
         .then((result) => {
           console.log(result.state);
         })
@@ -165,7 +172,7 @@ const Modal = () => {
     }
   };
 
-  const makeRequestId = (len: number) => {
+  const makeCreatorRequestId = (len: number) => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const characterLengths = characters.length;
@@ -182,19 +189,7 @@ const Modal = () => {
       console.log("Please Enter Correct Phone Number");
     } else {
       await updateDoc(ref, {
-        socials: {
-          instagramUsername: data.instagramUsername,
-          twitterUsername: data.twitterUsername,
-          youtubeProfileUrl: data.youtubeProfileUrl,
-          portfolioUrl: data.portfolioUrl
-        },
-        bankAccountDetails: {
-          accountHolderName: data.accountHolderName,
-          accountNumber: data.accountNumber,
-          ifscCode: data.ifscCode,
-          accountType: data.accountType,
-          accountHolderPhoneNumber: data.accountHolderPhoneNumber
-        },
+        
         creatorApproval: {
           approvalStatus: "Applied"
         }
@@ -210,12 +205,33 @@ const Modal = () => {
   };
   const updateRequest = async () => {
     const db = getFirestore(firebaseApp);
-    const requestId = "bug_id_" + makeRequestId(26);
+    const requestId = "CR_id_" + makeCreatorRequestId(26);
+    // console.log(signUrl);
     await setDoc(doc(db, "creatorRequest", requestId), {
-      dateOfReporting: date,
-      reporterEmailId: userData?.email,
-      reporterUid: userData?.uid,
-      documentNumber: data.documentNumber
+      socials: {
+        instagramLink: data.instagramLink,
+        twitterLink: data.twitterLink,
+        youtubeProfileUrl: data.youtubeProfileUrl,
+        portfolioUrl: data.portfolioUrl
+      },
+      bankAccountDetails: {
+        accountHolderName: data.accountHolderName,
+        accountNumber: data.accountNumber,
+        ifscCode: data.ifscCode,
+        accountType: data.accountType,
+        accountHolderPhoneNumber: data.accountHolderPhoneNumber
+      },
+      kycDetails : {
+        documentType : data.docType,
+        documentNumber: data.documentNumber,
+      },
+      isApproved : false,
+      isDecisionTaken : false,
+      dateOfJoining: userData?.dateOfJoining,
+      dateOfRequest : date,
+      emailId: userData?.email,
+      uid: userData?.uid,
+     
     })
       .then(() => {
         console.log("Updated");
@@ -350,9 +366,9 @@ const Modal = () => {
                   <InputField
                     required
                     garyBold
-                    name="instagramUsername"
+                    name="instagramLink"
                     lableText="INSTAGRAM"
-                    value={data?.instagramUsername}
+                    value={data?.instagramLink}
                     typeOfInput="text"
                     placeholder="Enter Instagram Username"
                     onChange={(e: React.ChangeEvent<any>) => {
@@ -365,9 +381,9 @@ const Modal = () => {
                   <InputField
                     required
                     garyBold
-                    name="twitterUsername"
+                    name="twitterLink"
                     lableText="TWITTER"
-                    value={data?.twitterUsername}
+                    value={data?.twitterLink}
                     typeOfInput="text"
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
@@ -595,7 +611,7 @@ const Modal = () => {
                         updateState(e);
                       }}
                     >
-                      <option value="adhar">ADHAR CARD</option>
+                      <option value="aadhar">ADHAR CARD</option>
                       <option value="pan">PAN CARD</option>
                     </Form.Select>
                   </div>
@@ -699,7 +715,7 @@ const Modal = () => {
                     });
                   }
                   }
-                  text="Next"
+                  text="Upgrade To Creator Account"
                 />
               </div>
             </div>
