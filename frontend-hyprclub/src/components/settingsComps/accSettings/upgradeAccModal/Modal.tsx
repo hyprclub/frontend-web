@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { ArrowLeft, X } from "phosphor-react";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
@@ -31,12 +32,76 @@ const Modal = () => {
     });
   };
 
-  const [file, setFile] = useState<any>(null);
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  const [phoneCorrect, setPhoneCorrect] = useState(true);
+  const [data, setData] = useState({
+    instagramUsername: userData.socials.instagramUsername,
+    twitterUsername: userData.socials.twitterUsername,
+    youtubeProfileUrl: userData.socials.youtubeUrl,
+    portfolioUrl: userData.socials.portfolioUrl,
+    accountHolderName: userData.bankDetails.accountHolderName,
+    accountNumber: userData.bankDetails.accountNumber,
+    ifscCode: userData.bankDetails.ifscCode,
+    accountType: userData.bankDetails.accountType,
+    accountHolderPhoneNumber: userData.bankDetails.accountHolderPhoneNumber,
+    docType: "adhar"
+  });
 
-  const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
-    // if (!file) return;
-    setFile("file");
+  // handle update state changes
+  const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData((state) => ({ ...state, [e.target.name]: e.target.value }));
+    console.log({ data });
+  };
+  
+  // Document upload
+  const storage = getStorage(firebaseApp);
+  const [doc, setDoc] = useState<any>(null);
+  const uploadDocument = async (event: any) => {
+    const doc = event.target.files[0];
+    if (!doc) return;
+    setDoc(doc);
+    console.log(doc.size);
+    if (doc.size >= 5242880){
+      console.log("File Size Too Big");
+    } else {
+      const storagePFref = ref(
+        storage,
+        "users/" + userData.uid + "/Kyc_Details/" + data.docType + ".jpg"
+      );
+      await uploadBytesResumable(storagePFref, doc)
+        .then((result) => {
+          console.log(result.state);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+  // Signature upload
+  const [signature, setSign] = useState<any>(null);
+  const uploadSignature = async (event: any) => {
+    const sign = event.target.files[0];
+    if (!sign) return;
+    setSign(signature);
+    console.log(sign.size);
+    if (sign.size >= 5242880) {
+      console.log("File Size Too Big");
+    } else {
+      const storagePFref = ref(
+        storage,
+        "users/" + userData.uid + "/Kyc_Details/" + "sign.jpg"
+      );
+      await uploadBytesResumable(storagePFref, sign)
+        .then((result) => {
+          console.log(result.state);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const dragOver = (e: any) => {
@@ -78,28 +143,7 @@ const Modal = () => {
     console.log("drag1");
   };
   
-  const userData = useSelector((state: RootStateOrAny) => state?.userData);
-  const { loggedIn, uid } = useSelector(
-    (state: RootStateOrAny) => state?.userData
-  );
-  const [phoneCorrect, setPhoneCorrect] = useState(true);
-  const [data, setData] = useState({
-    instagramUsername: userData.socials.instagramUsername,
-    twitterUsername: userData.socials.twitterUsername,
-    youtubeProfileUrl: userData.socials.youtubeUrl,
-    portfolioUrl: userData.socials.portfolioUrl,
-    accountHolderName: userData.bankDetails.accountHolderName,
-    accountNumber: userData.bankDetails.accountNumber,
-    ifscCode: userData.bankDetails.ifscCode,
-    accountType: userData.bankDetails.accountType,
-    accountHolderPhoneNumber: userData.bankDetails.accountHolderPhoneNumber,
-  });
-
-  // handle update state changes
-  const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData((state) => ({ ...state, [e.target.name]: e.target.value }));
-    console.log({ data });
-  };
+  
   // check for valid phone number or not.
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "" || e.target.value.length > 10) {
@@ -513,11 +557,15 @@ const Modal = () => {
                   <div className={clsx(styles.selectDiv, "halfWidth")}>
                     <label className="grayBold">CHOOSE DOCUMENT TYPE</label>
                     <Form.Select
+                      name="docType"
                       className={clsx(styles.select, "mb-3")}
                       aria-label="Default select example"
+                      onChange={(e: React.ChangeEvent<any>) => {
+                        updateState(e);
+                      }}
                     >
-                      <option value="1">ADHAR CARD</option>
-                      <option value="2">PAN CARD</option>
+                      <option value="adhar">ADHAR CARD</option>
+                      <option value="pan">PAN CARD</option>
                     </Form.Select>
                   </div>
                   <InputField
@@ -542,6 +590,7 @@ const Modal = () => {
                     id="documentVerficationInput"
                     type="file"
                     style={{ display: "none" }}
+                    onChange={uploadDocument}
                   />
                   <label
                     onDragOver={dragOver1}
@@ -578,6 +627,7 @@ const Modal = () => {
                     id="documentVerficationInput1"
                     type="file"
                     style={{ display: "none" }}
+                    onChange={uploadSignature}
                   />
                   <label
                     className="w-100"
@@ -658,3 +708,7 @@ const Modal = () => {
 };
 
 export default Modal;
+function e(e: any): React.ChangeEventHandler<HTMLInputElement> | undefined {
+  throw new Error("Function not implemented.");
+}
+
