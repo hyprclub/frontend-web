@@ -76,7 +76,7 @@ const Perks = () => {
                                         <p className={styles.username}>@{c.username}</p>
                                 </div>
                                 <div className={clsx(styles.elem3, 'text-center')}>{c.status ? <GradientBorder onClick={openModal} text='Fulfil'/> : 
-                            <p><Check className={styles.icon} size={32} weight="bold" /> Fulfilled</p>}</div>
+                                <p><Check className={styles.icon} size={32} weight="bold" /> Fulfilled</p>}</div>
                             </div>
                 })
             }

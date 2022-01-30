@@ -19,6 +19,7 @@ import Admindash from './screens/AdminDashboard/Admindash';
 import AdminLogin from './screens/AdminLogin/AdminLogin';
 import Creator from './screens/Creator/Creator';
 import LineChart from './components/creatorDashboard/charts/SalesChart';
+import CreatorOnboard from './screens/OnBoarding/CreatorOnboard';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -56,6 +57,7 @@ function App() {
             <Route path='/uploadnft' element={<UploadNft/>}/>
             <Route path='/admin' element={<Admindash/>}/>
             <Route path='/creator' element={<Creator/>}/>
+            <Route path='/onboard' element={<CreatorOnboard/>}/>
             <Route path='/' element={<Landing/>}></Route>
           </Routes>
           {/* <Header></Header>
