@@ -42,9 +42,11 @@ const CreatorOnboard = () => {
 
                 <div className={clsx("row", styles.lunchYourFirstDiv)}>
                     <div className={clsx('col-md-6', styles.LunchYourFirstText)}>
-                        <h3>Launch your first NFT for <span className={styles.gradientText}>FREE!</span></h3>
-                        <p>Yes, you read it right! You can now launch your 1st NFT for absolutely FREE. It’s on us. We would even help you get started.</p>
-                        <GradientBorder text='Get Started'/>
+                        <div className={styles.texts}>
+                            <h3>Launch your first NFT for <span className={styles.gradientText}>FREE!</span></h3>
+                            <p>Yes, you read it right! You can now launch your 1st NFT for absolutely FREE. It’s on us. We would even help you get started.</p>
+                            <GradientBorder text='Get Started'/>
+                        </div>
                     </div>  
                     <div className={clsx('col-md-6', styles.LunchYourFirstImg)}>
                         <img src="images/onBoard/nfts.png" alt="" />
