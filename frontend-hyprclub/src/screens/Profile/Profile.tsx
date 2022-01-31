@@ -79,6 +79,7 @@ const Profile = () => {
 
       setProfilePhoto(url);
     } catch (error) {
+      setProfilePhoto( "/images/content/avatar-big.jpg")
       console.error(error);
     }
   };
