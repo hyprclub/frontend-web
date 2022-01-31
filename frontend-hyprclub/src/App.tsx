@@ -53,8 +53,6 @@ import {
 import userData, { UserDataActions } from "./redux/slices/userData";
 import Admindash from "./screens/AdminDashboard/Admindash";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
-import Creator from "./screens/Creator/Creator";
-import AdminLogin from './screens/AdminLogin/AdminLogin';
 import Creator from './screens/Creator/Creator';
 import LineChart from './components/creatorDashboard/charts/SalesChart';
 import CreatorOnboard from './screens/OnBoarding/CreatorOnboard';
