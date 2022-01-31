@@ -55,7 +55,7 @@ const MyNfts = () => {
 
 
   return <>
-        <div className='container'>
+        <div className={clsx('container',styles.mainDiv)}>
             <h2 className={styles.heading}>My NFTs</h2>
 
             <div className='d-flex justify-content-between'>

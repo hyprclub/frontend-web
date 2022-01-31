@@ -1,8 +1,13 @@
 import clsx from 'clsx';
 import { Check } from 'phosphor-react';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { PERK_MODAL_OPEN_SUCCESS } from '../../../redux/constants/perkModal';
+import { RootStore } from '../../../store';
 import GradientBorder from '../../gradientBorderBtn/GradientBorder';
+import Fulfill from './fulFilModal/Fulfill';
 import styles from './styles.module.css'
 
 const Content = [
@@ -21,35 +26,39 @@ const Content = [
 ]
 
 const Perks = () => {
+
+    const { clicked } = useSelector((state: RootStore) => state.perksModalOpen)
+
+    const dispatch = useDispatch();
+
+    const openModal = () => {
+        dispatch({type: PERK_MODAL_OPEN_SUCCESS})
+    }
+
+    useEffect(() => {
+        if(clicked){
+         document.body.style.overflow = 'hidden';
+        } 
+        else{
+         document.body.style.overflow = 'unset';
+        }
+       }, [clicked])
+
   return <>
-        {/* <div className={clsx(styles.main, 'container')}>
-            <table className={styles.table}>
-                <thead>
-                    <tr className={styles.head}>
-                        <th className={styles.heading}>Perk</th>
-                        <th className={styles.heading}>Purchased By</th>
-                        <th className={styles.heading}>Satus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {Content.map((e, index) => (
-                    <tr className={styles.body} key={index}>
-                        <td className={styles.items}>{e.perk}</td>
-                        <td className={styles.items}> 
-                            <p className={styles.owner}>{e.name}</p>
-                            <p className={styles.username}>@{e.username}</p>
-                        </td>
-                        <td className={styles.items}>{e.status ? <GradientBorder text='Fulfil'/> : 
-                            <p><Check size={32} weight="bold" /> Fulfilled</p>}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </div> */}
-
-
 <div className={clsx(styles.main, 'container')}>
-        <h2 className={styles.h2}>Perks</h2>
+        <div className='d-flex'>
+        <h2 className={styles.h2}>My Perks</h2>
+        <div className={clsx(styles.selectDiv)}>
+        <label className="grayBold">SORT BY</label>
+                    <Form.Select name='bank acc' className={clsx( styles.select, ' mb-3')} aria-label="Default select example">
+                        <option selected>Filter</option>
+                        <option value="1">Fulfilled</option>
+                        <option value="2">Not Fulfilled</option>
+                    </Form.Select>
+        </div>
+
+        </div>
+        
         <div className={styles.main2}>
             <div className={clsx('d-flex w-100 ', styles.heading)}>
                 <div className={styles.heading1}>Perk</div>
@@ -66,13 +75,16 @@ const Perks = () => {
                                         <p className={clsx(styles.owner)}>{c.name}</p>
                                         <p className={styles.username}>@{c.username}</p>
                                 </div>
-                                <div className={clsx(styles.elem3, 'text-center')}>{c.status ? <GradientBorder text='Fulfil'/> : 
-                            <p><Check className={styles.icon} size={32} weight="bold" /> Fulfilled</p>}</div>
+                                <div className={clsx(styles.elem3, 'text-center')}>{c.status ? <GradientBorder onClick={openModal} text='Fulfil'/> : 
+                                <p><Check className={styles.icon} size={32} weight="bold" /> Fulfilled</p>}</div>
                             </div>
                 })
             }
         </div>
         </div>
+            {
+                clicked && <Fulfill/>
+            }
         
   </>;
 };

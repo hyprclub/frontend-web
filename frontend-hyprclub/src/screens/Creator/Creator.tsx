@@ -9,6 +9,7 @@ import TransactionHistory from '../../components/creatorDashboard/TransactionHis
 import Header_login from '../../components/header/header_after_login/Header_login';
 import styles from './styles.module.css'
 import { RootStateOrAny, useSelector } from 'react-redux';
+import SalesChart from '../../components/creatorDashboard/charts/SalesChart';
 const Creator = () => {
     const userData = useSelector((state : RootStateOrAny) => state.userData);
     const {loggedIn , uid} = useSelector((state : RootStateOrAny) => state.userData);
@@ -28,14 +29,14 @@ const Creator = () => {
                     <CreatorStats/>
                 <div className={clsx('mt-4 pt-4 row', styles.mainDiv)}>
                     <div className='col-lg-8'>
-                        {/* Place graph here */}
+                        <SalesChart/>
                         <MyNfts/>
                         <Perks/>
                         <SayThanks/>
                     </div>
                     <div className='col-lg-4  mt-4 pt-4'>
                         <TransactionHistory/>
-                        <GetHelp className='mt-4'/>
+                        <GetHelp className='mt-5'/>
                     </div>
 
                 </div>

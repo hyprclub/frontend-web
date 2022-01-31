@@ -1,6 +1,6 @@
 .creatorHeading{
     font-weight: bold;
-    font-size: 24px;
+    font-size: 32px;
     color: #000000;
     margin-bottom: 0;
 }
@@ -18,15 +18,15 @@
 }
 
 .text{
-    font-weight: 500;
-font-size: 11.2px;
+    font-weight: 600;
+font-size: 12px;
 line-height: 16px;
 color: rgba(237, 0, 144, 0.47);
 margin-top: 12px;
 }
 
 .cards{
-    gap: 3rem;
+    gap: 6rem;
 }
 
 .card{
@@ -41,7 +41,14 @@ margin-top: 12px;
     padding: 10px ;
     border-radius: 13px;
     color: white;
-    background: linear-gradient(27deg, rgba(158,1,235,1) 0%, rgba(211,24,126,1) 49%, rgba(243,189,56,1) 100%) !important;
+    background: linear-gradient(
+        60deg,
+        rgba(141, 0, 253, 1) 4%,
+        rgba(231, 13, 140, 1) 49%,
+        rgba(237, 77, 107, 1),
+        rgba(246, 164, 76, 1) 85%,
+        rgba(252, 199, 55, 1) 92%
+      ) !important;
 
 
 }

@@ -54,6 +54,10 @@ import userData, { UserDataActions } from "./redux/slices/userData";
 import Admindash from "./screens/AdminDashboard/Admindash";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
 import Creator from "./screens/Creator/Creator";
+import AdminLogin from './screens/AdminLogin/AdminLogin';
+import Creator from './screens/Creator/Creator';
+import LineChart from './components/creatorDashboard/charts/SalesChart';
+import CreatorOnboard from './screens/OnBoarding/CreatorOnboard';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -211,9 +215,6 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Routes>
-            <Route path="/nft" element={<NFTS></NFTS>} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/follow" element={<FollowCreater />} />
             <Route path="/interest" element={<Interests />} />
             <Route path="/feed" element={<Feed />} />
@@ -240,6 +241,7 @@ function App() {
             <Route path="/uploadnft" element={<UploadNft />} />
             <Route path="/admin" element={<Admindash />} />
             <Route path="/creator" element={<Creator />} />
+            <Route path='/onboard' element={<CreatorOnboard/>}/>
             <Route path="/" element={<Landing />}></Route>
           </Routes>
 
