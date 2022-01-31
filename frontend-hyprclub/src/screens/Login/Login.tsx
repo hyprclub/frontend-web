@@ -36,6 +36,16 @@ const Login = () => {
     console.log({ data });
   };
 
+  const makeRandomString = (len : number) =>{
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characterLengths = characters.length;
+    for( let i = 0 ; i< len ; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    } 
+    return result;
+}
+
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     const current = new Date();
@@ -55,11 +65,11 @@ const Login = () => {
               console.log("User Data Exits");
             } else {
               console.log("Set Doc");
-              const username = "Hello312";
+              const username = name?.replaceAll(" ",'') + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,
-                username: "hello", //add username here
+                username: username, //add username here
                 profileViewsCount: 0,
                 phone: phone,
                 uid: uid,
@@ -142,11 +152,11 @@ const Login = () => {
               console.log("User Data Exits");
             } else {
               console.log("Set Doc");
-              const username = "Hello312";
+              const username = name?.replaceAll(" ",'') + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,
-                username: "hello3", //add username here
+                username: username, //add username here
                 profileViewsCount: 0,
                 phone: phone,
                 uid: uid,

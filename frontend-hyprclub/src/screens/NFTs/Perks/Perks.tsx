@@ -12,7 +12,7 @@ const Perks = ({ item }: any) => {
             <ul className={styles.ul}>
                 {item.map((e: any, index: number) => {
                     if (index < isIndex) {
-                        return(<li key={index}>{e.content}</li>)
+                        return(<li key={index}>{e.description}</li>)
                     }
                 })}
                

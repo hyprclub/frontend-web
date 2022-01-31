@@ -101,6 +101,18 @@ const Register = () => {
 
   const checkPassword = () => {};
 
+
+  //make a random string for username
+  const makeRandomString = (len : number) =>{
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characterLengths = characters.length;
+    for( let i = 0 ; i< len ; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    } 
+    return result;
+}
+
   //check for valid phone number
 
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -257,12 +269,12 @@ const Register = () => {
             if (querySnapshot.exists()) {
               console.log("User Data Exits");
             } else {
+              const username = name?.replaceAll(" ",'') + makeRandomString(5);
               console.log("Set Doc");
-              const username = "Hello312";
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,
-                username: "hello", //add username here
+                username: username, //add username here
                 profileViewsCount: 0,
                 phone: phone,
                 uid: uid,
@@ -346,7 +358,7 @@ const Register = () => {
               console.log("User Data Exits");
             } else {
               console.log("Set Doc");
-              const username = "Hello312";
+              const username = name?.replaceAll(" ",'') + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,

@@ -85,7 +85,7 @@ const  handleSayThanks = (e : any) => {
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        {isCreator===true &&
+        {isCreator===true && myProfile===false &&
         <div className={styles.gradbtn}>
           <GradientBorder onClick={() => setShowModal(true)} text='Say Thanks'/>
         </div>

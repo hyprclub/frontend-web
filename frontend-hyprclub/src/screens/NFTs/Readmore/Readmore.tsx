@@ -11,7 +11,7 @@ const ReadMore = ({ children }: any) => {
     return (
         <>
             <p className={styles.info}>
-                {isView ? text.slice(0, 150) : text}
+                {isView ? text.slice(0, 110) : text}
                 <span onClick={toggleView} className={styles.infoMore}>
                     {isView ? "..." : " "}
                 </span>

@@ -27,8 +27,9 @@ import {
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
   const [phoneCorrect, setPhoneCorrect] = useState(true);
+  const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
-
+  const [usernameTaken , setUsernameTaken] = useState(false);
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
 
   // file changes
@@ -75,7 +76,26 @@ const EditProfile = () => {
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
-
+  const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+    } else {
+      try {
+        const q = query(
+          collection(db, "hyprUsers"),
+          where("username", "==", e.target.value)
+        );
+        const docSnap = await getDocs(q);
+        if (docSnap.size !== 0) {
+          console.log("Username Taken");
+          setUsernameTaken(true);
+        } else {
+          setUsernameTaken(false);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
   const [data, setData] = useState({
     name: userData.name,
     email: userData.email,
@@ -103,35 +123,39 @@ const EditProfile = () => {
   
   // update user data here.
   const handleSubmit = async () => {
-    const db = getFirestore(firebaseApp);
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
     console.log(data.twitterUsername)
     if (phoneCorrect === true) {
       console.log("Please Enter Correct Phone Number");
     } else {
-      
-      await updateDoc(ref, {
-        name: data.name,
-        category: data.category,
-        bio: data.bio,
-        age : data.age,
-        socials : {
-          instagramUsername: data.instagramUsername,
-          twitterUsername: data.twitterUsername,
-          facebookProfileUrl: data.facebookUrl,
-          youtubeProfileUrl: data.youtubeUrl,
-          portfolioUrl: data.portfolioUrl
-        },
-        phone: data.phone,
-        gender: data.gender,
-      })
-        .then(() => {
-          console.log("Data Updated");
+      if(usernameTaken){
+        console.log("Please Choose Diff Username")
+      }else{
+        await updateDoc(ref, {
+          name: data.name,
+          category: data.category,
+          bio: data.bio,
+          age : data.age,
+          username : data.username,
+          socials : {
+            instagramUsername: data.instagramUsername,
+            twitterUsername: data.twitterUsername,
+            facebookProfileUrl: data.facebookUrl,
+            youtubeProfileUrl: data.youtubeUrl,
+            portfolioUrl: data.portfolioUrl
+          },
+          phone: data.phone,
+          gender: data.gender,
         })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then(() => {
+            console.log("Data Updated");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      
     }
   };
 
@@ -202,7 +226,10 @@ const EditProfile = () => {
                 value={data?.username}
                 lableText="USERNAME"
                 typeOfInput="text"
-                disabled
+                onChange={(e: React.ChangeEvent<any>) => {
+                  updateState(e);
+                  checkUsername(e);
+                }}
               />
               <p className={styles.usernameRange}>
                 <br/>
