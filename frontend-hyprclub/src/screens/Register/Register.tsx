@@ -31,13 +31,14 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { firebaseApp } from "../../firebaseConfig";
+import { firebaseApp, analytics } from "../../firebaseConfig";
 import {
   useSelector,
   useDispatch,
   RootStateOrAny,
   DefaultRootState,
 } from "react-redux";
+import { logEvent } from "firebase/analytics";
 import { useNavigate } from "react-router";
 import { error } from "console";
 import userData from "../../redux/slices/userData";
@@ -101,17 +102,17 @@ const Register = () => {
 
   const checkPassword = () => {};
 
-
   //make a random string for username
-  const makeRandomString = (len : number) =>{
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const makeRandomString = (len: number) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const characterLengths = characters.length;
-    for( let i = 0 ; i< len ; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characterLengths));
-    } 
+    for (let i = 0; i < len; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    }
     return result;
-}
+  };
 
   //check for valid phone number
 
@@ -194,7 +195,7 @@ const Register = () => {
               age: "",
               gender: "",
               flagCounter: 0,
-              profileUrl: "",    // add profile url here
+              profileUrl: "", // add profile url here
               coverPhotoUrl: "", // add firebase storage function url here
               profilePhotoUrl: "", // add firebase storage function here
               bio: "",
@@ -241,6 +242,8 @@ const Register = () => {
             });
 
             console.log("Account Created : ", user);
+
+            logEvent(analytics, "new_user_register", data);
           } catch (error) {
             console.error(error);
           }
@@ -269,7 +272,7 @@ const Register = () => {
             if (querySnapshot.exists()) {
               console.log("User Data Exits");
             } else {
-              const username = name?.replaceAll(" ",'') + makeRandomString(5);
+              const username = name?.replaceAll(" ", "") + makeRandomString(5);
               console.log("Set Doc");
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
@@ -324,6 +327,7 @@ const Register = () => {
                   accountHolderPhoneNumber: "",
                 },
               }).then((snap) => {
+                logEvent(analytics, "new_user_google");
                 window.location.reload();
               });
             }
@@ -348,9 +352,9 @@ const Register = () => {
         const photoUrl = userCredentials.user.photoURL;
         const phone = userCredentials.user.phoneNumber;
         const current = new Date();
-         const date = `${current.getDate()}/${
-             current.getMonth() + 1
-           }/${current.getFullYear()}`;
+        const date = `${current.getDate()}/${
+          current.getMonth() + 1
+        }/${current.getFullYear()}`;
 
         getDoc(doc(db, "hyprUsers", uid))
           .then((querySnapshot) => {
@@ -358,7 +362,7 @@ const Register = () => {
               console.log("User Data Exits");
             } else {
               console.log("Set Doc");
-              const username = name?.replaceAll(" ",'') + makeRandomString(5);
+              const username = name?.replaceAll(" ", "") + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,
@@ -412,6 +416,7 @@ const Register = () => {
                   accountHolderPhoneNumber: "",
                 },
               }).then((snap) => {
+                logEvent(analytics, "new_user_facebook");
                 window.location.reload();
               });
             }
@@ -419,7 +424,6 @@ const Register = () => {
           .catch((error) => {
             console.log(error);
           });
-        
       })
       .catch((error) => {
         console.log(error);

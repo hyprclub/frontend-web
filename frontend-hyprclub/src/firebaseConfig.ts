@@ -14,6 +14,8 @@ const firebaseConfig = {
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
+export const analytics = getAnalytics();
+
 export const logOut = async () => {
   console.log("logging out");
   const auth = getAuth();

@@ -12,7 +12,8 @@ import Store from "../../components/store/Store";
 import { useSelector, RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { firebaseApp } from "../../firebaseConfig";
+import { logEvent } from "firebase/analytics";
+import { firebaseApp, analytics } from "../../firebaseConfig";
 import {
   getFirestore,
   collection,
@@ -62,11 +63,11 @@ const Profile = () => {
       } else {
         setMyProfile(false);
       }
-
       setProfileData(doc.data());
       GetProfilePhoto(doc.id);
       GetCoverPhoto(doc.id);
       console.log(doc.data());
+      logEvent(analytics, "page_view");
     });
   };
 
@@ -79,7 +80,7 @@ const Profile = () => {
 
       setProfilePhoto(url);
     } catch (error) {
-      setProfilePhoto( "/images/content/avatar-big.jpg")
+      setProfilePhoto("/images/content/avatar-big.jpg");
       console.error(error);
     }
   };

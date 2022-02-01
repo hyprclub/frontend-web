@@ -23,7 +23,8 @@ import Settings from "./screens/Settings/Settings";
 import Landing from "./screens/Landing/Landing";
 import NFTS from "./screens/NFTs/NFTS";
 import UploadNft from "./screens/UploadNft/UploadNft";
-import { firebaseApp } from "./firebaseConfig";
+import { firebaseApp, analytics } from "./firebaseConfig";
+import { logEvent } from "firebase/analytics";
 import { useNavigate, BrowserRouter } from "react-router-dom";
 import {
   getAuth,
@@ -53,9 +54,9 @@ import {
 import userData, { UserDataActions } from "./redux/slices/userData";
 import Admindash from "./screens/AdminDashboard/Admindash";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
-import Creator from './screens/Creator/Creator';
-import LineChart from './components/creatorDashboard/charts/SalesChart';
-import CreatorOnboard from './screens/OnBoarding/CreatorOnboard';
+import Creator from "./screens/Creator/Creator";
+import LineChart from "./components/creatorDashboard/charts/SalesChart";
+import CreatorOnboard from "./screens/OnBoarding/CreatorOnboard";
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -104,6 +105,7 @@ function App() {
         await getDoc(doc(db, "hyprUsers", uid))
           .then((docSnap) => {
             if (docSnap.exists()) {
+              logEvent(analytics, "login");
               dispatch(UserDataActions.updateCurrentUserDetail(docSnap.data()));
             } else {
               console.log("No User Data");
@@ -137,24 +139,29 @@ function App() {
 
   useEffect(() => {
     const run = async () => {
-        await getDocs(collection(db,"marketplace","Nfts","singleNfts"))
-        .then((querySnapShot)=>{
-            let nftIds :string[] = [];
-            querySnapShot.forEach(element => {
-                nftIds.push(element.id);
-                // console.log(nftIds);
-                dispatch(UserDataActions.nftTokenId({
-                    nftIds : nftIds.map(elem => parseInt(elem)).sort((a,b)=>b-a).map(elem => elem.toString())
-                }));
-                console.log(userData?.nftIds);
-            });
+      await getDocs(collection(db, "marketplace", "Nfts", "singleNfts"))
+        .then((querySnapShot) => {
+          let nftIds: string[] = [];
+          querySnapShot.forEach((element) => {
+            nftIds.push(element.id);
+            // console.log(nftIds);
+            dispatch(
+              UserDataActions.nftTokenId({
+                nftIds: nftIds
+                  .map((elem) => parseInt(elem))
+                  .sort((a, b) => b - a)
+                  .map((elem) => elem.toString()),
+              })
+            );
+            console.log(userData?.nftIds);
+          });
         })
-        .catch((error) =>{
-            console.error(error.code);
-        })
-    }
+        .catch((error) => {
+          console.error(error.code);
+        });
+    };
     run();
-},[db,dispatch])
+  }, [db, dispatch]);
 
   // fetch nft id for marketplace
   // useEffect(() => {
@@ -195,9 +202,9 @@ function App() {
   //     //   querySnapShot.forEach((elem)=>{
   //     //     console.log(elem);
   //     //     // nftIds.push(elem.id);
-      //     // dispatch(UserDataActions.nftTokenId({
-      //     //   nftIds : nftIds.map(elem => parseInt(elem)).sort((a,b)=> b-a).map(elem => elem.toString())
-      //     // }))
+  //     // dispatch(UserDataActions.nftTokenId({
+  //     //   nftIds : nftIds.map(elem => parseInt(elem)).sort((a,b)=> b-a).map(elem => elem.toString())
+  //     // }))
   //     //   });
   //     //   // console.log(nftIds);
   //     // })
@@ -224,7 +231,10 @@ function App() {
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/admindashboard" element={<Admindash />} />
             <Route path="/" element={<Landing />}></Route>
-            <Route path="/nft/:collectionTag/:idToken" element={<NFTS></NFTS>} />
+            <Route
+              path="/nft/:collectionTag/:idToken"
+              element={<NFTS></NFTS>}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
@@ -239,7 +249,7 @@ function App() {
             <Route path="/uploadnft" element={<UploadNft />} />
             <Route path="/admin" element={<Admindash />} />
             <Route path="/creator" element={<Creator />} />
-            <Route path='/onboard' element={<CreatorOnboard/>}/>
+            <Route path="/onboard" element={<CreatorOnboard />} />
             <Route path="/" element={<Landing />}></Route>
           </Routes>
 

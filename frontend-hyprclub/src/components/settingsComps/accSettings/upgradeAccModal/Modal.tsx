@@ -1,6 +1,11 @@
 import clsx from "clsx";
 import { doc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytesResumable , getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { ArrowLeft, X } from "phosphor-react";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
@@ -32,15 +37,16 @@ const Modal = () => {
     });
   };
 
+  const [dataMissing, setDataMissing] = useState(false);
   const current = new Date();
-  const date = `${current.getDate()}/${current.getMonth() + 1
-    }/${current.getFullYear()}`;
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
-
 
   const [phoneCorrect, setPhoneCorrect] = useState(true);
   const [data, setData] = useState({
@@ -54,7 +60,7 @@ const Modal = () => {
     accountType: "",
     accountHolderPhoneNumber: "",
     docType: "adhar",
-    documentNumber: ""
+    documentNumber: "",
   });
 
   // handle update state changes
@@ -62,7 +68,7 @@ const Modal = () => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
-  
+
   // Document upload
   const storage = getStorage(firebaseApp);
   const [document, setDocument] = useState<any>(null);
@@ -71,7 +77,7 @@ const Modal = () => {
     if (!doc) return;
     setDocument(document);
     console.log(doc.size);
-    if (doc.size >= 5242880){
+    if (doc.size >= 5242880) {
       console.log("File Size Too Big");
     } else {
       const storageDocRef = ref(
@@ -87,7 +93,6 @@ const Modal = () => {
         });
     }
   };
-
 
   // Signature upload
   const [signature, setSign] = useState<any>(null);
@@ -152,8 +157,7 @@ const Modal = () => {
     console.log(files);
     console.log("drag1");
   };
-  
-  
+
   // check for valid phone number or not.
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "" || e.target.value.length > 10) {
@@ -170,77 +174,79 @@ const Modal = () => {
     }
   };
 
+  // create request id
   const makeCreatorRequestId = (len: number) => {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const characterLengths = characters.length;
     for (let i = 0; i < len; i++) {
       result += characters.charAt(Math.floor(Math.random() * characterLengths));
     }
     return result;
-  }
+  };
 
- 
+  // send request to admin
   const updateRequest = async () => {
     const db = getFirestore(firebaseApp);
     const requestId = "CR_id_" + makeCreatorRequestId(26);
     // console.log(signUrl);
-    await setDoc(doc(db, "creatorRequest", requestId), {
-      socials: {
-        instagramLink: data.instagramLink,
-        twitterLink: data.twitterLink,
-        youtubeProfileUrl: data.youtubeProfileUrl,
-        portfolioUrl: data.portfolioUrl
-      },
-      bankAccountDetails: {
-        accountHolderName: data.accountHolderName,
-        accountNumber: data.accountNumber,
-        ifscCode: data.ifscCode,
-        accountType: data.accountType,
-        accountHolderPhoneNumber: data.accountHolderPhoneNumber
-      },
-      kycDetails : {
-        documentType : data.docType,
-        documentNumber: data.documentNumber,
-      },
-      personalDetails : {
-        emailId: userData?.email,
-        uid: userData?.uid,
-        name : userData?.name,
-        username : userData?.username,
-        age : userData?.age,
-        gender : userData?.gender
-      },
-      isApproved : false,
-      isDecisionTaken : false,
-      dateOfJoining: userData?.dateOfJoining,
-      dateOfRequest : date,
-      
-
-     
-    })
-      .then(() => {
-        console.log("Updated");
-        const ref = doc(db, "hyprUsers", uid);
-     updateDoc(ref, { 
-       //add function for sending mail to user.
-       // todo make upload file thing correct.
-        creatorApproval: {
-          approvalStatus: "Applied",
-          comments : "",
-        }
+    if (dataMissing) {
+      console.log("Missing Data Values Please check again");
+    } else {
+      await setDoc(doc(db, "creatorRequest", requestId), {
+        socials: {
+          instagramLink: data.instagramLink,
+          twitterLink: data.twitterLink,
+          youtubeProfileUrl: data.youtubeProfileUrl,
+          portfolioUrl: data.portfolioUrl,
+        },
+        bankAccountDetails: {
+          accountHolderName: data.accountHolderName,
+          accountNumber: data.accountNumber,
+          ifscCode: data.ifscCode,
+          accountType: data.accountType,
+          accountHolderPhoneNumber: data.accountHolderPhoneNumber,
+        },
+        kycDetails: {
+          documentType: data.docType,
+          documentNumber: data.documentNumber,
+        },
+        personalDetails: {
+          emailId: userData?.email,
+          uid: userData?.uid,
+          name: userData?.name,
+          username: userData?.username,
+          age: userData?.age,
+          gender: userData?.gender,
+        },
+        isApproved: false,
+        isDecisionTaken: false,
+        dateOfJoining: userData?.dateOfJoining,
+        dateOfRequest: date,
       })
         .then(() => {
-          console.log("Data Updated");
+          console.log("Updated");
+          const ref = doc(db, "hyprUsers", uid);
+          updateDoc(ref, {
+            //add function for sending mail to user.
+            // todo make upload file thing correct.
+            creatorApproval: {
+              approvalStatus: "Applied",
+              comments: "",
+            },
+          })
+            .then(() => {
+              console.log("Data Updated");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => {
           console.log(error);
         });
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    }
   };
   return (
     <>
@@ -375,6 +381,11 @@ const Modal = () => {
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      if (e.target.value === "") {
+                        setDataMissing(true);
+                      } else {
+                        setDataMissing(false);
+                      }
                     }}
                   />
                   <div className="invalid-feedback">
@@ -390,6 +401,11 @@ const Modal = () => {
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      if (e.target.value === "") {
+                        setDataMissing(true);
+                      } else {
+                        setDataMissing(false);
+                      }
                     }}
                   />
                   <InputField
@@ -402,6 +418,11 @@ const Modal = () => {
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      if (e.target.value === "") {
+                        setDataMissing(true);
+                      } else {
+                        setDataMissing(false);
+                      }
                     }}
                   />
                   <InputField
@@ -414,6 +435,11 @@ const Modal = () => {
                     placeholder="Enter Link..."
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      if (e.target.value === "") {
+                        setDataMissing(true);
+                      } else {
+                        setDataMissing(false);
+                      }
                     }}
                   />
                 </div>
@@ -481,6 +507,11 @@ const Modal = () => {
                   placeholder="eg. John Maxwell"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
+                    if (e.target.value === "") {
+                      setDataMissing(true);
+                    } else {
+                      setDataMissing(false);
+                    }
                   }}
                 />
                 <InputField
@@ -493,6 +524,11 @@ const Modal = () => {
                   placeholder="eg. 1234567890"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
+                    if (e.target.value === "") {
+                      setDataMissing(true);
+                    } else {
+                      setDataMissing(false);
+                    }
                   }}
                 />
                 <InputField
@@ -505,6 +541,11 @@ const Modal = () => {
                   placeholder="eg. HYPR09879854"
                   onChange={(e: React.ChangeEvent<any>) => {
                     updateState(e);
+                    if (e.target.value === "") {
+                      setDataMissing(true);
+                    } else {
+                      setDataMissing(false);
+                    }
                   }}
                 />
 
@@ -523,6 +564,11 @@ const Modal = () => {
                       aria-label="Default select example"
                       onChange={(e: React.ChangeEvent<any>) => {
                         updateState(e);
+                        if (e.target.value === "") {
+                          setDataMissing(true);
+                        } else {
+                          setDataMissing(false);
+                        }
                       }}
                     >
                       <option value="savings">SAVINGS</option>
@@ -541,6 +587,11 @@ const Modal = () => {
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
                       checkPhoneNumber(e);
+                      if (e.target.value === "") {
+                        setDataMissing(true);
+                      } else {
+                        setDataMissing(false);
+                      }
                     }}
                   />
                 </div>
@@ -611,6 +662,11 @@ const Modal = () => {
                       aria-label="Default select example"
                       onChange={(e: React.ChangeEvent<any>) => {
                         updateState(e);
+                        if (e.target.value === "") {
+                          setDataMissing(true);
+                        } else {
+                          setDataMissing(false);
+                        }
                       }}
                     >
                       <option value="aadhar">ADHAR CARD</option>
@@ -628,6 +684,11 @@ const Modal = () => {
                     placeholder=""
                     onChange={(e: React.ChangeEvent<any>) => {
                       updateState(e);
+                      if (e.target.value === "") {
+                        setDataMissing(true);
+                      } else {
+                        setDataMissing(false);
+                      }
                     }}
                   />
                 </div>
@@ -707,15 +768,17 @@ const Modal = () => {
                 <GradientBorder
                   onClick={(e: React.ChangeEvent<any>) => {
                     updateRequest();
-                    setModals({
-                      modal1: false,
-                      modal2: false,
-                      modal3: false,
-                      modal4: false,
-                      modal5: true,
-                    });
-                  }
-                  }
+                    if (dataMissing) {
+                    } else {
+                      setModals({
+                        modal1: false,
+                        modal2: false,
+                        modal3: false,
+                        modal4: false,
+                        modal5: true,
+                      });
+                    }
+                  }}
                   text="Upgrade To Creator Account"
                 />
               </div>
@@ -738,26 +801,27 @@ const Modal = () => {
               </div> */}
         </div>
         <div
-        className={clsx(
-          styles.thirdModal,
-          modals.modal5 ? styles.show : styles.hide
-        )}
-      >
-        <p className={styles.crossLast}>
-          <X onClick={closeModal} size={30} weight="bold" />
-        </p>
-        <div className={styles.thankYouDiv}>
-          <h2 className={styles.gradientTitleLast}>Thank You For Applying!</h2>
-          <p className={styles.lastDesc}>
-            We will reach out to you soon! Be sure to check your registered
-            email to activate your creator account at HyprClub.{" "}
+          className={clsx(
+            styles.thirdModal,
+            modals.modal5 ? styles.show : styles.hide
+          )}
+        >
+          <p className={styles.crossLast}>
+            <X onClick={closeModal} size={30} weight="bold" />
           </p>
+          <div className={styles.thankYouDiv}>
+            <h2 className={styles.gradientTitleLast}>
+              Thank You For Applying!
+            </h2>
+            <p className={styles.lastDesc}>
+              We will reach out to you soon! Be sure to check your registered
+              email to activate your creator account at HyprClub.{" "}
+            </p>
+          </div>
         </div>
-      </div>
       </div>
 
       {/* last one */}
-      
     </>
   );
 };
@@ -766,4 +830,3 @@ export default Modal;
 function e(e: any): React.ChangeEventHandler<HTMLInputElement> | undefined {
   throw new Error("Function not implemented.");
 }
-
