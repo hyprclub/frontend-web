@@ -3,7 +3,7 @@ import { UploadSimple } from 'phosphor-react';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { UPLOADNFT_MODAL_CLOSE_SUCCESS } from '../../../../redux/constants/uploadnftmodalOpen';
+import { UPLOADNFT_MODAL_CLOSE_SUCCESS } from '../../../../redux/constants/uploadnftmodal';
 import styles from './UploadModals.module.css'
 const UploadModals = () => {
     const [modals, setModals] = useState({ Modal1: true, Modal2: false, Modal3: false });

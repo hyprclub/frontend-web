@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {UPLOADNFT_MODAL_OPEN_SUCCESS, UPLOADNFT_MODAL_CLOSE_SUCCESS} from "../constants/uploadnftmodalOpen" 
+import {UPLOADNFT_MODAL_OPEN_SUCCESS, UPLOADNFT_MODAL_CLOSE_SUCCESS} from "../constants/uploadnftmodal" 
 
 
 interface uploadnftmodalOpenSucc{

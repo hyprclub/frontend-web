@@ -7,7 +7,7 @@ import Image from "../../Image";
 import User from "./UserHead/UserHead";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { UPLOADNFT_MODAL_CLOSE_SUCCESS, UPLOADNFT_MODAL_OPEN_SUCCESS } from "../../../redux/constants/uploadnftmodalOpen";
+import { UPLOADNFT_MODAL_CLOSE_SUCCESS, UPLOADNFT_MODAL_OPEN_SUCCESS } from "../../../redux/constants/uploadnftmodal";
 import { RootStore } from "../../../store";
 import clsx from "clsx";
 import UploadModals from "../../UploadNFT/UploadNFT/Upload_Modals/UploadModals";
@@ -23,7 +23,7 @@ const Header_login = () => {
   const uploadNft = () => {
     dispatch({ type: UPLOADNFT_MODAL_OPEN_SUCCESS })
   }
-  const { clicked } = useSelector((state: RootStore) => state.uploadnftModalOpen)
+  const { clicked_u } = useSelector((state: RootStore) => state.uploadnftModalOpen)
   const [visibleNav, setVisibleNav] = useState(false);
   const [search, setSearch] = useState("");
   const handleSubmit = () => {
@@ -31,13 +31,13 @@ const Header_login = () => {
   };
 
   useEffect(() => {
-    if (clicked) {
+    if (clicked_u) {
       document.body.style.overflow = "hidden";
     }
     else {
       document.body.style.overflow = "unset";
     }
-  }, [clicked])
+  }, [clicked_u])
   const closeModal=()=>{
          dispatch({type:UPLOADNFT_MODAL_CLOSE_SUCCESS})
   }
@@ -119,7 +119,7 @@ const Header_login = () => {
         </div>
       </header>
     </div>
-    <div onClick={closeModal} className={clsx(styles.uploadModal, clicked? styles.show: styles.hide)}>
+    <div onClick={closeModal} className={clsx(styles.uploadModal, clicked_u? styles.show: styles.hide)}>
         <UploadModals/>
     </div>
     </>

@@ -2,6 +2,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { availnftmodalOpenReducer } from "./redux/reducers/availnftmodalOpen";
 import { modalOpenReducer } from "./redux/reducers/modalOpenReducer";
 import { perksModalOpenReducer } from "./redux/reducers/perkModalOpenReducer";
 import { uploadBtnReducer } from "./redux/reducers/uploadBtnReducers";
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     modalOpen: modalOpenReducer,
     perksModalOpen: perksModalOpenReducer,
     uploadnftModalOpen: uploadnftmodalOpenReducer,
+    availnftModalOpen: availnftmodalOpenReducer,
 })
 
 const middleware = [thunk];

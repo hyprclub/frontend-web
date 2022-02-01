@@ -21,7 +21,6 @@ import Creator from './screens/Creator/Creator';
 import LineChart from './components/creatorDashboard/charts/SalesChart';
 import CreatorOnboard from './screens/OnBoarding/CreatorOnboard';
 import Avail from './components/NFTs/Avail_modals/Avail_modals';
-import UploadModals from './components/UploadNFT/UploadNFT/Upload_Modals/UploadModals';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -30,8 +29,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-          {/* <Avail/> */}
-          {/* <UploadModals /> */}
+        <Avail/>
         <header className="App-header">
           <Routes>
             <Route path='/nft' element={<NFTS></NFTS>} />
@@ -48,21 +46,21 @@ function App() {
             <Route path='/adminlogin' element={<AdminLogin />} />
             <Route path='/admindashboard' element={<Admindash />} />
             <Route path='/' element={<Landing />}></Route>
-            <Route path='/nft' element={<NFTS></NFTS>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
-            <Route path='/follow' element={<FollowCreater/>}/>
-            <Route path='/interest' element={<Interests/>}/>
-            <Route path='/feed' element={<Feed/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/market' element={<Marketplace/>}/>
-            <Route path='/settings' element={<Settings/>}/>
-            <Route path='/settings/:test' element={<Settings/>}/>
-            <Route path='/uploadnft' element={<UploadNft/>}/>
-            <Route path='/admin' element={<Admindash/>}/>
-            <Route path='/creator' element={<Creator/>}/>
-            <Route path='/onboard' element={<CreatorOnboard/>}/>
-            <Route path='/' element={<Landing/>}></Route>
+            <Route path='/nft' element={<NFTS></NFTS>} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/follow' element={<FollowCreater />} />
+            <Route path='/interest' element={<Interests />} />
+            <Route path='/feed' element={<Feed />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/market' element={<Marketplace />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/settings/:test' element={<Settings />} />
+            <Route path='/uploadnft' element={<UploadNft />} />
+            <Route path='/admin' element={<Admindash />} />
+            <Route path='/creator' element={<Creator />} />
+            <Route path='/onboard' element={<CreatorOnboard />} />
+            <Route path='/' element={<Landing />}></Route>
           </Routes>
           {/* <Header></Header>
           <Footer></Footer> */}
