@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header_login.module.css";
 import cn from "classnames";
@@ -6,6 +6,11 @@ import Icon from "../../Icon";
 import Image from "../../Image";
 import User from "./UserHead/UserHead";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { UPLOADNFT_MODAL_CLOSE_SUCCESS, UPLOADNFT_MODAL_OPEN_SUCCESS } from "../../../redux/constants/uploadnftmodalOpen";
+import { RootStore } from "../../../store";
+import clsx from "clsx";
+import UploadModals from "../../UploadNFT/UploadNFT/Upload_Modals/UploadModals";
 const nav = [
   {
     url: "/market",
@@ -14,13 +19,31 @@ const nav = [
 ];
 
 const Header_login = () => {
+  const dispatch = useDispatch();
+  const uploadNft = () => {
+    dispatch({ type: UPLOADNFT_MODAL_OPEN_SUCCESS })
+  }
+  const { clicked } = useSelector((state: RootStore) => state.uploadnftModalOpen)
   const [visibleNav, setVisibleNav] = useState(false);
   const [search, setSearch] = useState("");
   const handleSubmit = () => {
     alert();
   };
 
+  useEffect(() => {
+    if (clicked) {
+      document.body.style.overflow = "hidden";
+    }
+    else {
+      document.body.style.overflow = "unset";
+    }
+  }, [clicked])
+  const closeModal=()=>{
+         dispatch({type:UPLOADNFT_MODAL_CLOSE_SUCCESS})
+  }
+  
   return (
+    <>
     <div className={styles.headDiv}>
       <header className={styles.header}>
         <div className={cn("container", styles.container)}>
@@ -67,28 +90,25 @@ const Header_login = () => {
             </form>
             {/* //upload button only of creater */}
             {visibleNav == true && (
-              <Link to="/uploadnft">
-                <button className={styles.up}>
-                  {" "}
+              <Link to="#">
+                <button className={styles.up} onClick={uploadNft}>
                   <span className={styles.uptxt}>Upload</span>
                 </button>
-              </Link>
+               </Link> 
             )}
             {visibleNav == true && (
               <Link to="/login">
                 <Button className={styles.logBtn}>
-                  {" "}
                   <span className={styles.logbtnTxt}>Log In</span>
                 </Button>
               </Link>
             )}
             {visibleNav == true &&
-            <Link to="register">
-              <button className={styles.signbtn}>
-                {" "}
-                <span className={styles.signbtntxt}>Sign up</span>
-              </button>
-            </Link>
+              <Link to="register">
+                <button className={styles.signbtn}>
+                  <span className={styles.signbtntxt}>Sign up</span>
+                </button>
+              </Link>
             }
           </div>
           <User className={styles.user} />
@@ -99,6 +119,10 @@ const Header_login = () => {
         </div>
       </header>
     </div>
+    <div onClick={closeModal} className={clsx(styles.uploadModal, clicked? styles.show: styles.hide)}>
+        <UploadModals/>
+    </div>
+    </>
   );
 };
 

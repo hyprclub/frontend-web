@@ -5,12 +5,13 @@ import thunk from "redux-thunk";
 import { modalOpenReducer } from "./redux/reducers/modalOpenReducer";
 import { perksModalOpenReducer } from "./redux/reducers/perkModalOpenReducer";
 import { uploadBtnReducer } from "./redux/reducers/uploadBtnReducers";
-
+import {uploadnftmodalOpenReducer} from "./redux/reducers/uploadnftmodalOpenReducer"
 
 const reducers = combineReducers({
     uploadBtn: uploadBtnReducer,
     modalOpen: modalOpenReducer,
-    perksModalOpen: perksModalOpenReducer
+    perksModalOpen: perksModalOpenReducer,
+    uploadnftModalOpen: uploadnftmodalOpenReducer,
 })
 
 const middleware = [thunk];

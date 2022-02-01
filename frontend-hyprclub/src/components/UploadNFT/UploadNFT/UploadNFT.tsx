@@ -55,11 +55,10 @@ const UploadNFT = () => {
         if (e.key === 'Enter') return addPerk();
 
     }
-    // const descs=
-
-    const handleChange = () => {
-        setFile(file);
+    const handleChange = (e: any) => {
+        setFile(e);
     };
+    console.log(file);
     return (
         <>
             <div className={styles.wrapper}>
