@@ -139,7 +139,7 @@
     align-items: center !important;
     width: 138px !important;
     height: 35px !important;
-    border: 0 !important;
+    border: none !important;
     outline: none !important;
     box-sizing: border-box !important;
     /* border-radius: 4px !important; */
@@ -183,6 +183,7 @@
 
 .buy:hover {
     transform: translateY(-2px) !important;
+    box-shadow: 2px 1000px 1px #fff inset !important;
 }
 
 

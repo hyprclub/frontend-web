@@ -17,13 +17,13 @@
             rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    box-shadow: 2px 1000px 1px #fff inset;
+    box-shadow: 2px 1000px 1px #fff inset ;
 
 }
 
 
 .gradientBorder:active, .gradientBorder:focus, .gradientBorder:hover {
-    box-shadow: 2px 1000px 1px #fff inset!important;
+    box-shadow: 2px 1000px 1px #fff inset !important;
 }
 
 /* .gradientBorder{

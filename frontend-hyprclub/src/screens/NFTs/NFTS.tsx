@@ -1,20 +1,21 @@
 import React, { useState } from "react"
 import styles from "./NFTS.module.css";
 import cn from "classnames";
-import Users from "./Users/Users";
-import Bidders from "./Bidders/Bidders";
-import Option from "./Options/Option";
+import Bidders from "../../components/NFTs/Bidders/Bidders";
 import Header_login from "../../components/header/header_after_login/Header_login";
 import { ArrowLeft } from "phosphor-react";
-import Nft from "../../components/NFT/Nft";
 import { Link } from "react-router-dom";
-import GradBorder from "./GradBorder/GradBorder";
 import { Avatar } from "@mui/material";
-import ReadMore from "./Readmore/Readmore";
-import Polygon from "./Poly/Polygon";
 import { style } from "@mui/system";
-import ItemsCarousel from "./ItemsCarousel/ItemsCarousel";
-import Perks from "./Perks/Perks";
+import Option from "../../components/NFTs/Options/Option";
+import GradBorder from "../../components/NFTs/GradBorder/GradBorder";
+import ReadMore from "../../components/NFTs/Readmore/Readmore";
+import Perks from "../../components/NFTs/Perks/Perks";
+import Polygon from "../../components/NFTs/Poly/Polygon";
+import Users from "../../components/NFTs/Users/Users";
+import ItemsCarousel from "../../components/NFTs/ItemsCarousel/ItemsCarousel";
+
+
 
 
 const Desc = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."

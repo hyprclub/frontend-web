@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import InputField from '../../components/inputField/Input';
 import ButtonItself from '../../components/loginSignUpBtn/ButtonItself';
-import Logo from '../../components/logo/Logo';
 import styles from "./AdminLogin.module.css"
 
 const AdminLogin = () => {
