@@ -27,7 +27,7 @@ const Avail = () => {
                     <div className={styles.box_body}>
                         <div className={styles.rows}><p className={styles.content}>Get exclusive access to my Discord server!</p> <GradBorder className={styles.btn_grad} text="Avail Perk" onClick={() => setModals({ Modal1: false, Modal2: true, Modal3: false })} /></div>
                         <div className={styles.rows}><p className={styles.content}>Get exclusive access to my Discord server!</p> <div className={styles.availed}><Check size={30} weight="bold" className={styles.check} /> <p className={styles.p_availed}>Availed</p></div></div>
-                        <div className={styles.rows}><p className={styles.content}>Get exclusive access to my Discord server!</p> <div className={styles.requested}><NotePencil size={32} weight="bold" className={styles.request} /> <p className={styles.p_request}>Requested</p></div></div>
+                        <div className={styles.rows}><p className={styles.content}>Get exclusive access to my Discord server!</p> <div className={styles.requested}><NotePencil size={30} weight="bold" className={styles.request} /> <p className={styles.p_request}>Requested</p></div></div>
                     </div>
                 </div>
 

@@ -258,14 +258,26 @@
         width: 90%;
     }
     .p{
-        font-size:clamp(12.5,2.333vw + 0.01em, 14px);
+        font-size:clamp(11px,2.333vw + 0.01em, 14px);
     }
     .rows{
         gap:20px;
+        height:auto;
     }
-    .content{
 
+    .content{
         width: fit-content;
+    }
+    .content, .availed, .p_request{
+        font-size:clamp(12px, 2.333vw + 0.01em, 14px);
+    }
+    .btn_grad{
+        width: clamp(95px,19vw + 0.01em,114px);
+        height: clamp(35px,6.500vw + 0.01em,39px);
+
+    }
+    .request, .check{
+         width:clamp(20px,5vw + 0.01em , 30px);
     }
     
 }
@@ -273,6 +285,26 @@
 @media(max-width:400px) {
     .buttons {
         flex-direction: column;
+    }
+    .rows{
+        gap:10px;
+    }
+
+    .btn, .btn_white, .btn.btn_yes {
+        width: 100%;
+    }
+}
+
+@media(max-width:335px) {
+    .rows{
+        flex-direction: column;
+        gap:5px;
+    }
+    .buttons {
+        flex-direction: column;
+    }
+    .btn_grad{
+        min-width: 150px;
     }
 
     .btn, .btn_white, .btn.btn_yes {
