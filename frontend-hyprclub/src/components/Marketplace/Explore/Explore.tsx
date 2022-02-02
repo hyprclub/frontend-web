@@ -116,7 +116,7 @@ const Explore = () => {
                 <div className={styles.Navbar}>
                     {navLinks.map((x: any, index: number) => (
 
-                        <button className={clsx(styles.btn, {
+                        <button key={index} className={clsx(styles.btn, {
                             [styles.active]: index === activeIndex,
                         })} onClick={() => setActiveIndex(index)}
                         >{x}</button>

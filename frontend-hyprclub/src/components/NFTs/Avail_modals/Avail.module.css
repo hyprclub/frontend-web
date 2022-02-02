@@ -3,7 +3,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    position:fixed;
+    position: fixed;
     display: grid;
     place-items: center;
     z-index: 999999;
@@ -17,11 +17,13 @@
 
 
 .first_modal.show, .second_modal.show, .third_modal.show {
-    width: 696px;
-    /* height: 653px; */
+    width: clamp(550px, 46.667vw + 0.01em, 700px);
     background: #FFFFFF;
     border-radius: 20px;
-    padding: 60px 45px;
+    padding-top: clamp(15px, 3.488vw + 0.01em, 60px);
+    padding-bottom: clamp(15px, 3.488vw + 0.01em, 60px);
+    padding-right: clamp(10px, 2.616vw + 0.1em, 45px);
+    padding-left: clamp(10px, 2.616vw + 0.1em, 45px);
     position: relative;
     display: grid;
     gap: 20px;
@@ -36,16 +38,17 @@
 
 .box_head {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
+    width: 100%;
 }
 
 .gift_icon {
     background: #ED0090;
-    width: 68px;
-    height: 68px;
+    width: clamp(45px, 4.533vw + 0.01em, 68px);
+    height: clamp(45px, 4.533vw + 0.01em, 68px);
     color: white;
     border-radius: 15px;
     display: grid;
@@ -54,8 +57,8 @@
 
 .heading {
     font-weight: bold;
-    font-size: 32px;
-    line-height: 48px;
+    font-size: clamp(20px, 1.744vw + 0.01em, 32px);
+     line-height: clamp(28px, 2.791vw + 0.01em, 48px);
     text-align: center;
     color: #010101;
     margin: 0;
@@ -64,8 +67,8 @@
 
 .p {
     font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: clamp(14px, 1.067vw + 0.01em, 16px);
+     line-height: clamp(18px, 1.600vw + 0.01em, 24px);
     text-align: center;
     color: #010101;
     margin: 0;
@@ -76,12 +79,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:8px;
+    gap: 8px;
     width: 114px;
 }
-.check{
-    color:rgb(89, 243, 102);
+
+.check {
+    color: rgb(89, 243, 102);
 }
+
 .p_availed {
     margin: 0;
     padding: 0;
@@ -96,12 +101,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:8px;
+    gap: 8px;
     width: 114px;
 }
-.request{
-    color:#A5A5A5;
+
+.request {
+    color: #A5A5A5;
 }
+
 .p_request {
     margin: 0;
     padding: 0;
@@ -179,8 +186,8 @@
 }
 
 .btn {
-    width: 211px;
-    height: 46px;
+    width: clamp(160px, 14.333vw + 0.01em, 215px);
+    height: clamp(40px, 3vw + 0.01em, 45px);
     background: #ED0090;
     border-radius: 50px;
     border: 3px solid #ED0090;
@@ -208,10 +215,14 @@
 .btn:hover>.btn_text {
     color: #ED0090;
 }
+.btn.btn_yes{
+    width: clamp(180px, 14.333vw + 0.01em, 215px);
+    height: clamp(40px, 3vw + 0.01em, 45px);
 
+}
 .btn_white {
-    width: 211px;
-    height: 46px;
+    width: clamp(160px, 14.333vw + 0.01em, 215px);
+    height: clamp(40px, 3vw + 0.01em, 45px);
     background: #ffffff;
     border-radius: 50px;
     border: 3px solid #ED0090;
@@ -238,4 +249,33 @@
 
 .btn_white:hover>.btn_white_text {
     color: #FFFFFF;
+}
+
+
+
+@media(max-width:600px) {
+    .first_modal.show, .second_modal.show, .third_modal.show {
+        width: 90%;
+    }
+    .p{
+        font-size:clamp(12.5,2.333vw + 0.01em, 14px);
+    }
+    .rows{
+        gap:20px;
+    }
+    .content{
+
+        width: fit-content;
+    }
+    
+}
+
+@media(max-width:400px) {
+    .buttons {
+        flex-direction: column;
+    }
+
+    .btn, .btn_white, .btn.btn_yes {
+        width: 100%;
+    }
 }

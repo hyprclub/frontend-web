@@ -38,90 +38,90 @@ const Header_login = () => {
       document.body.style.overflow = "unset";
     }
   }, [clicked_u])
-  const closeModal=()=>{
-         dispatch({type:UPLOADNFT_MODAL_CLOSE_SUCCESS})
+  const closeModal = () => {
+    dispatch({ type: UPLOADNFT_MODAL_CLOSE_SUCCESS });
   }
-  
+
   return (
     <>
-    <div className={styles.headDiv}>
-      <header className={styles.header}>
-        <div className={cn("container", styles.container)}>
-          <Link className={styles.logo} to="/">
-            <Image
-              className={styles.pic}
-              src="/images/logo.png"
-              srcDark="/images/logo.png"
-              srcSet="/images/logo.png"
-              srcSetDark="/images/logo.png"
-              alt="Fitness Pro"
-            />
-          </Link>
-          <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
-            <nav className={styles.nav}>
-              {nav.map((x, index) => (
-                <Link
-                  className={styles.link}
-                  // activeClassName={styles.active}
-                  to={x.url}
-                  key={index}
-                >
-                  {x.title}
-                </Link>
-              ))}
-            </nav>
-            <form
-              className={styles.search}
-              action=""
-              onSubmit={() => handleSubmit()}
-            >
-              <input
-                className={styles.input}
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                name="search"
-                placeholder="Search"
-                required
+      <div className={styles.headDiv}>
+        <header className={styles.header}>
+          <div className={cn("container", styles.container)}>
+            <Link className={styles.logo} to="/">
+              <Image
+                className={styles.pic}
+                src="/images/logo.png"
+                srcDark="/images/logo.png"
+                srcSet="/images/logo.png"
+                srcSetDark="/images/logo.png"
+                alt="Fitness Pro"
               />
-              <button className={styles.result}>
-                <Icon name="search" size="20" />
-              </button>
-            </form>
-            {/* //upload button only of creater */}
-            {visibleNav == true && (
-              <Link to="#">
+            </Link>
+            <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
+              <nav className={styles.nav}>
+                {nav.map((x, index) => (
+                  <Link
+                    className={styles.link}
+                    // activeClassName={styles.active}
+                    to={x.url}
+                    key={index}
+                  >
+                    {x.title}
+                  </Link>
+                ))}
+              </nav>
+              <form
+                className={styles.search}
+                action=""
+                onSubmit={() => handleSubmit()}
+              >
+                <input
+                  className={styles.input}
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  name="search"
+                  placeholder="Search"
+                  required
+                />
+                <button className={styles.result}>
+                  <Icon name="search" size="20" />
+                </button>
+              </form>
+              {/* //upload button only of creater */}
+              {visibleNav == true && (
+                // <Link to="#">
                 <button className={styles.up} onClick={uploadNft}>
                   <span className={styles.uptxt}>Upload</span>
                 </button>
-               </Link> 
-            )}
-            {visibleNav == true && (
-              <Link to="/login">
-                <Button className={styles.logBtn}>
-                  <span className={styles.logbtnTxt}>Log In</span>
-                </Button>
-              </Link>
-            )}
-            {visibleNav == true &&
-              <Link to="register">
-                <button className={styles.signbtn}>
-                  <span className={styles.signbtntxt}>Sign up</span>
-                </button>
-              </Link>
-            }
+                // </Link>  
+              )}
+              {visibleNav == true && (
+                <Link to="/login">
+                  <Button className={styles.logBtn}>
+                    <span className={styles.logbtnTxt}>Log In</span>
+                  </Button>
+                </Link>
+              )}
+              {visibleNav == true &&
+                <Link to="register">
+                  <button className={styles.signbtn}>
+                    <span className={styles.signbtntxt}>Sign up</span>
+                  </button>
+                </Link>
+              }
+            </div>
+            <User className={styles.user} />
+            <button
+              className={cn(styles.burger, { [styles.active]: visibleNav })}
+              onClick={() => setVisibleNav(!visibleNav)}
+            ></button>
           </div>
-          <User className={styles.user} />
-          <button
-            className={cn(styles.burger, { [styles.active]: visibleNav })}
-            onClick={() => setVisibleNav(!visibleNav)}
-          ></button>
-        </div>
-      </header>
-    </div>
-    <div onClick={closeModal} className={clsx(styles.uploadModal, clicked_u? styles.show: styles.hide)}>
-        <UploadModals/>
-    </div>
+        </header>
+      </div>
+      <div onClick={closeModal} className={clsx(styles.uploadModal, clicked_u ? styles.show : styles.hide)}>
+        <UploadModals />
+      </div>
     </>
   );
 };

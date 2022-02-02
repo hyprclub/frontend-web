@@ -47,10 +47,12 @@ const Avail = () => {
                         </div>
                         <div className={styles.buttons}>
                             <button className={styles.btn_white} onClick={closeModal}><p className={styles.btn_white_text}>Cancel</p></button>
-                            <button className={styles.btn} onClick={() => setModals({ Modal1: false, Modal2: false, Modal3: true })}><p className={styles.btn_text} >Yes, avail this perk</p></button>
+                            <button className={clsx(styles.btn, styles.btn_yes)} onClick={() => setModals({ Modal1: false, Modal2: false, Modal3: true })}><p className={styles.btn_text} >Yes, avail this perk</p></button>
                         </div>
                     </div>
                 </div>
+                {/* /////////////////////////////////////////MODAL3/////////////////////////////////////////////////////////////// */}
+
                 <div className={clsx(styles.third_modal, modals.Modal3 ? styles.show : styles.hide)}>
                     <div className={styles.box_head}>
                         <div className={styles.gift_icon}><Gift size={32} weight="bold" /></div>
