@@ -16,6 +16,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { Key } from "phosphor-react";
@@ -26,6 +27,7 @@ const Login = () => {
     (state: RootStateOrAny) => state?.userData
   );
   const [forgotPass, setForgotPass] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
   const userData = useSelector((state: RootStateOrAny) => state.userData);
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
@@ -249,8 +251,11 @@ const Login = () => {
     }
   }, [navigate, loggedIn, uid, userData]);
 
-  const forgetPassword = async (e: React.MouseEvent<HTMLAnchorElement>) => {
-    console.log("Forget Password");
+  const resetPassword = async (e: React.FormEvent<any>) => {
+    sendPasswordResetEmail(auth, resetEmail, {
+      url: "http://localhost:3000/login"
+    })
+    console.log("Email sent");
   };
 
   return (
@@ -320,8 +325,24 @@ const Login = () => {
                                 <h3 className='forgotPasstext text-center'>Forgot Password?</h3>
                                 <p className='text-center'>Dont worry, it happens! Please enter your registered email and we will send you a link to reset your password.</p>
                                 <form className='w-100' action="#">
-                                    <InputField required lableText='ENTER EMAIL ID' typeOfInput='email' garyBold placeholder='example@hyprclub.com'/>
-                                    <ButtonItself className='my-4 p-2'  full onClick={() => console.log('hii')} btnPurpose={"Reset Password"}/>
+                                  <InputField
+                                    required
+                                    lableText='ENTER EMAIL ID'
+                                    typeOfInput='email'
+                                    garyBold
+                                    placeholder='example@hyprclub.com'
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                      setResetEmail(e.target.value)
+                                    }
+                                  />
+                                  <ButtonItself
+                                    className='my-4 p-2'
+                                    full
+                                    btnPurpose={"Reset Password"}
+                                    onClick={(e: React.FormEvent<HTMLInputElement>) =>
+                                      resetPassword(e)
+                                    }
+                                  />
                                 </form>
                             </div>
                     </div>}
