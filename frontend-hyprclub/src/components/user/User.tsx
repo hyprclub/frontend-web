@@ -4,7 +4,8 @@ import styles from "./user.module.css";
 import Icon from "../Icon";
 import GradientBorder from "../gradientBorderBtn/GradientBorder";
 import { useSelector, RootStateOrAny } from "react-redux";
-
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { X } from "phosphor-react";
 import { analytics } from "../../firebaseConfig";
@@ -47,6 +48,7 @@ const User = ({
   const userData = useSelector((state: RootStateOrAny) => state.userData);
   const [visiblity, setVisiblity] = useState("hidden");
   const [thanksValue, setThanksValue] = useState("100.00");
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   const closeModal = () => {
@@ -110,12 +112,11 @@ const User = ({
           </div>
         )}
         {isCreator && myProfile && (
-          <div className={styles.gradbtn}>
-            <GradientBorder
-              onClick={() => setShowModal(true)}
-              text="View Dashboard"
-            />
-          </div>
+          <Link to="/creator">
+            <div className={styles.gradbtn}>
+              <GradientBorder text="View Dashboard" />
+            </div>
+          </Link>
         )}
         <div className={cn(styles.socials, "my-3")}>
           {item.map((x, index) => (
