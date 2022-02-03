@@ -20,7 +20,7 @@ import AdminLogin from './screens/AdminLogin/AdminLogin';
 import Creator from './screens/Creator/Creator';
 import LineChart from './components/creatorDashboard/charts/SalesChart';
 import CreatorOnboard from './screens/OnBoarding/CreatorOnboard';
-import Avail from './components/NFTs/Avail_modals/Avail_modals';
+// import Avail from './components/NFTs/Avail_modals/Avail_modals';
 // import logo from './logo.svg';
 // import './App.css';
 
