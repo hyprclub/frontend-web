@@ -100,21 +100,21 @@ const Header_login = () => {
                 </button>
               </form>
               {/* //upload button only of creater */}
-              {visibleNav == true && (
+              {loggedIn && userData?.isCreator && (
                 // <Link to="#">
                 <button className={styles.up} onClick={uploadNft}>
                   <span className={styles.uptxt}>Upload</span>
                 </button>
                 // </Link>
               )}
-              {visibleNav == true && (
+              {loggedIn === false && (
                 <Link to="/login">
                   <Button className={styles.logBtn}>
                     <span className={styles.logbtnTxt}>Log In</span>
                   </Button>
                 </Link>
               )}
-              {visibleNav == true && (
+              {loggedIn === false && (
                 <Link to="register">
                   <button className={styles.signbtn}>
                     <span className={styles.signbtntxt}>Sign up</span>
@@ -122,7 +122,7 @@ const Header_login = () => {
                 </Link>
               )}
             </div>
-            <User className={styles.user} />
+            {loggedIn && <User className={styles.user} />}
             <button
               className={cn(styles.burger, { [styles.active]: visibleNav })}
               onClick={() => setVisibleNav(!visibleNav)}
