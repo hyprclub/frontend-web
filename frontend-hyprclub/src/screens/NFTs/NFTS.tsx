@@ -60,6 +60,8 @@ const Perk_list = [
 ]
 
 const NFTS = () => {
+    const [hover, setHover]=useState();
+    const [bought, setBought]=useState(false);
     return (
         <>
             <Header_login />
@@ -74,6 +76,10 @@ const NFTS = () => {
                                     src="./images/nft-image.png"
                                     alt="NFT"
                                 />
+                                {/* <video id={styles.video}/> */}
+                                {/* <iframe id={styles.video}src="https://cdn.hyprclub.com/alumini/golden.mp4">
+                                </iframe> */}
+
                                 <Option className={styles.options} />
                             </div>
                         </div>
@@ -109,12 +115,12 @@ const NFTS = () => {
                         <span className={styles.bottomHeading}>Owners</span>
                         <Users className={styles.users} items={users} />
                     </div>
-                   <div className={styles.Bottom_part1}>
+                    <div className={styles.Bottom_part1}>
                         <span className={cn(styles.bottomHeading, styles.auth)}>View Authenticity</span>
                         <Polygon className={styles.poly} />
                     </div>
                 </div>
-                <p className={styles.more}>Discover NFTs Related to Edward Scissorhands</p>
+                <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
                 <ItemsCarousel />
             </div>
         </>

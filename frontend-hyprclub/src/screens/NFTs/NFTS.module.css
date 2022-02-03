@@ -89,7 +89,7 @@
     place-items: center;
 }
 
-#img {
+#img, #video {
     object-fit: inherit;
     border-radius: 16px;
     background-repeat: no-repeat;
@@ -97,8 +97,23 @@
     height: 630px;
     margin: 0;
     z-index: 1;
+    transition:opacity 500ms ease-in-out;
 }
+#img:hover{
+    opacity:0;
+}
+#img:hover~#video{
+    z-index:10;
+    opacity:1;
+}
+#video{
+    position:absolute;
+    inset:0;
+    z-index:-2;
+    opacity:0;
+    transition: opacity 500ms ease-in-out;
 
+}
 .options {
     position: absolute !important;
     top: 2.5%;
@@ -174,16 +189,13 @@
     justify-self: flex-end !important;
     margin-bottom: 41px !important;
     transition: all 100ms ease-in-out !important;
-}
-
-.buy::before {
-    content: '' !important;
-    position: absolute !important;
+    box-shadow: 2px 1000px 1px #fff inset !important;
 }
 
 .buy:hover {
     transform: translateY(-2px) !important;
     box-shadow: 2px 1000px 1px #fff inset !important;
+
 }
 
 
@@ -386,7 +398,7 @@
         height: 650px
     }
 
-    #img {
+    #img, #video {
         width: 515px;
         height: 600px;
     }
@@ -411,7 +423,7 @@
         padding: 25px;
     }
 
-    #img {
+    #img, #video {
         width: 445px;
         height: 550px;
     }
@@ -460,7 +472,7 @@
 
     }
 
-    #img {
+    #img, #video {
         width: 100%;
         height: 585px;
         object-fit: inherit;
@@ -531,7 +543,7 @@
         padding: 20px;
     }
 
-    #img {
+    #img, #video {
         width: 100%;
         height: 100%;
         object-fit: inherit;
