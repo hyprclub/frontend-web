@@ -218,6 +218,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* <Avail/> */}
         <header className="App-header">
           <Routes>
             <Route path="/follow" element={<FollowCreater />} />

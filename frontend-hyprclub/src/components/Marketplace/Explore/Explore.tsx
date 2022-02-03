@@ -2,11 +2,9 @@ import clsx from "clsx";
 import { Funnel, X } from "phosphor-react";
 import { Range, getTrackBackground } from "react-range";
 import React, { useState } from "react";
-// import GradBorder from '../../../screens/NFTs/GradBorder/GradBorder';
-import Card from "../../card/Card";
-import Dropdown from "../../Dropdown/Dropdown";
-import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import styles from "./Explore.module.css";
+import GradBorder from "../../NFTs/GradBorder/GradBorder";
+import Dropdown from "../../Dropdown/Dropdown";
 import ExploreCard from "./ExploreCard/ExploreCard";
 
 const dateOptions = ["Recently added", "Long Added"];
@@ -100,7 +98,7 @@ const Explore = ({ items }: explore) => {
   const MAX = 10;
   return (
     <div className={styles.wrapper}>
-      <GradientBorder className={styles.grad} text="Explore Brand New NFTS " />
+      <GradBorder className={styles.grad} text="Explore Brand New NFTS " />
       <div className={styles.head}>
         <div className={styles.dropdown}>
           <Dropdown

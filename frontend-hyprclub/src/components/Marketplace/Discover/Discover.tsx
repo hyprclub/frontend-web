@@ -5,10 +5,11 @@ import { Range, getTrackBackground } from "react-range";
 import Slider from "react-slick";
 import Icon from "../../Icon";
 import Card from "../Card/Card";
-import Dropdown from "../Dropdown/Dropdown"
+
 
 // data
 import { bids } from "../../../mocks/bids";
+import Dropdown from "../../Dropdown/Dropdown";
 
 const navLinks = ["All items", "Art", "Game", "Photography", "Music", "Video"];
 

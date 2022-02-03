@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from "../NFTS.module.css";
+import styles from "../../../screens/NFTs/NFTS.module.css";
 
 const Perks = ({ item }: any) => {
     const [isIndex, setIsIndex] = useState(4);

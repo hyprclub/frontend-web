@@ -4,10 +4,11 @@ import { FileUploader } from "react-drag-drop-files";
 import ToggleBtn from "./ToggleBtn/ToggleBtn";
 import Collection from "./Collection_Categories/Collection";
 import { FileArrowUp, Plus } from "phosphor-react";
-import GradBorder from "../../../screens/NFTs/GradBorder/GradBorder";
+
 import { Form } from "react-bootstrap";
 import InputField from "../../inputField/Input";
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import GradBorder from "../../NFTs/GradBorder/GradBorder";
 
 
 const fileTypes = ["GIF", "PNG", "WEBP", "MP4", "MP3"];
@@ -54,11 +55,10 @@ const UploadNFT = () => {
         if (e.key === 'Enter') return addPerk();
 
     }
-    // const descs=
-
-    const handleChange = () => {
-        setFile(file);
+    const handleChange = (e: any) => {
+        setFile(e);
     };
+    console.log(file);
     return (
         <>
             <div className={styles.wrapper}>
