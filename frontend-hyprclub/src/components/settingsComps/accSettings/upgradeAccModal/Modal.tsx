@@ -24,7 +24,7 @@ const Modal = () => {
     modal4: false,
     modal5: false,
   });
-
+  const storage = getStorage(firebaseApp);
   const dispatch = useDispatch();
   const closeModal = () => {
     dispatch({ type: MODAL_CLOSE_SUCCESS });
@@ -42,7 +42,6 @@ const Modal = () => {
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
-
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
@@ -68,9 +67,11 @@ const Modal = () => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
-
+  const storageDocRef = ref(
+    storage,
+    "users/" + uid + "/Kyc_Details/" + "doc.jpg"
+  );
   // Document upload
-  const storage = getStorage(firebaseApp);
   const [document, setDocument] = useState<any>(null);
   const uploadDocument = async (event: any) => {
     const doc = event.target.files[0];
@@ -80,20 +81,19 @@ const Modal = () => {
     if (doc.size >= 5242880) {
       console.log("File Size Too Big");
     } else {
-      const storageDocRef = ref(
-        storage,
-        "users/" + userData.uid + "/Kyc_Details/" + data.docType + ".jpg"
-      );
       await uploadBytesResumable(storageDocRef, doc)
         .then((result) => {
-          console.log(result.state);
+          console.log(result);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   };
-
+  const storageSignRef = ref(
+    storage,
+    "users/" + uid + "/Kyc_Details/" + "sign.jpg"
+  );
   // Signature upload
   const [signature, setSign] = useState<any>(null);
   const uploadSignature = async (event: any) => {
@@ -105,10 +105,6 @@ const Modal = () => {
     if (sign.size >= 5242880) {
       console.log("File Size Too Big");
     } else {
-      const storageSignRef = ref(
-        storage,
-        "users/" + userData.uid + "/Kyc_Details/" + "sign.jpg"
-      );
       await uploadBytesResumable(storageSignRef, sign)
         .then((result) => {
           console.log(result.state);
@@ -189,11 +185,29 @@ const Modal = () => {
   // send request to admin
   const updateRequest = async () => {
     const db = getFirestore(firebaseApp);
-    const requestId = "CR_id_" + makeCreatorRequestId(26);
+    let docUrl = "";
+    let signUrl = "";
+    const requestId = "CR" + makeCreatorRequestId(26);
     // console.log(signUrl);
     if (dataMissing) {
       console.log("Missing Data Values Please check again");
     } else {
+      await getDownloadURL(storageDocRef)
+        .then((url) => {
+          docUrl = url;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      await getDownloadURL(storageSignRef)
+        .then((url) => {
+          signUrl = url;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log(docUrl);
+      console.log(signUrl);
       await setDoc(doc(db, "creatorRequest", requestId), {
         socials: {
           instagramLink: data.instagramLink,
@@ -211,14 +225,17 @@ const Modal = () => {
         kycDetails: {
           documentType: data.docType,
           documentNumber: data.documentNumber,
+          documentUrl: docUrl,
+          signedPhotoUrl: signUrl,
         },
         personalDetails: {
           emailId: userData?.email,
-          uid: userData?.uid,
+          uid: uid,
           name: userData?.name,
-          username: userData?.username,
-          age: userData?.age,
+          username: userData?.username, //     age: userData?.age,
           gender: userData?.gender,
+          requestId: requestId,
+          state: "PENDING",
         },
         isApproved: false,
         isDecisionTaken: false,
@@ -232,7 +249,7 @@ const Modal = () => {
             //add function for sending mail to user.
             // todo make upload file thing correct.
             creatorApproval: {
-              approvalStatus: "Applied",
+              approvalStatus: "APPLIED",
               comments: "",
             },
           })

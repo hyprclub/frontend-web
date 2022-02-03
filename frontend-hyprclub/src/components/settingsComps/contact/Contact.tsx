@@ -1,17 +1,22 @@
 import clsx from "clsx";
-import { addDoc, collection,setDoc, doc, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  setDoc,
+  doc,
+  getFirestore,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { firebaseApp } from "../../../firebaseConfig";
 import userData from "../../../redux/slices/userData";
 import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import InputField from "../../inputField/Input";
 import styles from "./contact.module.css";
-import { useSelector , RootStateOrAny } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
 import { useNavigate } from "react-router";
 
 const Contact = () => {
-    
-const userData = useSelector((state : RootStateOrAny) => state.userData);
+  const userData = useSelector((state: RootStateOrAny) => state.userData);
   const [data, setData] = useState({
     name: userData?.name,
     phone: userData?.phone,
@@ -24,29 +29,32 @@ const userData = useSelector((state : RootStateOrAny) => state.userData);
     console.log({ data });
   };
 
-  const makeContactUsId = (len : number) =>{
-      let result = '';
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const characterLengths = characters.length;
-      for( let i = 0 ; i< len ; i++) {
-          result += characters.charAt(Math.floor(Math.random() * characterLengths));
-      } 
-      return result;
-  }
+  const makeContactUsId = (len: number) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const characterLengths = characters.length;
+    for (let i = 0; i < len; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    }
+    return result;
+  };
   const handleSubmit = async () => {
     const db = getFirestore(firebaseApp);
     const current = new Date();
     const date = `${current.getDate()}/${
       current.getMonth() + 1
     }/${current.getFullYear()}`;
-    const contactUsId = "contactUs_id_"+makeContactUsId(26);
-    await setDoc(doc(db, "contactus",contactUsId), {
+    const contactUsId = "CONTACT" + makeContactUsId(26);
+    await setDoc(doc(db, "contactus", contactUsId), {
       name: data.name,
+      contactId: contactUsId,
       phone: data.phone,
       email: data.email,
       message: data.message,
       isResolved: false,
       dateOfMessage: date,
+      status: "PENDING",
     })
       .then(() => {
         console.log("Data sent");
@@ -55,7 +63,7 @@ const userData = useSelector((state : RootStateOrAny) => state.userData);
         console.log(error);
       });
   };
- 
+
   return (
     <>
       <div className={styles.mainDiv}>
