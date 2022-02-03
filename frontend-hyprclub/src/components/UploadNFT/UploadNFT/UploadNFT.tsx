@@ -3,7 +3,7 @@ import styles from "./UploadNFT.module.css";
 import { FileUploader } from "react-drag-drop-files";
 import ToggleBtn from "./ToggleBtn/ToggleBtn";
 import Collection from "./Collection_Categories/Collection";
-import { FileArrowUp, Plus } from "phosphor-react";
+import { FileArrowUp, Plus, X } from "phosphor-react";
 
 import { Form } from "react-bootstrap";
 import InputField from "../../inputField/Input";
@@ -35,30 +35,61 @@ const items = [
 
 const UploadNFT = () => {
     const [category, setCategory] = useState(Categories[0]);
-    const [perks, setPerks]: any[] = useState([])
+    const [perks, setPerks]: any[] = useState(() => new Set())
+
     const [file, setFile] = useState(null);
     const [itemname, setItemname] = useState('');
     const [stock, setStock] = useState('');
     const [cred, setCred] = useState('');
+
     // const [desc, setDesc] = useState('');
     // const [itemname, setItemname]=useState('');
 
     const inputRef = useRef<HTMLInputElement | null>(null);
     // const textRef =useRef<HTMLTextAreaElement | null>(null);
     // console.log(perks);
+    const capitalise = {}
+
+    const [perks1, setPerks1]: any[] = useState(() => new Set())
+
     const addPerk = () => {
-        if (inputRef!.current!.value === "") return;
-        setPerks([...perks, inputRef!.current!.value]);
+        if (inputRef!.current!.value === "") {
+            alert("show your perkiness")
+            return};
+        // setPerks([...perks, inputRef!.current!.value]); prevState:any)=> new Set(prevState).add(inputRef!.current!.value)
+
+        if (perks1.has(inputRef!.current!.value!.toLowerCase())){
+            alert("Duplicate Perkiness Not Allowed")
+            return;
+        }
+
+        setPerks1(new Set([...perks, inputRef!.current!.value!.toLowerCase()]));
+
+        setPerks(new Set([...perks, inputRef!.current!.value!]));
+        console.log(inputRef!.current!.value);
         inputRef!.current!.value = "";
     }
     const enterPerk = (e: any) => {
-        if (e.key === 'Enter') return addPerk();
+        if (e.key === 'Enter') addPerk();
 
     }
     const handleChange = (e: any) => {
         setFile(e);
     };
+    const removePerk=(e:any)=>{
+        const updatedPerks= new Set(perks);
+        const updatedPerks1=new Set(perks1);
+        updatedPerks.delete(e)
+        updatedPerks1.delete(e.toLowerCase())
+        setPerks(updatedPerks);
+        setPerks1(updatedPerks1);
+
+    }
     console.log(file);
+    const perksarray = [...perks];
+    console.log(perks)
+    console.log(perksarray)
+
     return (
         <>
             <div className={styles.wrapper}>
@@ -114,13 +145,13 @@ const UploadNFT = () => {
                         </div>
                         <input type="text" onKeyDown={enterPerk} className={styles.Input} ref={inputRef} />
                         <div className={styles.PerkBody}>
-                            <button onClick={addPerk} className={styles.Plus}><Plus size={20} className={styles.hh} /></button>
+                            <button onClick={addPerk} className={styles.Plus}><Plus size={20} className={styles.perkicon} /></button>
                             <h5 className={styles.AddPerk}>Add Perk</h5>
-                            {perks && perks.map((e: any) => (
-                                <>
-                                    <div className={styles.Plus} />
+                            {perksarray && perksarray.map((e: any) => (
+                                <div className={styles.addedPerk} key={e}>
+                                    <button className={styles.Plus} onClick={()=>removePerk(e)} ><X size={20} className={styles.perkicon} /> </button>
                                     <h6 className={styles.AddPerk}>{e}</h6>
-                                </>
+                                </div>
                             ))}
                         </div>
                     </div>
