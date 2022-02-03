@@ -6,6 +6,7 @@ import Card from '../../components/card/Card';
 import GradientBorder from '../../components/gradientBorderBtn/GradientBorder';
 import Header_login from '../../components/header/header_after_login/Header_login';
 import GradBorder from '../../components/NFTs/GradBorder/GradBorder';
+import CollectionCard from '../../components/NFTsCollection/CollectionCard';
 import styles from "./NFTCollections.module.css"
 
 const CARD_ITEMS = [
@@ -116,7 +117,7 @@ const NFTCollection = () => {
                 </div>
                 <div className={styles.bottom}>
                     {CARD_ITEMS.map((x, index) => (
-                        <Card item={x} key={index} className={styles.card} />
+                        <CollectionCard item={x} key={index} className={styles.card} />
                     ))
                     }
                 </div>
