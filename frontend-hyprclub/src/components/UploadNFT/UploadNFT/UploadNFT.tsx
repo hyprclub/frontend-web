@@ -54,12 +54,12 @@ const UploadNFT = () => {
 
     const addPerk = () => {
         if (inputRef!.current!.value === "") {
-            alert("show your perkiness")
+            alert("Please add a perk")
             return};
         // setPerks([...perks, inputRef!.current!.value]); prevState:any)=> new Set(prevState).add(inputRef!.current!.value)
 
         if (perks1.has(inputRef!.current!.value!.toLowerCase())){
-            alert("Duplicate Perkiness Not Allowed")
+            alert("Duplicate Perks Not Allowed")
             return;
         }
 
