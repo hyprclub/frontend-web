@@ -28,12 +28,12 @@ const UploadModals = () => {
     }
     const Redirect2 = () => {
         if (cont2 === 1) {
-            navigate("/uploadnft");
-            closeModal();
+            setModals({ Modal1: false, Modal2: false, Modal3: true });
             setCont2(0);
         }
         else if (cont2 === 2) {
-            setModals({ Modal1: false, Modal2: false, Modal3: true })
+            // navigate("/uploadnft");
+            closeModal();
             setCont2(0);
         }
     }

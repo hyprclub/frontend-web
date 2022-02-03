@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Avail/>
+        {/* <Avail/> */}
         <header className="App-header">
           <Routes>
             <Route path='/nft' element={<NFTS></NFTS>} />
