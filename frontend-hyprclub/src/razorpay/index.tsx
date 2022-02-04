@@ -32,36 +32,20 @@ async function displayRazorpay(): Promise<void> {
   //       console.log("fetch request failed: ", error);
   //     });
 
-  let axiosConfig = {
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
-  let data = {
-    amount: 9999,
-    currency: "INR",
-    id: "receipt#1",
-  };
   axios
-    .post(
-      "https://us-central1-hyprclub-7a2b.cloudfunctions.net/app/razorpay",
-      {
-        amount: 9999,
-        currency: "INR",
-        receipt: "receipt#1",
-      },
-      axiosConfig
-    )
+    .post("https://us-central1-hyprclub-7a2b.cloudfunctions.net/app/razorpay", {
+      amount: 9999,
+      currency: "INR",
+      receipt: "receipt#1",
+    })
     .then((response) => {
-      data = response.data;
+      console.log(response.data);
     })
     .catch((error) => {
-      console.log(data);
       console.log("axios request failed: ", error);
     });
 
-  const options = {
+    const options = {
     key: __DEV__ ? "rzp_test_7FUMLF1Lf3a2eD" : "PRODUCTION_KEY",
     currency: data.currency,
     amount: data.amount.toString(),
