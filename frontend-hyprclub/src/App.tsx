@@ -33,7 +33,6 @@ function App() {
         {/* <Avail/> */}
         <header className="App-header">
           <Routes>
-            <Route path='/nft' element={<NFTS></NFTS>} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/follow' element={<FollowCreater />} />
@@ -47,7 +46,7 @@ function App() {
             <Route path='/adminlogin' element={<AdminLogin />} />
             <Route path='/admindashboard' element={<Admindash />} />
             <Route path='/' element={<Landing />}></Route>
-            <Route path='/nft' element={<NFTS></NFTS>} />
+            <Route path='/nft' element={<NFTS Video={true}/>} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/follow' element={<FollowCreater />} />

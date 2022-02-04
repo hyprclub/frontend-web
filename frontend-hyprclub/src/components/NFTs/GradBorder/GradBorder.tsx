@@ -4,15 +4,14 @@ import styles from './GradBorder.module.css';
 
 interface BtnText {
     text: string,
-    className:any,
-    onClick?:any,
+    className: any,
+    onClick?: any,
+    disable?: boolean,
 }
 
-const GradBorder = ({text, className, onClick}:BtnText) => {
+const GradBorder = ({ text, className, disable, onClick }: BtnText) => {
     return (
-        <div>
-            <button className={cn(styles.gradientBorder,className)} onClick={onClick}><span className={styles.btnName}>{text}</span></button>
-        </div>
+        <button disabled={disable} className={cn(styles.gradientBorder, className)} onClick={onClick}><span className={styles.btnName}>{text}</span></button>
     )
 }
 

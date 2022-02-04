@@ -59,9 +59,12 @@ const Perk_list = [
     },
 ]
 
-const NFTS = () => {
-    const [hover, setHover]=useState();
-    const [bought, setBought]=useState(false);
+interface Props {
+    Video?: boolean,
+}
+
+const NFTS = ({ Video }: Props) => {
+    const [bought, setBought] = useState(true);
     return (
         <>
             <Header_login />
@@ -71,15 +74,8 @@ const NFTS = () => {
                     <div className={styles.container}>
                         <div className={styles.bg}>
                             <div className={styles.preview}>
-                                <img
-                                    id={styles.img}
-                                    src="./images/nft-image.png"
-                                    alt="NFT"
-                                />
-                                {/* <video id={styles.video}/> */}
-                                {/* <iframe id={styles.video}src="https://cdn.hyprclub.com/alumini/golden.mp4">
-                                </iframe> */}
-
+                                {Video ? (<iframe id={styles.video} src="https://cdn.hyprclub.com/alumini/golden.mp4" allowFullScreen />) : (<img id={styles.img} src="./images/nft-image.png" alt="NFT" />)
+                                }
                                 <Option className={styles.options} />
                             </div>
                         </div>
@@ -88,7 +84,7 @@ const NFTS = () => {
                         <div className={styles.details}>
                             <h1 className={styles.title}>Edward Scissorhands</h1>
                             <div className={styles.cost}>
-                                <GradBorder className={styles.price} text="10,075 INR" />
+                                <GradBorder className={styles.price} disable={true} text="10,075 INR" />
                                 <span className={styles.Stock}>10 in Stock</span>
                             </div>
 
@@ -103,9 +99,8 @@ const NFTS = () => {
 
                             <div className={styles.Description_Perks}>
                                 <h3 className={styles.subHeading}>Perks</h3>
-                                <Perks item={Perk_list} />
+                                <Perks item={Perk_list} Bought={bought} />
                             </div>
-
                         </div>
 
                     </div>
