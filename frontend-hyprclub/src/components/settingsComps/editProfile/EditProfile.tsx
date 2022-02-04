@@ -23,13 +23,12 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
   const [phoneCorrect, setPhoneCorrect] = useState(true);
   const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
-  const [usernameTaken , setUsernameTaken] = useState(false);
+  const [usernameTaken, setUsernameTaken] = useState(false);
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
 
   // file changes
@@ -55,7 +54,6 @@ const EditProfile = () => {
         });
     }
   };
-
 
   // check for valid phone number or not.
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,37 +111,35 @@ const EditProfile = () => {
     gender: userData.gender,
   });
 
-
   // handle update state changes
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
     console.log({ data });
   };
 
-  
   // update user data here.
   const handleSubmit = async () => {
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
-    console.log(data.twitterUsername)
+    console.log(data.twitterUsername);
     if (phoneCorrect === true) {
       console.log("Please Enter Correct Phone Number");
     } else {
-      if(usernameTaken){
-        console.log("Please Choose Diff Username")
-      }else{
+      if (usernameTaken) {
+        console.log("Please Choose Diff Username");
+      } else {
         await updateDoc(ref, {
           name: data.name,
           category: data.category,
           bio: data.bio,
-          age : data.age,
-          username : data.username,
-          socials : {
+          age: data.age,
+          username: data.username,
+          socials: {
             instagramUsername: data.instagramUsername,
             twitterUsername: data.twitterUsername,
             facebookProfileUrl: data.facebookUrl,
             youtubeProfileUrl: data.youtubeUrl,
-            portfolioUrl: data.portfolioUrl
+            portfolioUrl: data.portfolioUrl,
           },
           phone: data.phone,
           gender: data.gender,
@@ -155,7 +151,6 @@ const EditProfile = () => {
             console.log(error);
           });
       }
-      
     }
   };
 
@@ -167,7 +162,7 @@ const EditProfile = () => {
           <div className={clsx("col-md-3 text-center d-flex", styles.avt)}>
             <div className={clsx("position-relative d-inline")}>
               <img
-                src={data.profilePhotoUrl}
+                src={data.profilePhotoUrl || "/images/content/avatar-big.jpg"}
                 alt=""
                 className={styles.pfImage}
               />
@@ -232,7 +227,7 @@ const EditProfile = () => {
                 }}
               />
               <p className={styles.usernameRange}>
-                <br/>
+                <br />
                 Username can range between 3-10 characters.
               </p>
               <InputField

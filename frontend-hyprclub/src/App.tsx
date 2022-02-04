@@ -137,32 +137,6 @@ function App() {
     run();
   }, [loggedIn, uid, storage, dispatch]);
 
-  useEffect(() => {
-    const run = async () => {
-      await getDocs(collection(db, "marketplace", "Nfts", "singleNfts"))
-        .then((querySnapShot) => {
-          let nftIds: string[] = [];
-          querySnapShot.forEach((element) => {
-            nftIds.push(element.id);
-            // console.log(nftIds);
-            dispatch(
-              UserDataActions.nftTokenId({
-                nftIds: nftIds
-                  .map((elem) => parseInt(elem))
-                  .sort((a, b) => b - a)
-                  .map((elem) => elem.toString()),
-              })
-            );
-            console.log(userData?.nftIds);
-          });
-        })
-        .catch((error) => {
-          console.error(error.code);
-        });
-    };
-    run();
-  }, [db, dispatch]);
-
   // fetch nft id for marketplace
   // useEffect(() => {
   //   const run = async () => {

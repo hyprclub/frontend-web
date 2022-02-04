@@ -92,12 +92,12 @@ const UploadModals = () => {
           console.log("Req Sent");
           setModals({ Modal1: false, Modal2: false, Modal3: true });
           setCont2(0);
+          closeModal();
+          setCont2(0);
         })
         .catch((error) => {
           console.log(error);
         });
-      closeModal();
-      setCont2(0);
     }
   };
 
