@@ -12,12 +12,14 @@ const Help = () => {
                     <div className={styles.reportDiv}>
                         <h3 className={styles.heading}>Report a Problem</h3>
                         <p>Found a bug, inappropriate content, or feel a feature can be improved? Let us know:</p>
-
-                        <label className={styles.lableText} htmlFor="exampleFormControlTextarea1">Report problem</label>
-                        <textarea className={clsx("form-control", styles.textarea)} id="exampleFormControlTextarea1" rows={5}></textarea>
-                        <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
-                        <GradientBorder text='Submit'/>
-                    </div>
+                        
+                        <form action="#">
+                            <label className={styles.lableText} htmlFor="exampleFormControlTextarea1">Report problem</label>
+                            <textarea required className={clsx("form-control", styles.textarea)} minLength={20} id="exampleFormControlTextarea1" rows={5}></textarea>
+                            <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
+                                <GradientBorder text='Submit'/>
+                            </div>
+                        </form>
 
                     </div>
                     <div className={styles.helpCenter}>

@@ -97,8 +97,8 @@ const Modal = () => {
                         </div>
 
                         <div className={clsx('row align-items-center', styles.sellYourNftDiv)}>
-                            <div className={clsx('col-md-6')}>
-                            
+                            <div className={clsx('col-md-6 d-flex justify-content-center')}>
+                                <img className={styles.imgWithMoney} src="/images/upgrade.png" alt="heu" />
                             </div>
                             <div className={clsx('col-md-6', styles.analyse)}>
                                 <h3 className={styles.analyseTitle}>Analyse your progress with a personalised Creator Dashboard</h3>

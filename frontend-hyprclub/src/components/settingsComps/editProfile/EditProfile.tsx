@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './editProfile.module.css'
 import InputField from '../../inputField/Input'
 import GradientBorder from '../../gradientBorderBtn/GradientBorder'
@@ -7,18 +7,22 @@ import GradientBorder from '../../gradientBorderBtn/GradientBorder'
 const EditProfile = () => {
 
   const [file, setFile] = useState<any>(null)
+  const [url, setUrl] = useState('images/pfImage.png');
 
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
+    setUrl(URL.createObjectURL(file))
     if (!file) return;
     setFile(file)
   }
 
   console.log(file)
 
-  const [ name, setName] = useState('')
+  const [ name, setName] = useState()
 
-  console.log(name);
+
+  console.log(url);
+  
   
 
     return (
@@ -28,7 +32,7 @@ const EditProfile = () => {
                 <div className={clsx('row', styles.content)}>
                     <div className={clsx('col-md-3 text-center d-flex',styles.avt)}>
                         <div className={clsx('position-relative d-inline')}>
-                            <img src="images/pfImage.png" alt="" className={styles.pfImage} />
+                            <img src={url} alt="" className={styles.pfImage} />
                             <label htmlFor="fileInput">
                                 <i className={clsx("bi position-absolute bi-pencil-fill", styles.pencilIcon)}></i>
                             </label>
