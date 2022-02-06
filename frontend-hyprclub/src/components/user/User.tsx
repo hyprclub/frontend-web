@@ -4,16 +4,13 @@ import styles from "./user.module.css";
 import Icon from "../Icon";
 import GradientBorder from "../gradientBorderBtn/GradientBorder";
 import { useSelector, RootStateOrAny } from "react-redux";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { X } from "phosphor-react";
-// import { analytics } from "../../firebaseConfig";
-// import { logEvent } from "firebase/analytics";
-import displayRazorpay from "razorpay";
-// import savePayment, {
-//   paymentDetailsSchema,
-// } from "./../../razorpay/payment.saveData";
+import { analytics } from "../../firebaseConfig";
+import { logEvent } from "firebase/analytics";
+// import displayRazorpay from "razorpay";
 interface Item {
   title: string;
   url: string;
@@ -50,16 +47,16 @@ const User = ({
   myProfile,
 }: UserType) => {
   const userData = useSelector((state: RootStateOrAny) => state.userData);
-  const [visiblity, setVisiblity] = useState("hidden");
+  // const [visiblity, setVisiblity] = useState("hidden");
   const [thanksValue, setThanksValue] = useState("100.00");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   const closeModal = () => {
     setShowModal(false);
   };
 
-  const [vis, setvis] = useState(true);
+  // const [vis, setvis] = useState(true);
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = "hidden";
@@ -70,13 +67,13 @@ const User = ({
 
   const [creator, setCreator] = useState(true);
 
-  // const handleSayThanks = (e: any) => {
-  //   e.preventDefault();
-  //   logEvent(analytics, "thanks_event_created", userData?.username);
-
-  //   // displayRazorpay();
-  //   console.log("Pay User " + thanksValue);
-  // };
+  const handleSayThanks = (e: any) => {
+    e.preventDefault();
+    logEvent(analytics, "thanks_event_created", userData?.username);
+    // displayRazorpay();
+    closeModal();
+    console.log("Pay User " + thanksValue);
+  };
 
   return (
     <>
@@ -183,17 +180,17 @@ const User = ({
               </div>
               <div className={styles.thanksBtn}>
                 <GradientBorder
-                  onClick={() => {
-                    const paymentData = {
-                      userName: username,
-                      paymentType: "Creator Support",
-                    };
-                    displayRazorpay(paymentData);
-                    closeModal();
-                  }}
-                  // onClick={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  //   handleSayThanks(e)
-                  // }
+                  // onClick={() => {
+                  //   const paymentData = {
+                  //     userName: username,
+                  //     paymentType: "Creator Support",
+                  //   };
+                  //   displayRazorpay(paymentData);
+                  //   closeModal();
+                  // }}
+                  onClick={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleSayThanks(e)
+                  }
                   disable={parseInt(thanksValue) < 100}
                   text="Say Thanks"
                 />

@@ -43,28 +43,6 @@ async function displayRazorpay(props: {
       console.log("fetch request failed: ", error);
     });
 
-  const options = {
-    key: __DEV__ ? "rzp_test_7FUMLF1Lf3a2eD" : "PRODUCTION_KEY",
-    currency: order_data.currency,
-    amount: order_data.amount.toString(),
-    order_id: order_data.id,
-    name: "NFT Payment",
-    description: "Thank you for buying the NFT",
-    image: "https://example.com/your_logo",
-    handler: function (response: any) {
-      //   console.log(response);
-      //   alert("Payment succesful");
-      alert(response.razorpay_payment_id);
-      alert(response.razorpay_order_id);
-      alert(response.razorpay_signature);
-    },
-    // prefill: {
-    //   name: "HyprCLub",
-    //   email: "support@hyprclub.com",
-    //   phone_number: "9876543210",
-    // },
-  };
-
   const paymentDetails: paymentDetailsSchema = {
     senderUID: props.userName,
     // senderUID: "stark#12",
@@ -73,7 +51,31 @@ async function displayRazorpay(props: {
     transactionSuccess: true,
     transactionType: props.paymentType,
     creatorSupportUID: "bassi#21",
-    razorpayOrderData : order_data,
+    razorpayOrderData: order_data,
+  };
+
+  const options = {
+    key: __DEV__ ? "rzp_test_7FUMLF1Lf3a2eD" : "PRODUCTION_KEY",
+    currency: order_data.currency,
+    amount: order_data.amount.toString(),
+    order_id: order_data.id,
+    name: "NFT Payment",
+    description: "Thank you for buying the NFT",
+    image: "https://example.com/your_logo",
+    handler: (response: any) => {
+      console.log(response);
+      alert("Payment succesful");
+      paymentDetails.razorpayOrderId = response.razorpay_payment_id;
+      paymentDetails.razorpayOrderId = response.razorpay_order_id;
+      paymentDetails.razorpaySignature = response.razorpay_signature;
+      // alert(response.razorpay_order_id);
+      // alert(response.razorpay_signature);
+    },
+    // prefill: {
+    //   name: "HyprCLub",
+    //   email: "support@hyprclub.com",
+    //   phone_number: "9876543210",
+    // },
   };
 
   savePayment(paymentDetails);

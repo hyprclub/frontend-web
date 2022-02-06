@@ -12,6 +12,9 @@ export interface paymentDetailsSchema {
   creatorSupportUID?: string;
   purchasedNftID?: string;
   razorpayOrderData: any;
+  razorpayPaymentId?: string;
+  razorpayOrderId?: string;
+  razorpaySignature?: string;
   // razorpayOrderId: string;
   // currency: string;
   // amount: number | string;
