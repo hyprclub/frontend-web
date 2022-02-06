@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import savePayment, { paymentDetailsSchema } from "./payment.saveData";
 
 const loadScript = (src: string) => {
   return new Promise((resolve) => {
@@ -16,40 +17,37 @@ const loadScript = (src: string) => {
 
 const __DEV__ = document.domain === "localhost";
 
-async function displayRazorpay(): Promise<void> {
+async function displayRazorpay(props: {
+  userName: string;
+  paymentType: "Creator Support" | "NFT Purchase";
+}): Promise<void> {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
   if (!res) {
     alert("Razorpay SDK failed to load. Are you online?");
     return;
   }
-
-  //   const data = await fetch(
-  //     "https://us-central1-hyprclub-7a2b.cloudfunctions.net/app/razorpay"
-  //   )
-  //     .then((response) => response.json())
-  //     .catch((error) => {
-  //       console.log("fetch request failed: ", error);
-  //     });
-
-  axios
-    .post("https://us-central1-hyprclub-7a2b.cloudfunctions.net/app/razorpay", {
-      amount: 9999,
-      currency: "INR",
-      receipt: "receipt#1",
-    })
-    .then((response) => {
-      console.log(response.data);
-    })
+  const order_data = await fetch(
+    "https://us-central1-hyprclub-7a2b.cloudfunctions.net/app/razorpay",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        amount: 6500,
+        currency: "INR",
+        receipt: "receipt#fromNFT",
+      }),
+    }
+  )
+    .then((response) => response.json())
     .catch((error) => {
-      console.log("axios request failed: ", error);
+      console.log("fetch request failed: ", error);
     });
 
-    const options = {
+  const options = {
     key: __DEV__ ? "rzp_test_7FUMLF1Lf3a2eD" : "PRODUCTION_KEY",
-    currency: data.currency,
-    amount: data.amount.toString(),
-    order_id: data.id,
+    currency: order_data.currency,
+    amount: order_data.amount.toString(),
+    order_id: order_data.id,
     name: "NFT Payment",
     description: "Thank you for buying the NFT",
     image: "https://example.com/your_logo",
@@ -66,6 +64,19 @@ async function displayRazorpay(): Promise<void> {
     //   phone_number: "9876543210",
     // },
   };
+
+  const paymentDetails: paymentDetailsSchema = {
+    senderUID: props.userName,
+    // senderUID: "stark#12",
+    reciepientUID: "potts#30",
+    timestamp: Date().toString(),
+    transactionSuccess: true,
+    transactionType: props.paymentType,
+    creatorSupportUID: "bassi#21",
+    razorpayOrderData : order_data,
+  };
+
+  savePayment(paymentDetails);
 
   const _window = window as any;
   const paymentObject = new _window.Razorpay(options);

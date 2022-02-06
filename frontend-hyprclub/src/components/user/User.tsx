@@ -8,8 +8,12 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { X } from "phosphor-react";
-import { analytics } from "../../firebaseConfig";
-import { logEvent } from "firebase/analytics";
+// import { analytics } from "../../firebaseConfig";
+// import { logEvent } from "firebase/analytics";
+import displayRazorpay from "razorpay";
+// import savePayment, {
+//   paymentDetailsSchema,
+// } from "./../../razorpay/payment.saveData";
 interface Item {
   title: string;
   url: string;
@@ -28,9 +32,9 @@ interface UserType {
   isCreator: any;
   myProfile: any;
 }
-const closeModal = () => {
-  console.log("Hello there");
-};
+// const closeModal = () => {
+//   console.log("Hello there");
+// };
 
 const User = ({
   className,
@@ -54,6 +58,7 @@ const User = ({
   const closeModal = () => {
     setShowModal(false);
   };
+
   const [vis, setvis] = useState(true);
   useEffect(() => {
     if (showModal) {
@@ -65,11 +70,13 @@ const User = ({
 
   const [creator, setCreator] = useState(true);
 
-  const handleSayThanks = (e: any) => {
-    e.preventDefault();
-    logEvent(analytics, "thanks_event_created", userData?.username);
-    console.log("Pay User " + thanksValue);
-  };
+  // const handleSayThanks = (e: any) => {
+  //   e.preventDefault();
+  //   logEvent(analytics, "thanks_event_created", userData?.username);
+
+  //   // displayRazorpay();
+  //   console.log("Pay User " + thanksValue);
+  // };
 
   return (
     <>
@@ -176,9 +183,17 @@ const User = ({
               </div>
               <div className={styles.thanksBtn}>
                 <GradientBorder
-                  onClick={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    handleSayThanks(e)
-                  }
+                  onClick={() => {
+                    const paymentData = {
+                      userName: username,
+                      paymentType: "Creator Support",
+                    };
+                    displayRazorpay(paymentData);
+                    closeModal();
+                  }}
+                  // onClick={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  //   handleSayThanks(e)
+                  // }
                   disable={parseInt(thanksValue) < 100}
                   text="Say Thanks"
                 />
