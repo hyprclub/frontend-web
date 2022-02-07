@@ -89,7 +89,7 @@
     place-items: center;
 }
 
-#img {
+#img, #video {
     object-fit: inherit;
     border-radius: 16px;
     background-repeat: no-repeat;
@@ -98,6 +98,16 @@
     margin: 0;
     z-index: 1;
 }
+
+
+/* #video {
+    position: absolute;
+    inset: 0;
+   
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+
+} */
 
 .options {
     position: absolute !important;
@@ -174,11 +184,7 @@
     justify-self: flex-end !important;
     margin-bottom: 41px !important;
     transition: all 100ms ease-in-out !important;
-}
-
-.buy::before {
-    content: '' !important;
-    position: absolute !important;
+    box-shadow: 2px 1000px 1px #fff inset !important;
 }
 
 .buy:hover {
@@ -255,10 +261,23 @@
     padding: 0
 }
 
-
-.buy:hover {
-    box-shadow: 0px .5px .5px rgb(128, 124, 124) !important;
+.avail_perk_button {
+    width: 125px;
+    height: 39px;
+    border-radius: 50px;
+    margin:0 auto;
+    margin-top:10px;
+    transition: transform .15s ease-in-out;
 }
+
+@media (min-width:900px){
+    .avail_perk_button:hover{
+        transform:translateY(-2px);
+
+    }
+}
+
+
 
 /* Owners Styling */
 
@@ -323,7 +342,7 @@
     font-size: 32px;
     line-height: 44px;
     color: #000000;
-    width:100%;
+    width: 100%;
     height: 100%;
 }
 
@@ -386,7 +405,7 @@
         height: 650px
     }
 
-    #img {
+    #img, #video {
         width: 515px;
         height: 600px;
     }
@@ -411,7 +430,7 @@
         padding: 25px;
     }
 
-    #img {
+    #img, #video {
         width: 445px;
         height: 550px;
     }
@@ -460,7 +479,7 @@
 
     }
 
-    #img {
+    #img, #video {
         width: 100%;
         height: 585px;
         object-fit: inherit;
@@ -531,7 +550,7 @@
         padding: 20px;
     }
 
-    #img {
+    #img, #video {
         width: 100%;
         height: 100%;
         object-fit: inherit;
@@ -591,3 +610,25 @@
 }
 
 /* for width more than 1500px */
+
+
+
+
+
+
+/* //////////////////////////////////////////////////////MODAL DIV////////////////////////////// */
+.modalDiv.show{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    display: grid;
+    place-items: center;
+    z-index: 999999;
+    background: rgba(0, 0, 0, 0.201);
+}
+
+.modalDiv.hide{
+    display: none;
+}

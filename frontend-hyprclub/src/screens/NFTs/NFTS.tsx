@@ -31,32 +31,36 @@ import ItemsCarousel from "../../components/NFTs/ItemsCarousel/ItemsCarousel";
 const Desc =
   " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
-// const Perk_list = [
-//     {
-//         id: 1,
-//         content: "Unlock the creator discord channel.",
-//     },
-//     {
-//         id: 2,
-//         content: "Get a free workbook with over 25 different art prompts!",
-//     },
-//     {
-//         id: 3,
-//         content: "I dont know I googled this from some patreon page.",
-//     },
+const Perk_list = [
+  {
+    id: 1,
+    content: "Unlock the creator discord channel.",
+  },
+  {
+    id: 2,
+    content: "Get a free workbook with over 25 different art prompts!",
+  },
+  {
+    id: 3,
+    content: "I dont know I googled this from some patreon page.",
+  },
 
-//     {
-//         id: 4,
-//         content: "Unlock the creator discord channel.",
-//     },
-//     {
-//         id: 5,
-//         content: "Get a free workbook with over 25 different art prompts!",
-//     },
-// ]
+  {
+    id: 4,
+    content: "Unlock the creator discord channel.",
+  },
+  {
+    id: 5,
+    content: "Get a free workbook with over 25 different art prompts!",
+  },
+];
 
-const NFTS = () => {
-  const { collectionTag, idToken } = useParams();
+interface Props {
+  Video?: boolean;
+}
+
+const NFTS = ({ Video }: Props) => {
+  const { docId } = useParams();
   const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
   const [creatorData, setCreatorData] = useState<any | null>({});
@@ -67,104 +71,19 @@ const NFTS = () => {
   const [perks, setPerksData] = useState<any>([]);
   const [creatorImage, setCreatorImage] = useState("");
   const [ownerImage, setOwnerImage] = useState("");
-
+  const [bought, setBought] = useState(true);
   const users = [
     {
-      name: ownerData.name,
+      name: "ownerData.name",
       position: "Owner",
       avatar: ownerImage || "../../images/logo-dark.jpg",
     },
     {
-      name: creatorData.name,
+      name: "creatorData.name",
       position: "Creator",
       avatar: creatorImage || "../../images/logo-dark.jpg",
     },
   ];
-
-  useEffect(() => {
-    // const idToken = new URLSearchParams(window?.location?.search).get("idToken");
-    const run = async () => {
-      if (collectionTag && idToken) {
-        await getDoc(doc(db, "marketplace", "Nfts", collectionTag, idToken))
-          .then((QuerySnapshot) => {
-            console.log("1");
-            if (QuerySnapshot.exists()) {
-              console.log(QuerySnapshot.data().perks);
-              console.log(QuerySnapshot.data().price);
-              setItemPrice(QuerySnapshot.data().price);
-              setPerksData(QuerySnapshot.data().perks);
-              let Perk_list: any = [];
-              axios
-                .get("https://cdn.hyprclub.com/alumini/" + idToken) // add custom uri settings here.
-                .then((result) => {
-                  if (result) {
-                    setItem(result.data);
-                  } else {
-                    console.log("No Data");
-                  }
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-              getDoc(doc(db, "hyprUsers", QuerySnapshot.data().ownerUid))
-                .then((snapshotOwner) => {
-                  if (snapshotOwner.exists()) {
-                    const storageOwnerRef = ref(
-                      storage,
-                      "users/" + snapshotOwner.id + "/profile.jpg"
-                    );
-                    getDownloadURL(ref(storageOwnerRef))
-                      .then((url) => {
-                        console.log(url);
-                        setOwnerImage(url);
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      });
-                    setOwnerData(snapshotOwner.data());
-                    console.log("Owner : " + snapshotOwner.data());
-                  } else {
-                  }
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-
-              getDoc(doc(db, "hyprUsers", QuerySnapshot.data().creatorUid))
-                .then((snapshotCreator) => {
-                  if (snapshotCreator.exists()) {
-                    setCreatorData(snapshotCreator.data());
-                    console.log("Creator : " + snapshotCreator.data());
-                    const storageCreatorRef = ref(
-                      storage,
-                      "users/" + snapshotCreator.id + "/profile.jpg"
-                    );
-                    getDownloadURL(ref(storageCreatorRef))
-                      .then((url) => {
-                        console.log(url);
-                        setCreatorImage(url);
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      });
-                  }
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            } else {
-              console.log("No snapshot");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-      }
-    };
-    run();
-  }, [collectionTag, idToken, db, storage]);
-
   return (
     <>
       <Header_login />
@@ -179,35 +98,44 @@ const NFTS = () => {
           <div className={styles.container}>
             <div className={styles.bg}>
               <div className={styles.preview}>
-                <img
-                  id={styles.img}
-                  src={item.image || "../../images/nft-image.png"}
-                  alt="NFT"
-                />
+                {Video ? (
+                  <iframe
+                    id={styles.video}
+                    src="https://cdn.hyprclub.com/alumini/golden.mp4"
+                    allowFullScreen
+                  />
+                ) : (
+                  <img
+                    id={styles.img}
+                    src="https://cdn.hyprclub.com/alumini/55.png"
+                    alt="NFT"
+                  />
+                )}
                 <Option className={styles.options} />
               </div>
             </div>
 
             <div className={styles.details}>
-              <h1 className={styles.title}>{item.name}</h1>
+              <h1 className={styles.title}>Edward Scissorhands</h1>
               <div className={styles.cost}>
                 <GradBorder
                   className={styles.price}
-                  text={` INR ${itemPrice}`}
+                  disable={true}
+                  text="10,075 INR"
                 />
-                {/* <span className={styles.Stock}>10 in Stock</span> */}
+                <span className={styles.Stock}>10 in Stock</span>
               </div>
 
               <GradBorder text="Buy Now" className={styles.buy} />
 
               <div className={styles.Description_Perks}>
                 <h3 className={styles.subHeading}>Description</h3>
-                {item.description}
+                <ReadMore>{Desc}</ReadMore>
               </div>
 
               <div className={styles.Description_Perks}>
                 <h3 className={styles.subHeading}>Perks</h3>
-                <Perks item={perks} />
+                <Perks item={Perk_list} Bought={bought} />
               </div>
             </div>
           </div>
@@ -224,9 +152,7 @@ const NFTS = () => {
             <Polygon className={styles.poly} />
           </div>
         </div>
-        <p className={styles.more}>
-          Discover NFTs Related to Edward Scissorhands
-        </p>
+        <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
         <ItemsCarousel />
       </div>
     </>

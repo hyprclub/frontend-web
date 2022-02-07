@@ -20,22 +20,20 @@ const Marketplace = () => {
 
   useEffect(() => {
     const run = async () => {
-      await getDocs(collection(db, "marketplace", "Nfts", "singleNfts"))
+      await getDocs(collection(db, "nfts"))
         .then((querySnapShot) => {
           let nftIds: string[] = [];
           querySnapShot.forEach((element) => {
             nftIds.push(element.id);
-            // console.log(nftIds);
-            dispatch(
-              UserDataActions.nftTokenId({
-                nftIds: nftIds
-                  .map((elem) => parseInt(elem))
-                  .sort((a, b) => b - a)
-                  .map((elem) => elem.toString()),
-              })
-            );
-            console.log(userData?.nftIds);
+            console.log(nftIds);
+            // dispatch(
+            //   UserDataActions.nftTokenId({
+            //     nftIds: nftIds,
+            //   })
+            // );
           });
+          dispatch(UserDataActions.nftTokenId({ nftIds }));
+          console.log(userData?.nftIds);
         })
         .catch((error) => {
           console.error(error.code);

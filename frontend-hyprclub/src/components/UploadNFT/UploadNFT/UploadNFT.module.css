@@ -285,6 +285,13 @@
     text-transform: capitalize;
 
 }
+.addedPerk{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:17px;
+    flex-wrap: nowrap;
+}
 
 .dropdown {
     padding:0 7px;

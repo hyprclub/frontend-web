@@ -3,8 +3,9 @@ import styles from "./UploadNFT.module.css";
 import { FileUploader } from "react-drag-drop-files";
 import ToggleBtn from "./ToggleBtn/ToggleBtn";
 import Collection from "./Collection_Categories/Collection";
-import { FileArrowUp, Plus } from "phosphor-react";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { FileArrowUp, Plus, X } from "phosphor-react";
+
 import { Form } from "react-bootstrap";
 import InputField from "../../inputField/Input";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
@@ -39,30 +40,46 @@ const items = [
 ];
 
 const UploadNFT = () => {
-  const userData = useSelector((state: RootStateOrAny) => state?.userData);
-  const db = getFirestore(firebaseApp);
   const [category, setCategory] = useState(Categories[0]);
-  const [perks, setPerks]: any[] = useState([]);
-  const [file, setFile] = useState<any>();
+  const [perks, setPerks]: any[] = useState(() => new Set());
+  const userData = useSelector((state: RootStateOrAny) => state.userData);
+  const [file, setFile] = useState(null);
   const [itemname, setItemname] = useState("");
   const [coll, setCollection] = useState("");
   const [cred, setCred] = useState(100);
+  const perksarray = [...perks];
   const [nft, setNft] = useState("");
   const [desc, setDesc] = useState("");
-
-  // const [desc, setDesc] = useState('');
+  const db = getFirestore(firebaseApp);
   // const [itemname, setItemname]=useState('');
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   // const textRef =useRef<HTMLTextAreaElement | null>(null);
   // console.log(perks);
+  const capitalise = {};
+
+  const [perks1, setPerks1]: any[] = useState(() => new Set());
+
   const addPerk = () => {
-    if (inputRef!.current!.value === "") return;
-    setPerks([...perks, inputRef!.current!.value]);
+    if (inputRef!.current!.value === "") {
+      alert("Please add a perk");
+      return;
+    }
+    // setPerks([...perks, inputRef!.current!.value]); prevState:any)=> new Set(prevState).add(inputRef!.current!.value)
+
+    if (perks1.has(inputRef!.current!.value!.toLowerCase())) {
+      alert("Duplicate Perks Not Allowed");
+      return;
+    }
+
+    setPerks1(new Set([...perks, inputRef!.current!.value!.toLowerCase()]));
+
+    setPerks(new Set([...perks, inputRef!.current!.value!]));
+    console.log(inputRef!.current!.value);
     inputRef!.current!.value = "";
   };
   const enterPerk = (e: any) => {
-    if (e.key === "Enter") return addPerk();
+    if (e.key === "Enter") addPerk();
   };
 
   const makeNftId = (len: number) => {
@@ -75,6 +92,7 @@ const UploadNFT = () => {
     }
     return result;
   };
+
   let nftid = "NFT" + makeNftId(26);
 
   const storage = getStorage(firebaseApp);
@@ -116,9 +134,11 @@ const UploadNFT = () => {
 
   const nftRequest = async () => {
     let perksList: any = [];
-    for (let i = 0; i < perks.length; i++) {
-      perksList.push({ description: perks[i], isAvailed: false });
+    for (let i = 0; i < perksarray.length; i++) {
+      perksList.push({ description: perksarray[i], isAvailed: false });
     }
+
+    console.log(nft);
     if (
       itemname === "" ||
       nft === "" ||
@@ -133,6 +153,7 @@ const UploadNFT = () => {
         creatorName: userData?.name,
         creatorEmail: userData?.email,
         creatorPhone: userData?.phone,
+        creatorUsername: userData?.username,
         creatorUid: userData?.uid,
         requestId: reqID,
         nftMedia: nft,
@@ -154,6 +175,14 @@ const UploadNFT = () => {
           console.log(error);
         });
     }
+  };
+  const removePerk = (e: any) => {
+    const updatedPerks = new Set(perks);
+    const updatedPerks1 = new Set(perks1);
+    updatedPerks.delete(e);
+    updatedPerks1.delete(e.toLowerCase());
+    setPerks(updatedPerks);
+    setPerks1(updatedPerks1);
   };
 
   return (
@@ -197,9 +226,8 @@ const UploadNFT = () => {
             </div>
             <div className={styles.ItemCred}>
               <InputField
-                typeOfInput="number"
+                typeOfInput="text"
                 lableText="ENTER PRICE"
-                value={cred}
                 garyBold={true}
                 className={styles.Input}
                 onChange={(e: any) => setCred(e.target.value)}
@@ -217,10 +245,10 @@ const UploadNFT = () => {
           <div className={styles.Perks}>
             <div className={styles.PerkHead}>
               <h6 className={styles.Heading}>ADD Perk</h6>
-              <div className={styles.transferable}>
-                {/* <h6 className={styles.Heading_transfer}>Make Transferable</h6> */}
-                {/* <ToggleBtn /> */}
-              </div>
+              {/* <div className={styles.transferable}>
+                <h6 className={styles.Heading_transfer}>Make Transferable</h6>
+                <ToggleBtn />
+              </div> */}
             </div>
             <input
               type="text"
@@ -230,15 +258,20 @@ const UploadNFT = () => {
             />
             <div className={styles.PerkBody}>
               <button onClick={addPerk} className={styles.Plus}>
-                <Plus size={20} className={styles.hh} />
+                <Plus size={20} className={styles.perkicon} />
               </button>
               <h5 className={styles.AddPerk}>Add Perk</h5>
-              {perks &&
-                perks.map((e: any) => (
-                  <>
-                    <div className={styles.Plus} />
+              {perksarray &&
+                perksarray.map((e: any) => (
+                  <div className={styles.addedPerk} key={e}>
+                    <button
+                      className={styles.Plus}
+                      onClick={() => removePerk(e)}
+                    >
+                      <X size={20} className={styles.perkicon} />{" "}
+                    </button>
                     <h6 className={styles.AddPerk}>{e}</h6>
-                  </>
+                  </div>
                 ))}
             </div>
           </div>
@@ -247,9 +280,6 @@ const UploadNFT = () => {
             <Form.Select
               aria-label="Default select example"
               className={styles.drop}
-              onChange={(e: any) => {
-                setCategory(e.target.value);
-              }}
             >
               {Categories.map((x, index) => (
                 <option key={index}>{x} </option>
@@ -268,7 +298,7 @@ const UploadNFT = () => {
           <div className={styles.btns}>
             <GradBorder
               className={styles.Gradbtn}
-              text="Create NFT"
+              text="SEND NFT REQUEST"
               onClick={nftRequest}
             />
             {/* <button type="submit" className={styles.Previewbtn}>
@@ -280,5 +310,4 @@ const UploadNFT = () => {
     </>
   );
 };
-
 export default UploadNFT;

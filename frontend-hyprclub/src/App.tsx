@@ -26,6 +26,7 @@ import UploadNft from "./screens/UploadNft/UploadNft";
 import { firebaseApp, analytics } from "./firebaseConfig";
 import { logEvent } from "firebase/analytics";
 import { useNavigate, BrowserRouter } from "react-router-dom";
+import NFTCollection from "./screens/NFTCollections/NFTCollection";
 import {
   getAuth,
   onAuthStateChanged,
@@ -206,10 +207,7 @@ function App() {
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/admindashboard" element={<Admindash />} />
             <Route path="/" element={<Landing />}></Route>
-            <Route
-              path="/nft/:collectionTag/:idToken"
-              element={<NFTS></NFTS>}
-            />
+            <Route path="/nft/:docId" element={<NFTS></NFTS>} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
@@ -225,6 +223,7 @@ function App() {
             <Route path="/admin" element={<Admindash />} />
             <Route path="/creator" element={<Creator />} />
             <Route path="/onboard" element={<CreatorOnboard />} />
+            <Route path="/nftcollection" element={<NFTCollection />} />
             <Route path="/" element={<Landing />}></Route>
           </Routes>
 
