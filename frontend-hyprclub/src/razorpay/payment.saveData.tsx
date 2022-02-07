@@ -1,8 +1,5 @@
 import { db } from "./../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
-
-const paymentCollectionsRef = collection(db, "paymentRecords");
-
 export interface paymentDetailsSchema {
   senderUID: string;
   reciepientUID: string;
@@ -13,29 +10,22 @@ export interface paymentDetailsSchema {
   purchasedNftID?: string;
   razorpayOrderData: any;
   razorpayPaymentId?: string;
-  razorpayOrderId?: string;
   razorpaySignature?: string;
-  // razorpayOrderId: string;
+  // razorpayOrderId?: string;
   // currency: string;
   // amount: number | string;
 }
 
-const createPayment = async (paymentRef: paymentDetailsSchema) => {
-  await addDoc(paymentCollectionsRef, paymentRef);
-};
+// const createPayment = async (paymentRef: paymentDetailsSchema) => {
+//   await addDoc(paymentCollectionsRef, paymentRef);
+// };
 
-const savePaymentData = (paymentDetails: paymentDetailsSchema) => {
-  // const dummyPayment: paymentDetailsSchema = {
-  //   senderUID: "stark#12",
-  //   reciepientUID: "potts#30",
-  //   timestamp: Date().toString(),
-  //   transactionSuccess: true,
-  //   transactionType: "Creator Support",
-  //   creatorSupportUID: "bassi#21",
-  //   razorpayOrderId: "asjfbaisufbas",
-  // };
+const savePaymentData = async (paymentDetails: paymentDetailsSchema) => {
+  const docRef = await addDoc(collection(db, "paymentRecords"), paymentDetails);
 
-  createPayment(paymentDetails);
+  console.log("Payment created with ID: ", docRef.id);
+
+  // createPayment(paymentDetails);
 };
 
 export default savePaymentData;
