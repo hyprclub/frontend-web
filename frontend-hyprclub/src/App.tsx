@@ -4,18 +4,19 @@ import {
   useSelector,
   useDispatch,
   RootStateOrAny,
-  DefaultRootState,
+  // DefaultRootState,
 } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Chatbox from "./components/ChatBox/Chatbox";
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/header_before_login/Header";
+// import Chatbox from "./components/ChatBox/Chatbox";
+// import Footer from "./components/footer/Footer";
+// import Header from "./components/header/header_before_login/Header";
+// import Header_login from "./components/header/header_after_login/Header_login";
+// import { useNavigate, BrowserRouter } from "react-router-dom";
 import Feed from "./screens/Feed/Feed";
 import FollowCreater from "./screens/FollowCreater/FollowCreater";
 import Login from "./screens/Login/Login";
 import Register from "./screens/Register/Register";
 import Interests from "./screens/yourInterest/Interests";
-import Header_login from "./components/header/header_after_login/Header_login";
 import Profile from "./screens/Profile/Profile";
 import Marketplace from "./screens/Marketplace/Marketplace";
 import Logout from "./logout";
@@ -36,27 +37,28 @@ import {
 import {
   getDoc,
   doc,
-  where,
+  // where,
   getDocs,
   collection,
   getFirestore,
-  query,
-  orderBy,
-  limit,
+  // query,
+  // orderBy,
+  // limit,
 } from "firebase/firestore";
 
 import {
   getStorage,
   ref,
-  uploadBytesResumable,
+  // uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import userData, { UserDataActions } from "./redux/slices/userData";
 import Admindash from "./screens/AdminDashboard/Admindash";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
 import Creator from "./screens/Creator/Creator";
-import LineChart from "./components/creatorDashboard/charts/SalesChart";
+// import LineChart from "./components/creatorDashboard/charts/SalesChart";
 import CreatorOnboard from "./screens/OnBoarding/CreatorOnboard";
 // import logo from './logo.svg';
 // import './App.css';
