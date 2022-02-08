@@ -73,7 +73,7 @@ const NFTS = ({ Video }: Props) => {
   const [ownerData, setOwnerData] = useState<any | null>({});
   const [item, setItem] = useState<any | null>({});
   const [forSale, setForSale] = useState(false);
-  const [itemPrice, setItemPrice] = useState(0);
+  const [itemPrice, setItemPrice] = useState("");
   let perkId: any = [];
   const [perks, setPerksData] = useState<any>([]);
   const [creatorImage, setCreatorImage] = useState("");
@@ -92,7 +92,11 @@ const NFTS = ({ Video }: Props) => {
       avatar: creatorImage || "../../images/logo-dark.jpg",
     },
   ];
-
+  const handlePayment = () => {
+    // const amount = displayRazorpay(parseInt(itemPrice), "NFT Purchase");
+    console.log(userData);
+    console.log(creatorData);
+  };
   useEffect(() => {
     // const idToken = new URLSearchParams(window?.location?.search).get("idToken");
     const run = async () => {
@@ -241,7 +245,7 @@ const NFTS = ({ Video }: Props) => {
               {forSale && (
                 <GradBorder
                   text="Buy Now"
-                  onClick={displayRazorpay(itemPrice, "NFT Purchase")}
+                  onClick={handlePayment}
                   className={styles.buy}
                 />
               )}

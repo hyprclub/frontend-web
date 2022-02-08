@@ -64,7 +64,6 @@ const User = ({
     e.preventDefault();
     logEvent(analytics, "thanks_event_created", userData?.username);
     displayRazorpay(parseInt(thanksValue), "Creator Support");
-    // displayRazorpay();
     closeModal();
     console.log("Pay User " + thanksValue);
   };

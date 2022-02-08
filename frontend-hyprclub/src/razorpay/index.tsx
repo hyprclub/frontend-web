@@ -1,5 +1,6 @@
 // import axios from "axios";
 import savePayment, { paymentDetailsSchema } from "./payment.saveData";
+import { useSelector, RootStateOrAny } from "react-redux";
 
 const loadScript = (src: string) => {
   return new Promise((resolve) => {
@@ -49,7 +50,7 @@ async function displayRazorpay(
   const paymentDetails: paymentDetailsSchema = {
     senderID: "stark#12",
     reciepientID: "potts#30",
-    amount: orderData.amount,
+    amount: orderData.amount / 100,
     timestamp: Date().toString(),
     transactionSuccess: "failed",
     transactionType: paymentType,
@@ -82,8 +83,8 @@ async function displayRazorpay(
     },
     prefill: {
       name: "HyprClub",
-      email: "support@hyprclub.com",
-      contact: "+919876543210",
+      email: "mittalarc2001@gmail.com",
+      contact: "+919899247132",
     },
     // notify: {
     //   sms: true,
