@@ -1,19 +1,18 @@
 import { db } from "./../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 export interface paymentDetailsSchema {
-  senderUID: string;
-  reciepientUID: string;
+  senderID: string;
+  reciepientID: string;
+  amount: number;
   timestamp: string;
-  transactionSuccess: boolean;
+  transactionSuccess: "success" | "failed" | "in process";
   transactionType: "Creator Support" | "NFT Purchase";
-  creatorSupportUID?: string;
+  creatorSupportID?: string;
   purchasedNftID?: string;
   razorpayOrderData: any;
   razorpayPaymentId?: string;
   razorpaySignature?: string;
-  // razorpayOrderId?: string;
-  // currency: string;
-  // amount: number | string;
+  razorpayOrderId?: string;
 }
 
 // const createPayment = async (paymentRef: paymentDetailsSchema) => {
@@ -21,9 +20,23 @@ export interface paymentDetailsSchema {
 // };
 
 const savePaymentData = async (paymentDetails: paymentDetailsSchema) => {
-  const docRef = await addDoc(collection(db, "paymentRecords"), paymentDetails);
+  const allPaymentRef = await addDoc(
+    collection(db, "paymentRecords"),
+    paymentDetails
+  );
 
-  console.log("Payment created with ID: ", docRef.id);
+  const paymentType =
+    paymentDetails.transactionType === "Creator Support"
+      ? "creatorSupportPaymentReords"
+      : "nftPurchasePaymentRecords";
+
+  const paymentTypeRef = await addDoc(
+    collection(db, paymentType),
+    paymentDetails
+  );
+
+  console.log("All Payments record created with ID: ", allPaymentRef.id);
+  console.log("Payment type record created with ID: ", paymentTypeRef.id);
 
   // createPayment(paymentDetails);
 };

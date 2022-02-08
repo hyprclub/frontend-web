@@ -17,7 +17,10 @@ const loadScript = (src: string) => {
 
 const __DEV__ = document.domain === "localhost";
 
-async function displayRazorpay(): Promise<void> {
+async function displayRazorpay(
+  amount: number,
+  paymentType: "Creator Support" | "NFT Purchase"
+): Promise<void> {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
   if (!res) {
@@ -25,16 +28,16 @@ async function displayRazorpay(): Promise<void> {
     return;
   }
 
-  const amount = 650000;
-
   const orderData = await fetch(
     "https://us-central1-hyprclub-7a2b.cloudfunctions.net/app/razorpay",
+    // "http://localhost:9000/hyprclub-7a2b/us-central1/app/razorpay",
     {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         amount: amount,
         currency: "INR",
-        receipt: "receipt#fromNFT",
+        receipt: "receipt#front",
       }),
     }
   )
@@ -43,41 +46,49 @@ async function displayRazorpay(): Promise<void> {
       console.log("fetch request failed: ", error);
     });
 
-  // console.log(orderData);
-
   const paymentDetails: paymentDetailsSchema = {
-    // senderUID: props.userName,
-    senderUID: "stark#12",
-    reciepientUID: "potts#30",
+    senderID: "stark#12",
+    reciepientID: "potts#30",
+    amount: orderData.amount,
     timestamp: Date().toString(),
-    transactionSuccess: true,
-    transactionType: "NFT Purchase",
-    creatorSupportUID: "bassi#21",
+    transactionSuccess: "failed",
+    transactionType: paymentType,
+    creatorSupportID:
+      paymentType === "Creator Support" ? "insert creator ID here" : "none",
+    purchasedNftID:
+      paymentType === "NFT Purchase" ? "insert nft id here" : "none",
     razorpayOrderData: orderData,
   };
 
   const options = {
     key: __DEV__ ? "rzp_test_7FUMLF1Lf3a2eD" : "PRODUCTION_KEY",
     currency: orderData.currency,
-    amount: amount,
+    amount: orderData.amount,
     order_id: orderData.id,
-    name: "NFT Payment",
-    description: "Thank you for buying the NFT",
+    name: paymentType,
+    description:
+      paymentType === "NFT Purchase"
+        ? "Thank you for buying the NFT"
+        : "Thank you for supporting the creator",
     // image: "https://example.com/your_logo",
     handler: (response: any) => {
       console.log(response);
-      alert("Payment succesful");
+      // alert("Payment succesful");
       paymentDetails.razorpayPaymentId = response.razorpay_payment_id;
-      // paymentDetails.razorpaySignature = response.razorpay_signature;
-      // alert(response.razorpay_order_id);
-      // alert(response.razorpay_signature);
+      paymentDetails.razorpaySignature = response.razorpay_signature;
+      paymentDetails.razorpayOrderId = response.razorpay_order_id;
+      paymentDetails.transactionSuccess = "success";
       savePayment(paymentDetails);
     },
     prefill: {
-      name: "HyprCLub",
+      name: "HyprClub",
       email: "support@hyprclub.com",
-      phone_number: "9876543210",
+      contact: "+919876543210",
     },
+    // notify: {
+    //   sms: true,
+    //   email: true
+    // }
   };
 
   const _window = window as any;
