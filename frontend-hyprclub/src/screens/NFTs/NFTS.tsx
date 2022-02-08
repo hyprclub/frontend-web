@@ -29,6 +29,7 @@ import Users from "../../components/NFTs/Users/Users";
 import ItemsCarousel from "../../components/NFTs/ItemsCarousel/ItemsCarousel";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { RootCloseEvent } from "react-bootstrap/esm/types";
+import displayRazorpay from "../../razorpay";
 
 const Desc =
   " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
@@ -237,7 +238,13 @@ const NFTS = ({ Video }: Props) => {
                 />
               </div>
 
-              {forSale && <GradBorder text="Buy Now" className={styles.buy} />}
+              {forSale && (
+                <GradBorder
+                  text="Buy Now"
+                  onClick={displayRazorpay(itemPrice, "NFT Purchase")}
+                  className={styles.buy}
+                />
+              )}
 
               <div className={styles.Description_Perks}>
                 <h3 className={styles.subHeading}>Description</h3>
