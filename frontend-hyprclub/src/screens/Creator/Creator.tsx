@@ -22,7 +22,7 @@ const Creator = () => {
     } else {
       navigate("/" + userData?.username);
     }
-  }, [userData, loggedIn, uid]);
+  }, [userData, loggedIn, uid, navigate]);
   return (
     <>
       <div className={styles.body}>

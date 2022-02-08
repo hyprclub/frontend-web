@@ -56,17 +56,26 @@ const Profile = () => {
       where("username", "==", username)
     );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      setDocId(doc.id);
-      if (doc.id === userData.uid) {
+    querySnapshot.forEach((docs) => {
+      setDocId(docs.id);
+      if (docs.id === userData?.uid) {
         setMyProfile(true);
       } else {
         setMyProfile(false);
+        updateDoc(doc(db, "hyprUsers", docs.id), {
+          profileViewsCount: docs.data().profileViewsCount + 1,
+        })
+          .then(() => {
+            console.log("+1");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
-      setProfileData(doc.data());
-      GetProfilePhoto(doc.id);
-      GetCoverPhoto(doc.id);
-      console.log(doc.data());
+      setProfileData(docs.data());
+      GetProfilePhoto(docs.id);
+      GetCoverPhoto(docs.id);
+      console.log(docs.data());
       logEvent(analytics, "page_view");
     });
   };
@@ -121,15 +130,6 @@ const Profile = () => {
     if (docId === uid) {
       //do nothing
     } else {
-      await updateDoc(ref, {
-        profileViewsCount: profileData?.profileViewsCount + 1,
-      })
-        .then(() => {
-          console.log("++");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     }
   };
 

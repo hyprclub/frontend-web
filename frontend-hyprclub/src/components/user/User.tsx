@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { X } from "phosphor-react";
 import { analytics } from "../../firebaseConfig";
 import { logEvent } from "firebase/analytics";
+import displayRazorpay from "../../razorpay/index";
 // import displayRazorpay from "razorpay";
 interface Item {
   title: string;
@@ -70,7 +71,7 @@ const User = ({
   const handleSayThanks = (e: any) => {
     e.preventDefault();
     logEvent(analytics, "thanks_event_created", userData?.username);
-    // displayRazorpay();
+    displayRazorpay();
     closeModal();
     console.log("Pay User " + thanksValue);
   };
@@ -107,7 +108,7 @@ const User = ({
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        {isCreator === true && myProfile === false && (
+        {myProfile === false && isCreator && (
           <div className={styles.gradbtn}>
             <GradientBorder
               onClick={() => setShowModal(true)}
@@ -115,7 +116,7 @@ const User = ({
             />
           </div>
         )}
-        {isCreator && myProfile && (
+        {myProfile && isCreator && (
           <Link to="/creator">
             <div className={styles.gradbtn}>
               <GradientBorder text="View Dashboard" />

@@ -26,14 +26,16 @@ const GetHelp = ({ className }: any) => {
     const date = `${current.getDate()}/${
       current.getMonth() + 1
     }/${current.getFullYear()}`;
-    const contactUsId = "contactUs_id_" + makeContactUsId(26);
+    const contactUsId = "CONTACT" + makeContactUsId(26);
     await setDoc(doc(db, "contactus", contactUsId), {
       name: userData?.name,
+      contactId: contactUsId,
       phone: userData?.phone,
       email: userData?.email,
       message: message,
       isResolved: false,
       dateOfMessage: date,
+      status: "PENDING",
     })
       .then(() => {
         console.log("Data sent");
@@ -41,7 +43,6 @@ const GetHelp = ({ className }: any) => {
       .catch((error) => {
         console.log(error);
       });
-    console.log(userData);
   };
   return (
     <>

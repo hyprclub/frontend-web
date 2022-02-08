@@ -6,59 +6,61 @@ import styles from "./UserHead.module.css";
 import { useSelector, RootStateOrAny } from "react-redux";
 import Icon from "../../../Icon";
 
-interface ClassName{
-  className:any
+interface ClassName {
+  className: any;
 }
 
-
-
-const User = (className:any) => {
+const User = (className: any) => {
   const [visible, setVisible] = useState(false);
-  
-  const userData = useSelector(
-    (state : RootStateOrAny) => state?.userData
-  );
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const items = [
     {
       title: "My profile",
-      url: "/"+userData.username,
+      url: "/" + userData.username,
     },
-  
+
     {
       title: "Settings",
       url: "/settings",
     },
-  
-    {
-      title: "Creator Dashboard",
-      url: "#"
-    },
-    
     {
       title: "Logout",
       url: "/logout",
     },
   ];
-  
+
   return (
     <OutsideClickHandler onOutsideClick={() => setVisible(false)}>
       <div className={cn(styles.user, className)}>
         <div className={styles.head} onClick={() => setVisible(!visible)}>
           <div className={styles.avatar}>
-            <img src= { userData?.profilePhotoUrl || "/images/content/avatar-user.jpg"} alt="Avatar" />
+            <img
+              src={
+                userData?.profilePhotoUrl || "/images/content/avatar-user.jpg"
+              }
+              alt="Avatar"
+            />
           </div>
         </div>
         {visible && (
           <div className={styles.body}>
-          <div className="d-flex flex-row">
-          <div className={styles.userprof}><img src={ userData?.profilePhotoUrl || "/images/content/avatar-user.jpg"} alt="Avatar" /></div>
-          <div className="d-flex flex-column">
-          <div className={styles.name}>{userData.name}</div>
-          <div className={styles.code}>
-              <div className={styles.username}>@{userData.username}</div>
+            <div className="d-flex flex-row">
+              <div className={styles.userprof}>
+                <img
+                  src={
+                    userData?.profilePhotoUrl ||
+                    "/images/content/avatar-user.jpg"
+                  }
+                  alt="Avatar"
+                />
+              </div>
+              <div className="d-flex flex-column">
+                <div className={styles.name}>{userData.name}</div>
+                <div className={styles.code}>
+                  <div className={styles.username}>@{userData.username}</div>
+                </div>
+              </div>
             </div>
-          </div>
-          </div>
             <div className={styles.menu}>
               {items.map((x, index) =>
                 x.url ? (
@@ -86,6 +88,15 @@ const User = (className:any) => {
                     <div className={styles.text}>{x.title}</div>
                   </div>
                 )
+              )}
+              {userData?.isCreator && (
+                <Link
+                  className={styles.item}
+                  to="/creator"
+                  onClick={() => setVisible(!visible)}
+                >
+                  <div className={styles.text}>Creator DashBoard</div>
+                </Link>
               )}
             </div>
           </div>

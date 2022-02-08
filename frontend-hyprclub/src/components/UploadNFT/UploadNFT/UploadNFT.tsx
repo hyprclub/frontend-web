@@ -97,6 +97,7 @@ const UploadNFT = () => {
 
   const storage = getStorage(firebaseApp);
   const current = new Date();
+  const [isVideo, setVideo] = useState(false);
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
@@ -110,6 +111,12 @@ const UploadNFT = () => {
     if (file.size >= 157286400) {
       console.log("File Size too Big Max Size 150Mb");
     } else {
+      if (file.type.split("/")[0] !== "video") {
+        setVideo(false);
+      } else {
+        console.log("video");
+        setVideo(true);
+      }
       await uploadBytesResumable(storageNFTref, file)
         .then((result) => {
           console.log(result.state);
@@ -160,6 +167,7 @@ const UploadNFT = () => {
         applyDate: date,
         isMinted: false,
         isApproved: false,
+        video: isVideo,
         state: "PENDING",
         perks: perksList,
         price: cred,
@@ -200,7 +208,7 @@ const UploadNFT = () => {
             >
               <FileArrowUp size={24} id={styles.Filearrow} />
               <h6 className={styles.fileTypes}>
-                PNG, GIF, WEBP, MP4 or MP3. Max 1Gb.
+                PNG, GIF, WEBP, MP4 or MP3. Max 150MB.
               </h6>
             </FileUploader>
           </div>
