@@ -265,28 +265,52 @@ const Modal = () => {
         });
     }
   };
-  return (
-    <>
-      <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
-        <div className={clsx("container", styles.modalContent)}>
-          <div
-            className={clsx(
-              styles.firstModal,
-              modals.modal1 ? styles.show : styles.hide
-            )}
-          >
-            <p className={styles.crossFirst}>
-              <X onClick={closeModal} size={30} weight="bold" />
-            </p>
-            <div className={styles.topTitleDiv}>
-              <h2 className={styles.gradientTitle}>
-                Upgrade to a Creator Account
-              </h2>
-              <p className={styles.topDesc}>
-                With a creator account, you can unlock a plethora of benefits
-                and extra features.
-              </p>
-            </div>
+
+    return (
+        <>
+            <div onClick={e=> e.stopPropagation()} className={styles.modal}>
+                <div className={clsx('container', styles.modalContent)}>
+
+
+
+                    <div className={clsx(styles.firstModal, modals.modal1 ? styles.show : styles.hide)}>
+                    <p className={styles.crossFirst}><X onClick={closeModal} size={30} weight='bold' /></p>
+                        <div className={styles.topTitleDiv}>
+                            <h2 className={styles.gradientTitle}>Upgrade to a Creator Account</h2>
+                            <p className={styles.topDesc}>With a creator account, you can unlock a plethora of benefits and extra features.</p>
+                        </div>
+
+                        <div className={clsx('row align-items-center', styles.sellYourNftDiv)}>
+                            <div className={clsx('col-md-6')}>
+                                <h3 className={styles.sellYourNftTitle}>Sell your work as NFT</h3>
+                                <p className={styles.sellYourNftdesc}>You can sell your content - be it photography, drawings, gaming clips or even videos- as NFTs.</p>
+                            </div>
+                            <div className={clsx('col-md-6', styles.sellYourNftImg)}>
+                                <img className={styles.imgWithMoney} src="/images/sellYourwork.png" alt="heu" />
+                            </div>  
+                        </div>
+
+                        <div className={clsx('row align-items-center', styles.sellYourNftDiv)}>
+                            <div className={clsx('col-md-6 d-flex justify-content-center')}>
+                                <img className={styles.imgWithMoney} src="/images/upgrade.png" alt="heu" />
+                            </div>
+                            <div className={clsx('col-md-6', styles.analyse)}>
+                                <h3 className={styles.analyseTitle}>Analyse your progress with a personalised Creator Dashboard</h3>
+                                <p className={styles.analysedesc}>You can sell your content - be it photography, drawings, gaming clips or even videos- as NFTs.</p>
+                            </div>  
+                        </div>
+                        
+                        <div className={styles.bottom}>
+                            <p className={styles.comingSoon}>Many more features are coming soon!</p>
+                            <p className={styles.comingSoonDesc}>With a creator account, you can unlock a plethora of benefits and extra features.</p>
+
+                            <GradientBorder onClick={() => setModals({modal1: false, modal2: true, modal3:false, modal4:false, modal5:false})} text='Upgrade to Creator Account' />
+                        </div>
+
+                    </div>
+
+
+
 
             <div
               className={clsx("row align-items-center", styles.sellYourNftDiv)}
@@ -836,14 +860,9 @@ const Modal = () => {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* last one */}
+      
     </>
   );
 };
 
 export default Modal;
-function e(e: any): React.ChangeEventHandler<HTMLInputElement> | undefined {
-  throw new Error("Function not implemented.");
-}

@@ -13,16 +13,35 @@ import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import InputField from "../../inputField/Input";
 import styles from "./contact.module.css";
 import { useSelector, RootStateOrAny } from "react-redux";
+import SuccPopup from '../../popups/SuccPopup';
+import ErrPopup from '../../popups/ErrPopup';
 import { useNavigate } from "react-router";
 
 const Contact = () => {
   const userData = useSelector((state: RootStateOrAny) => state.userData);
+  const [success, setSuccess] = useState(false)
+  const [open, setOpen] = useState(false);
+    const [openErrMsg, setOpenErrMsg] = useState(false)
+
+    const Submit = () => {
+      setSuccess(true)
+      setOpen(true);
+  
+    }
+  
+    const handelClose = (reason:any) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpen(false);
+    };
   const [data, setData] = useState({
     name: userData?.name,
     phone: userData?.phone,
     email: userData?.email,
     message: "",
   });
+
 
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -133,6 +152,8 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      {success && <SuccPopup handelClose={(r:any) => handelClose(r)} open={open} message="Sent Successfully!"/>}
+            {openErrMsg && <ErrPopup handelClose={(r:any) => handelClose(r)} open={open} message="Send Error!"/>}
     </>
   );
 };

@@ -259,7 +259,7 @@
         font-size:clamp(12px, 2.333vw + 0.01em, 14px);
     }
     .btn_grad{
-        width: clamp(95px,19vw + 0.01em,114px);
+        width: 140px;
         height: clamp(35px,6.500vw + 0.01em,39px);
 
     }
