@@ -296,13 +296,13 @@ const UploadNFT = () => {
           </div>
         </div>
         <div className={styles.Bottom}>
-          {/* <div className={styles.Collection}>
+          <div className={styles.Collection}>
             <h3 className={styles.Collection_title}>Choose Collection</h3>
             <h6 className={styles.Collection_sub}>
               Choose an existing collection or create a new one
             </h6>
             <Collection item={items} />
-          </div> */}
+          </div>
           <div className={styles.btns}>
             <GradBorder
               className={styles.Gradbtn}
