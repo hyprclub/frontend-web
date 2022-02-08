@@ -7,16 +7,69 @@ import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import ButtonItself from "../../loginSignUpBtn/ButtonItself";
 import GradBorder from "../GradBorder/GradBorder";
 import styles from "./Avail.module.css";
-const Avail = () => {
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { firebaseApp } from "../../../firebaseConfig";
+const Avail = ({ items, owner, creator, nftDoc, nftDet, ownerImg }: any) => {
   const [modals, setModals] = useState({
-    Modal1: true,
-    Modal2: false,
+    Modal1: false,
+    Modal2: true,
     Modal3: false,
   });
+  const db = getFirestore(firebaseApp);
   const dispatch = useDispatch();
   const closeModal = () => {
     dispatch({ type: AVAILNFT_MODAL_CLOSE_SUCCESS });
-    setModals({ Modal1: true, Modal2: false, Modal3: false });
+    setModals({ Modal1: false, Modal2: true, Modal3: false });
+  };
+  const makePerkReqId = (len: number) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const characterLengths = characters.length;
+    for (let i = 0; i < len; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    }
+    return result;
+  };
+
+  const handleRequest = async () => {
+    const reqId = "PERK" + makePerkReqId(20);
+    await setDoc(doc(db, "hyprUsers", creator.uid, "perkAvailReq", reqId), {
+      nftDet: {
+        docId: nftDoc,
+        title: nftDet.name,
+        description: nftDet.description,
+      },
+      perks: items,
+      requestedDate: Timestamp.now().toDate(),
+      state: "REQUESTED",
+      reqId: reqId,
+      requestedBy: {
+        name: owner.name,
+        username: owner.username,
+        uid: owner.uid,
+        email: owner.email,
+        phone: owner.phone,
+        profilePhoto: ownerImg,
+      },
+    })
+      .then(() => {
+        updateDoc(doc(db, "nfts", nftDoc), {
+          nftPerkState: "REQUESTED",
+        });
+        console.log("Request Sent!");
+        setModals({ Modal1: false, Modal2: false, Modal3: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(creator);
   };
   return (
     <>
@@ -45,7 +98,7 @@ const Avail = () => {
             reselling the NFT.
           </p>
         </div>
-        <div className={styles.box_body}>
+        {/* <div className={styles.box_body}>
           <div className={styles.rows}>
             <p className={styles.content}>
               Get exclusive access to my Discord server!
@@ -76,7 +129,7 @@ const Avail = () => {
               <p className={styles.p_request}>Requested</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* /////////////////////////////////////MOdal2///////////////////////////////////// */}
@@ -92,9 +145,7 @@ const Avail = () => {
           size={32}
           weight="bold"
           className={styles.back}
-          onClick={() =>
-            setModals({ Modal1: true, Modal2: false, Modal3: false })
-          }
+          onClick={closeModal}
         />
         <div className={styles.box_head}>
           <div className={styles.gift_icon}>
@@ -106,10 +157,12 @@ const Avail = () => {
           </p>
         </div>
         <div className={styles.body}>
-          <div className={styles.row2}>
-            <p className={styles.p_content2}>
-              Get exclusive access to my Discord server!
-            </p>
+          <div className={styles.ul}>
+            <ul className={styles.ul}>
+              {items.map((e: any, index: number) => {
+                return <li key={index}>{e.description}</li>;
+              })}
+            </ul>
           </div>
           <div className={styles.buttons}>
             <button className={styles.btn_white} onClick={closeModal}>
@@ -117,11 +170,9 @@ const Avail = () => {
             </button>
             <button
               className={clsx(styles.btn, styles.btn_yes)}
-              onClick={() =>
-                setModals({ Modal1: false, Modal2: false, Modal3: true })
-              }
+              onClick={handleRequest}
             >
-              <p className={styles.btn_text}>Yes, avail this perk</p>
+              <p className={styles.btn_text}>Yes, avail these perk</p>
             </button>
           </div>
         </div>

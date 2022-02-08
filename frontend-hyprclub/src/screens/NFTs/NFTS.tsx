@@ -71,12 +71,14 @@ const NFTS = ({ Video }: Props) => {
   const [creatorData, setCreatorData] = useState<any | null>({});
   const [ownerData, setOwnerData] = useState<any | null>({});
   const [item, setItem] = useState<any | null>({});
+  const [forSale, setForSale] = useState(false);
   const [itemPrice, setItemPrice] = useState(0);
   let perkId: any = [];
   const [perks, setPerksData] = useState<any>([]);
   const [creatorImage, setCreatorImage] = useState("");
   const [ownerImage, setOwnerImage] = useState("");
   const [bought, setBought] = useState(false);
+  const [perkState, setPerkState] = useState("PENDING");
   const users = [
     {
       name: ownerData.name,
@@ -102,7 +104,9 @@ const NFTS = ({ Video }: Props) => {
               console.log(QuerySnapshot.data().price);
               setItemPrice(QuerySnapshot.data().price);
               setPerksData(QuerySnapshot.data().perks);
+              setPerkState(QuerySnapshot.data().nftPerkState);
               setContractAdd(QuerySnapshot.data().contractAddress);
+              setForSale(QuerySnapshot.data().forSale);
               //   let Perk_list: any = [];
               axios
                 .get(
@@ -208,10 +212,13 @@ const NFTS = ({ Video }: Props) => {
             <div className={styles.bg}>
               <div className={styles.preview}>
                 {video ? (
-                  <iframe
+                  <video
                     id={styles.video}
-                    src={item.animation_url}
-                    allowFullScreen
+                    src={item.animation_url || item.image}
+                    loop
+                    autoPlay
+                    controls
+                    controlsList="nodownload"
                   />
                 ) : (
                   <img id={styles.img} src={item.image} alt="NFT" />
@@ -230,7 +237,7 @@ const NFTS = ({ Video }: Props) => {
                 />
               </div>
 
-              <GradBorder text="Buy Now" className={styles.buy} />
+              {forSale && <GradBorder text="Buy Now" className={styles.buy} />}
 
               <div className={styles.Description_Perks}>
                 <h3 className={styles.subHeading}>Description</h3>
@@ -239,7 +246,16 @@ const NFTS = ({ Video }: Props) => {
 
               <div className={styles.Description_Perks}>
                 <h3 className={styles.subHeading}>Perks</h3>
-                <Perks item={perks} Bought={bought} />
+                <Perks
+                  item={perks}
+                  Bought={bought}
+                  nftDet={docId}
+                  ownerDet={ownerData}
+                  creatorDet={creatorData}
+                  perkState={perkState}
+                  nftDetail={item}
+                  ownerPht={ownerImage}
+                />
               </div>
             </div>
           </div>
