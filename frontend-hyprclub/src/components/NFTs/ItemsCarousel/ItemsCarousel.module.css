@@ -19,10 +19,10 @@
     cursor: pointer !important;
 }
 
-@media screen and (max-width:500px) {
+/* @media screen and (max-width:500px) {
     .carousel {
         flex-direction: column;
         overflow-x: none;
     }
 
-}
+} */

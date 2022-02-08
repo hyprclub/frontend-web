@@ -46,7 +46,7 @@ function App() {
             <Route path='/adminlogin' element={<AdminLogin />} />
             <Route path='/admindashboard' element={<Admindash />} />
             <Route path='/' element={<Landing />}></Route>
-            <Route path='/nft' element={<NFTS Video={true}/>} />
+            <Route path='/nft' element={<NFTS Video={false}/>} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/follow' element={<FollowCreater />} />

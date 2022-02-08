@@ -1,6 +1,6 @@
 .body {
     width: 100%;
-    height: max(min(23.75vw, 360px), 252px);
+    height: max(min(25vw + 0.01em , 500px), 252px);
     padding: 0 17.5px;
     margin: 0;
     position: relative;

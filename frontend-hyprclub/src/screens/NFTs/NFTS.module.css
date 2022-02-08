@@ -470,7 +470,7 @@
     .bg {
         height: 638px;
         margin-bottom: 20px;
-        width: auto;
+        /* width: auto; */
     }
 
     .preview {
