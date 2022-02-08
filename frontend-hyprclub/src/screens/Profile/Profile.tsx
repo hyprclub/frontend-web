@@ -253,7 +253,7 @@ const Profile = () => {
                     </div>
                   </div>
                 )} */}
-                  {activeIndex === 0 && <Nft token={["1", "4", "4"]} />}
+                  {activeIndex === 0 && <Nft  />}
                 </div>
               </div>
             </div>
