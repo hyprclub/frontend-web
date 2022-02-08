@@ -60,20 +60,24 @@ const NFTs = [
 const MyNfts = () => {
   const db = getFirestore(firebaseApp);
   const [created, setCreated] = useState(true);
-  const userData = useSelector((state: RootStateOrAny) => state.userData);
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const { loggedIn, uid } = useSelector(
-    (state: RootStateOrAny) => state.userData
+    (state: RootStateOrAny) => state?.userData
   );
   const [nftData, setNftData] = useState<any>([]);
-  const query1 = query(
-    collection(db, "nftRequest"),
-    where("creatorUid", "==", userData?.uid)
-  );
+  // const query1 = query(
+  //   collection(db, "nftRequest"),
+  //   where("creatorUid", "==", uid)
+  // );
   useEffect(() => {
     const run = async () => {
       let nft: any = [];
-      if (created && loggedIn && uid) {
-        await getDocs(query1)
+      if (uid && loggedIn) {
+        console.log(uid);
+        console.log(loggedIn);
+        await getDocs(
+          query(collection(db, "nftRequest"), where("creatorUid", "==", uid))
+        )
           .then((snapshot) => {
             snapshot.forEach((docs) => {
               if (docs.exists()) {
@@ -92,7 +96,7 @@ const MyNfts = () => {
       }
     };
     run();
-  }, []);
+  }, [uid, loggedIn]);
 
   const createdHandler = () => {
     setCreated(true);
@@ -139,10 +143,8 @@ const MyNfts = () => {
           <div
             className={clsx(styles.createdNfts, "d-flex align-items-center")}
           >
-            {nftData.map((n: any, index: number) => {
-              return (
-                <Card creatorPage key={index} className="col-md-5" item={n} />
-              );
+            {nftData?.map((n: any, index: number) => {
+              return <Card className="col-md-5" item={n} />;
             })}
           </div>
         )}

@@ -96,6 +96,7 @@ const NFTS = ({ Video }: Props) => {
     // const amount = displayRazorpay(parseInt(itemPrice), "NFT Purchase");
     console.log(userData);
     console.log(creatorData);
+    console.log(itemPrice);
   };
   useEffect(() => {
     // const idToken = new URLSearchParams(window?.location?.search).get("idToken");

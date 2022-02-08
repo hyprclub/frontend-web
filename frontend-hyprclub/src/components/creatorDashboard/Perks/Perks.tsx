@@ -48,7 +48,7 @@ const Perks = () => {
     (state: RootStateOrAny) => state?.userData
   );
   const [perkData, setPerkData] = useState<any>([]);
-  const query1 = query(collection(db, "hyprUsers", uid, "perkAvailReq"));
+  // const query1 = query(collection(db, "hyprUsers", uid, "perkAvailReq"));
 
   const { clicked } = useSelector((state: RootStore) => state.perksModalOpen);
 
@@ -60,20 +60,23 @@ const Perks = () => {
   useEffect(() => {
     const run = async () => {
       let details: any = [];
-      await getDocs(query1)
-        .then((querySnapshot) => {
-          if (querySnapshot) {
-            querySnapshot.forEach((snapshot) => {
-              details.push(snapshot.data());
-            });
-          } else {
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setPerkData(details);
-      console.log(perkData);
+      if (loggedIn && uid) {
+        await getDocs(query(collection(db, "hyprUsers", uid, "perkAvailReq")))
+          .then((querySnapshot) => {
+            if (querySnapshot) {
+              querySnapshot.forEach((snapshot) => {
+                details.push(snapshot.data());
+              });
+            } else {
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        setPerkData(details);
+        console.log(perkData);
+      } else {
+      }
     };
     run();
   }, []);
@@ -111,9 +114,10 @@ const Perks = () => {
             <div className={styles.heading2}>Purchased By</div>
             <div className={styles.heading3}>Status</div>
           </div>
-          {perkData.map((c: any, index: number) => {
+          {perkData?.map((c: any, index: number) => {
             return (
               <div
+                key={index}
                 className={clsx(
                   "d-flex w-100 align-items-center",
                   styles.elemm

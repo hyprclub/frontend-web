@@ -5,7 +5,7 @@ import styles from "./card.module.css";
 import clsx from "clsx";
 import PostButton from "../postButton/PostButton";
 
-const Card = ({ className, item, created, creatorPage }: any) => {
+const Card = ({ className, item, created }: any) => {
   return (
     <div className={cn(styles.card, className)}>
       {/* <Link className={styles.link} to={item.url}> */}
@@ -23,7 +23,7 @@ const Card = ({ className, item, created, creatorPage }: any) => {
             ) : (
               <img className={styles.image} src={item.nftMedia} alt="NFT" />
             )}
-            {creatorPage && (
+            {true && (
               <span
                 className={clsx(
                   item.state === "PENDING" && styles.underRev,
