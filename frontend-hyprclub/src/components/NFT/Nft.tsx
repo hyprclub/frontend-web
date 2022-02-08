@@ -43,4 +43,4 @@ const Nft = () => {
     )
 }
 
-export default Nft
+export default Nft;
