@@ -253,7 +253,9 @@ const Profile = () => {
                     </div>
                   </div>
                 )} */}
-                  {activeIndex === 0 && <Nft  />}
+                  {activeIndex === 0 && (
+                    <Nft star={["1", "2", "3"]} profile={myProfile} />
+                  )}
                 </div>
               </div>
             </div>
