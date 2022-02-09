@@ -6,24 +6,15 @@ const TransactionHistory = () => {
     <>
       <div className={styles.mainDiv}>
         <h2 className={styles.heading}>Recent Transactions</h2>
-          <div className={styles.content}>
+        <div className={styles.content}>
           <TransactionSingle
             price="15,560"
             transactionID="HYPR9459207532"
             date={"14/01/2022"}
             NFTname="Homegrown Tulips"
           />
-          </div>
-          <div className={styles.content}>
-          <TransactionSingle
-            price="15,560"
-            transactionID="HYPR9459207532"
-            date={"14/01/2022"}
-            NFTname="Homegrown Tulips"
-            success
-          />
-          </div>
-          <div>
+        </div>
+        <div className={styles.content}>
           <TransactionSingle
             price="15,560"
             transactionID="HYPR9459207532"
@@ -31,8 +22,16 @@ const TransactionHistory = () => {
             NFTname="Homegrown Tulips"
             success
           />
-          </div>
-
+        </div>
+        <div>
+          <TransactionSingle
+            price="15,560"
+            transactionID="HYPR9459207532"
+            date={"14/01/2022"}
+            NFTname="Homegrown Tulips"
+            success
+          />
+        </div>
       </div>
     </>
   );

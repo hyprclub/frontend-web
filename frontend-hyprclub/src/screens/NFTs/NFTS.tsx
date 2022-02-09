@@ -1,62 +1,63 @@
 import React, { useState, useEffect } from "react";
 import styles from "./NFTS.module.css";
 import cn from "classnames";
-import Bidders from "../../components/NFTs/Bidders/Bidders";
+// import Bidders from "../../components/NFTs/Bidders/Bidders";
 import Header_login from "../../components/header/header_after_login/Header_login";
 import { ArrowLeft } from "phosphor-react";
 import { Link } from "react-router-dom";
-import { Avatar } from "@mui/material";
-import { style } from "@mui/system";
+// import { Avatar } from "@mui/material";
+// import { style } from "@mui/system";
 
 import { useParams } from "react-router";
 import {
   getFirestore,
-  getDocs,
-  collection,
+  // getDocs,
+  // collection,
   doc,
   getDoc,
-  QuerySnapshot,
+  // QuerySnapshot,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { firebaseApp } from "../../firebaseConfig";
 import Option from "../../components/NFTs/Options/Option";
 import GradBorder from "../../components/NFTs/GradBorder/GradBorder";
-import ReadMore from "../../components/NFTs/Readmore/Readmore";
+// import ReadMore from "../../components/NFTs/Readmore/Readmore";
 import Perks from "../../components/NFTs/Perks/Perks";
 import Polygon from "../../components/NFTs/Poly/Polygon";
 import Users from "../../components/NFTs/Users/Users";
 import ItemsCarousel from "../../components/NFTs/ItemsCarousel/ItemsCarousel";
 import { RootStateOrAny, useSelector } from "react-redux";
-import { RootCloseEvent } from "react-bootstrap/esm/types";
+// import { RootCloseEvent } from "react-bootstrap/esm/types";
 import displayRazorpay from "../../razorpay";
+import { paymentDetailsSchema } from "../../razorpay/payment.saveData";
 
-const Desc =
-  " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+// const nftDescription =
+//   " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
-const Perk_list = [
-  {
-    id: 1,
-    content: "Unlock the creator discord channel.",
-  },
-  {
-    id: 2,
-    content: "Get a free workbook with over 25 different art prompts!",
-  },
-  {
-    id: 3,
-    content: "I dont know I googled this from some patreon page.",
-  },
+// const nftPerksList = [
+//   {
+//     id: 1,
+//     content: "Unlock the creator discord channel.",
+//   },
+//   {
+//     id: 2,
+//     content: "Get a free workbook with over 25 different art prompts!",
+//   },
+//   {
+//     id: 3,
+//     content: "I dont know I googled this from some patreon page.",
+//   },
 
-  {
-    id: 4,
-    content: "Unlock the creator discord channel.",
-  },
-  {
-    id: 5,
-    content: "Get a free workbook with over 25 different art prompts!",
-  },
-];
+//   {
+//     id: 4,
+//     content: "Unlock the creator discord channel.",
+//   },
+//   {
+//     id: 5,
+//     content: "Get a free workbook with over 25 different art prompts!",
+//   },
+// ];
 
 interface Props {
   Video?: boolean;
@@ -68,13 +69,13 @@ const NFTS = ({ Video }: Props) => {
   const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
   const userData = useSelector((state: RootStateOrAny) => state.userData);
-  const [contractAdd, setContractAdd] = useState("");
+  const [contractAddress, setContractAddress] = useState("");
   const [creatorData, setCreatorData] = useState<any | null>({});
   const [ownerData, setOwnerData] = useState<any | null>({});
   const [item, setItem] = useState<any | null>({});
   const [forSale, setForSale] = useState(false);
-  const [itemPrice, setItemPrice] = useState("");
-  let perkId: any = [];
+  const [itemPrice, setItemPrice] = useState(0);
+  // let perkId: any = [];
   const [perks, setPerksData] = useState<any>([]);
   const [creatorImage, setCreatorImage] = useState("");
   const [ownerImage, setOwnerImage] = useState("");
@@ -92,26 +93,20 @@ const NFTS = ({ Video }: Props) => {
       avatar: creatorImage || "../../images/logo-dark.jpg",
     },
   ];
-  const handlePayment = () => {
-    // const amount = displayRazorpay(parseInt(itemPrice), "NFT Purchase");
-    console.log(userData);
-    console.log(creatorData);
-    console.log(itemPrice);
-  };
   useEffect(() => {
     // const idToken = new URLSearchParams(window?.location?.search).get("idToken");
     const run = async () => {
       if (docId) {
         await getDoc(doc(db, "nfts", docId))
           .then((QuerySnapshot) => {
-            console.log("1");
+            // console.log("1");
             if (QuerySnapshot.exists()) {
-              console.log(QuerySnapshot.data().perks);
-              console.log(QuerySnapshot.data().price);
+              // console.log(QuerySnapshot.data().perks);
+              // console.log(QuerySnapshot.data().price);
               setItemPrice(QuerySnapshot.data().price);
               setPerksData(QuerySnapshot.data().perks);
               setPerkState(QuerySnapshot.data().nftPerkState);
-              setContractAdd(QuerySnapshot.data().contractAddress);
+              setContractAddress(QuerySnapshot.data().contractAddress);
               setForSale(QuerySnapshot.data().forSale);
               //   let Perk_list: any = [];
               axios
@@ -203,6 +198,37 @@ const NFTS = ({ Video }: Props) => {
     };
     run();
   }, [docId, db, storage]);
+
+  const handlePayment = async () => {
+    try {
+      const paymentProps: paymentDetailsSchema = {
+        buyerUID: userData?.uid,
+        buyerUsername: userData?.username,
+        buyerEmail: userData?.email,
+        buyerName: userData?.name,
+        buyerPhoneNumber: userData?.phone,
+        recipientData: {
+          reciepientUID: ownerData?.uid,
+          recipientUsername: ownerData?.username,
+          recipientEmail: ownerData?.email,
+        },
+        amount: itemPrice,
+        transactionType: "NFT Purchase",
+        transactionSuccess: "in process",
+        purchasedNftUID: docId,
+        purchasedNftData: {
+          nftContractAddress: contractAddress,
+          nftName: item.name,
+          nftDescription: item.description,
+        },
+      };
+      // console.log(paymentProps);
+      await displayRazorpay(paymentProps);
+    } catch (error) {
+      console.log("nft paymentprops: ", error);
+    }
+  };
+
   return (
     <>
       <Header_login />
@@ -246,8 +272,8 @@ const NFTS = ({ Video }: Props) => {
               {forSale && (
                 <GradBorder
                   text="Buy Now"
-                  onClick={handlePayment}
                   className={styles.buy}
+                  onClick={handlePayment}
                 />
               )}
 
