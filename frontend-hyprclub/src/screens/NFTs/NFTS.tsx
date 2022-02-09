@@ -223,10 +223,7 @@ const NFTS = ({ Video }: Props) => {
           nftDescription: item.description,
         },
       };
-      // pass for sale or not
-      // change ownerData after successful purchase
-      // send docId
-      console.log(paymentProps);
+      // console.log(paymentProps);
       displayRazorpay(paymentProps);
     } catch (error) {
       console.log("nft paymentprops: ", error);

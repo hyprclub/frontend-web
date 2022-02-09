@@ -1,4 +1,3 @@
-// import axios from "axios";
 import savePayment, { paymentDetailsSchema } from "./payment.saveData";
 
 const loadScript = (src: string) => {
@@ -15,7 +14,7 @@ const loadScript = (src: string) => {
   });
 };
 
-const __DEV__ = document.domain === "localhost";
+// const __DEV__ = document.domain === "localhost";
 
 async function displayRazorpay(paymentProps: any): Promise<void> {
   const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
@@ -68,7 +67,8 @@ async function displayRazorpay(paymentProps: any): Promise<void> {
   };
 
   const options = {
-    key: __DEV__ ? "rzp_test_7FUMLF1Lf3a2eD" : "PRODUCTION_KEY",
+    // key: `${process.env.RAZORPAY_TEST_API_KEY}`,
+    key: "rzp_test_7FUMLF1Lf3a2eD",
     currency: orderData.currency,
     amount: orderData.amount,
     order_id: orderData.id,
@@ -87,6 +87,7 @@ async function displayRazorpay(paymentProps: any): Promise<void> {
       paymentDetails.transactionSuccess = "success";
       try {
         savePayment(paymentDetails);
+        // transferNftOwnership
       } catch (error) {
         console.log("error while savePayment ", error);
       }

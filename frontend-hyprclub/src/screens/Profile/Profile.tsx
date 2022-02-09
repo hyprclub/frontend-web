@@ -8,7 +8,7 @@ import Icon from "../../components/Icon";
 import User from "../../components/user/User";
 import Header_login from "../../components/header/header_after_login/Header_login";
 import Nft from "../../components/NFT/Nft";
-import Store from "../../components/store/Store";
+// import Store from "../../components/store/Store";
 import { useSelector, RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";

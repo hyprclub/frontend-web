@@ -1,5 +1,6 @@
 import { db } from "./../firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+
 export interface paymentDetailsSchema {
   buyerUID: string;
   buyerUsername: string;
@@ -28,9 +29,33 @@ export interface paymentDetailsSchema {
   razorpayOrderId?: string;
 }
 
-// const createPayment = async (paymentRef: paymentDetailsSchema) => {
-//   await addDoc(paymentCollectionsRef, paymentRef);
-// };
+const transferNftOwnership = async (
+  nftUID?: string,
+  buyerUID?: string,
+  ownerUID?: string
+) => {
+  if (nftUID) {
+    const nftDocRef = doc(db, "nfts", nftUID);
+    const nftDocSnap = await getDoc(nftDocRef);
+
+    if (nftDocSnap.exists()) {
+      console.log("Document data:", nftDocSnap.data());
+      if (nftDocSnap.data().ownerUid === ownerUID) {
+        try {
+          await updateDoc(nftDocRef, {
+            ownerUid: buyerUID,
+            forSale: false,
+          });
+        } catch (error) {
+          console.log("Owner ids did not match", error);
+        }
+      }
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("This nft does not exist in the database!");
+    }
+  }
+};
 
 const savePaymentData = async (paymentDetails: paymentDetailsSchema) => {
   const allPaymentRef = await addDoc(
@@ -51,7 +76,19 @@ const savePaymentData = async (paymentDetails: paymentDetailsSchema) => {
   console.log("All Payments record created with ID: ", allPaymentRef.id);
   console.log("Payment type record created with ID: ", paymentTypeRef.id);
 
-  // createPayment(paymentDetails);
+  if (paymentDetails.transactionSuccess === "success") {
+    if (paymentDetails.transactionType === "NFT Purchase") {
+      transferNftOwnership(
+        paymentDetails.purchasedNftUID,
+        paymentDetails.buyerUID,
+        paymentDetails.recipientData?.reciepientUID
+      );
+    } else {
+      console.log("Thank you for supporting the creator...");
+    }
+  } else {
+    console.log("payment was not successful");
+  }
 };
 
 export default savePaymentData;
