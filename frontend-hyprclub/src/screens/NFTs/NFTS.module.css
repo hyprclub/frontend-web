@@ -1,11 +1,11 @@
 .Wrapper {
-    width: 100%;
-    padding: 45px 127px;
+    width: 93%;
+    /* padding: 45px 0; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     height: auto;
+    margin: 45px auto;
 }
 
 .link {
@@ -27,7 +27,6 @@
     justify-content: center;
     align-items: center;
     align-self: flex-start;
-    /* margin-top: 45px; */
     font-size: 14px;
     font-weight: 600;
     line-height: 16px;
@@ -40,7 +39,7 @@
 
 
 .section {
-    width: auto;
+    width: 92%;
     height: auto;
     margin-bottom: 35px;
     padding-bottom: 50px;
@@ -50,37 +49,45 @@
     align-items: center;
 }
 
-
-
 .container {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    gap: 42px;
-    /* margin-bottom: 50px; */
+    justify-content: space-between;
+    gap: clamp(25px, 2.667vw + 0.01em, 42px);
+    margin-bottom: clamp(10px, 2.604vw + 0.01em, 50px);
+    align-items: flex-start;
 }
 
-
+@media(min-width: 1921px) {
+    .container {
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        gap: clamp(30px, 2.667vw + 0.01em, 42px);
+        align-items: flex-start;
+    }
+}
 
 /* Nft View Styling*/
-.bg {
+.bg, .bgvid {
     display: grid;
-    /* position:relative; */
     place-items: center;
-    width: 615px;
-    height: 690px;
-    padding: 25px;
+    width: clamp(500px, 41.667vw + 0.01em, 800px);
+    height: auto;
+    padding: clamp(25px, 1.563vw + 0.01em, 30px);
     background: #FCFCFC;
     border: 1px solid #E9E9E9;
     box-sizing: border-box;
-    box-shadow: -18px 18px 36px rgba(227, 227, 227, 0.2), 18px -18px 36px rgba(227, 227, 227, 0.2), -18px -18px 36px rgba(255, 255, 255, 0.9), 18px 18px 45px rgba(227, 227, 227, 0.9), inset 1px 1px 2px rgba(255, 255, 255, 0.3), inset -1px -1px 2px rgba(227, 227, 227, 0.5);
+    box-shadow: -18px 18px 36px rgb(227 227 227 / 20%), 18px -18px 36px rgb(227 227 227 / 20%), -18px -18px 36px rgb(255 255 255 / 90%), 18px 18px 45px rgb(227 227 227 / 90%), inset 1px 1px 2px rgb(255 255 255 / 30%), inset -1px -1px 2px rgb(227 227 227 / 50%);
     border-radius: 20px;
     transition: all 100ms ease-in-out;
 }
 
 
 .preview {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;
@@ -93,21 +100,23 @@
     object-fit: inherit;
     border-radius: 16px;
     background-repeat: no-repeat;
-    width: 559px;
-    height: 630px;
+    width: 100%;
+    height: clamp(590px, 46.875vw + 0.01em, 900px);
     margin: 0;
     z-index: 1;
 }
 
+@media(max-width:1550px) {
+    .container {
+        margin-bottom: 0;
 
-/* #video {
-    position: absolute;
-    inset: 0;
-   
-    opacity: 0;
-    transition: opacity 500ms ease-in-out;
+    }
 
-} */
+    #img, #video {
+        height: clamp(590px, 45.570vw + 0.01em, 665px);
+    }
+}
+
 
 .options {
     position: absolute !important;
@@ -121,7 +130,7 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: 559px;
+    width: clamp(420px, 38.542vw + 0.01em, 740px);
 }
 
 .title {
@@ -152,7 +161,6 @@
     border: none !important;
     outline: none !important;
     box-sizing: border-box !important;
-    /* border-radius: 4px !important; */
     background: transparent !important;
     font-style: normal !important;
     font-weight: bold !important;
@@ -168,7 +176,6 @@
     text-align: right;
     color: #565656;
 }
-
 
 .buy {
     width: 100% !important;
@@ -192,10 +199,8 @@
     box-shadow: 2px 1000px 1px #fff inset !important;
 }
 
-
 .Description_Perks {
     width: 100%;
-    /* height: 230px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -219,29 +224,18 @@
     padding: 0;
 }
 
-/* .info {
-    margin: 0;
-    padding: 0;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    color: #565656;
-} */
-
 .readHide {
     display: flex;
     align-items: center;
     justify-content: center;
     font-style: normal;
-    width: 100%;
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
     text-decoration-line: underline;
     text-align: center;
     color: #979797;
-    margin: 0px;
+    margin: 0 auto;
     cursor: pointer;
 }
 
@@ -265,15 +259,14 @@
     width: 125px;
     height: 39px;
     border-radius: 50px;
-    margin:0 auto;
-    margin-top:10px;
+    margin: 0 auto;
+    margin-top: 10px;
     transition: transform .15s ease-in-out;
 }
 
-@media (min-width:900px){
-    .avail_perk_button:hover{
-        transform:translateY(-2px);
-
+@media (min-width:900px) {
+    .avail_perk_button:hover {
+        transform: translateY(-2px);
     }
 }
 
@@ -285,14 +278,13 @@
     display: flex;
     align-items: flex-start;
     box-sizing: border-box;
-    width: 1214px;
+    width: 92%;
     height: auto;
-    padding: 0 25px 45px 25px;
+    padding: 0 0 45px 0;
     gap: 84px;
     margin-bottom: 34px;
     border-bottom: 2px solid #EFEFEF;
 }
-
 
 .bottomHeading {
     font-style: normal;
@@ -301,7 +293,6 @@
     line-height: 32px;
     color: #23262F;
     margin-bottom: 25px;
-
 }
 
 .Bottom_part {
@@ -328,125 +319,99 @@
 
 .poly {
     margin: 0;
+    transition: all 0.2s ease-in-out;
 }
 
-.poly:hover {
-    transform: translateY(-2px);
+@media(min-width: 899px) {
+    .poly:hover {
+        transform: translateY(-2px);
+    }
 }
 
 /* More Nfts styling */
-
 .more {
     font-style: normal;
     font-weight: bold;
     font-size: 32px;
     line-height: 44px;
     color: #000000;
-    width: 100%;
+    width: 92%;
     height: 100%;
 }
 
-/* Responsive */
-
-@media only screen and (max-width: 1441px) {
-    .Wrapper {
-        padding: 45px 103px;
-    }
+.carousel {
+    width: 92%;
 }
 
-@media only screen and (max-width: 1379px) {
-    .Wrapper {
-        padding: 45px 80px;
-    }
-
-    .details {
-        width: 500px;
+@media(max-width:1250px) {
+    .section {
+        width: 93%;
     }
 
     .bottom {
-        width: 1151px;
+        width: 93%;
+    }
+
+    .more {
+        width: 93%;
+    }
+
+    .carousel {
+        width: 93%;
+    }
+}
+
+@media(max-width:1150px) {
+    .section {
+        width: 95%;
+    }
+
+    .bottom {
+        width: 95%;
+    }
+
+    .more {
+        width: 95%;
+    }
+
+    .carousel {
+        width: 95%;
+    }
+}
+
+@media(max-width:1080px) {
+    .section {
+        width: 100%;
+    }
+
+    .bottom {
+        width: 100%;
+    }
+
+    .more {
+        width: 100%;
+    }
+
+    .carousel {
+        width: 100%;
     }
 }
 
 @media only screen and (max-width: 1307px) {
-    .Wrapper {
-        padding: 45px;
-    }
-
-    .details {
-        width: 475px;
-    }
-
     .title {
         font-size: 38px;
-    }
-
-    .bottom {
-        width: 1100px;
     }
 }
 
 
 @media only screen and (max-width: 1200px) {
-    .Wrapper {
-        padding: 45px 55px;
-    }
-
-    .details {
-        width: 420px;
-    }
-
     .title {
         font-size: 35.75px;
     }
 
-    .bg {
-        width: 565px;
-        height: 650px
-    }
-
-    #img, #video {
-        width: 515px;
-        height: 600px;
-    }
-
-    .bottom {
-        width: 1000px;
-    }
 }
 
-@media only screen and (max-width: 1120px) {
-    .Wrapper {
-        padding: 45px 40px;
-    }
-
-    .details {
-        width: 370px;
-    }
-
-    .bg {
-        width: 500px;
-        height: 600px;
-        padding: 25px;
-    }
-
-    #img, #video {
-        width: 445px;
-        height: 550px;
-    }
-
-    .bottom {
-        width: 887px;
-    }
-}
-
-
-
-@media only screen and (max-width: 1025px) {
-    .Wrapper {
-        padding: 45px 80px;
-    }
-
+@media only screen and (max-width: 1023px) {
     .back {
         margin-left: 0;
     }
@@ -467,22 +432,14 @@
         align-items: center;
     }
 
-    .bg {
-        height: 638px;
+    .bg, .bgvid {
         margin-bottom: 20px;
-        /* width: auto; */
     }
 
     .preview {
         width: 100%;
         height: 100%;
 
-    }
-
-    #img, #video {
-        width: 100%;
-        height: 585px;
-        object-fit: inherit;
     }
 
     .title {
@@ -532,10 +489,6 @@
 
 
 @media only screen and (max-width: 700px) {
-    .Wrapper {
-        padding: 45px;
-    }
-
     .section {
         border-bottom: none;
         margin-bottom: 31px;
@@ -543,16 +496,20 @@
     }
 
     .bg {
-        flex-grow: 1;
-        width: 100%;
+        width: 80%;
         height: auto;
-        margin-bottom: 20px;
-        padding: 20px;
+        padding: clamp(20px, 3.571vw + 0.01em, 25px);
+    }
+
+    .bgvid {
+        width: 80%;
+        height: auto;
+        padding: clamp(20px, 3.571vw + 0.01em, 25px);
     }
 
     #img, #video {
         width: 100%;
-        height: 100%;
+        height: clamp(322px, 85.714vw, 600px);
         object-fit: inherit;
     }
 
@@ -569,14 +526,13 @@
         align-items: center;
         justify-content: center;
         font-style: normal;
-        width: 100%;
+        width: fit-content;
         font-weight: 600;
         font-size: 16px;
         line-height: 16px;
         text-decoration-line: underline;
         text-align: center;
         color: #979797;
-        margin-top: 20px;
     }
 
     .ul {
@@ -603,11 +559,36 @@
 
 }
 
-@media only screen and (max-width: 390px) {
-    .Wrapper {
-        padding: 30px 20px;
+@media only screen and (max-width: 500px) {
+    .bg {
+        width: 90%;
+        height: auto;
+
+    }
+
+    .bgvid {
+        width: 90%;
+        padding: max(1px, 4vw);
+        height: auto;
     }
 }
+
+@media only screen and (max-width: 390px) {
+    .Wrapper {
+        padding: 30px 0;
+    }
+
+    .Description_Perks {
+        padding: 15px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .bg, .bgvid {
+        width: 100%;
+    }
+}
+
 
 /* for width more than 1500px */
 
@@ -617,7 +598,7 @@
 
 
 /* //////////////////////////////////////////////////////MODAL DIV////////////////////////////// */
-.modalDiv.show{
+.modalDiv.show {
     top: 0;
     right: 0;
     bottom: 0;
@@ -629,6 +610,6 @@
     background: rgba(0, 0, 0, 0.201);
 }
 
-.modalDiv.hide{
+.modalDiv.hide {
     display: none;
 }

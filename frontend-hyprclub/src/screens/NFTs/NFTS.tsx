@@ -18,7 +18,7 @@ import ItemsCarousel from "../../components/NFTs/ItemsCarousel/ItemsCarousel";
 
 
 
-const Desc = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+const Desc = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, nemo fugit quibusdam tenetur quam, praesentium voluptate repudiandae incidunt illum itaque mollitia natus sint hic corporis ratione? Aliquid est soluta quo."
 
 
 const users = [
@@ -72,37 +72,37 @@ const NFTS = ({ Video }: Props) => {
                 <p className={styles.back}><Link className={styles.link} to="#"><ArrowLeft size={20} id={styles.backArrow} /> <span className={styles.spn}>Go Back</span></Link></p>
                 <div className={styles.section}>
                     <div className={styles.container}>
-                        <div className={styles.bg}>
-                            <div className={styles.preview}>
-                                {Video ? (<iframe id={styles.video} src="https://cdn.hyprclub.com/alumini/golden.mp4" allowFullScreen />) : (<img id={styles.img} src="./images/nft-image.png" alt="NFT" />)
-                                }
-                                <Option className={styles.options} />
-                            </div>
-                        </div>
-
-
+                        {Video ?
+                            (<div className={styles.bgvid}>
+                                <div className={styles.preview}>
+                                    <iframe id={styles.video} src="https://cdn.hyprclub.com/alumini/golden.mp4" allowFullScreen />
+                                    <Option className={styles.options} />
+                                </div>
+                            </div>) : (
+                                <div className={styles.bg}>
+                                    <div className={styles.preview}><img id={styles.img} src="./images/nft-image.png" alt="NFT" />
+                                        <Option className={styles.options} />
+                                    </div>
+                                </div>)
+                        }
                         <div className={styles.details}>
                             <h1 className={styles.title}>Edward Scissorhands</h1>
                             <div className={styles.cost}>
                                 <GradBorder className={styles.price} disable={true} text="10,075 INR" />
                                 <span className={styles.Stock}>10 in Stock</span>
                             </div>
-
                             <GradBorder text="Buy Now" className={styles.buy} />
-
                             <div className={styles.Description_Perks}>
                                 <h3 className={styles.subHeading}>Description</h3>
                                 <ReadMore>
                                     {Desc}
                                 </ReadMore>
                             </div>
-
                             <div className={styles.Description_Perks}>
                                 <h3 className={styles.subHeading}>Perks</h3>
                                 <Perks item={Perk_list} Bought={bought} />
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className={styles.bottom}>
@@ -116,8 +116,10 @@ const NFTS = ({ Video }: Props) => {
                     </div>
                 </div>
                 <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
-                <ItemsCarousel />
-            </div>
+                <div className={styles.carousel}>
+                    <ItemsCarousel />
+                </div >
+            </div >
         </>
     );
 };
