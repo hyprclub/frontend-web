@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 // import { style } from "@mui/system";
 
 import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 import {
   getFirestore,
   // getDocs,
@@ -64,6 +65,7 @@ interface Props {
 }
 
 const NFTS = ({ Video }: Props) => {
+  let navigate = useNavigate();
   const [video, setVideo] = useState(false);
   const { docId } = useParams();
   const db = getFirestore(firebaseApp);
@@ -223,7 +225,9 @@ const NFTS = ({ Video }: Props) => {
         },
       };
       // console.log(paymentProps);
-      await displayRazorpay(paymentProps);
+      // this will return payment status - Payment Successful | Payment Failed
+      displayRazorpay(paymentProps);
+      navigate(`/${userData?.username}`);
     } catch (error) {
       console.log("nft paymentprops: ", error);
     }
