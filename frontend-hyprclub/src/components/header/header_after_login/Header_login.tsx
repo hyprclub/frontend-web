@@ -104,7 +104,7 @@ const Header_login = () => {
                 </Link>
               )}
               {visibleNav == true &&
-                <Link to="register">
+                <Link to="/register">
                   <button className={styles.signbtn}>
                     <span className={styles.signbtntxt}>Sign up</span>
                   </button>
