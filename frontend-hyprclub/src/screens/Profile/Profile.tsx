@@ -38,15 +38,17 @@ const navLinks = ["NFT"];
 
 const Profile = () => {
   const { username } = useParams();
+  const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
   const [profileData, setProfileData] = useState<any | null>({});
   const [myProfile, setMyProfile] = useState(false);
-  const [docId, setDocId] = useState("");
   const [profilePhoto, setProfilePhoto] = useState<any | null>();
   const [coverPhoto, setCoverPhoto] = useState<any | null>();
+  const [ownedNft, setOwnedNft] = useState<any>([]);
+  const [createdNft, setCreatedNft] = useState<any>([]);
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
@@ -56,28 +58,87 @@ const Profile = () => {
       where("username", "==", username)
     );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((docs) => {
-      setDocId(docs.id);
-      if (docs.id === userData?.uid) {
-        setMyProfile(true);
-      } else {
-        setMyProfile(false);
-        updateDoc(doc(db, "hyprUsers", docs.id), {
-          profileViewsCount: docs.data().profileViewsCount + 1,
+    if (querySnapshot) {
+      querySnapshot.forEach((docs) => {
+        if (docs.exists() && uid) {
+          checkMyProfile(docs.id);
+          if (docs.id === uid) {
+          } else {
+            updateDoc(doc(db, "hyprUsers", docs.id), {
+              profileViewsCount: docs.data().profileViewsCount + 1,
+            })
+              .then(() => {
+                console.log("+1");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        } else {
+          console.log("User Doesn't exists");
+        }
+        setProfileData(docs.data());
+        GetOwnedNFT(docs.id);
+        GetCreatedNFT(docs.id, docs.data().isCreator);
+        GetProfilePhoto(docs.id);
+        GetCoverPhoto(docs.id);
+
+        console.log(docs.data());
+        logEvent(analytics, "page_view");
+      });
+    } else {
+      console.log("No User Found");
+    }
+  };
+
+  const GetOwnedNFT = async (uid: any) => {
+    if (uid) {
+      await getDocs(query(collection(db, "nfts"), where("ownerUid", "==", uid)))
+        .then((querySnapShot) => {
+          let nftIds: string[] = [];
+          if (querySnapShot) {
+            querySnapShot.forEach((element) => {
+              if (element) {
+                nftIds.push(element.id);
+                console.log(nftIds);
+              } else {
+              }
+            });
+          } else {
+          }
+          setOwnedNft(nftIds);
         })
-          .then(() => {
-            console.log("+1");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-      setProfileData(docs.data());
-      GetProfilePhoto(docs.id);
-      GetCoverPhoto(docs.id);
-      console.log(docs.data());
-      logEvent(analytics, "page_view");
-    });
+        .catch((error) => {
+          console.error(error.code);
+        });
+    } else {
+    }
+  };
+
+  const GetCreatedNFT = async (uid: any, creator: any) => {
+    if (uid && creator) {
+      await getDocs(
+        query(collection(db, "nfts"), where("creatorUid", "==", uid))
+      )
+        .then((querySnapShot) => {
+          let nftIds: string[] = [];
+          if (querySnapShot) {
+            querySnapShot.forEach((element) => {
+              if (element) {
+                nftIds.push(element.id);
+                console.log(nftIds);
+              } else {
+              }
+            });
+          } else {
+          }
+          setCreatedNft(nftIds);
+        })
+        .catch((error) => {
+          console.error(error.code);
+        });
+    } else {
+    }
   };
 
   const GetProfilePhoto = async (uid: any) => {
@@ -123,19 +184,20 @@ const Profile = () => {
         });
     }
   };
-  const ProfileViewCount = async () => {
-    const db = getFirestore(firebaseApp);
-
-    const ref = doc(db, "hyprUsers", docId);
-    if (docId === uid) {
-      //do nothing
+  const checkMyProfile = (id: any) => {
+    if (id === uid) {
+      setMyProfile(true);
     } else {
+      setMyProfile(false);
     }
   };
 
   useEffect(() => {
-    fetchData(username);
-    ProfileViewCount();
+    if (username) {
+      fetchData(username);
+    } else {
+    }
+    // ProfileViewCount();
   }, [username]);
 
   const socials = [
@@ -254,7 +316,13 @@ const Profile = () => {
                   </div>
                 )} */}
                   {activeIndex === 0 && (
-                    <Nft star={["1", "2", "3"]} profile={myProfile} />
+                    <Nft
+                      user={profileData}
+                      star={["1", "2", "3"]}
+                      profile={myProfile}
+                      owned={ownedNft}
+                      created={createdNft}
+                    />
                   )}
                 </div>
               </div>
