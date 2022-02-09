@@ -13,7 +13,7 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { logEvent } from "firebase/analytics";
-import { firebaseApp, analytics } from "../../firebaseConfig";
+import { db, firebaseApp, analytics } from "../../firebaseConfig";
 import {
   getFirestore,
   collection,
@@ -31,7 +31,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-import { profile } from "console";
+// import { profile } from "console";
 // import { isStepDivisible } from "react-range/lib/utils";
 
 const navLinks = ["NFT"];
@@ -50,7 +50,6 @@ const Profile = () => {
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
-    const db = getFirestore(firebaseApp);
     const q = query(
       collection(db, "hyprUsers"),
       where("username", "==", username)
@@ -124,8 +123,6 @@ const Profile = () => {
     }
   };
   const ProfileViewCount = async () => {
-    const db = getFirestore(firebaseApp);
-
     const ref = doc(db, "hyprUsers", docId);
     if (docId === uid) {
       //do nothing
@@ -221,6 +218,8 @@ const Profile = () => {
               username={profileData?.username}
               category={profileData?.category}
               name={profileData?.name}
+              email={profileData?.email}
+              uid={profileData?.uid}
               portfolioUrl={profileData.socials?.portfolioUrl}
               bio={profileData?.bio}
               joiningDate={profileData?.dateOfJoining}

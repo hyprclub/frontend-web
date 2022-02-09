@@ -10,6 +10,7 @@ import { X } from "phosphor-react";
 import { analytics } from "../../firebaseConfig";
 import { logEvent } from "firebase/analytics";
 import displayRazorpay from "../../razorpay/index";
+import { paymentDetailsSchema } from "../../razorpay/payment.saveData";
 interface Item {
   title: string;
   url: string;
@@ -20,6 +21,8 @@ interface UserType {
   item: Item[];
   name: any;
   username: any;
+  uid: string;
+  email: string;
   category: any;
   portfolioUrl: any;
   bio: any;
@@ -34,6 +37,8 @@ const User = ({
   item,
   name,
   username,
+  email,
+  uid,
   category,
   portfolioUrl,
   bio,
@@ -63,10 +68,30 @@ const User = ({
   const handleSayThanks = (e: any) => {
     e.preventDefault();
     logEvent(analytics, "thanks_event_created", userData?.username);
-    displayRazorpay(parseInt(thanksValue), "Creator Support");
-    // displayRazorpay();
-    closeModal();
     console.log("Pay User " + thanksValue);
+    try {
+      const paymentProps: paymentDetailsSchema = {
+        buyerUID: userData?.uid,
+        buyerUsername: userData?.username,
+        buyerEmail: userData?.email,
+        buyerName: userData?.name,
+        buyerPhoneNumber: userData?.phone,
+        creatorSupportUID: uid,
+        recipientData: {
+          reciepientUID: uid,
+          recipientUsername: username,
+          recipientEmail: email,
+        },
+        amount: parseInt(thanksValue),
+        transactionType: "Creator Support",
+        transactionSuccess: "in process",
+      };
+      console.log(paymentProps);
+      displayRazorpay(paymentProps);
+      closeModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

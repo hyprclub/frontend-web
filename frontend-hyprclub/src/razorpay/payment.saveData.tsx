@@ -1,15 +1,28 @@
 import { db } from "./../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 export interface paymentDetailsSchema {
-  senderID: string;
-  reciepientID: string;
+  buyerUID: string;
+  buyerUsername: string;
+  buyerEmail: string;
+  buyerName?: string;
+  buyerPhoneNumber?: string;
+  recipientData?: {
+    reciepientUID?: string; //include this
+    recipientUsername: string;
+    recipientEmail?: string; // include this
+  };
   amount: number;
-  timestamp: string;
+  timestamp?: string;
   transactionSuccess: "success" | "failed" | "in process";
   transactionType: "Creator Support" | "NFT Purchase";
-  creatorSupportID?: string;
-  purchasedNftID?: string;
-  razorpayOrderData: any;
+  creatorSupportUID?: string;
+  purchasedNftUID?: string;
+  purchasedNftData?: {
+    nftContractAddress: string;
+    nftName: string;
+    nftDescription: string;
+  };
+  razorpayOrderData?: any;
   razorpayPaymentId?: string;
   razorpaySignature?: string;
   razorpayOrderId?: string;
