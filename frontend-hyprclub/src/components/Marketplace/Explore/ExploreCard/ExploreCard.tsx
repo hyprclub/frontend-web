@@ -63,7 +63,11 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
                       setCreatorPhoto(url);
                     })
                     .catch((err) => {
-                      console.error(err);
+                      if (err.code === "storage/object-not-found") {
+                        setCreatorPhoto("/images/content/avatar-big.jpg");
+                      } else {
+                        console.error(err.code);
+                      }
                     });
                 }
               })
