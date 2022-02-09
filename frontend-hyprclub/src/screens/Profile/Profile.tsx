@@ -87,6 +87,7 @@ const Profile = () => {
       });
     } else {
       console.log("No User Found");
+      return;
     }
   };
 
@@ -104,6 +105,7 @@ const Profile = () => {
               }
             });
           } else {
+            return;
           }
           setOwnedNft(nftIds);
         })
@@ -130,6 +132,7 @@ const Profile = () => {
               }
             });
           } else {
+            return;
           }
           setCreatedNft(nftIds);
         })
@@ -148,9 +151,12 @@ const Profile = () => {
       const url = await getDownloadURL(ref(storagePFref));
 
       setProfilePhoto(url);
-    } catch (error) {
-      setProfilePhoto("/images/content/avatar-big.jpg");
-      console.error(error);
+    } catch (err: any) {
+      if (err.code === "storage/object-not-found") {
+        setProfilePhoto("/images/content/avatar-big.jpg");
+      } else {
+        console.error(err.code);
+      }
     }
   };
   const GetCoverPhoto = async (uid: any) => {
@@ -160,8 +166,12 @@ const Profile = () => {
 
       const coverUrl = await getDownloadURL(ref(storageCoverRef));
       setCoverPhoto(coverUrl);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      if (error.code === "storage/object-not-found") {
+        setCoverPhoto("images/bg-img.png");
+      } else {
+        console.error(error.code);
+      }
     }
   };
   const handleFileChange = async (event: any) => {
@@ -195,9 +205,10 @@ const Profile = () => {
     if (username) {
       fetchData(username);
     } else {
+      return;
     }
     // ProfileViewCount();
-  }, [username]);
+  }, []);
 
   const socials = [
     {
