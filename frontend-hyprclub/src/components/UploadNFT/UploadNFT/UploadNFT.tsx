@@ -226,7 +226,7 @@ const UploadNFT = () => {
             <div className={styles.ItemCred}>
               <InputField
                 typeOfInput="text"
-                lableText="ENTER COLLECTION TAG"
+                lableText="ENTER COLLECTION NAME"
                 garyBold={true}
                 className={styles.Input}
                 onChange={(e: any) => setCollection(e.target.value)}

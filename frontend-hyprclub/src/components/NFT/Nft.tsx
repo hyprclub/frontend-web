@@ -91,7 +91,7 @@ const Nft = ({ star, profile, user, owned, created }: any) => {
             onClick={staredClick}
             className={clsx(styles.owned, stared && styles.active)}
           >
-            Stared
+            Starred
           </span>
         )}
       </p>

@@ -330,7 +330,7 @@ const Profile = () => {
                   {activeIndex === 0 && (
                     <Nft
                       user={profileData}
-                      star={["1", "2", "3"]}
+                      star={profileData?.savedNfts}
                       profile={myProfile}
                       owned={ownedNft}
                       created={createdNft}
