@@ -78,7 +78,7 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
-        if (user.emailVerified) {
+        if (user?.emailVerified) {
           dispatch(UserDataActions.login(user));
         } else {
           sendEmailVerification(user)
@@ -131,10 +131,25 @@ function App() {
     const run = async () => {
       if (loggedIn && uid) {
         const storagePFref = ref(storage, "users/" + uid + "/profile.jpg");
-        const profileDpUrl = await getDownloadURL(ref(storagePFref));
-        dispatch(
-          UserDataActions.updateUserDp({ profilePhotoUrl: profileDpUrl })
-        );
+        await getDownloadURL(ref(storagePFref))
+          .then((url) => {
+            dispatch(UserDataActions.updateUserDp({ profilePhotoUrl: url }));
+          })
+          .catch((err) => {
+            if (err.code === "storage/object-not-found") {
+              dispatch(
+                UserDataActions.updateUserDp({
+                  profilePhotoUrl: "/images/content/avatar-big.jpg",
+                })
+              );
+            } else {
+              dispatch(
+                UserDataActions.updateUserDp({
+                  profilePhotoUrl: "/images/content/avatar-big.jpg",
+                })
+              );
+            }
+          });
       } else {
         console.log("Logged Out profile one");
       }
