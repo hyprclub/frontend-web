@@ -66,11 +66,13 @@ const NFTS = ({ Video }: Props) => {
       name: ownerData.name,
       position: "Owner",
       avatar: ownerImage || "../../images/logo-dark.jpg",
+      profile: "/" + ownerData.username,
     },
     {
       name: creatorData.name,
       position: "Creator",
       avatar: creatorImage || "../../images/logo-dark.jpg",
+      profile: "/" + creatorData.username,
     },
   ];
   useEffect(() => {
@@ -320,8 +322,8 @@ const NFTS = ({ Video }: Props) => {
             <Polygon className={styles.poly} />
           </div>
         </div>
-        <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
-        <ItemsCarousel />
+        {/* <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
+        <ItemsCarousel /> */}
       </div>
     </>
   );

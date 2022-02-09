@@ -21,7 +21,7 @@ const Items = ({
   return (
     <div className={cn(styles.items, className)}>
       <div className={clsx(styles.list, "row")}>
-        {items.length !== 0 ? (
+        {items?.length !== 0 ? (
           items.map((x: any, index: any) =>
             nft ? (
               <Link className="col-md-6 col-lg-4" to="/nft" key={index}>
