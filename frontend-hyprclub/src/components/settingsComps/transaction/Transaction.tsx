@@ -44,9 +44,9 @@ const Transaction = ({ transactionData }: any) => {
           ))}
         </div>
 
-        <div className="d-flex justify-content-center mt-5">
+        {/* <div className="d-flex justify-content-center mt-5">
           <button className={styles.loadMoreBtn}>Load More</button>
-        </div>
+        </div> */}
       </div>
     </>
   );
