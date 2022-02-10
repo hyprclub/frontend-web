@@ -60,7 +60,7 @@ const User = ({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-    }
+    } 
   }, [showModal]);
 
   const [creator, setCreator] = useState(true);
@@ -86,7 +86,7 @@ const User = ({
         transactionType: "Creator Support",
         transactionSuccess: "in process",
       };
-      console.log(paymentProps);
+      // console.log(paymentProps);
       displayRazorpay(paymentProps);
       closeModal();
     } catch (error) {

@@ -88,6 +88,7 @@ async function displayRazorpay(paymentProps: any): Promise<void> {
       paymentDetails.transactionSuccess = "success";
       try {
         savePayment(paymentDetails);
+        console.log("Payment Success...");
         // transferNftOwnership
       } catch (error) {
         console.log("error while savePayment ", error);

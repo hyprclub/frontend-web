@@ -15,14 +15,12 @@ import { useParams } from "react-router";
 import { logEvent } from "firebase/analytics";
 import { db, firebaseApp, analytics } from "../../firebaseConfig";
 import {
-  getFirestore,
   collection,
   query,
   where,
   getDocs,
   doc,
   updateDoc,
-  setDoc,
 } from "firebase/firestore";
 import {
   getStorage,
@@ -38,7 +36,6 @@ const navLinks = ["NFT"];
 
 const Profile = () => {
   const { username } = useParams();
-  const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
