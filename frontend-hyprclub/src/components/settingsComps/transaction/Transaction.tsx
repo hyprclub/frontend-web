@@ -14,45 +14,7 @@ import {
 } from "firebase/firestore";
 import { RootStateOrAny, useSelector } from "react-redux";
 
-const Transaction = () => {
-  const [transactionData, setTransactionData] = useState<any>([]);
-  const { loggedIn, uid } = useSelector(
-    (state: RootStateOrAny) => state?.userData
-  );
-  const userData = useSelector((state: RootStateOrAny) => state?.userData);
-
-  useEffect(() => {
-    const run = async () => {
-      let transactions: any = [];
-      if (uid && loggedIn) {
-        // console.log(uid);
-        // console.log(loggedIn);
-        await getDocs(
-          query(collection(db, "paymentRecords"), where("buyerUID", "==", uid))
-        )
-          .then((snapshot) => {
-            snapshot.forEach((docs) => {
-              if (docs.exists()) {
-                transactions.push(docs.data());
-              } else {
-                transactions.push("Null");
-              }
-            });
-            console.log(transactions);
-            setTransactionData(transactions);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        // console.log(transactions[0].amount)
-      } else {
-        console.log("Not Logged In");
-      }
-    };
-    // console.log(transactionData[0].amount)
-
-    run();
-  }, [uid, loggedIn]);
+const Transaction = ({ transactionData }: any) => {
   return (
     <>
       <div className={styles.mainDiv}>
