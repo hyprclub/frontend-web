@@ -173,16 +173,6 @@ const Register = () => {
               current.getMonth() + 1
             }/${current.getFullYear()}`;
 
-            const profilePhotoRef = ref(
-              storage,
-              "users/" + uid + "profile.jpg"
-            );
-
-            // const uploadTask =  await uploadBytesResumable(
-            //   profilePhotoRef,
-
-            // )
-
             await setDoc(doc(db, "hyprUsers", uid), {
               name: data.name,
               email: data.email,
@@ -217,6 +207,7 @@ const Register = () => {
                 youtubeProfileUrl: "",
               },
               savedNfts: [],
+              soldNfts: [],
               followers: [],
               following: [],
               followerCount: 0,
@@ -300,6 +291,7 @@ const Register = () => {
                 dateOfJoining: date,
                 isKycDone: false,
                 savedNfts: [],
+                soldNfts: [],
                 followers: [],
                 following: [],
                 followerCount: 0,
@@ -383,6 +375,7 @@ const Register = () => {
                   comments: "",
                 },
                 savedNfts: [],
+                soldNfts: [],
                 dateOfJoining: date,
                 isKycDone: false,
                 followers: [],

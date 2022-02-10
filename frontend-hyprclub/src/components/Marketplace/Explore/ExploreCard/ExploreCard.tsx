@@ -17,6 +17,7 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
   const [price, setPrice] = useState(0);
   const [creatorPhoto, setCreatorPhoto] = useState("");
   const [creatorUsername, setCreatorUsername] = useState("");
+  const [video, setVideo] = useState(false);
   const [collectionTag, setCollectionTag] = useState("");
   const [idToken, setIdToken] = useState("");
 
@@ -37,6 +38,8 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
             setPrice(docs.data().price);
             setCollectionTag(docs.data().collectionTag);
             setIdToken(docs.data().token);
+
+            setVideo(docs.data().video);
             axios
               .get(
                 "https://cdn.hyprclub.com/" +
@@ -88,7 +91,17 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
         <div className={styles.body}>
           <div className={styles.line}>
             <div className={clsx(styles.imgAndBtn, "position-relative w-100")}>
-              <img className={styles.image} src={item.image} alt="" />
+              {video ? (
+                <video
+                  id="video"
+                  className={styles.image}
+                  src={item.animation_url || item.image}
+                  autoPlay
+                  loop
+                />
+              ) : (
+                <img className={styles.image} src={item.image} alt="NFT" />
+              )}
             </div>
             <div className={styles.title}>{item.name}</div>
             <div

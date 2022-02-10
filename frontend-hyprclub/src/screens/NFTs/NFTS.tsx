@@ -130,11 +130,15 @@ const NFTS = ({ Video }: Props) => {
                     );
                     getDownloadURL(ref(storageOwnerRef))
                       .then((url) => {
-                        console.log(url);
                         setOwnerImage(url);
                       })
                       .catch((err) => {
-                        console.log(err);
+                        if (err.code === "storage/object-not-found") {
+                          setOwnerImage("./images/content/avatar-big.jpg");
+                        } else {
+                          console.log(err);
+                          setOwnerImage("./images/content/avatar-big.jpg");
+                        }
                       });
                     setOwnerData(snapshotOwner.data());
                   } else {
@@ -156,11 +160,16 @@ const NFTS = ({ Video }: Props) => {
                     );
                     getDownloadURL(ref(storageCreatorRef))
                       .then((url) => {
-                        console.log(url);
                         setCreatorImage(url);
                       })
                       .catch((err) => {
                         console.log(err);
+                        if (err.code === "storage/object-not-found") {
+                          setCreatorImage("./images/content/avatar-big.jpg");
+                        } else {
+                          console.log(err);
+                          setCreatorImage("./images/content/avatar-big.jpg");
+                        }
                       });
                   }
                 })

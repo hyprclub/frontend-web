@@ -18,7 +18,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { RootStateOrAny, useSelector } from "react-redux";
-const fileTypes = ["GIF", "PNG", "WEBP", "MP4", "MP3"];
+const fileTypes = ["GIF", "PNG", "WEBP", "MP4", "MP3", "JPEG", "JPG"];
 const Categories = ["Art", "Bleh", "Blehh", "Blehh"];
 const items = [
   {
@@ -149,11 +149,18 @@ const UploadNFT = () => {
     if (
       itemname === "" ||
       nft === "" ||
-      coll === "" ||
       desc === "" ||
-      perks === ""
+      perksList.length === 0
     ) {
-      console.log("Feild Empty");
+      if (itemname === "") {
+        console.log("Please Add Title to nft");
+      } else if (nft === "") {
+        console.log("Problem with Internet");
+      } else if (desc === "") {
+        console.log("Please describe the nft");
+      } else if (perksList.length === 0) {
+        console.log("Please add atleast one perk");
+      }
     } else {
       const reqID = "REQNFT" + makeNftId(24);
       await setDoc(doc(db, "nftRequest", reqID), {
@@ -173,7 +180,7 @@ const UploadNFT = () => {
         price: cred,
         description: desc,
         title: itemname,
-        collectionTag: coll,
+        collectionTag: userData?.uid,
         category: category,
       })
         .then(() => {
@@ -208,7 +215,7 @@ const UploadNFT = () => {
             >
               <FileArrowUp size={24} id={styles.Filearrow} />
               <h6 className={styles.fileTypes}>
-                PNG, GIF, WEBP, MP4 or MP3. Max 150MB.
+                PNG, JPEG , GIF, WEBP, MP4 or MP3. Max 150MB.
               </h6>
             </FileUploader>
           </div>
@@ -223,7 +230,7 @@ const UploadNFT = () => {
             />
           </div>
           <div className={styles.Item_stck_prc}>
-            <div className={styles.ItemCred}>
+            {/* <div className={styles.ItemCred}>
               <InputField
                 typeOfInput="text"
                 lableText="ENTER COLLECTION NAME"
@@ -231,7 +238,7 @@ const UploadNFT = () => {
                 className={styles.Input}
                 onChange={(e: any) => setCollection(e.target.value)}
               />
-            </div>
+            </div> */}
             <div className={styles.ItemCred}>
               <InputField
                 typeOfInput="text"
@@ -296,13 +303,13 @@ const UploadNFT = () => {
           </div>
         </div>
         <div className={styles.Bottom}>
-          <div className={styles.Collection}>
+          {/* <div className={styles.Collection}>
             <h3 className={styles.Collection_title}>Choose Collection</h3>
             <h6 className={styles.Collection_sub}>
               Choose an existing collection or create a new one
             </h6>
             <Collection item={items} />
-          </div>
+          </div> */}
           <div className={styles.btns}>
             <GradBorder
               className={styles.Gradbtn}

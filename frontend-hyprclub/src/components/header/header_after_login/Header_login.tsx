@@ -81,7 +81,7 @@ const Header_login = () => {
                   </Link>
                 ))}
               </nav>
-              <form
+              {/* <form
                 className={styles.search}
                 action=""
                 onSubmit={() => handleSubmit()}
@@ -98,7 +98,7 @@ const Header_login = () => {
                 <button className={styles.result}>
                   <Icon name="search" size="20" />
                 </button>
-              </form>
+              </form> */}
               {/* //upload button only of creater */}
               {loggedIn && userData?.isCreator && (
                 // <Link to="#">

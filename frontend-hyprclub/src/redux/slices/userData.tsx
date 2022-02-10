@@ -42,6 +42,7 @@ const initialState = {
     portfolioUrl: undefined,
   },
   savedNfts: [],
+  soldNfts: [],
   nftIds: [],
 };
 
@@ -91,6 +92,7 @@ export const userDataSlice = createSlice({
       state.creatorApproval.approvalStatus =
         payload?.creatorApproval.approvalStatus;
       state.creatorApproval.comments = payload?.creatorApproval.comments;
+      state.soldNfts = payload?.soldNfts;
     },
     updateUserDp: (state, { payload }) => {
       state.profilePhotoUrl = payload?.profilePhotoUrl;

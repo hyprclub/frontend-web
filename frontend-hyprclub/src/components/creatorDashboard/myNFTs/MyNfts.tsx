@@ -98,6 +98,36 @@ const MyNfts = () => {
     run();
   }, [uid, loggedIn]);
 
+  // useEffect(() => {
+  //   const run = async () => {
+  //     let nft: any = [];
+  //     if (uid && loggedIn && userData) {
+  //       await getDocs(
+  //         query(
+  //           collection(db, "nfts"),
+  //           where("nftUid", "in", userData?.soldNfts)
+  //         )
+  //       )
+  //         .then((snapshot) => {
+  //           console.log("snapshot");
+  //           snapshot.forEach((docs) => {
+  //             if (docs.exists()) {
+  //               console.log(docs.data());
+  //             } else {
+  //               console.log("null");
+  //             }
+  //           });
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //         });
+  //     } else {
+  //       console.log("Not Logged In");
+  //     }
+  //   };
+  //   run();
+  // }, [uid, loggedIn]);
+
   const createdHandler = () => {
     setCreated(true);
   };

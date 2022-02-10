@@ -1,5 +1,12 @@
 import { db } from "./../firebaseConfig";
-import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 
 export interface paymentDetailsSchema {
   buyerUID: string;
@@ -34,8 +41,9 @@ const transferNftOwnership = async (
   buyerUID?: string,
   ownerUID?: string
 ) => {
-  if (nftUID) {
+  if (nftUID && ownerUID) {
     const nftDocRef = doc(db, "nfts", nftUID);
+    const ownerDocRef = doc(db, "hyprUsers", ownerUID);
     const nftDocSnap = await getDoc(nftDocRef);
 
     if (nftDocSnap.exists()) {
@@ -45,6 +53,10 @@ const transferNftOwnership = async (
           await updateDoc(nftDocRef, {
             ownerUid: buyerUID,
             forSale: false,
+          }).then(() => {
+            updateDoc(ownerDocRef, {
+              soldNfts: arrayUnion(nftUID),
+            });
           });
         } catch (error) {
           console.log("Owner ids did not match", error);
