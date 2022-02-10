@@ -3,6 +3,7 @@ import cn from "classnames";
 import styles from "./user.module.css";
 import Icon from "../Icon";
 import GradientBorder from "../gradientBorderBtn/GradientBorder";
+import { useNavigate } from "react-router";
 import { useSelector, RootStateOrAny } from "react-redux";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -50,6 +51,8 @@ const User = ({
   const userData = useSelector((state: RootStateOrAny) => state.userData);
   const [thanksValue, setThanksValue] = useState("100.00");
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  const { loggedIn } = useSelector((state: RootStateOrAny) => state?.userData);
 
   const closeModal = () => {
     setShowModal(false);
@@ -70,25 +73,28 @@ const User = ({
     logEvent(analytics, "thanks_event_created", userData?.username);
     console.log("Pay User " + thanksValue);
     try {
-      const paymentProps: paymentDetailsSchema = {
-        buyerUID: userData?.uid,
-        buyerUsername: userData?.username,
-        buyerEmail: userData?.email,
-        buyerPhoto: userData?.profilePhotoUrl,
-        buyerName: userData?.name,
-        buyerPhoneNumber: userData?.phone,
-        creatorSupportUID: uid,
-        recipientData: {
-          reciepientUID: uid,
-          recipientUsername: username,
-          recipientEmail: email,
-        },
-        amount: parseInt(thanksValue),
-        transactionType: "Creator Support",
-        transactionSuccess: "in process",
-      };
-      // console.log(paymentProps);
-      displayRazorpay(paymentProps);
+      if (loggedIn && userData?.uid) {
+        const paymentProps: paymentDetailsSchema = {
+          buyerUID: userData?.uid,
+          buyerUsername: userData?.username,
+          buyerEmail: userData?.email,
+          buyerPhoto: userData?.profilePhotoUrl,
+          buyerName: userData?.name,
+          buyerPhoneNumber: userData?.phone,
+          creatorSupportUID: uid,
+          recipientData: {
+            reciepientUID: uid,
+            recipientUsername: username,
+            recipientEmail: email,
+          },
+          amount: parseInt(thanksValue),
+          transactionType: "Creator Support",
+          transactionSuccess: "in process",
+        };
+        displayRazorpay(paymentProps);
+      } else {
+        navigate("/login");
+      }
       closeModal();
     } catch (error) {
       console.log(error);
