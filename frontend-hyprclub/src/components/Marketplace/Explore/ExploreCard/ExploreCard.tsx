@@ -4,6 +4,7 @@ import styles from "./ExploreCard.module.css";
 import clsx from "clsx";
 import axios from "axios";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 import { firebaseApp } from "../../../../firebaseConfig";
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
 import { useNavigate } from "react-router";
@@ -20,11 +21,11 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
   const [idToken, setIdToken] = useState("");
 
   const handleSendProfile = () => {
-    navigate("/" + creatorUsername);
+    console.log("Hey");
   };
 
   const handleSendNft = () => {
-    navigate("/nft/" + itemFromProps);
+    console.log("hey");
   };
 
   useEffect(() => {
@@ -62,7 +63,11 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
                       setCreatorPhoto(url);
                     })
                     .catch((err) => {
-                      console.error(err);
+                      if (err.code === "storage/object-not-found") {
+                        setCreatorPhoto("/images/content/avatar-big.jpg");
+                      } else {
+                        console.error(err.code);
+                      }
                     });
                 }
               })
@@ -72,15 +77,15 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
           }
         });
       } else {
+        return;
       }
     };
     run();
-  }, [setItem, db, itemFromProps]);
+  }, [db, itemFromProps]);
   return (
     <div className={cn(styles.card, className)}>
-      {/* <Link className={styles.link} to={item.url}> */}
-      <div className={styles.body}>
-        <a onClick={handleSendNft}>
+      <Link className={styles.link} to={`/nft/${itemFromProps}`}>
+        <div className={styles.body}>
           <div className={styles.line}>
             <div className={clsx(styles.imgAndBtn, "position-relative w-100")}>
               <img className={styles.image} src={item.image} alt="" />
@@ -99,9 +104,8 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
                 />
                 <div className={styles.ownerAndUsername}>
                   <p className={styles.owner}>Creator</p>
-                  <a onClick={handleSendProfile}>
-                    <p className={styles.username}>@{creatorUsername}</p>
-                  </a>
+
+                  <p className={styles.username}>@{creatorUsername}</p>
                 </div>
               </div>
               <div className={styles.price}>
@@ -109,9 +113,8 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
               </div>
             </div>
           </div>
-        </a>
-      </div>
-      {/* </Link> */}
+        </div>
+      </Link>
     </div>
   );
 };

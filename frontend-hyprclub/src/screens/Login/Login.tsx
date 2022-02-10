@@ -22,7 +22,7 @@ import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { Key } from "phosphor-react";
 
 const Login = () => {
-  const [data, setData] = useState({email : "" , password : ""});
+  const [data, setData] = useState({ email: "", password: "" });
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
@@ -38,15 +38,16 @@ const Login = () => {
     console.log({ data });
   };
 
-  const makeRandomString = (len : number) =>{
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const makeRandomString = (len: number) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const characterLengths = characters.length;
-    for( let i = 0 ; i< len ; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characterLengths));
-    } 
+    for (let i = 0; i < len; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characterLengths));
+    }
     return result;
-}
+  };
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
@@ -67,7 +68,7 @@ const Login = () => {
               console.log("User Data Exits");
             } else {
               console.log("Set Doc");
-              const username = name?.replaceAll(" ",'') + makeRandomString(5);
+              const username = name?.replaceAll(" ", "") + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,
@@ -99,11 +100,7 @@ const Login = () => {
                 },
                 dateOfJoining: date,
                 isKycDone: false,
-                nfts: {
-                  purchasedNft: [],
-                  createdNft: [],
-                  savedNft: [],
-                },
+                savedNfts: [],
                 followers: [],
                 following: [],
                 followerCount: 0,
@@ -144,9 +141,9 @@ const Login = () => {
         const photoUrl = userCredentials.user.photoURL;
         const phone = userCredentials.user.phoneNumber;
         const current = new Date();
-         const date = `${current.getDate()}/${
-             current.getMonth() + 1
-           }/${current.getFullYear()}`;
+        const date = `${current.getDate()}/${
+          current.getMonth() + 1
+        }/${current.getFullYear()}`;
 
         getDoc(doc(db, "hyprUsers", uid))
           .then((querySnapshot) => {
@@ -154,7 +151,7 @@ const Login = () => {
               console.log("User Data Exits");
             } else {
               console.log("Set Doc");
-              const username = name?.replaceAll(" ",'') + makeRandomString(5);
+              const username = name?.replaceAll(" ", "") + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {
                 name: name,
                 email: email,
@@ -186,11 +183,7 @@ const Login = () => {
                 },
                 dateOfJoining: date,
                 isKycDone: false,
-                nfts: {
-                  purchasedNft: [],
-                  createdNft: [],
-                  savedNft: [],
-                },
+                savedNfts: [],
                 followers: [],
                 following: [],
                 followerCount: 0,
@@ -215,7 +208,6 @@ const Login = () => {
           .catch((error) => {
             console.log(error);
           });
-        
       })
       .catch((error) => {
         console.log(error);
@@ -253,8 +245,8 @@ const Login = () => {
 
   const resetPassword = async (e: React.FormEvent<any>) => {
     sendPasswordResetEmail(auth, resetEmail, {
-      url: "http://localhost:3000/login"
-    })
+      url: "http://localhost:3000/login",
+    });
     console.log("Email sent");
   };
 
@@ -302,7 +294,11 @@ const Login = () => {
                 lableText={"Password"}
                 required
               />
-              <p className="forgotPassword"><a onClick={() => setForgotPass(true)} className='link'>Forgot Password?</a></p>
+              <p className="forgotPassword">
+                <a onClick={() => setForgotPass(true)} className="link">
+                  Forgot Password?
+                </a>
+              </p>
               <ButtonItself
                 onClick={(e: React.FormEvent<HTMLInputElement>) =>
                   handleSubmit(e)
@@ -318,34 +314,44 @@ const Login = () => {
                 purpose={"Login"}
               />
             </div>
-            {forgotPass && <div className="forgotPasswordDiv">
-                        <i onClick={()=> setForgotPass(false)} className="leftArr bi bi-arrow-left"></i>
-                            <div className='d-flex flex-column justify-content-center align-items-center'>
-                                <Key className='key' size={64} weight="bold" />
-                                <h3 className='forgotPasstext text-center'>Forgot Password?</h3>
-                                <p className='text-center'>Dont worry, it happens! Please enter your registered email and we will send you a link to reset your password.</p>
-                                <form className='w-100' action="#">
-                                  <InputField
-                                    required
-                                    lableText='ENTER EMAIL ID'
-                                    typeOfInput='email'
-                                    garyBold
-                                    placeholder='example@hyprclub.com'
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                      setResetEmail(e.target.value)
-                                    }
-                                  />
-                                  <ButtonItself
-                                    className='my-4 p-2'
-                                    full
-                                    btnPurpose={"Reset Password"}
-                                    onClick={(e: React.FormEvent<HTMLInputElement>) =>
-                                      resetPassword(e)
-                                    }
-                                  />
-                                </form>
-                            </div>
-                    </div>}
+            {forgotPass && (
+              <div className="forgotPasswordDiv">
+                <i
+                  onClick={() => setForgotPass(false)}
+                  className="leftArr bi bi-arrow-left"
+                ></i>
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <Key className="key" size={64} weight="bold" />
+                  <h3 className="forgotPasstext text-center">
+                    Forgot Password?
+                  </h3>
+                  <p className="text-center">
+                    Dont worry, it happens! Please enter your registered email
+                    and we will send you a link to reset your password.
+                  </p>
+                  <form className="w-100" action="#">
+                    <InputField
+                      required
+                      lableText="ENTER EMAIL ID"
+                      typeOfInput="email"
+                      garyBold
+                      placeholder="example@hyprclub.com"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setResetEmail(e.target.value)
+                      }
+                    />
+                    <ButtonItself
+                      className="my-4 p-2"
+                      full
+                      btnPurpose={"Reset Password"}
+                      onClick={(e: React.FormEvent<HTMLInputElement>) =>
+                        resetPassword(e)
+                      }
+                    />
+                  </form>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

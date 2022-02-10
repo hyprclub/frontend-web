@@ -16,6 +16,9 @@ import {
   // collection,
   doc,
   getDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
   // QuerySnapshot,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -33,33 +36,6 @@ import { RootStateOrAny, useSelector } from "react-redux";
 import displayRazorpay from "../../razorpay";
 import { paymentDetailsSchema } from "../../razorpay/payment.saveData";
 
-// const nftDescription =
-//   " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
-// const nftPerksList = [
-//   {
-//     id: 1,
-//     content: "Unlock the creator discord channel.",
-//   },
-//   {
-//     id: 2,
-//     content: "Get a free workbook with over 25 different art prompts!",
-//   },
-//   {
-//     id: 3,
-//     content: "I dont know I googled this from some patreon page.",
-//   },
-
-//   {
-//     id: 4,
-//     content: "Unlock the creator discord channel.",
-//   },
-//   {
-//     id: 5,
-//     content: "Get a free workbook with over 25 different art prompts!",
-//   },
-// ];
-
 interface Props {
   Video?: boolean;
 }
@@ -70,6 +46,9 @@ const NFTS = ({ Video }: Props) => {
   const { docId } = useParams();
   const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
   const userData = useSelector((state: RootStateOrAny) => state.userData);
   const [contractAddress, setContractAddress] = useState("");
   const [creatorData, setCreatorData] = useState<any | null>({});
@@ -83,16 +62,19 @@ const NFTS = ({ Video }: Props) => {
   const [ownerImage, setOwnerImage] = useState("");
   const [bought, setBought] = useState(false);
   const [perkState, setPerkState] = useState("PENDING");
+  const [saved, setSaved] = useState(false);
   const users = [
     {
       name: ownerData.name,
       position: "Owner",
       avatar: ownerImage || "../../images/logo-dark.jpg",
+      profile: "/" + ownerData.username,
     },
     {
       name: creatorData.name,
       position: "Creator",
       avatar: creatorImage || "../../images/logo-dark.jpg",
+      profile: "/" + creatorData.username,
     },
   ];
   useEffect(() => {
@@ -103,8 +85,6 @@ const NFTS = ({ Video }: Props) => {
           .then((QuerySnapshot) => {
             // console.log("1");
             if (QuerySnapshot.exists()) {
-              // console.log(QuerySnapshot.data().perks);
-              // console.log(QuerySnapshot.data().price);
               setItemPrice(QuerySnapshot.data().price);
               setPerksData(QuerySnapshot.data().perks);
               setPerkState(QuerySnapshot.data().nftPerkState);
@@ -160,6 +140,7 @@ const NFTS = ({ Video }: Props) => {
                       });
                     setOwnerData(snapshotOwner.data());
                   } else {
+                    return;
                   }
                 })
                 .catch((err) => {
@@ -196,10 +177,41 @@ const NFTS = ({ Video }: Props) => {
             console.log(err);
           });
       } else {
+        return;
       }
     };
     run();
   }, [docId, db, storage]);
+
+  const handleStarred = async () => {
+    console.log("Hello");
+    if (loggedIn && uid && docId) {
+      console.log(userData?.savedNfts);
+      if (userData?.savedNfts.includes(docId)) {
+        await updateDoc(doc(db, "hyprUsers", uid), {
+          savedNfts: arrayRemove(docId),
+        })
+          .then(() => {
+            console.log("UnSaved");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        await updateDoc(doc(db, "hyprUsers", uid), {
+          savedNfts: arrayUnion(docId),
+        })
+          .then(() => {
+            console.log("Saved");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    } else {
+      console.log("Please Login To continue");
+    }
+  };
 
   const handlePayment = async () => {
     try {
@@ -259,7 +271,7 @@ const NFTS = ({ Video }: Props) => {
                 ) : (
                   <img id={styles.img} src={item.image} alt="NFT" />
                 )}
-                <Option className={styles.options} />
+                <Option onClick={handleStarred} className={styles.options} />
               </div>
             </div>
 
@@ -314,8 +326,8 @@ const NFTS = ({ Video }: Props) => {
             <Polygon className={styles.poly} />
           </div>
         </div>
-        <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
-        <ItemsCarousel />
+        {/* <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
+        <ItemsCarousel /> */}
       </div>
     </>
   );

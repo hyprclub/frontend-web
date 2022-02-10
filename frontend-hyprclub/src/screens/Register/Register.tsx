@@ -216,13 +216,7 @@ const Register = () => {
                 facebookProfileUrl: "",
                 youtubeProfileUrl: "",
               },
-              nfts: {
-                purchasedNft: [],
-                createdNft: [],
-                savedNft: [
-                  "/NFT's/3", // remove this after few some time
-                ],
-              },
+              savedNfts: [],
               followers: [],
               following: [],
               followerCount: 0,
@@ -305,11 +299,7 @@ const Register = () => {
                 },
                 dateOfJoining: date,
                 isKycDone: false,
-                nfts: {
-                  purchasedNft: [],
-                  createdNft: [],
-                  savedNft: [],
-                },
+                savedNfts: [],
                 followers: [],
                 following: [],
                 followerCount: 0,
@@ -392,13 +382,9 @@ const Register = () => {
                   approvalStatus: "Not Applied",
                   comments: "",
                 },
+                savedNfts: [],
                 dateOfJoining: date,
                 isKycDone: false,
-                nfts: {
-                  purchasedNft: [],
-                  createdNft: [],
-                  savedNft: [],
-                },
                 followers: [],
                 following: [],
                 followerCount: 0,

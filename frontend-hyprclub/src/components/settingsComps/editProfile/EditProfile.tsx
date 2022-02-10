@@ -4,7 +4,7 @@ import styles from "./editProfile.module.css";
 import InputField from "../../inputField/Input";
 import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import { useSelector, RootStateOrAny } from "react-redux";
-
+import { useNavigate } from "react-router";
 import { firebaseApp } from "../../../firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
@@ -25,6 +25,7 @@ import {
 
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
+  const [disable, setDisable] = useState(true);
   const [phoneCorrect, setPhoneCorrect] = useState(true);
   const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
@@ -74,6 +75,7 @@ const EditProfile = () => {
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+  const navigate = useNavigate();
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
     } else {
@@ -122,7 +124,7 @@ const EditProfile = () => {
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
     console.log(data.twitterUsername);
-    if (phoneCorrect === true) {
+    if (data.phone.match("(0|91)?[7-9][0-9]{9}") === false) {
       console.log("Please Enter Correct Phone Number");
     } else {
       if (usernameTaken) {
@@ -146,6 +148,7 @@ const EditProfile = () => {
         })
           .then(() => {
             console.log("Data Updated");
+            navigate("/" + userData?.username);
           })
           .catch((error) => {
             console.log(error);
@@ -345,7 +348,7 @@ const EditProfile = () => {
                   value={data.age}
                   name="age"
                   lableText="Age"
-                  typeOfInput="number"
+                  typeOfInput="text"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     updateState(e);
                   }}
@@ -355,6 +358,7 @@ const EditProfile = () => {
           </div>
           <div className={clsx("col-md-3 text-center d-flex", styles.gradbtn)}>
             <GradientBorder
+              disabled={disable}
               text="Save Changes"
               onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
                 handleSubmit();
