@@ -17,7 +17,7 @@ import {
   where,
   QuerySnapshot,
 } from "firebase/firestore";
-import { firebaseApp } from "../../../firebaseConfig";
+import { db } from "../../../firebaseConfig";
 
 const NFTs = [
   {
@@ -58,7 +58,6 @@ const NFTs = [
   },
 ];
 const MyNfts = () => {
-  const db = getFirestore(firebaseApp);
   const [created, setCreated] = useState(true);
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const { loggedIn, uid } = useSelector(
@@ -98,9 +97,9 @@ const MyNfts = () => {
     run();
   }, [uid, loggedIn]);
 
-  const createdHandler = () => {
-    setCreated(true);
-  };
+  // const createdHandler = () => {
+  //   setCreated(true);
+  // };
 
   return (
     <>
