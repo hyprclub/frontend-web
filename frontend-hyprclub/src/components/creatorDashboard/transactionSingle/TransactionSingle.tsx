@@ -9,6 +9,7 @@ interface Transaction {
   transactionID: string;
   date: Date | string;
   price: string;
+  nftUid: string;
 }
 
 const TransactionSingle = ({
@@ -17,6 +18,7 @@ const TransactionSingle = ({
   transactionID,
   date,
   price,
+  nftUid,
 }: Transaction) => {
   return (
     <>
@@ -29,9 +31,14 @@ const TransactionSingle = ({
             )}
           >
             <div className={styles.nameAndPrice}>
-              <Link to="#">
+              {transHead === "NFT Purchase" && (
+                <Link to={`/nft/${nftUid}`}>
+                  <p className={styles.boldTitle}>{transHead}</p>
+                </Link>
+              )}
+              {transHead === "Creator Support" && (
                 <p className={styles.boldTitle}>{transHead}</p>
-              </Link>
+              )}
               <p className={styles.boldTitleID}>{transactionID}</p>
               <p className={styles.date}>{date}</p>
             </div>

@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { RootStateOrAny, useSelector } from "react-redux";
 import styles from "./transactionHistory.module.css";
 import TransactionSingle from "./transactionSingle/TransactionSingle";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  limit,
+  orderBy,
+} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
 const TransactionHistory = () => {
@@ -21,7 +28,8 @@ const TransactionHistory = () => {
         await getDocs(
           query(
             collection(db, "paymentRecords"),
-            where("recipientUID", "==", uid)
+            where("recipientData.reciepientUID", "==", uid),
+            limit(3)
           )
         )
           .then((snapshot) => {
@@ -32,12 +40,13 @@ const TransactionHistory = () => {
                 transactions.push("Null");
               }
             });
+            console.log(transactions);
+            setTransactionData(transactions);
           })
           .catch((error) => {
             console.log(error);
           });
         // console.log(transactions[0].amount)
-        setTransactionData(transactions);
       } else {
         console.log("Not Logged In");
       }
@@ -47,57 +56,25 @@ const TransactionHistory = () => {
     run();
   }, [uid, loggedIn]);
 
-  let numTrans = Object.keys(transactionData).length;
-
   return (
     <>
       <div className={styles.mainDiv}>
         <h2 className={styles.heading}>Recent Transactions</h2>
-        {numTrans-- && (
+        {
           <div className={styles.content}>
-            <TransactionSingle
-              price={
-                transactionData[numTrans > 0 ? --numTrans : numTrans].amount
-              }
-              transactionID={transactionData[numTrans].razorpayPaymentId}
-              date={transactionData[numTrans].timestamp.slice(3, 15)}
-              transHead={transactionData[numTrans].transactionType}
-              success={
-                transactionData[numTrans].transactionSuccess === "success"
-              }
-            />
+            {transactionData.map((e: any, index: number) => (
+              <TransactionSingle
+                key={index}
+                price={e.amount}
+                transactionID={e.razorpayPaymentId}
+                date={e.timestamp.slice(3, 15)}
+                transHead={e.transactionType}
+                success={e.transactionSuccess}
+                nftUid={e.purchasedNftUID}
+              />
+            ))}
           </div>
-        )}
-        {numTrans-- && (
-          <div className={styles.content}>
-            <TransactionSingle
-              price={
-                transactionData[numTrans > 0 ? --numTrans : numTrans].amount
-              }
-              transactionID={transactionData[numTrans].razorpayPaymentId}
-              date={transactionData[numTrans].timestamp.slice(3, 15)}
-              transHead={transactionData[numTrans].transactionType}
-              success={
-                transactionData[numTrans].transactionSuccess === "success"
-              }
-            />
-          </div>
-        )}
-        {numTrans-- && (
-          <div className={styles.content}>
-            <TransactionSingle
-              price={
-                transactionData[numTrans > 0 ? --numTrans : numTrans].amount
-              }
-              transactionID={transactionData[numTrans].razorpayPaymentId}
-              date={transactionData[numTrans].timestamp.slice(3, 15)}
-              transHead={transactionData[numTrans].transactionType}
-              success={
-                transactionData[numTrans].transactionSuccess === "success"
-              }
-            />
-          </div>
-        )}
+        }
       </div>
     </>
   );

@@ -13,6 +13,7 @@ export interface paymentDetailsSchema {
   buyerUsername: string;
   buyerEmail: string;
   buyerName?: string;
+  buyerPhoto?: any;
   buyerPhoneNumber?: string;
   recipientData?: {
     reciepientUID?: string; //include this

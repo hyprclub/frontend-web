@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CreatorStats from "../../components/creatorDashboard/creatorStats/CreatorStats";
 import GetHelp from "../../components/creatorDashboard/getHelp/GetHelp";
 import MyNfts from "../../components/creatorDashboard/myNFTs/MyNfts";
@@ -11,12 +11,22 @@ import styles from "./styles.module.css";
 import { useNavigate } from "react-router";
 import { RootStateOrAny, useSelector } from "react-redux";
 import SalesChart from "../../components/creatorDashboard/charts/SalesChart";
+import { db } from "../../firebaseConfig";
+import {
+  getFirestore,
+  query,
+  where,
+  collection,
+  getDocs,
+  limit,
+} from "firebase/firestore";
 const Creator = () => {
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
   const navigate = useNavigate();
+  const [creatorTrans, setCreatorTran] = useState<any>([]);
   useEffect(() => {
     if (userData?.isCreator && loggedIn && uid) {
       console.log("hey");
@@ -26,6 +36,7 @@ const Creator = () => {
       console.log("hey2");
     }
   }, [uid]);
+
   return (
     <>
       <div className={styles.body}>

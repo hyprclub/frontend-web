@@ -46,7 +46,9 @@ async function displayRazorpay(paymentProps: any): Promise<void> {
   const paymentDetails: paymentDetailsSchema = {
     buyerUID: paymentProps.buyerUID,
     buyerUsername: paymentProps.buyerUsername,
+    buyerPhoto: paymentProps.buyerPhoto,
     buyerEmail: paymentProps.buyerEmail,
+    buyerName: paymentProps.buyerName,
     recipientData: paymentProps.recipientData,
     amount: orderData.amount / 100,
     timestamp: Date().toString(),

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./salesChart.module.css";
 import {
   LineChart,
@@ -13,6 +13,16 @@ import {
 } from "recharts";
 import { ClassNames } from "@emotion/react";
 import { Form } from "react-bootstrap";
+import { db } from "../../../firebaseConfig";
+import {
+  getFirestore,
+  query,
+  where,
+  collection,
+  getDocs,
+  limit,
+} from "firebase/firestore";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 const data = [
   {
@@ -46,6 +56,49 @@ const data = [
 ];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
+  const userData = useSelector((state: RootStateOrAny) => state?.userData);
+  const [data, setData] = useState<any>([]);
+
+  // useEffect(() => {
+  //   const run = async () => {
+  //     let transactions: any = [];
+  //     if (uid && loggedIn) {
+  //       // console.log(uid);
+  //       // console.log(loggedIn);
+  //       await getDocs(
+  //         query(
+  //           collection(db, "paymentRecords"),
+  //           where("recipientData.reciepientUID", "==", uid),
+  //           where("transactionType", "==", "Creator Support"),
+  //           limit(3)
+  //         )
+  //       )
+  //         .then((snapshot) => {
+  //           snapshot.forEach((docs) => {
+  //             if (docs.exists()) {
+  //               transactions.push(docs.data());
+  //             } else {
+  //               transactions.push("Null");
+  //             }
+  //           });
+  //           console.log(transactions);
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //         });
+  //       // console.log(transactions[0].amount)
+  //     } else {
+  //       console.log("Not Logged In");
+  //     }
+  //   };
+  //   // console.log(transactionData[0].amount)
+
+  //   run();
+  // }, [uid, loggedIn]);
+
   if (active && payload && payload.length) {
     return (
       <div className={styles.customTooltip}>
@@ -60,17 +113,20 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const SalesChart = () => {
   return (
     <>
-      <div className={clsx("container",styles.mainDiv)}>
-      <div className='d-flex'>
-        <h2 className={styles.h2}>Sales Chart</h2>
-        <div className={clsx(styles.selectDiv)}>
-                    <Form.Select name='bank acc' className={clsx( styles.select, 'mb-3')} aria-label="Default select example">
-                        <option value="1">Monthly</option>
-                        <option value="2">Weekly</option>
-                        <option value="3">All Time</option>
-                    </Form.Select>
-        </div>
-
+      <div className={clsx("container", styles.mainDiv)}>
+        <div className="d-flex">
+          <h2 className={styles.h2}>Sales Chart</h2>
+          <div className={clsx(styles.selectDiv)}>
+            <Form.Select
+              name="bank acc"
+              className={clsx(styles.select, "mb-3")}
+              aria-label="Default select example"
+            >
+              <option value="1">Monthly</option>
+              <option value="2">Weekly</option>
+              <option value="3">All Time</option>
+            </Form.Select>
+          </div>
         </div>
         <div className={styles.chart}>
           <ResponsiveContainer>
@@ -122,7 +178,11 @@ const SalesChart = () => {
                   fontWeight: 700,
                 }}
               />
-              <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ED0090' }} offset={0}/>
+              <Tooltip
+                content={<CustomTooltip />}
+                cursor={{ stroke: "#ED0090" }}
+                offset={0}
+              />
               <Legend />
               <Line
                 type="monotone"

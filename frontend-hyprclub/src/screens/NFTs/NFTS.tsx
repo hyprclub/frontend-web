@@ -229,6 +229,7 @@ const NFTS = ({ Video }: Props) => {
         buyerUsername: userData?.username,
         buyerEmail: userData?.email,
         buyerName: userData?.name,
+        buyerPhoto: userData?.profilePhotoUrl,
         buyerPhoneNumber: userData?.phone,
         recipientData: {
           reciepientUID: ownerData?.uid,

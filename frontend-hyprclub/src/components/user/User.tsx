@@ -60,7 +60,7 @@ const User = ({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-    } 
+    }
   }, [showModal]);
 
   const [creator, setCreator] = useState(true);
@@ -74,6 +74,7 @@ const User = ({
         buyerUID: userData?.uid,
         buyerUsername: userData?.username,
         buyerEmail: userData?.email,
+        buyerPhoto: userData?.profilePhotoUrl,
         buyerName: userData?.name,
         buyerPhoneNumber: userData?.phone,
         creatorSupportUID: uid,
