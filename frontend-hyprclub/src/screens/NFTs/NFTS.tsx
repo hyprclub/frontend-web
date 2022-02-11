@@ -249,8 +249,14 @@ const NFTS = ({ Video }: Props) => {
         };
         // console.log(paymentProps);
         // this will return payment status - Payment Successful | Payment Failed
-        displayRazorpay(paymentProps);
-        navigate(`/${userData?.username}`);
+        displayRazorpay(paymentProps)
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        // navigate(`/${userData?.username}`);
       } catch (error) {
         console.log("nft paymentprops: ", error);
       }

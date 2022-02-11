@@ -54,17 +54,23 @@ const transferNftOwnership = async (
           await updateDoc(nftDocRef, {
             ownerUid: buyerUID,
             forSale: false,
-          }).then(() => {
-            updateDoc(ownerDocRef, {
-              soldNfts: arrayUnion(nftUID),
+          })
+            .then(() => {
+              updateDoc(ownerDocRef, {
+                soldNfts: arrayUnion(nftUID),
+              });
+            })
+            .then(() => {
+              return "PAYMENT SUCCESSFUL";
             });
-          });
         } catch (error) {
           console.log("Owner ids did not match", error);
+          return "ERROR WITH OWNER UID";
         }
       }
     } else {
       // doc.data() will be undefined in this case
+      return "NFT DOES FOUND";
       console.log("This nft does not exist in the database!");
     }
   }
@@ -98,9 +104,11 @@ const savePaymentData = async (paymentDetails: paymentDetailsSchema) => {
       );
     } else {
       console.log("Thank you for supporting the creator...");
+      return "PAYMENT SUCCESSFUL";
     }
   } else {
     console.log("payment was not successful");
+    return "PAYMENT FAILED";
   }
 };
 

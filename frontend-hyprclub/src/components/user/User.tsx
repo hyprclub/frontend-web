@@ -68,7 +68,7 @@ const User = ({
 
   const [creator, setCreator] = useState(true);
 
-  const handleSayThanks = (e: any) => {
+  const handleSayThanks = async (e: any) => {
     e.preventDefault();
     logEvent(analytics, "thanks_event_created", userData?.username);
     console.log("Pay User " + thanksValue);
@@ -91,7 +91,13 @@ const User = ({
           transactionType: "Creator Support",
           transactionSuccess: "in process",
         };
-        displayRazorpay(paymentProps);
+        displayRazorpay(paymentProps)
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       } else {
         navigate("/login");
       }
