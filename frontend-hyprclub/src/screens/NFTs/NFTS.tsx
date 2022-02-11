@@ -223,35 +223,40 @@ const NFTS = ({ Video }: Props) => {
   };
 
   const handlePayment = async () => {
-    try {
-      const paymentProps: paymentDetailsSchema = {
-        buyerUID: userData?.uid,
-        buyerUsername: userData?.username,
-        buyerEmail: userData?.email,
-        buyerName: userData?.name,
-        buyerPhoto: userData?.profilePhotoUrl,
-        buyerPhoneNumber: userData?.phone,
-        recipientData: {
-          reciepientUID: ownerData?.uid,
-          recipientUsername: ownerData?.username,
-          recipientEmail: ownerData?.email,
-        },
-        amount: itemPrice,
-        transactionType: "NFT Purchase",
-        transactionSuccess: "in process",
-        purchasedNftUID: docId,
-        purchasedNftData: {
-          nftContractAddress: contractAddress,
-          nftName: item.name,
-          nftDescription: item.description,
-        },
-      };
-      // console.log(paymentProps);
-      // this will return payment status - Payment Successful | Payment Failed
-      displayRazorpay(paymentProps);
-      navigate(`/${userData?.username}`);
-    } catch (error) {
-      console.log("nft paymentprops: ", error);
+    if (loggedIn && uid) {
+      try {
+        const paymentProps: paymentDetailsSchema = {
+          buyerUID: userData?.uid,
+          buyerUsername: userData?.username,
+          buyerEmail: userData?.email,
+          buyerName: userData?.name,
+          buyerPhoto: userData?.profilePhotoUrl,
+          buyerPhoneNumber: userData?.phone,
+          recipientData: {
+            reciepientUID: ownerData?.uid,
+            recipientUsername: ownerData?.username,
+            recipientEmail: ownerData?.email,
+          },
+          amount: itemPrice,
+          transactionType: "NFT Purchase",
+          transactionSuccess: "in process",
+          purchasedNftUID: docId,
+          purchasedNftData: {
+            nftContractAddress: contractAddress,
+            nftName: item.name,
+            nftDescription: item.description,
+          },
+        };
+        // console.log(paymentProps);
+        // this will return payment status - Payment Successful | Payment Failed
+        displayRazorpay(paymentProps);
+        navigate(`/${userData?.username}`);
+      } catch (error) {
+        console.log("nft paymentprops: ", error);
+      }
+    } else {
+      console.log("Please Login TO continue");
+      navigate("/login");
     }
   };
 

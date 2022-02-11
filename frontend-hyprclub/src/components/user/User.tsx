@@ -110,7 +110,7 @@ const User = ({
             alt="Avatar"
           />
         </div>
-        <div className={creator ? styles.creatorName : styles.nonCreatorName}>
+        <div className={isCreator ? styles.creatorName : styles.nonCreatorName}>
           {name}
         </div>
         <div className={styles.code}>
