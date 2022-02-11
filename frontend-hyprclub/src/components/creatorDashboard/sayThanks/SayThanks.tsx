@@ -13,6 +13,7 @@ import {
   collection,
   getDocs,
   limit,
+  orderBy,
 } from "firebase/firestore";
 
 const Content = [
@@ -66,6 +67,7 @@ const SayThanks = () => {
             collection(db, "paymentRecords"),
             where("recipientData.reciepientUID", "==", uid),
             where("transactionType", "==", "Creator Support")
+            // orderBy("timestamp", "desc")
           )
         )
           .then((snapshot) => {

@@ -41,7 +41,8 @@ const TransactionHistory = () => {
               }
             });
             console.log(transactions);
-            setTransactionData(transactions);
+            let transac: any = transactions.reverse();
+            setTransactionData(transac.slice(0, 3));
           })
           .catch((error) => {
             console.log(error);
