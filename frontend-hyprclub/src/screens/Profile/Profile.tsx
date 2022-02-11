@@ -49,42 +49,46 @@ const Profile = () => {
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
-    const q = query(
-      collection(db, "hyprUsers"),
-      where("username", "==", username)
-    );
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot) {
-      querySnapshot.forEach((docs) => {
-        if (docs.exists() && uid) {
-          checkMyProfile(docs.id);
-          if (docs.id === uid) {
-          } else {
-            updateDoc(doc(db, "hyprUsers", docs.id), {
-              profileViewsCount: docs.data().profileViewsCount + 1,
-            })
-              .then(() => {
-                console.log("+1");
+    if (username) {
+      const q = query(
+        collection(db, "hyprUsers"),
+        where("username", "==", username)
+      );
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot) {
+        querySnapshot.forEach((docs) => {
+          if (docs.exists() && uid) {
+            checkMyProfile(docs.id);
+            if (docs.id !== uid) {
+              setMyProfile(false);
+            } else {
+              updateDoc(doc(db, "hyprUsers", docs.id), {
+                profileViewsCount: docs.data().profileViewsCount + 1,
               })
-              .catch((error) => {
-                console.log(error);
-              });
+                .then(() => {
+                  console.log("+1");
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
+          } else {
+            console.log("User Doesn't exists");
           }
-        } else {
-          console.log("User Doesn't exists");
-        }
-        setProfileData(docs.data());
-        GetOwnedNFT(docs.id);
-        GetCreatedNFT(docs.id, docs.data().isCreator);
-        GetProfilePhoto(docs.id);
-        GetCoverPhoto(docs.id);
+          setProfileData(docs.data());
+          GetOwnedNFT(docs.id);
+          GetCreatedNFT(docs.id, docs.data().isCreator);
+          GetProfilePhoto(docs.id);
+          GetCoverPhoto(docs.id);
 
-        console.log(docs.data());
-        logEvent(analytics, "page_view");
-      });
+          console.log(docs.data());
+          logEvent(analytics, "page_view");
+        });
+      } else {
+        console.log("No User Found");
+        return;
+      }
     } else {
-      console.log("No User Found");
-      return;
     }
   };
 
@@ -205,7 +209,7 @@ const Profile = () => {
       return;
     }
     // ProfileViewCount();
-  }, []);
+  }, [username]);
 
   const socials = [
     {

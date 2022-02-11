@@ -4,6 +4,7 @@ import cn from "classnames";
 import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./UserHead.module.css";
 import { useSelector, RootStateOrAny } from "react-redux";
+import { useNavigate } from "react-router";
 import Icon from "../../../Icon";
 
 interface ClassName {
@@ -12,6 +13,7 @@ interface ClassName {
 
 const User = (className: any) => {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const items = [
     {
@@ -28,6 +30,8 @@ const User = (className: any) => {
       url: "/logout",
     },
   ];
+
+  const handleSendProfile = () => {};
 
   return (
     <OutsideClickHandler onOutsideClick={() => setVisible(false)}>
@@ -77,7 +81,7 @@ const User = (className: any) => {
                     <Link
                       className={styles.item}
                       to={x.url}
-                      onClick={() => setVisible(!visible)}
+                      onClick={handleSendProfile}
                       key={index}
                     >
                       <div className={styles.text}>{x.title}</div>

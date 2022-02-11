@@ -12,6 +12,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { firebaseApp } from "../../firebaseConfig";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 const Nft = ({ star, profile, user, owned, created }: any) => {
   const [createdSel, setCreatedSel] = useState(true);
@@ -20,6 +21,9 @@ const Nft = ({ star, profile, user, owned, created }: any) => {
 
   const [createdNft, setCreatedNft] = useState<any>([]);
   const db = getFirestore(firebaseApp);
+  const { loggedIn, uid } = useSelector(
+    (state: RootStateOrAny) => state?.userData
+  );
 
   const createdClick = () => {
     setCreatedSel(true);
@@ -86,7 +90,7 @@ const Nft = ({ star, profile, user, owned, created }: any) => {
         >
           Owned
         </span>
-        {profile && (
+        {uid === user?.uid && (
           <span
             onClick={staredClick}
             className={clsx(styles.owned, stared && styles.active)}
@@ -99,7 +103,7 @@ const Nft = ({ star, profile, user, owned, created }: any) => {
         <Items nft created={createdSel} myProfile={profile} items={created} />
       )}
       {ownedSel && <Items nft items={owned} />}
-      {stared && profile && <Items nft items={star} />}
+      {stared && uid === user?.uid && <Items nft items={star} />}
     </div>
   );
 };

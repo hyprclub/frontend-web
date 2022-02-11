@@ -133,7 +133,7 @@ const User = ({
           <p className={cn(styles.followers, 'text-center')}><span className={styles.nums}>100K</span><br /> Followers</p>
           <p className={cn(styles.followings, 'text-center')}><span className={styles.nums}>359</span><br /> Followings</p>
         </div> */}
-        {myProfile === false && isCreator && (
+        {userData?.uid !== uid && isCreator && (
           <div className={styles.gradbtn}>
             <GradientBorder
               onClick={() => setShowModal(true)}
@@ -141,7 +141,7 @@ const User = ({
             />
           </div>
         )}
-        {myProfile && isCreator && (
+        {userData?.uid === uid && isCreator && (
           <Link to="/creator">
             <div className={styles.gradbtn}>
               <GradientBorder text="View Dashboard" />
