@@ -69,12 +69,12 @@ const Perks = () => {
               });
             } else {
             }
+            console.log(perkData);
           })
           .catch((err) => {
             console.log(err);
           });
         setPerkData(details);
-        console.log(perkData);
       } else {
       }
     };
@@ -123,7 +123,9 @@ const Perks = () => {
                   styles.elemm
                 )}
               >
-                <div className={styles.elem1}>{c.nftDet.title}</div>
+                <Link to={`/nft/${c.nftDet.docId}`}>
+                  <div className={styles.elem1}>{c.nftDet.title}</div>
+                </Link>
                 <div className={clsx(styles.elem2, " ")}>
                   <p className={clsx(styles.owner)}>{c.requestedBy.name}</p>
                   <p className={styles.username}>{c.requestedBy.email}</p>
