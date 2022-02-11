@@ -71,7 +71,7 @@ async function displayRazorpay(paymentProps: any): Promise<void> {
 
   const options = {
     // key: `${process.env.RAZORPAY_TEST_API_KEY}`,
-    key: "rzp_test_7FUMLF1Lf3a2eD",
+    key: `${process.env.REACT_APP_RAZORPAY_TEST_API_KEY}`,
     currency: orderData.currency,
     amount: orderData.amount,
     order_id: orderData.id,
