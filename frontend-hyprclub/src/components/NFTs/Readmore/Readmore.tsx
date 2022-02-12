@@ -17,9 +17,9 @@ const ReadMore = ({ children }: any) => {
                     {isView ? "..." : " "}
                 </span>
             </p>
-            <span onClick={toggleView} className={styles.readHide}>
+            {text>150 &&<span onClick={toggleView} className={styles.readHide}>
                 {isView ? "View more" : " View less"}
-            </span>
+            </span>}
         </>
     );
 };

@@ -87,7 +87,8 @@
     background: -webkit-linear-gradient(60deg, rgba(141, 0, 253, 1) 4%, rgba(231, 13, 140, 1) 49%, rgba(237, 77, 107, 1),
             rgba(246, 164, 76, 1) 85%, rgba(252, 199, 55, 1) 92%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
 }
 
 .btn {
@@ -124,26 +125,36 @@
     position: absolute;
     top: 5%;
     right: 5%;
-    width: clamp(40px,3.333vw + 0.01em,50px);
-    height: clamp(40px,3.333vw + 0.01em,50px);
-    background:#FFFFFF;
-    border-radius:50%;
-    display:grid;
+    width: clamp(40px, 3.333vw + 0.01em, 50px);
+    height: clamp(40px, 3.333vw + 0.01em, 50px);
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: grid;
     place-items: center;
-    border:none;
+    border: none;
     outline: none;
 }
-.option:active>#star{
-    color:red;
+
+.option:active>#star {
+    color: red;
 }
-@media only screen and (min-width:900px){
-    .option:hover>#star{
-        color:red;
+
+@media only screen and (min-width:900px) {
+    .option:hover>#star {
+        color: red;
     }
 }
+
 .creatorImg {
     border-radius: 50%;
     height: 40px;
     width: 40px;
     margin-right: 10px;
+}
+
+
+@media(max-width:320px) {
+    .line {
+        padding: clamp(10px, 4.625vw, 15px);
+    }
 }
