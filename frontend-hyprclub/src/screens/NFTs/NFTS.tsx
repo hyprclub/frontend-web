@@ -94,9 +94,9 @@ const NFTS = ({ Video }: Props) => {
               axios
                 .get(
                   "https://cdn.hyprclub.com/" +
-                    QuerySnapshot.data().collectionTag +
-                    "/" +
-                    QuerySnapshot.data().token
+                  QuerySnapshot.data().collectionTag +
+                  "/" +
+                  QuerySnapshot.data().token
                 ) // add custom uri settings here.
                 .then((result) => {
                   if (result) {
@@ -292,7 +292,9 @@ const NFTS = ({ Video }: Props) => {
                 ) : (
                   <img id={styles.img} src={item.image} alt="NFT" />
                 )}
-                <Option onClick={handleStarred} className={styles.options} />
+                <Option onClick={handleStarred} className={styles.options} 
+                isSaved={userData?.savedNfts.includes(docId)} 
+                />
               </div>
             </div>
 
@@ -337,18 +339,20 @@ const NFTS = ({ Video }: Props) => {
         </div>
         <div className={styles.bottom}>
           <div className={styles.Bottom_part}>
-            <span className={styles.bottomHeading}>Owners</span>
+            <h4 className={styles.bottomHeading}>Owners</h4>
             <Users className={styles.users} items={users} />
           </div>
           <div className={styles.Bottom_part1}>
-            <span className={cn(styles.bottomHeading, styles.auth)}>
+            <h4 className={cn(styles.bottomHeading, styles.auth)}>
               View Authenticity
-            </span>
+            </h4>
             <Polygon className={styles.poly} />
           </div>
         </div>
         {/* <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
-        <ItemsCarousel /> */}
+        <div className={styles.carousel}>
+        <ItemsCarousel /> 
+        </div >*/}
       </div>
     </>
   );

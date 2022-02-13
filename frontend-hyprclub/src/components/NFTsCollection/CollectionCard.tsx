@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames'
 import styles from "./CollectionCard.module.css"
 import clsx from 'clsx';
 import { Star } from 'phosphor-react';
 
 const CollectionCard = ({ className, item }: any) => {
+    const [save, setSave]=useState(false);
+    const clicked=()=>{
+        setSave(!save);
+    }
     return (
         <div className={cn(styles.card, className)}>
             {/* <Link className={styles.link} to={item.url}> */}
@@ -12,7 +16,7 @@ const CollectionCard = ({ className, item }: any) => {
                 <div className={styles.line}>
                     <div className={clsx(styles.imgAndBtn, 'position-relative w-100')}>
                         <img className={styles.image} src={item.image} alt="" />
-                        <button className={styles.option}><Star size={30} id={styles.star}  /></button>
+                        <button className={styles.option} onClick={clicked}>{save?<img className={styles.star} src="/images/Star.svg" alt=""/>:<Star size={30} className={styles.star} />}</button>
                     </div>
                     <div className={styles.title}>{item.title}</div>
                     <div className={clsx('d-flex align-items-center justify-content-between w-100 mt-2')}>

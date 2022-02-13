@@ -376,7 +376,7 @@
 }
 
 .Gradbtn {
-    width: 123px !important;
+    width: 250px !important;
     height: 41px !important;
     border-radius: 52px !important;
     font-weight: bold !important;
@@ -463,9 +463,9 @@
     }
 
     .Gradbtn {
-        width: 90px !important;
+        width: 170px !important;
         font-size: 14px !important;
-        height: 30px !important;
+        height: 35px !important;
 
     }
 }

@@ -7,11 +7,13 @@
 }
 
 .grad {
+  background: -webkit-linear-gradient(27deg, rgba(158, 1, 235, 1) 0%, rgba(211, 24, 126, 1) 49%, rgba(243, 189, 56, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: max(min(4vw, 47.58px), 30px) !important;
-  padding: 0 17.5px !important;
-  border: none !important;
-  font-weight: bold !important;
-  background: transparent !important;
+  padding: 0 17.5px;
+  border: none;
+  font-weight: bold;
 }
 
 .head {
@@ -33,15 +35,16 @@
 .Navbar {
   display: flex;
   align-items: center;
-  width: 389px;
-  gap: 10px;
-  justify-content: flex-end;
+  min-width: 389px;
+  width:45vw;
+  gap: 12px;
+  justify-content: center;
 }
 
 .btn {
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
+  font-size:clamp(11px,1.133vw + 0.01em,17px);;
   line-height: 14px;
   display: flex;
   justify-content: center;
@@ -50,7 +53,7 @@
   color: #777E91;
   border: none;
   outline: none;
-  padding: 5px 10px;
+  padding: 7px 12px;
   transition: all .2s ease-in-out;
 }
 

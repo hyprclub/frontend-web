@@ -1,6 +1,5 @@
 .Wrapper {
     width: 93%;
-    /* padding: 45px 0; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -583,15 +582,10 @@
     .bg, .bgvid {
         width: 100%;
     }
+    #img, #video {
+        height:auto;
+    }
 }
-
-
-/* for width more than 1500px */
-
-
-
-
-
 
 /* //////////////////////////////////////////////////////MODAL DIV////////////////////////////// */
 .modalDiv.show {

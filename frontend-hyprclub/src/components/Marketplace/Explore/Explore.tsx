@@ -98,7 +98,7 @@ const Explore = ({ items }: explore) => {
   const MAX = 10;
   return (
     <div className={styles.wrapper}>
-      <GradBorder className={styles.grad} text="Explore Brand New NFTS " />
+      <h2 className={styles.grad}>Explore Brand New NFTS </h2>
       <div className={styles.head}>
         <div className={styles.dropdown}>
           <Dropdown
