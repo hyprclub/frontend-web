@@ -115,7 +115,7 @@ const Header_login = () => {
                 </Link>
               )}
               {loggedIn === false && (
-                <Link to="register">
+                <Link to="/register">
                   <button className={styles.signbtn}>
                     <span className={styles.signbtntxt}>Sign up</span>
                   </button>
