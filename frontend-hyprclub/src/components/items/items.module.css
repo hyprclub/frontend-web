@@ -11,7 +11,7 @@
   align-items: center;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content:space-between;
+  gap: 10px;
 }
 .card{
   /* width: 274px !important;;
