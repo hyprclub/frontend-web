@@ -20,16 +20,12 @@ const Transaction = ({ transactionData }: any) => {
       <div className={styles.mainDiv}>
         <h2 className={styles.title}>Transaction History</h2>
         <div className={styles.content}>
-          <div className={clsx("container", styles.tranInfo)}>
-            <div className={clsx("row", styles.row)}>
-              <div className={clsx("col-sm", styles.contP)}>Product</div>
-              <div className={clsx("col-sm", styles.contD)}>Date</div>
-              <div className={clsx("col-sm", styles.contT)}>Transaction ID</div>
-              <div className={clsx("col-sm ", styles.contS)}>Status</div>
-              <div className={clsx("col-sm", styles.contO)}>
-                <p>Order Total</p>
-              </div>
-            </div>
+          <div className={clsx( styles.tranInfo)}>
+            <div className={clsx(styles.heading1)}>Product</div>
+            <div className={clsx(styles.heading2)}>Date</div>
+            <div className={clsx(styles.heading3)}>Transaction ID</div>
+            <div className={clsx(styles.heading4)}>Status</div>
+            <div className={clsx(styles.heading5)}>Order Total</div>
           </div>
 
           {transactionData.map((e: any, index: number) => (

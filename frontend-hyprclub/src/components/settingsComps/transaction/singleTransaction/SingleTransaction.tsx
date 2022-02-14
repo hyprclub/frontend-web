@@ -23,7 +23,7 @@ const SingleTransaction = ({
   return (
     <>
       <div className={styles.mainDiv}>
-        <div className="d-flex  px-5 py-2 align-items-center">
+        <div className="d-flex px-5 py-2  align-items-center">
           {/* <img src="/images/pfImage.png" alt="" className={styles.pfImage} /> */}
           <div
             className={clsx(
@@ -45,11 +45,11 @@ const SingleTransaction = ({
             </div>
 
             {itemName === "Creator Support" && (
-              <p className={styles.boldTitle}>{itemName}</p>
+              <p className={styles.boldTitle2}>{itemName}</p>
             )}
             {itemName === "NFT Purchase" && (
               <Link to={`/nft/${nftUid}`}>
-                <p className={styles.boldTitle}>{itemName}</p>
+                <p className={styles.boldTitle2}>{itemName}</p>
               </Link>
             )}
             <p className={styles.dateDesk}>{date}</p>

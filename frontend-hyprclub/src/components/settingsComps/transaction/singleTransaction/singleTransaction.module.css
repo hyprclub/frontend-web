@@ -18,8 +18,17 @@
     word-wrap:break-word;
 }
 .boldTitle{
+    margin-top: 10px ;
     margin-bottom: 0;
     font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+.boldTitle2{
+    margin-bottom: 0;
+    font-weight: 700;
+    margin-top: 10px;
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 10px;
@@ -34,8 +43,14 @@
     word-wrap:break-word;
 }
 .transDesk{
+    margin-left: -5px;
     font-size: 16px;
     line-height: 40px;
+    width: 140px;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis ;
 }
 
 .date{
@@ -63,6 +78,11 @@
 .price{
     font-size: 16px;
     line-height: 40px;
+    width: 80px;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis ;
 }
 
 .mainDiv{
@@ -89,6 +109,7 @@
         font-size: 10px !important;
         line-height: 10px;
     }
+
     
     .date{
         font-size: 8px !important;
@@ -157,7 +178,7 @@
     .statusMob{
         display: contents;
     }
-    .boldTitleDesk{
+    .boldTitle2{
         display: none;
     }
     .dateDesk{
@@ -177,8 +198,11 @@
     }
 
     .transDesk{
-        display: none;
+        display: none !important;
     }
 }
 
 
+.elem{
+    padding: 10px 0;
+}

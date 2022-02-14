@@ -12,11 +12,13 @@
     padding: 25px 10px 17px 20px;
 }
 .tranInfo{
+    display: flex;
+    width: 100%;
     font-size: 16px;
+    padding: 20px 0;
     font-weight: 700;
     background-color: #FAFAFA;
     border:1px solid #E3E3E3;
-    padding-top: 10px;
 }
 
 .loadMoreBtn{
@@ -48,6 +50,7 @@
     border: 2px solid black;
 } */
 
+
 @media only screen and (max-width:768px){
     .title{
         border-bottom: 1px solid #E3E3E3 !important;
@@ -62,4 +65,20 @@
         display: none;
     }
 
+}
+
+
+
+  .heading1, .heading2, .heading3, .heading4, .heading5{
+      width: 25%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+  }
+
+  .heading1{
+      margin-left:-5px;
+  }
+  .heading2{
+    margin-left:5px;
 }

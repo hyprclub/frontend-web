@@ -59,7 +59,7 @@ const User = (className: any) => {
                 />
               </div>
               <div className="d-flex flex-column">
-                <div className={styles.name}>{userData.name}</div>
+                <div><span className={styles.name}>{userData.name}</span></div>
                 <div className={styles.code}>
                   <div className={styles.username}>@{userData.username}</div>
                 </div>
