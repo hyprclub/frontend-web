@@ -251,12 +251,16 @@ const Register = () => {
         const name = userCredentials.user.displayName;
         const email = userCredentials.user.email;
         const photoUrl = userCredentials.user.photoURL;
-        const phone = userCredentials.user.phoneNumber;
+        let phone = userCredentials.user.phoneNumber;
+
         getDoc(doc(db, "hyprUsers", uid))
           .then((querySnapshot) => {
             if (querySnapshot.exists()) {
               console.log("User Data Exits");
             } else {
+              if (phone === null) {
+                phone = "";
+              }
               const username = name?.replaceAll(" ", "") + makeRandomString(5);
               console.log("Set Doc");
               setDoc(doc(db, "hyprUsers", uid), {
@@ -332,7 +336,7 @@ const Register = () => {
         const name = userCredentials.user.displayName;
         const email = userCredentials.user.email;
         const photoUrl = userCredentials.user.photoURL;
-        const phone = userCredentials.user.phoneNumber;
+        let phone = userCredentials.user.phoneNumber;
         const current = new Date();
         const date = `${current.getDate()}/${
           current.getMonth() + 1
@@ -343,6 +347,9 @@ const Register = () => {
             if (querySnapshot.exists()) {
               console.log("User Data Exits");
             } else {
+              if (phone === null) {
+                phone = "";
+              }
               console.log("Set Doc");
               const username = name?.replaceAll(" ", "") + makeRandomString(5);
               setDoc(doc(db, "hyprUsers", uid), {

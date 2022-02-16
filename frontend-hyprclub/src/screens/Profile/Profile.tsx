@@ -28,6 +28,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import Loader from "../../components/Loader/Loader";
 
 // import { profile } from "console";
 // import { isStepDivisible } from "react-range/lib/utils";
@@ -46,6 +47,7 @@ const Profile = () => {
   const [coverPhoto, setCoverPhoto] = useState<any | null>();
   const [ownedNft, setOwnedNft] = useState<any>([]);
   const [createdNft, setCreatedNft] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
   const fetchData = async (username: any) => {
@@ -82,6 +84,7 @@ const Profile = () => {
           GetCoverPhoto(docs.id);
 
           console.log(docs.data());
+          setLoading(false);
           logEvent(analytics, "page_view");
         });
       } else {
@@ -204,6 +207,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (username) {
+      setLoading(true);
       fetchData(username);
     } else {
       return;
@@ -303,6 +307,7 @@ const Profile = () => {
               isCreator={profileData?.isCreator}
               myProfile={myProfile}
             />
+            {loading && <Loader />}
             <div className={styles.wrapper}>
               {/* <div className={styles.nav}>
               {navLinks.map((x, index) => (

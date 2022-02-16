@@ -5,7 +5,7 @@ import ToggleBtn from "./ToggleBtn/ToggleBtn";
 import Collection from "./Collection_Categories/Collection";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { FileArrowUp, Plus, X } from "phosphor-react";
-
+import Loader from "../../Loader/Loader";
 import { Form } from "react-bootstrap";
 import InputField from "../../inputField/Input";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
@@ -51,6 +51,7 @@ const UploadNFT = () => {
   const [nft, setNft] = useState("");
   const [desc, setDesc] = useState("");
   const db = getFirestore(firebaseApp);
+  const [loading, setLoading] = useState(false);
   // const [itemname, setItemname]=useState('');
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -103,6 +104,7 @@ const UploadNFT = () => {
   }/${current.getFullYear()}`;
   const storageNFTref = ref(storage, "nftRequest/" + nftid + "/nft.jpg");
   const handleChange = async (e: any) => {
+    setLoading(true);
     const file = e;
 
     console.log(file);
@@ -132,6 +134,7 @@ const UploadNFT = () => {
         })
         .then(() => {
           console.log("Success");
+          setLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -205,20 +208,25 @@ const UploadNFT = () => {
       <div className={styles.wrapper}>
         <div className={styles.section}>
           <h1 className={styles.title}> Create an NFT</h1>
-          <div className={styles.Upload}>
-            <h4 className={styles.upldFile}>Upload file</h4>
-            <h6 className={styles.drag}>Drag or choose your file to upload</h6>
-            <FileUploader
-              handleChange={handleChange}
-              name="file"
-              types={fileTypes}
-            >
-              <FileArrowUp size={24} id={styles.Filearrow} />
-              <h6 className={styles.fileTypes}>
-                PNG, JPEG , GIF, WEBP, MP4 or MP3. Max 150MB.
+          {loading === false && (
+            <div className={styles.Upload}>
+              <h4 className={styles.upldFile}>Upload file</h4>
+              <h6 className={styles.drag}>
+                Drag or choose your file to upload
               </h6>
-            </FileUploader>
-          </div>
+              <FileUploader
+                handleChange={handleChange}
+                name="file"
+                types={fileTypes}
+              >
+                <FileArrowUp size={24} id={styles.Filearrow} />
+                <h6 className={styles.fileTypes}>
+                  PNG, JPEG , GIF, WEBP, MP4 or MP3. Max 150MB.
+                </h6>
+              </FileUploader>
+            </div>
+          )}
+          {loading && <Loader />}
           <div className={styles.ItemName}>
             {/* <h6 className={styles.Heading}>Enter Item Name</h6> */}
             <InputField
