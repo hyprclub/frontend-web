@@ -51,6 +51,7 @@ const Register = () => {
   const [usernameTaken, setUsernameTaken] = useState(true);
   const [phoneCorrect, setPhoneCorrect] = useState(false);
   const [termsAndCondition, setTermsAndCondition] = useState(false);
+  const [passMatch, setPassMatch] = useState(false);
   const [promotionalMails, setPromotionalMails] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -100,7 +101,7 @@ const Register = () => {
 
   //check whether password match or not
 
-  const checkPassword = () => {};
+  const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
   //make a random string for username
   const makeRandomString = (len: number) => {
@@ -152,85 +153,89 @@ const Register = () => {
       if (phoneCorrect === false) {
         console.log("Incorrect Phone Number");
       } else {
-        if (termsAndCondition === false) {
-          console.log(
-            "Please Agree to terms and Condition before moving forward"
-          );
+        if (data.password !== data.cpassword) {
+          console.log("Password Do Not Match");
         } else {
-          try {
-            const storage = getStorage(firebaseApp);
-
-            const userCredentials = await createUserWithEmailAndPassword(
-              auth,
-              data.email,
-              data.password
+          if (termsAndCondition === false) {
+            console.log(
+              "Please Agree to terms and Condition before moving forward"
             );
+          } else {
+            try {
+              const storage = getStorage(firebaseApp);
 
-            const user = userCredentials.user;
-            const uid = user.uid;
-            const current = new Date();
-            const date = `${current.getDate()}/${
-              current.getMonth() + 1
-            }/${current.getFullYear()}`;
+              const userCredentials = await createUserWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+              );
 
-            await setDoc(doc(db, "hyprUsers", uid), {
-              name: data.name,
-              email: data.email,
-              username: data.username,
-              profileViewsCount: 0,
-              phone: data.phone,
-              uid: uid,
-              newsletterSubscription: promotionalMails,
-              category: "",
-              age: "",
-              gender: "",
-              flagCounter: 0,
-              profileUrl: "", // add profile url here
-              coverPhotoUrl: "", // add firebase storage function url here
-              profilePhotoUrl: "", // add firebase storage function here
-              bio: "",
-              isNsfw: false,
-              verified: false,
-              interests: [],
-              creatorApproval: {
-                approvalStatus: "Not Applied",
-                comments: "",
-              },
-              isCreator: false,
-              dateOfJoining: date, // todo add todays date
-              isKycDone: false,
-              socials: {
-                portfolioUrl: "",
-                instagramUsername: "",
-                twitterUsername: "",
-                facebookProfileUrl: "",
-                youtubeProfileUrl: "",
-              },
-              savedNfts: [],
-              soldNfts: [],
-              followers: [],
-              following: [],
-              followerCount: 0,
-              followingCount: 0,
-              posts: {
-                createdPosts: [],
-                savedPosts: [],
-              },
-              bankAccountDetails: {
-                accountHolderName: "",
-                accountType: "",
-                ifscCode: "",
-                accountNumber: "",
-                branchName: "",
-                accountHolderPhoneNumber: "",
-              },
-            });
+              const user = userCredentials.user;
+              const uid = user.uid;
+              const current = new Date();
+              const date = `${current.getDate()}/${
+                current.getMonth() + 1
+              }/${current.getFullYear()}`;
 
-            console.log("Account Created : ", user);
+              await setDoc(doc(db, "hyprUsers", uid), {
+                name: data.name,
+                email: data.email,
+                username: data.username,
+                profileViewsCount: 0,
+                phone: data.phone,
+                uid: uid,
+                newsletterSubscription: promotionalMails,
+                category: "",
+                age: "",
+                gender: "",
+                flagCounter: 0,
+                profileUrl: "", // add profile url here
+                coverPhotoUrl: "", // add firebase storage function url here
+                profilePhotoUrl: "", // add firebase storage function here
+                bio: "",
+                isNsfw: false,
+                verified: false,
+                interests: [],
+                creatorApproval: {
+                  approvalStatus: "Not Applied",
+                  comments: "",
+                },
+                isCreator: false,
+                dateOfJoining: date, // todo add todays date
+                isKycDone: false,
+                socials: {
+                  portfolioUrl: "",
+                  instagramUsername: "",
+                  twitterUsername: "",
+                  facebookProfileUrl: "",
+                  youtubeProfileUrl: "",
+                },
+                savedNfts: [],
+                soldNfts: [],
+                followers: [],
+                following: [],
+                followerCount: 0,
+                followingCount: 0,
+                posts: {
+                  createdPosts: [],
+                  savedPosts: [],
+                },
+                bankAccountDetails: {
+                  accountHolderName: "",
+                  accountType: "",
+                  ifscCode: "",
+                  accountNumber: "",
+                  branchName: "",
+                  accountHolderPhoneNumber: "",
+                },
+              });
 
-            logEvent(analytics, "new_user_register", data);
-          } catch (error) {
-            console.error(error);
+              console.log("Account Created : ", user);
+
+              logEvent(analytics, "new_user_register", data);
+            } catch (error) {
+              console.error(error);
+            }
           }
         }
       }
