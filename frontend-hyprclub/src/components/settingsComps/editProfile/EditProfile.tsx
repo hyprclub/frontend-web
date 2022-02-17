@@ -86,8 +86,14 @@ const EditProfile = () => {
         );
         const docSnap = await getDocs(q);
         if (docSnap.size !== 0) {
-          console.log("Username Taken");
-          setUsernameTaken(true);
+          docSnap.forEach((snap) => {
+            if (snap.data().username === userData?.username) {
+              setUsernameTaken(false);
+            } else {
+              console.log("Username Taken");
+              setUsernameTaken(true);
+            }
+          });
         } else {
           setUsernameTaken(false);
         }
@@ -148,7 +154,9 @@ const EditProfile = () => {
         })
           .then(() => {
             console.log("Data Updated");
-            navigate("/" + userData?.username);
+          })
+          .then(() => {
+            navigate("/" + data?.username);
           })
           .catch((error) => {
             console.log(error);
