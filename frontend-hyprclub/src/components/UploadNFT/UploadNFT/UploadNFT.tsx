@@ -60,7 +60,6 @@ const UploadNFT = () => {
 
   // Error Handling components
   const [success, setSuccess] = useState(false);
-  // const [open, setOpen] = useState(false);
   const [openErrMsg, setOpenErrMsg] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [sucMessage, setSuccMess] = useState("");
