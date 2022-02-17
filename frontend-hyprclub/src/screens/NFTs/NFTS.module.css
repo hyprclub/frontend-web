@@ -238,7 +238,7 @@
     cursor: pointer;
 }
 
-.ul {
+.ul,.info {
     margin: 0;
     font-style: normal;
     font-weight: normal;
@@ -250,6 +250,7 @@
 
 .li {
     color: inherit;
+    line-height: inherit;
     margin: 0;
     padding: 0
 }
@@ -602,4 +603,52 @@
 
 .modalDiv.hide {
     display: none;
+}
+
+
+/* ////////////////////////// REQUEST&PENDING STYLING/////////////////////////////*/
+.availed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 114px;
+    margin:0 auto;
+}
+
+.check {
+    color: rgb(89, 243, 102);
+}
+
+.p_availed {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 16px;
+    color: #494949;
+
+}
+
+.requested {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 114px;
+    margin:0 auto;
+}
+
+.request {
+    color: #494949;
+}
+
+.p_request {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 16px;
+    color: #494949;
+
 }
