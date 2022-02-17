@@ -58,6 +58,8 @@ const EditProfile = () => {
     setFile(file);
     console.log(file.size);
     if (file.size >= 5242880) {
+      setErrorMessage("File Size Too Big Max 5MB");
+      setOpenErrMsg(true);
       console.log("File Size Too Big");
     } else {
       const storagePFref = ref(
@@ -151,11 +153,18 @@ const EditProfile = () => {
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
     console.log(data.twitterUsername);
-    if (data.phone.match("(0|91)?[7-9][0-9]{9}") === false) {
+    if (
+      data.phone.match("(0|91)?[7-9][0-9]{9}") === false &&
+      data.phone !== null
+    ) {
       console.log("Please Enter Correct Phone Number");
+      setErrorMessage("Please Enter Correct Phone Number");
+      setOpenErrMsg(true);
     } else {
       if (usernameTaken) {
         console.log("Please Choose Diff Username");
+        setErrorMessage("Please Choose Different Username");
+        setOpenErrMsg(true);
       } else {
         await updateDoc(ref, {
           name: data.name,
@@ -175,6 +184,7 @@ const EditProfile = () => {
         })
           .then(() => {
             console.log("Data Updated");
+            setSuccess(true);
           })
           .then(() => {
             navigate("/" + data?.username);
@@ -400,7 +410,7 @@ const EditProfile = () => {
         <SuccPopup
           handelClose={(r: any) => handelClose(r)}
           open={success}
-          message="Sent Successfully!"
+          message="Profile Updated!"
         />
       )}
       {openErrMsg && (
