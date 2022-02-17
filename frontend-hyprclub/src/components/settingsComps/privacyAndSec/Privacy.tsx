@@ -6,21 +6,45 @@ import Switch from "../../switch/Switch";
 import styles from "./privacy.module.css";
 import { firebaseApp } from "../../../firebaseConfig";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import SuccPopup from "../../popups/SuccPopup";
+import ErrPopup from "../../popups/ErrPopup";
 
 const Privacy = () => {
   const [resetEmail, setResetEmail] = useState("");
   const auth = getAuth(firebaseApp);
+
+  // Error Handling components
+  const [success, setSuccess] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
+
   const __DEV__ = document.domain === "localhost";
   const updateState = (e: React.ChangeEvent<any>) => {
     setResetEmail(e.target.value);
   };
 
   const resetPassword = async () => {
+    if (resetEmail.length === 0) {
+      setErrorMessage("please enter your email");
+      setOpenErrMsg(true);
+      return;
+    }
     sendPasswordResetEmail(auth, resetEmail, {
       url: __DEV__
         ? "http://localhost:3000/login"
         : "http://hyprclub.com/login",
     });
+    setSuccMess("Reset password email sent");
+    setSuccess(true);
     console.log("Email sent");
   };
   return (
@@ -67,6 +91,20 @@ const Privacy = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message={sucMessage}
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </>
   );
 };
