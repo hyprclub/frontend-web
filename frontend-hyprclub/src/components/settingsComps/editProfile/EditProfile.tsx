@@ -6,7 +6,7 @@ import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import { useSelector, RootStateOrAny } from "react-redux";
 import { useNavigate } from "react-router";
 import { firebaseApp } from "../../../firebaseConfig";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   getFirestore,
   collection,

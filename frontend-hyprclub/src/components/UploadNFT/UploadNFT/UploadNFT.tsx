@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
 import styles from "./UploadNFT.module.css";
 import { FileUploader } from "react-drag-drop-files";
-import ToggleBtn from "./ToggleBtn/ToggleBtn";
-import Collection from "./Collection_Categories/Collection";
+// import ToggleBtn from "./ToggleBtn/ToggleBtn";
+// import Collection from "./Collection_Categories/Collection";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { FileArrowUp, Plus, X } from "phosphor-react";
 import Loader from "../../Loader/Loader";
 import { Form } from "react-bootstrap";
 import InputField from "../../inputField/Input";
-import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+// import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import GradBorder from "../../NFTs/GradBorder/GradBorder";
 import { firebaseApp } from "../../../firebaseConfig";
 import {
@@ -18,8 +18,12 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { RootStateOrAny, useSelector } from "react-redux";
+import SuccPopup from "../../popups/SuccPopup";
+import ErrPopup from "../../popups/ErrPopup";
+
 const fileTypes = ["GIF", "PNG", "WEBP", "MP4", "MP3", "JPEG", "JPG"];
 const Categories = ["Art", "Bleh", "Blehh", "Blehh"];
+
 const items = [
   {
     title: "Create Collection",
@@ -43,9 +47,9 @@ const UploadNFT = () => {
   const [category, setCategory] = useState(Categories[0]);
   const [perks, setPerks]: any[] = useState(() => new Set());
   const userData = useSelector((state: RootStateOrAny) => state.userData);
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
   const [itemname, setItemname] = useState("");
-  const [coll, setCollection] = useState("");
+  // const [coll, setCollection] = useState("");
   const [cred, setCred] = useState(100);
   const perksarray = [...perks];
   const [nft, setNft] = useState("");
@@ -54,22 +58,41 @@ const UploadNFT = () => {
   const [loading, setLoading] = useState(false);
   // const [itemname, setItemname]=useState('');
 
+  // Error Handling components
+  const [success, setSuccess] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
+
   const inputRef = useRef<HTMLInputElement | null>(null);
   // const textRef =useRef<HTMLTextAreaElement | null>(null);
   // console.log(perks);
-  const capitalise = {};
+  // const capitalise = {};
 
   const [perks1, setPerks1]: any[] = useState(() => new Set());
 
   const addPerk = () => {
     if (inputRef!.current!.value === "") {
-      alert("Please add a perk");
+      setErrorMessage("Please add a perk");
+      setOpenErrMsg(true);
+      // alert("Please add a perk");
       return;
     }
     // setPerks([...perks, inputRef!.current!.value]); prevState:any)=> new Set(prevState).add(inputRef!.current!.value)
 
     if (perks1.has(inputRef!.current!.value!.toLowerCase())) {
-      alert("Duplicate Perks Not Allowed");
+      setErrorMessage("Duplicate Perks Not Allowed");
+      setOpenErrMsg(true);
+      // alert("Duplicate Perks Not Allowed");
       return;
     }
 
@@ -103,15 +126,22 @@ const UploadNFT = () => {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
   const storageNFTref = ref(storage, "nftRequest/" + nftid + "/nft.jpg");
+
   const handleChange = async (e: any) => {
     setLoading(true);
     const file = e;
 
     console.log(file);
-    if (!file) return;
+    if (!file) {
+      setErrorMessage("no file");
+      setOpenErrMsg(true);
+      return;
+    }
     console.log(file.size);
     if (file.size >= 157286400) {
-      console.log("File Size too Big Max Size 150Mb");
+      setErrorMessage("File Size too Big Max Size 150Mb");
+      setOpenErrMsg(true);
+      // console.log("File Size too Big Max Size 150Mb");
     } else {
       if (file.type.split("/")[0] !== "video") {
         setVideo(false);
@@ -133,10 +163,14 @@ const UploadNFT = () => {
             });
         })
         .then(() => {
-          console.log("Success");
+          setSuccMess("Successfully uploaded");
+          setSuccess(true);
+          // console.log("Success");
           setLoading(false);
         })
         .catch((error) => {
+          setErrorMessage("Failed to upload");
+          setOpenErrMsg(true);
           console.log(error);
         });
     }
@@ -156,13 +190,21 @@ const UploadNFT = () => {
       perksList.length === 0
     ) {
       if (itemname === "") {
-        console.log("Please Add Title to nft");
+        setErrorMessage("Please Add Title to nft");
+        setOpenErrMsg(true);
+        // console.log("Please Add Title to nft");
       } else if (nft === "") {
-        console.log("Problem with Internet");
+        setErrorMessage("Some problem with internet");
+        setOpenErrMsg(true);
+        // console.log("Problem with Internet");
       } else if (desc === "") {
-        console.log("Please describe the nft");
+        setErrorMessage("Add description for the NFT");
+        setOpenErrMsg(true);
+        // console.log("Please describe the nft");
       } else if (perksList.length === 0) {
-        console.log("Please add atleast one perk");
+        setErrorMessage("Please add atleast One Perk");
+        setOpenErrMsg(true);
+        // console.log("Please add atleast one perk");
       }
     } else {
       const reqID = "REQNFT" + makeNftId(24);
@@ -187,9 +229,13 @@ const UploadNFT = () => {
         category: category,
       })
         .then(() => {
-          console.log("REQ SENT!");
+          setSuccMess("NFT request sent");
+          setSuccess(true);
+          // console.log("REQ SENT!");
         })
         .catch((error) => {
+          setErrorMessage("Request not sent");
+          setOpenErrMsg(true);
           console.log(error);
         });
     }
@@ -199,6 +245,8 @@ const UploadNFT = () => {
     const updatedPerks1 = new Set(perks1);
     updatedPerks.delete(e);
     updatedPerks1.delete(e.toLowerCase());
+    setSuccMess("perk removed successfully");
+    setSuccess(true);
     setPerks(updatedPerks);
     setPerks1(updatedPerks1);
   };
@@ -330,6 +378,20 @@ const UploadNFT = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message={sucMessage}
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </>
   );
 };
