@@ -37,6 +37,7 @@ const EditProfile = () => {
   const [open, setOpen] = useState(false);
   const [openErrMsg, setOpenErrMsg] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
 
   const Submit = () => {
     setSuccess(true);
@@ -69,6 +70,10 @@ const EditProfile = () => {
       await uploadBytesResumable(storagePFref, file)
         .then((result) => {
           console.log(result.state);
+          setSuccMess("Photo Updated!");
+          setSuccess(true);
+        })
+        .then(() => {
           window.location.reload();
         })
         .catch((error) => {
@@ -79,7 +84,7 @@ const EditProfile = () => {
 
   // check for valid phone number or not.
   const checkPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === "" || e.target.value.length > 10) {
+    if (e.target.value === "" || e.target.value === null) {
       setPhoneCorrect(true);
     } else {
       const phoneValidString = "(0|91)?[7-9][0-9]{9}";
@@ -153,10 +158,7 @@ const EditProfile = () => {
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
     console.log(data.twitterUsername);
-    if (
-      data.phone.match("(0|91)?[7-9][0-9]{9}") === false &&
-      data.phone !== null
-    ) {
+    if (phoneCorrect) {
       console.log("Please Enter Correct Phone Number");
       setErrorMessage("Please Enter Correct Phone Number");
       setOpenErrMsg(true);
@@ -185,6 +187,7 @@ const EditProfile = () => {
           .then(() => {
             console.log("Data Updated");
             setSuccess(true);
+            setSuccMess("Profile Updated!");
           })
           .then(() => {
             navigate("/" + data?.username);
@@ -410,7 +413,7 @@ const EditProfile = () => {
         <SuccPopup
           handelClose={(r: any) => handelClose(r)}
           open={success}
-          message="Profile Updated!"
+          message={sucMessage}
         />
       )}
       {openErrMsg && (
