@@ -22,6 +22,8 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import SuccPopup from "../../popups/SuccPopup";
+import ErrPopup from "../../popups/ErrPopup";
 
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
@@ -31,6 +33,23 @@ const EditProfile = () => {
   const storage = getStorage(firebaseApp);
   const [usernameTaken, setUsernameTaken] = useState(false);
   const userData = useSelector((state: RootStateOrAny) => state?.userData);
+  const [success, setSuccess] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const Submit = () => {
+    setSuccess(true);
+    setOpen(true);
+  };
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
 
   // file changes
   const handleFileChange = async (event: any) => {
@@ -91,6 +110,8 @@ const EditProfile = () => {
               setUsernameTaken(false);
             } else {
               console.log("Username Taken");
+              setErrorMessage("Username Taken");
+              setOpenErrMsg(true);
               setUsernameTaken(true);
             }
           });
@@ -375,6 +396,20 @@ const EditProfile = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message="Sent Successfully!"
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </>
   );
 };

@@ -9,10 +9,30 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { firebaseApp } from "../../../firebaseConfig";
+import SuccPopup from "../../popups/SuccPopup";
+import ErrPopup from "../../popups/ErrPopup";
 import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import styles from "./help.module.css";
 
 const Help = () => {
+  const [success, setSuccess] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [btnDisable, setBtnDisable] = useState(false);
+
+  const Submit = () => {
+    setSuccess(true);
+    setOpen(true);
+  };
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
   const current = new Date();
   const date = `${current.getDate()}/${
     current.getMonth() + 1
@@ -40,24 +60,33 @@ const Help = () => {
   };
   // Function that reports the problem when the submitted
   const handleSubmit = async () => {
+    setBtnDisable(true);
     const db = getFirestore(firebaseApp);
     const bugId = "HYPRBUG" + makeReportABugId(26);
-    await setDoc(doc(db, "bugReport", bugId), {
-      dateOfReporting: date,
-      description: data.description,
-      reporterEmailId: userData?.email,
-      reporterName: userData?.name,
-      reporterUsername: userData?.username,
-      reporterUid: userData?.uid,
-      reportId: bugId,
-      bugState: "PENDING",
-    })
-      .then(() => {
-        console.log("Reported");
+    if (data.description === "") {
+      setOpenErrMsg(true);
+      setBtnDisable(false);
+      setErrorMessage("Please Enter Description");
+    } else {
+      await setDoc(doc(db, "bugReport", bugId), {
+        dateOfReporting: date,
+        description: data.description,
+        reporterEmailId: userData?.email,
+        reporterName: userData?.name,
+        reporterUsername: userData?.username,
+        reporterUid: userData?.uid,
+        reportId: bugId,
+        bugState: "PENDING",
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then(() => {
+          console.log("Reported");
+          setSuccess(true);
+          setBtnDisable(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   return (
     <>
@@ -88,6 +117,7 @@ const Help = () => {
             ></textarea>
             <div className={clsx("col-md-3 text-center d-flex", styles.avt)}>
               <GradientBorder
+                disable={btnDisable}
                 text="Submit"
                 onClick={(e: React.ChangeEvent<HTMLInputElement>) => {
                   handleSubmit();
@@ -98,7 +128,7 @@ const Help = () => {
           <div className={styles.helpCenter}>
             <h3 className={styles.heading}>Help Center</h3>
             <p>
-              If you haveany questions regarding how the platform works,
+              If you have any questions regarding how the platform works,
               payments or doubts in general, check out our FAQ Page.
               <br />
               <br />
@@ -109,6 +139,20 @@ const Help = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message="Sent Successfully!"
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </>
   );
 };

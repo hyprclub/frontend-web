@@ -13,35 +13,35 @@ import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import InputField from "../../inputField/Input";
 import styles from "./contact.module.css";
 import { useSelector, RootStateOrAny } from "react-redux";
-import SuccPopup from '../../popups/SuccPopup';
-import ErrPopup from '../../popups/ErrPopup';
+import SuccPopup from "../../popups/SuccPopup";
+import ErrPopup from "../../popups/ErrPopup";
 import { useNavigate } from "react-router";
 
 const Contact = () => {
   const userData = useSelector((state: RootStateOrAny) => state.userData);
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
-    const [openErrMsg, setOpenErrMsg] = useState(false)
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-    const Submit = () => {
-      setSuccess(true)
-      setOpen(true);
-  
+  const Submit = () => {
+    setSuccess(true);
+    setOpen(true);
+  };
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
     }
-  
-    const handelClose = (reason:any) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpen(false);
-    };
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
   const [data, setData] = useState({
     name: userData?.name,
     phone: userData?.phone,
     email: userData?.email,
     message: "",
   });
-
 
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -65,22 +65,29 @@ const Contact = () => {
       current.getMonth() + 1
     }/${current.getFullYear()}`;
     const contactUsId = "CONTACT" + makeContactUsId(26);
-    await setDoc(doc(db, "contactus", contactUsId), {
-      name: data.name,
-      contactId: contactUsId,
-      phone: data.phone,
-      email: data.email,
-      message: data.message,
-      isResolved: false,
-      dateOfMessage: date,
-      status: "PENDING",
-    })
-      .then(() => {
-        console.log("Data sent");
+    if (data.message === "") {
+      setOpenErrMsg(true);
+      setErrorMessage("Please enter some message");
+    } else {
+      await setDoc(doc(db, "contactus", contactUsId), {
+        name: data.name,
+        contactId: contactUsId,
+        phone: data.phone,
+        email: data.email,
+        message: data.message,
+        isResolved: false,
+        dateOfMessage: date,
+        status: "PENDING",
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then(() => {
+          console.log("Data sent");
+          setSuccess(true);
+          setErrorMessage("Message Sent!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -152,8 +159,20 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      {success && <SuccPopup handelClose={(r:any) => handelClose(r)} open={open} message="Sent Successfully!"/>}
-            {openErrMsg && <ErrPopup handelClose={(r:any) => handelClose(r)} open={open} message="Send Error!"/>}
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message="Sent Successfully!"
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </>
   );
 };
