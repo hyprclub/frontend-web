@@ -15,12 +15,12 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+// import {
+//   getDownloadURL,
+//   getStorage,
+//   ref,
+//   uploadBytesResumable,
+// } from "firebase/storage";
 import {
   setDoc,
   getDoc,
@@ -34,15 +34,17 @@ import {
 import { firebaseApp, analytics } from "../../firebaseConfig";
 import {
   useSelector,
-  useDispatch,
+  // useDispatch,
   RootStateOrAny,
-  DefaultRootState,
+  // DefaultRootState,
 } from "react-redux";
 import { logEvent } from "firebase/analytics";
 import { useNavigate } from "react-router";
-import { error } from "console";
-import userData from "../../redux/slices/userData";
-import { WindowRounded } from "@mui/icons-material";
+// import { error } from "console";
+// import userData from "../../redux/slices/userData";
+// import { WindowRounded } from "@mui/icons-material";
+import SuccPopup from "../../components/popups/SuccPopup";
+import ErrPopup from "../../components/popups/ErrPopup";
 
 const Register = () => {
   const auth = getAuth(firebaseApp);
@@ -51,7 +53,7 @@ const Register = () => {
   const [usernameTaken, setUsernameTaken] = useState(true);
   const [phoneCorrect, setPhoneCorrect] = useState(false);
   const [termsAndCondition, setTermsAndCondition] = useState(false);
-  const [passMatch, setPassMatch] = useState(false);
+  // const [passMatch, setPassMatch] = useState(false);
   const [promotionalMails, setPromotionalMails] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -62,7 +64,7 @@ const Register = () => {
     phone: "",
   });
 
-  const [checked, setChecked] = useState(true);
+  // const [checked, setChecked] = useState(true);
 
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -75,6 +77,20 @@ const Register = () => {
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+
+  // Error Handling components
+  const [success, setSuccess] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
 
   //check whether username is unique or not
 
@@ -101,7 +117,7 @@ const Register = () => {
 
   //check whether password match or not
 
-  const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  // const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
   //make a random string for username
   const makeRandomString = (len: number) => {
@@ -146,23 +162,49 @@ const Register = () => {
   // function for handle submit
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const { name, email, password, cpassword } = data;
 
+    if (name === "") {
+      setErrorMessage("Please enter your name");
+      setOpenErrMsg(true);
+      return;
+    }
+    if (email === "") {
+      setErrorMessage("Please enter a valid email");
+      setOpenErrMsg(true);
+      return;
+    }
     if (usernameTaken) {
-      console.log("Please Use a different Username");
+      setErrorMessage("Please use a different username");
+      setOpenErrMsg(true);
+      // console.log("Please Use a different Username");
     } else {
       if (phoneCorrect === false) {
-        console.log("Incorrect Phone Number");
+        setErrorMessage("Invalid phone number");
+        setOpenErrMsg(true);
+        // console.log("Incorrect Phone Number");
       } else {
-        if (data.password !== data.cpassword) {
-          console.log("Password Do Not Match");
+        if (password.length === 0) {
+          setErrorMessage("Please enter a valid password");
+          setOpenErrMsg(true);
+          return;
+        }
+        if (password !== cpassword) {
+          setErrorMessage("Passwords do not match");
+          setOpenErrMsg(true);
+          // console.log("Password Do Not Match");
         } else {
           if (termsAndCondition === false) {
-            console.log(
-              "Please Agree to terms and Condition before moving forward"
+            setErrorMessage(
+              "Please agree to the terms and conditions before moving forward"
             );
+            setOpenErrMsg(true);
+            // console.log(
+            //   "Please Agree to terms and Condition before moving forward"
+            // );
           } else {
             try {
-              const storage = getStorage(firebaseApp);
+              // const storage = getStorage(firebaseApp);
 
               const userCredentials = await createUserWithEmailAndPassword(
                 auth,
@@ -230,6 +272,8 @@ const Register = () => {
                 },
               });
 
+              setSuccMess("Account created");
+              setSuccess(true);
               console.log("Account Created : ", user);
 
               logEvent(analytics, "new_user_register", data);
@@ -255,7 +299,7 @@ const Register = () => {
         const uid = userCredentials.user.uid;
         const name = userCredentials.user.displayName;
         const email = userCredentials.user.email;
-        const photoUrl = userCredentials.user.photoURL;
+        // const photoUrl = userCredentials.user.photoURL;
         let phone = userCredentials.user.phoneNumber;
 
         getDoc(doc(db, "hyprUsers", uid))
@@ -340,7 +384,7 @@ const Register = () => {
         const uid = userCredentials.user.uid;
         const name = userCredentials.user.displayName;
         const email = userCredentials.user.email;
-        const photoUrl = userCredentials.user.photoURL;
+        // const photoUrl = userCredentials.user.photoURL;
         let phone = userCredentials.user.phoneNumber;
         const current = new Date();
         const date = `${current.getDate()}/${
@@ -572,6 +616,20 @@ const Register = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message={sucMessage}
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </div>
   );
 };

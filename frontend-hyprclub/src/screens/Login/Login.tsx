@@ -20,6 +20,8 @@ import {
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { Key } from "phosphor-react";
+import SuccPopup from "../../components/popups/SuccPopup";
+import ErrPopup from "../../components/popups/ErrPopup";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
@@ -33,9 +35,23 @@ const Login = () => {
   const db = getFirestore(firebaseApp);
   const navigate = useNavigate();
 
+  // Error Handling components
+  const [success, setSuccess] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
+
   const updateState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((state) => ({ ...state, [e.target.name]: e.target.value }));
-    console.log({ data });
+    // console.log({ data });
   };
 
   const makeRandomString = (len: number) => {
@@ -225,19 +241,26 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent<any>) => {
     e.preventDefault();
-
     await signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredentials) => {
+        setSuccMess("Login Successful");
+        setSuccess(true);
         console.log(userCredentials.user);
       })
       .catch((error) => {
         console.error(error);
         if (error.code === "auth/user-not-found") {
-          console.log("User Not Found");
+          setErrorMessage("User not found");
+          setOpenErrMsg(true);
+          // console.log("User Not Found");
         } else if (error.code === "auth/invalid-email") {
-          console.log("Please Enter Valid Email Address");
+          setErrorMessage("Please enter a valid email");
+          setOpenErrMsg(true);
+          // console.log("Please Enter Valid Email Address");
         } else {
-          console.log("Invalid Credentials");
+          setErrorMessage("Invalid Credentials");
+          setOpenErrMsg(true);
+          // console.log("Invalid Credentials");
         }
       });
   };
@@ -245,7 +268,6 @@ const Login = () => {
   useEffect(() => {
     if (loggedIn && userData.username) {
       navigate("/" + userData.username);
-
       console.log(userData.username);
     } else {
       console.log("No username");
@@ -254,9 +276,11 @@ const Login = () => {
 
   const resetPassword = async (e: React.FormEvent<any>) => {
     sendPasswordResetEmail(auth, resetEmail, {
-      url: "http://localhost:3000/login",
+      url: window.location.href,
     });
-    console.log("Email sent");
+    setSuccMess("Reset password email sent");
+    setSuccess(true);
+    // console.log("Email sent");
   };
 
   return (
@@ -364,6 +388,20 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message={sucMessage}
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </div>
   );
 };

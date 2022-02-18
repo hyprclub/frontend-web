@@ -6,7 +6,7 @@ import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import { useSelector, RootStateOrAny } from "react-redux";
 import { useNavigate } from "react-router";
 import { firebaseApp } from "../../../firebaseConfig";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -28,7 +28,7 @@ import ErrPopup from "../../popups/ErrPopup";
 const EditProfile = () => {
   const [file, setFile] = useState<any>(null);
   const [disable, setDisable] = useState(true);
-  const [phoneCorrect, setPhoneCorrect] = useState(true);
+  const [phoneCorrect, setPhoneCorrect] = useState(false);
   const db = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
   const [usernameTaken, setUsernameTaken] = useState(false);
@@ -88,11 +88,13 @@ const EditProfile = () => {
       setPhoneCorrect(true);
     } else {
       const phoneValidString = "(0|91)?[7-9][0-9]{9}";
-      if (e.target.value.match(phoneValidString)) {
+      if (e.target.value.length !== 10) {
+        setPhoneCorrect(true);
+        console.log("Phone Num not correct");
+      } else if (e.target.value.match(phoneValidString)) {
         console.log("Phone num correct");
         setPhoneCorrect(false);
       } else {
-        console.log("Phone Num not correct");
         setPhoneCorrect(true);
       }
     }
@@ -158,14 +160,21 @@ const EditProfile = () => {
     const ref = doc(db, "hyprUsers", uid);
     console.log(data);
     console.log(data.twitterUsername);
+    const phoneValidString = "(0|91)?[7-9][0-9]{9}";
     if (phoneCorrect) {
       console.log("Please Enter Correct Phone Number");
-      setErrorMessage("Please Enter Correct Phone Number");
+      setErrorMessage("Invalid Phone Number");
+      setOpenErrMsg(true);
+    } else if (data.phone === null) {
+      setErrorMessage("Phone Number Can't be NUll");
       setOpenErrMsg(true);
     } else {
       if (usernameTaken) {
         console.log("Please Choose Diff Username");
         setErrorMessage("Please Choose Different Username");
+        setOpenErrMsg(true);
+      } else if (data.username === "") {
+        setErrorMessage("Please Enter a username");
         setOpenErrMsg(true);
       } else {
         await updateDoc(ref, {
@@ -186,11 +195,11 @@ const EditProfile = () => {
         })
           .then(() => {
             console.log("Data Updated");
-            setSuccess(true);
             setSuccMess("Profile Updated!");
+            setSuccess(true);
           })
           .then(() => {
-            navigate("/" + data?.username);
+            // navigate("/" + data?.username);
           })
           .catch((error) => {
             console.log(error);

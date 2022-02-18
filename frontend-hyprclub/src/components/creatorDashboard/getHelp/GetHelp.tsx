@@ -6,10 +6,27 @@ import { Link } from "react-router-dom";
 import { firebaseApp } from "../../../firebaseConfig";
 import GradientBorder from "../../gradientBorderBtn/GradientBorder";
 import styles from "./getHelp.module.css";
+import SuccPopup from "../../popups/SuccPopup";
+import ErrPopup from "../../popups/ErrPopup";
 
 const GetHelp = ({ className }: any) => {
   const [message, setMessage] = useState("");
   const userData = useSelector((state: RootStateOrAny) => state.userData);
+
+  // Error Handling components
+  const [success, setSuccess] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
+
   const makeContactUsId = (len: number) => {
     let result = "";
     const characters =
@@ -21,6 +38,12 @@ const GetHelp = ({ className }: any) => {
     return result;
   };
   const handleSubmit = async () => {
+    if (message.length === 0) {
+      setErrorMessage("Please enter some message");
+      setOpenErrMsg(true);
+      return;
+    }
+
     const db = getFirestore(firebaseApp);
     const current = new Date();
     const date = `${current.getDate()}/${
@@ -38,9 +61,13 @@ const GetHelp = ({ className }: any) => {
       status: "PENDING",
     })
       .then(() => {
-        console.log("Data sent");
+        setSuccMess("Message sent.");
+        setSuccess(true);
+        // console.log("Data sent");
       })
       .catch((error) => {
+        setErrorMessage("Message not sent.");
+        setOpenErrMsg(true);
         console.log(error);
       });
   };
@@ -81,6 +108,20 @@ const GetHelp = ({ className }: any) => {
           </div>
         </div>
       </div>
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message={sucMessage}
+        />
+      )}
+      {openErrMsg && (
+        <ErrPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={openErrMsg}
+          message={errorMessage}
+        />
+      )}
     </>
   );
 };
