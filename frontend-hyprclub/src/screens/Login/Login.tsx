@@ -276,7 +276,7 @@ const Login = () => {
 
   const resetPassword = async (e: React.FormEvent<any>) => {
     sendPasswordResetEmail(auth, resetEmail, {
-      url: "http://localhost:3000/login",
+      url: window.location.href,
     });
     setSuccMess("Reset password email sent");
     setSuccess(true);
