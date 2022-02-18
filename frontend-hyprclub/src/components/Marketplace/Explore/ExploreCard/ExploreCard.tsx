@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { firebaseApp } from "../../../../firebaseConfig";
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
 import { useNavigate } from "react-router";
+import Loader from "../../../Loader/Loader";
 
 const ExploreCard = ({ className, items: itemFromProps }: any) => {
   const [item, setItem] = useState<null | any>({});
@@ -15,6 +16,7 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
   const navigate = useNavigate();
   const storage = getStorage(firebaseApp);
   const [price, setPrice] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [creatorPhoto, setCreatorPhoto] = useState("");
   const [creatorUsername, setCreatorUsername] = useState("");
   const [video, setVideo] = useState(false);
@@ -32,6 +34,7 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
   useEffect(() => {
     console.log(itemFromProps);
     const run = async () => {
+      setLoading(true);
       if (itemFromProps) {
         await getDoc(doc(db, "nfts", itemFromProps)).then((docs) => {
           if (docs.exists()) {
@@ -79,7 +82,9 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
               });
           }
         });
+        setLoading(false);
       } else {
+        setLoading(false);
         return;
       }
     };
@@ -87,47 +92,52 @@ const ExploreCard = ({ className, items: itemFromProps }: any) => {
   }, [db, itemFromProps]);
   return (
     <div className={cn(styles.card, className)}>
-      <Link className={styles.link} to={`/nft/${itemFromProps}`}>
-        <div className={styles.body}>
-          <div className={styles.line}>
-            <div className={clsx(styles.imgAndBtn, "position-relative w-100")}>
-              {video ? (
-                <video
-                  id="video"
-                  className={styles.image}
-                  src={item.animation_url || item.image}
-                  autoPlay
-                  loop
-                />
-              ) : (
-                <img className={styles.image} src={item.image} alt="NFT" />
-              )}
-            </div>
-            <div className={styles.title}>{item.name}</div>
-            <div
-              className={clsx(
-                "d-flex align-items-center justify-content-between w-100 mt-2"
-              )}
-            >
-              <div className={clsx("d-flex align-items-center")}>
-                <img
-                  className={styles.creatorImg}
-                  src={creatorPhoto || "images/pfx.png"}
-                  alt="Pht"
-                />
-                <div className={styles.ownerAndUsername}>
-                  <p className={styles.owner}>Creator</p>
-
-                  <p className={styles.username}>@{creatorUsername}</p>
-                </div>
+      {loading && <Loader />}
+      {loading === false && (
+        <Link className={styles.link} to={`/nft/${itemFromProps}`}>
+          <div className={styles.body}>
+            <div className={styles.line}>
+              <div
+                className={clsx(styles.imgAndBtn, "position-relative w-100")}
+              >
+                {video ? (
+                  <video
+                    id="video"
+                    className={styles.image}
+                    src={item.animation_url || item.image}
+                    autoPlay
+                    loop
+                  />
+                ) : (
+                  <img className={styles.image} src={item.image} alt="NFT" />
+                )}
               </div>
-              <div className={styles.price}>
-                <span className={styles.pricetxt}>INR {price}</span>
+              <div className={styles.title}>{item.name}</div>
+              <div
+                className={clsx(
+                  "d-flex align-items-center justify-content-between w-100 mt-2"
+                )}
+              >
+                <div className={clsx("d-flex align-items-center")}>
+                  <img
+                    className={styles.creatorImg}
+                    src={creatorPhoto || "images/pfx.png"}
+                    alt="Pht"
+                  />
+                  <div className={styles.ownerAndUsername}>
+                    <p className={styles.owner}>Creator</p>
+
+                    <p className={styles.username}>@{creatorUsername}</p>
+                  </div>
+                </div>
+                <div className={styles.price}>
+                  <span className={styles.pricetxt}>INR {price}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Selection from "../../components/Selection";
 import Popular from "../../components/Marketplace/Popular/Popular";
@@ -19,10 +19,12 @@ import {
 import { firebaseApp } from "../../firebaseConfig";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import userData, { UserDataActions } from "../../redux/slices/userData";
+import Loader from "../../components/Loader/Loader";
 
 const Marketplace = () => {
   const db = getFirestore(firebaseApp);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const query1 = query(
     collection(db, "nfts"),
     orderBy("approvingTime", "desc")
@@ -31,6 +33,7 @@ const Marketplace = () => {
 
   useEffect(() => {
     const run = async () => {
+      setLoading(true);
       await getDocs(query1)
         .then((querySnapShot) => {
           let nftIds: string[] = [];
@@ -45,6 +48,7 @@ const Marketplace = () => {
           });
           dispatch(UserDataActions.nftTokenId({ nftIds }));
           console.log(userData?.nftIds);
+          setLoading(false);
         })
         .catch((error) => {
           console.error(error.code);
@@ -57,8 +61,9 @@ const Marketplace = () => {
     <>
       <Header_login />
       <div className={styles.home}>
-        <Hero_section />
-        <Explore items={userData?.nftIds} />
+        {loading && <Loader />}
+        {loading === false && <Hero_section />}
+        {loading === false && <Explore items={userData?.nftIds} />}
       </div>
     </>
   );

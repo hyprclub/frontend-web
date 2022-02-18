@@ -34,8 +34,10 @@ import ItemsCarousel from "../../components/NFTs/ItemsCarousel/ItemsCarousel";
 import { RootStateOrAny, useSelector } from "react-redux";
 // import { RootCloseEvent } from "react-bootstrap/esm/types";
 import displayRazorpay from "../../razorpay";
+import Loader from "../../components/Loader/Loader";
 import { paymentDetailsSchema } from "../../razorpay/payment.saveData";
-
+import SuccPopup from "../../components/popups/SuccPopup";
+import ErrPopup from "../../components/popups/ErrPopup";
 interface Props {
   Video?: boolean;
 }
@@ -49,6 +51,7 @@ const NFTS = ({ Video }: Props) => {
   const { loggedIn, uid } = useSelector(
     (state: RootStateOrAny) => state?.userData
   );
+  const [loading, setLoading] = useState(false);
   const userData = useSelector((state: RootStateOrAny) => state.userData);
   const [contractAddress, setContractAddress] = useState("");
   const [creatorData, setCreatorData] = useState<any | null>({});
@@ -63,6 +66,21 @@ const NFTS = ({ Video }: Props) => {
   const [bought, setBought] = useState(false);
   const [perkState, setPerkState] = useState("PENDING");
   const [saved, setSaved] = useState(false);
+
+  // error handling states
+  const [success, setSuccess] = useState(false);
+  const [openErrMsg, setOpenErrMsg] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucMessage, setSuccMess] = useState("");
+
+  const handelClose = (reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenErrMsg(false);
+    setSuccess(false);
+  };
+
   const users = [
     {
       name: ownerData.name,
@@ -80,6 +98,7 @@ const NFTS = ({ Video }: Props) => {
   useEffect(() => {
     // const idToken = new URLSearchParams(window?.location?.search).get("idToken");
     const run = async () => {
+      setLoading(true);
       if (docId) {
         await getDoc(doc(db, "nfts", docId))
           .then((QuerySnapshot) => {
@@ -94,9 +113,9 @@ const NFTS = ({ Video }: Props) => {
               axios
                 .get(
                   "https://cdn.hyprclub.com/" +
-                  QuerySnapshot.data().collectionTag +
-                  "/" +
-                  QuerySnapshot.data().token
+                    QuerySnapshot.data().collectionTag +
+                    "/" +
+                    QuerySnapshot.data().token
                 ) // add custom uri settings here.
                 .then((result) => {
                   if (result) {
@@ -185,8 +204,10 @@ const NFTS = ({ Video }: Props) => {
           .catch((err) => {
             console.log(err);
           });
+        setLoading(false);
       } else {
         return;
+        setLoading(false);
       }
     };
     run();
@@ -201,7 +222,8 @@ const NFTS = ({ Video }: Props) => {
           savedNfts: arrayRemove(docId),
         })
           .then(() => {
-            console.log("UnSaved");
+            setSuccMess("REMOVED");
+            setSuccess(true);
           })
           .catch((error) => {
             console.log(error);
@@ -211,7 +233,8 @@ const NFTS = ({ Video }: Props) => {
           savedNfts: arrayUnion(docId),
         })
           .then(() => {
-            console.log("Saved");
+            setSuccMess("SAVED");
+            setSuccess(true);
           })
           .catch((error) => {
             console.log(error);
@@ -269,91 +292,103 @@ const NFTS = ({ Video }: Props) => {
   return (
     <>
       <Header_login />
-      <div className={styles.Wrapper}>
-        <p className={styles.back}>
-          <Link className={styles.link} to="#">
-            <ArrowLeft size={20} id={styles.backArrow} />{" "}
-            <span className={styles.spn}>Go Back</span>
-          </Link>
-        </p>
-        <div className={styles.section}>
-          <div className={styles.container}>
-            <div className={styles.bg}>
-              <div className={styles.preview}>
-                {video ? (
-                  <video
-                    id={styles.video}
-                    src={item.animation_url || item.image}
-                    loop
-                    autoPlay
-                    controls
-                    controlsList="nodownload"
+      {loading && <Loader />}
+      {loading === false && (
+        <div className={styles.Wrapper}>
+          <p className={styles.back}>
+            <Link className={styles.link} to="/market">
+              <ArrowLeft size={20} id={styles.backArrow} />{" "}
+              <span className={styles.spn}>Go Back</span>
+            </Link>
+          </p>
+          <div className={styles.section}>
+            <div className={styles.container}>
+              <div className={styles.bg}>
+                <div className={styles.preview}>
+                  {video ? (
+                    <video
+                      id={styles.video}
+                      src={item.animation_url || item.image}
+                      loop
+                      autoPlay
+                      controls
+                      controlsList="nodownload"
+                    />
+                  ) : (
+                    <img id={styles.img} src={item.image} alt="NFT" />
+                  )}
+                  <Option
+                    onClick={handleStarred}
+                    className={styles.options}
+                    isSaved={userData?.savedNfts.includes(docId)}
                   />
-                ) : (
-                  <img id={styles.img} src={item.image} alt="NFT" />
+                </div>
+              </div>
+
+              <div className={styles.details}>
+                <h1 className={styles.title}>{item.name}</h1>
+                <div className={styles.cost}>
+                  <GradBorder
+                    className={styles.price}
+                    disable={true}
+                    text={`INR ${itemPrice}`}
+                  />
+                </div>
+
+                {forSale && (
+                  <GradBorder
+                    text="Buy Now"
+                    className={styles.buy}
+                    onClick={handlePayment}
+                  />
                 )}
-                <Option onClick={handleStarred} className={styles.options} 
-                isSaved={userData?.savedNfts.includes(docId)} 
-                />
-              </div>
-            </div>
 
-            <div className={styles.details}>
-              <h1 className={styles.title}>{item.name}</h1>
-              <div className={styles.cost}>
-                <GradBorder
-                  className={styles.price}
-                  disable={true}
-                  text={`INR ${itemPrice}`}
-                />
-              </div>
+                <div className={styles.Description_Perks}>
+                  <h3 className={styles.subHeading}>Description</h3>
+                  {item.description}
+                </div>
 
-              {forSale && (
-                <GradBorder
-                  text="Buy Now"
-                  className={styles.buy}
-                  onClick={handlePayment}
-                />
-              )}
-
-              <div className={styles.Description_Perks}>
-                <h3 className={styles.subHeading}>Description</h3>
-                {item.description}
-              </div>
-
-              <div className={styles.Description_Perks}>
-                <h3 className={styles.subHeading}>Perks</h3>
-                <Perks
-                  item={perks}
-                  Bought={bought}
-                  nftDet={docId}
-                  ownerDet={ownerData}
-                  creatorDet={creatorData}
-                  perkState={perkState}
-                  nftDetail={item}
-                  ownerPht={ownerImage}
-                />
+                <div className={styles.Description_Perks}>
+                  <h3 className={styles.subHeading}>Perks</h3>
+                  <Perks
+                    item={perks}
+                    Bought={bought}
+                    nftDet={docId}
+                    ownerDet={ownerData}
+                    creatorDet={creatorData}
+                    perkState={perkState}
+                    nftDetail={item}
+                    ownerPht={ownerImage}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className={styles.bottom}>
-          <div className={styles.Bottom_part}>
-            <h4 className={styles.bottomHeading}>Owners</h4>
-            <Users className={styles.users} items={users} />
+          <div className={styles.bottom}>
+            <div className={styles.Bottom_part}>
+              <h4 className={styles.bottomHeading}>Owners</h4>
+              <Users className={styles.users} items={users} />
+            </div>
+            <div className={styles.Bottom_part1}>
+              <h4 className={cn(styles.bottomHeading, styles.auth)}>
+                View Authenticity
+              </h4>
+              <Polygon className={styles.poly} />
+            </div>
           </div>
-          <div className={styles.Bottom_part1}>
-            <h4 className={cn(styles.bottomHeading, styles.auth)}>
-              View Authenticity
-            </h4>
-            <Polygon className={styles.poly} />
-          </div>
-        </div>
-        {/* <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
+          {/* <p className={styles.more}>Discover NFTs Related to The Last Slice</p>
         <div className={styles.carousel}>
         <ItemsCarousel /> 
         </div >*/}
-      </div>
+        </div>
+      )}
+      {success && (
+        <SuccPopup
+          handelClose={(r: any) => handelClose(r)}
+          open={success}
+          message={sucMessage}
+        />
+      )}
     </>
   );
 };
