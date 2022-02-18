@@ -23,6 +23,7 @@ import Logout from "./logout";
 import Settings from "./screens/Settings/Settings";
 import Landing from "./screens/Landing/Landing";
 import NFTS from "./screens/NFTs/NFTS";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 import UploadNft from "./screens/UploadNft/UploadNft";
 import { firebaseApp, analytics } from "./firebaseConfig";
 import { logEvent } from "firebase/analytics";
@@ -160,7 +161,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Avail/> */}
         <header className="App-header">
           <Routes>
             <Route path="/follow" element={<FollowCreater />} />
@@ -173,7 +173,6 @@ function App() {
             <Route path="/uploadnft" element={<UploadNft />} />
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/admindashboard" element={<Admindash />} />
-            <Route path="/" element={<Landing />}></Route>
             <Route path="/nft/:docId" element={<NFTS></NFTS>} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
@@ -191,9 +190,9 @@ function App() {
             <Route path="/creator" element={<Creator />} />
             <Route path="/onboard" element={<CreatorOnboard />} />
             <Route path="/nftcollection" element={<NFTCollection />} />
-            <Route path="/" element={<Landing />}></Route>
+            <Route path="/" element={<Landing />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
-
           {/* <Header></Header>
           <Footer></Footer> */}
         </header>
