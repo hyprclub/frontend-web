@@ -288,7 +288,7 @@ const Login = () => {
       <Logo />
       <div className="container loginPage">
         <div className="d-flex justify-content-center">
-          <div className="loginForm">
+          {!forgotPass && <div className="loginForm">
             <h1 className="loginHeaderText">
               Join the Next Big Social Revolution
             </h1>
@@ -347,7 +347,9 @@ const Login = () => {
                 purpose={"Login"}
               />
             </div>
-            {forgotPass && (
+
+          </div>}
+          {forgotPass && (
               <div className="forgotPasswordDiv">
                 <i
                   onClick={() => setForgotPass(false)}
@@ -385,7 +387,6 @@ const Login = () => {
                 </div>
               </div>
             )}
-          </div>
         </div>
       </div>
       {success && (
